@@ -29,7 +29,7 @@ Public Function RunMain(Path As String) As Long
     Dim NewLoader As GLFileLoader: Set NewLoader = New GLFileLoader
     Dim MtlLoader As IMtlLoader  : Set MtlLoader = MtlParser.Create(NewLoader, ",")
     Dim ObjLoader As IObjLoader  : Set ObjLoader = GLFileObject.Create(NewLoader, ",")
-    Set TeaModel = Model.Create(NewLoader, Path & "\Capsule", ObjLoader, MtlLoader)
+    Set TeaModel = Model.Create(NewLoader, Path & "\Cube", ObjLoader, MtlLoader)
     Set Shader = TeaModel.LoadedShaders()(0)
     If Shader Is Nothing Then Exit Function
     Set Camera = VBGLCamera.Create(0, 0, 10,    0, 1, 0,    -90, 0, 0,    0.5, 0.5, 45)
@@ -53,6 +53,12 @@ Public Sub DrawLoop()
     Call Shader.SetMatrix4fv("View"      , 1, GL_FALSE, Camera.GetView.Data)
     Call Shader.SetMatrix4fv("Projection", 1, GL_FALSE, Camera.GetPerspective(Window.Width, Window.Height, 0.1!, 100!).Data)
 
+    
+
+    
+    
+    
+
     Dim ThetaF As Single
     Static Count As Single
     Static Direction As Single
@@ -62,11 +68,15 @@ Public Sub DrawLoop()
     If Count >= 360 Then Direction = -1
     If Count =< 000 Then Direction = +1
 
+    Call Shader.Set3f("NormalPosition", +0.0, +0.0, +0.0)
+    Call Shader.Set3f("LightColor0"    , +1.0, +1.0, +1.0)
+    Call Shader.Set3f("ObjectColor"   , +0.5, +0.5, +0.5)
+
 
     Dim Rotation As IMatrixSingle
     Set Rotation = VBGLMatrix.Create(vbSingle, 3, 3)
     Rotation.Data = Rotation.Rotate(3, ThetaF, ThetaF, ThetaF)
-    Call Shader.SetMatrix4fv("Rotation", 1, GL_FALSE, Rotation.Data)
+    Call Shader.SetMatrix4fv("Model", 1, GL_FALSE, Rotation.Data)
 
     Call glClear(GL_COLOR_BUFFER_BIT OR GL_DEPTH_BUFFER_BIT)
     Call glClearColor(0.7, 0, 0.5, 1)
