@@ -11,11 +11,15 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Private ThisFunc As VBGLShaderFunction
+Private Const LineEnd As String = ";" & vbCrLf
+Private Const Incant As String = "    "
+
+Private ThisFunc    As VBGLShaderFunction
 Private Functions() As VBGLShaderFunction
 
 Private Inputt()     As VBGLShaderVariable
 Private Output()     As VBGLShaderVariable
+Private Workflows()  As VBGLShaderWorkflow
 
 Private p_Version    As String
 Private p_Pipeline   As String
@@ -49,14 +53,19 @@ Public Function Create(n_Pipeline As String, n_Version As String) As VBGLShaderT
     End With
 End Function
 
-Public Sub SetUp(Layout As VBGLBufferLayout, Uniforms() As String)
+Public Function AddFunction(Value As VBGLShaderFunction)
+    Dim Size As Long: Size = USize(Functions) + 1
+    ReDim Preserve Functions(Size)
+    Set Functions(Size) = Value
+    Set AddFunction = Value
+End Function
+
+Public Sub SetUp(Layout As VBGLLayout, Uniforms() As VBGLShaderVariable)
     Call AddLayouts(Layout)
-    Call SetUpAll(Uniforms)
+    Call SetUpNext(Inputt, Uniforms)
 End Sub
 
-
-
-Private Sub AddLayouts(Layout As VBGLBufferLayout)
+Private Sub AddLayouts(Layout As VBGLLayout)
     Dim i As Long
 
     Dim PositionIndex As Long
@@ -80,26 +89,36 @@ Private Sub AddLayouts(Layout As VBGLBufferLayout)
     End With
 End Sub
 
-Private Sub SetUpAll(Uniforms() As String)
+Public Sub SetUpNext(Inputs() As VBGLShaderVariable, Uniforms() As VBGLShaderVariable)
     Call SetOutput(ShaderName)
-    Call AddVertexUniforms(Uniforms)
+    Inputt = Inputs
+    Workflows = ThisFunc.Workflows
+    Call AddUniforms(Uniforms)
     Select Case ShaderName
         Case "Vertex"   : Call AddVertexWorkflows()
         Case "Fragment" : Call AddFragmentWorkflows()
     End Select
     Call GetOutputs()
-    If Not NextShader Is Nothing Then Call NextShader.SetUpFromInput(CreateForInput(), Uniforms)
+    Call ThisFunc.LetWorkflows(Workflows)
+    If Not NextShader Is Nothing Then Call NextShader.SetUpNext(ReverseVariables(Output), Uniforms)
 End Sub
 
 ' The returnValue of the Shader
 Private Sub SetOutput(Shader As String)
+    Set ThisFunc = New VBGLShaderFunction
     Select Case Shader
-        Case "Vertex"   : ThisFunc.ReturnFunc = VBGLShaderVariable.Create("out", "vec4", "gl_Position")
-        Case "Fragment" : ThisFunc.ReturnFunc = VBGLShaderVariable.Create("out", "vec4", "gl_FragColor")
+        Case "Vertex"
+            ThisFunc.ReturnFunc = VBGLShaderVariable.Create("out", "vec4", "gl_Position")
+            ThisFunc.ReturnType = "void"
+            ThisFunc.Name = "main"
+        Case "Fragment"
+            ThisFunc.ReturnFunc = VBGLShaderVariable.Create("out", "vec4", "gl_FragColor")
+            ThisFunc.ReturnType = "void"
+            ThisFunc.Name = "main"
     End Select
 End Sub
 
-Private Function GetVarType(Element As VBGLBufferElement) As String
+Private Function GetVarType(Element As VBGLElement) As String
     Dim Pre As String
     Select Case Element.DataType
         Case GL_DOUBLE        : Pre = "d"
@@ -109,80 +128,35 @@ Private Function GetVarType(Element As VBGLBufferElement) As String
     GetVarType = Pre & "vec" & Element.GetTypeSize
 End Function
 
-Private Sub AddVertexUniforms(Uniforms() As String)
-    Dim i As Long
-    Dim Text() As String
-    For i = 0 To Ubound(Uniforms)
-        If Uniforms(i) <> Empty Then
-            Text = Split(Uniforms(i), "|")
-            Call AddVariable(Inputt, "uniform", Text(0), Text(1))
-            If ShortenArray(Uniforms, i) = False Then Exit Sub
-            i = i - 1
-        Else
-            Call ShortenArray(Uniforms, i)
-            Exit For
-        End If
-    Next i
-End Sub
 
-Private Function ShortenArray(Arr() As String, Index As Long) As Boolean
-    Dim i As Long
-    Dim NeUSize As Long: NeUSize = Ubound(Arr) - 1
-    Dim Temp() As String
-    If NeUSize <> -1 Then
-        ReDim Temp(NeUSize)
-        Dim Counter As Long
-        For i = 0 To NeUSize
-            If Counter = Index Then Counter = Counter + 1
-            Temp(i) = Arr(Counter)
-            Counter = Counter + 1
-        Next i
-        ShortenArray = True
-    End If
-    Arr = Temp
-End Function
 
 Private Sub AddVertexWorkflows()
     Dim i As Long
     Dim Index As Long
-    For i = 0 To VSize(Inputt)
+    Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderAddOutput, "VAR0 = " , ThisFunc.ReturnFunc, ThisFunc.ReturnFunc)
+    For i = 0 To USize(Inputt)
         Dim State    As String : State = Inputt(i).State
         Dim Name     As String : Name  = Inputt(i).Name
         Select Case True
             Case State Like "*in*"
                 Select Case True
-                    Case Name Like "*Position*" Call VBGLShaderWorkflow.Create(ThisFunc.Workflows, VBGLShaderUseOnOutput, "VAR0 * VAR1", ThisFunc.ReturnFunc       , Inputt(i))
-                    Case Name Like "*Texture*"  Call VBGLShaderWorkflow.Create(ThisFunc.Workflows, VBGLShaderPass       , "VAR0 = VAR1", ReverseVariable(Inputt(i)), Inputt(i))
-                    Case Name Like "*Color*"    Call VBGLShaderWorkflow.Create(ThisFunc.Workflows, VBGLShaderPass       , "VAR0 = VAR1", ReverseVariable(Inputt(i)), Inputt(i))
-                    Case Name Like "*Normal*"
-                        If FindFunction("Ambient") <> -1 Or FindFunction("Diffuse") <> -1 Or FindFunction("Specular") <> -1 Then
-                            Dim ColorResult   As VBGLShaderVariable: ColorResult = MakeVariable("var", "vec3", "ColorResult")
-                            Dim AmbientColor  As VBGLShaderVariable
-                            Dim DiffuseColor  As VBGLShaderVariable
-                            Dim SpecularColor As VBGLShaderVariable
-                            Dim LightPosition As VBGLShaderVariable
-                            Dim LightColor    As VBGLShaderVariable
-
-                            Call VBGLShaderWorkflow.Create(ThisFunc.Workflows, VBGLShaderAdd, "VAR0", ColorResult)
-                            If FindFunction("Ambient")  <> -1 Then Call VBGLShaderWorkflow.Create(ThisFunc.Workflows, VBGLShaderPass, "VAR0 = VAR0", ColorResult, ReverseVariable(Inputt(i)))
-                            If FindFunction("Diffuse")  <> -1 Then Call VBGLShaderWorkflow.Create(ThisFunc.Workflows, VBGLShaderPass, "VAR0 = VAR0", ColorResult, ReverseVariable(Inputt(i)))
-                            If FindFunction("Specular") <> -1 Then Call VBGLShaderWorkflow.Create(ThisFunc.Workflows, VBGLShaderPass, "VAR0 = VAR0", ColorResult, ReverseVariable(Inputt(i)))
-                        End If
+                    Case Name Like "*Position*" : Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderUseOnOutput, "VAR0 * VAR1", ThisFunc.ReturnFunc, Inputt(i))
+                    Case Name Like "*Texture*"  : Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderPass       , "VAR0 = VAR1", ReverseVariable(Inputt(i)), Inputt(i))
+                    Case Name Like "*Color*"    : Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderPass       , "VAR0 = VAR1", ReverseVariable(Inputt(i)), Inputt(i))
+                    Case Name Like "*Normal*"   : Call VertexNormal(Inputt(i))
                 End Select
             Case State Like "uniform"
-                Select Case True
-                    Case Name Like "*Texture*"   ' Nothing
-                    Case Else
-                    Call VBGLShaderWorkflow.Create(ThisFunc.Workflows, VBGLShaderUseOnOutput, "VAR0 * VAR1", MakeVariable("var", "vec4", TransformType(ShaderOutput, Inputt(i))) , ShaderOutput)
-                End Select
+                Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderUseOnOutput, "VAR0 * VAR1", ThisFunc.ReturnFunc, Inputt(i))
         End Select
     Next i
+    Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderMoveOutput, Empty , ThisFunc.ReturnFunc, ThisFunc.ReturnFunc)
 End Sub
 
 Private Sub AddFragmentWorkflows()
     Dim i As Long
     Dim Index As Long
-    For i = 0 To VSize(Inputt)
+    Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderAddOutput, "VAR0 = " , ThisFunc.ReturnFunc, ThisFunc.ReturnFunc)
+    For i = 0 To USize(Inputt)
         Dim State    As String : State = Inputt(i).State
         Dim Name     As String : Name  = Inputt(i).Name
         Dim LastTexture As Long
@@ -190,18 +164,13 @@ Private Sub AddFragmentWorkflows()
         Select Case True
             Case State Like "*in*"
                 Select Case True
-                    Case Name Like "*Position*" ' Nothing(shoulnt exist at this point)
+                    Case Name Like "*Position#*" ' Nothing(shoulnt exist at this point)
                     Case Name Like "*Texture*"
-                        Dim Temp As VBGLShaderVariable
-                        Temp = Inputt(i)
-                        Temp.DataType = "vec4"
-                        Call VBGLShaderWorkflow.Create(Workflows, VBGLShaderUseOnOutput, "VAR0 * texture(UNIFORM" & i & ", VAR1)" , Temp, ShaderOutput): LastTexture = i
+                        Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderUseOnOutput, "VAR0 * texture(UNIFORM" & i & ", VAR1)", ThisFunc.ReturnFunc, Inputt(i)): LastTexture = i
                     Case Name Like "*Color*"
-                        Call VBGLShaderWorkflow.Create(Workflows, VBGLShaderUseOnOutput, "VAR0 * VAR1", Inputt(i), ShaderOutput)
-                    Case Name Like "*Normal*" And Not Name Like "*NormalM*"
-                        If FindFunction("Ambient") <> -1 Or FindFunction("Diffuse") <> -1 Or FindFunction("Specular") <> -1 Then
-                            'Vertex Handling of Normal
-                        End If
+                        Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderUseOnOutput, "VAR0 * VAR1", Inputt(i), ThisFunc.ReturnFunc)
+                    Case Name Like "*Normal*"
+                        Call FragmentNormal(Inputt(i))
                 End Select
             Case State Like "uniform"
                 Dim j As Long
@@ -212,66 +181,89 @@ Private Sub AddFragmentWorkflows()
                                 Workflows(j).Template = Replace(Workflows(j).Template, "UNIFORM" & LastTexture, Name)
                             End If
                         Next j
-                    Case Name Like "*Normal*"
-                        For j = 0 To USize(Workflows)
-                            If Workflows(j).Template Like "*UNIFORM" & LastNormal & "*" Then
-                                Workflows(j).Template = Replace(Workflows(j).Template, "UNIFORM" & LastNormal, Name)
-                            End If
-                        Next j
                     Case Else
                 End Select
         End Select
     Next i
+    Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderMoveOutput, Empty , ThisFunc.ReturnFunc, ThisFunc.ReturnFunc)
 End Sub
 
-Private Sub AddVertexNormal(CurrentIn As Long)
-    Dim NormalModel As VBGLShaderVariable: NormalModel = MakeVariable("out", "vec3", "outVertexNormalM" & CLng(GetNumericCharacters(Inputt(CurrentIn).Name)))
-    Dim Position    As VBGLShaderVariable: Position    = Inputt(FindVariable(Inputt, Replace(Inputt(0).Name, "Normal", "Position")))
-    Dim FirstStep   As VBGLShaderVariable
-    If FindVariable(Inputt, "Model") <> -1 Then
-        Dim Model As VBGLShaderVariable
-        Model      = Inputt(FindVariable(Inputt, "Model"))
-        FirstStep  = MakeNewVariable("VAR0 * VAR1", Model, Position)
+Private Sub VertexNormal(CurrentVar As VBGLShaderVariable)
+    Dim Position As VBGLShaderVariable
+    Set Position = VBGLShaderVariable.Create(CurrentVar.State, CurrentVar.DataType, Replace(CurrentVar.Name, "Normal", "Position"))
+    Dim FragmentPosition As VBGLShaderVariable
+    Set FragmentPosition = VBGLShaderVariable.Create("out", "vec3", "FragmentPosition")
+    Dim Model As VBGLShaderVariable
+    Set Model = VBGLShaderVariable.Find(Inputt, "Model")
+    If Not Model Is Nothing Then
+        Dim NormalMatrix As VBGLShaderVariable: Set NormalMatrix = VBGLShaderVariable.Create(Model.State, "mat3", Model.Name)
+        Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderPass, "VAR0 = VAR1 * VAR2", FragmentPosition, Model, Position)
+        Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderPass, "VAR0 = mat3(transpose(inverse(VAR1))) * VAR2", ReverseVariable(CurrentVar), NormalMatrix, CurrentVar)
     Else
-        FirstStep  = Inputt(CurrentIn)
+        Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderPass, "VAR0 = VAR1", FragmentPosition, Position)
+        Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderPass, "VAR0 = VAR1", ReverseVariable(CurrentVar), CurrentVar)
     End If
-    Call VBGLShaderWorkflow.Create(Workflows, VBGLShaderPass, "VAR0 = VAR1", FirstStep, NormalModel)
-    Call VBGLShaderWorkflow.Create(Workflows, VBGLShaderPass, "VAR0 = VAR1", Inputt(CurrentIn), ReverseVariable(Inputt(CurrentIn)))
 End Sub
 
-Private Sub AddFragmentNormal(CurrentIn As Long, NormalIndex As Long)
-    Dim Norm            As VBGLShaderVariable : Norm            = MakeVariable("var", "vec3", "norm"             & NormalIndex)
-    Dim Ambient         As VBGLShaderVariable : Ambient         = MakeVariable("var", "vec3", "Ambient"          & NormalIndex)
-    Dim LightColor      As VBGLShaderVariable : LightColor      = Inputt(FindVariable(Inputt, "LightColor"       & NormalIndex))
-    Dim LightDirection  As VBGLShaderVariable : LightDirection  = MakeVariable("var", "vec3", "LightDirection"   & NormalIndex)
-    Dim NormalM         As VBGLShaderVariable : NormalM         = Inputt(FindVariable(Inputt, "outVertexNormalM" & NormalIndex))
-    Dim Diff            As VBGLShaderVariable : Diff            = MakeVariable("var", "float", "diff"            & NormalIndex)
-    Dim Diffuse         As VBGLShaderVariable : Diffuse         = MakeVariable("var", "vec3", "Diffuse"          & NormalIndex)
-    Dim Result          As VBGLShaderVariable : Result          = MakeVariable("var", "vec3", "Result"           & NormalIndex)
+Private Sub FragmentNormal(CurrentVar As VBGLShaderVariable)
+    Dim AmbientColor As VBGLShaderVariable
+    Set AmbientColor = VBGLShaderVariable.Find(Inputt, "AmbientColor")
+    Dim AmbientFunction  As VBGLShaderFunction
+    If Not AmbientColor Is Nothing Then Set AmbientFunction = AddFunction(VBGLShaderFunction.CreateAmbient())
 
-    Dim DiffuseResult   As VBGLShaderVariable : DiffuseResult   = MakeNewVariable("VAR0 * VAR1"              , LightColor, Diff)
-    Dim NormLightResult As VBGLShaderVariable : NormLightResult = MakeNewVariable("max(dot(VAR0, VAR1), 0.0)", Norm, LightDirection)
+    Dim DiffuseColor As VBGLShaderVariable
+    Set DiffuseColor = VBGLShaderVariable.Find(Inputt, "DiffuseColor")
+    Dim DiffuseFunction  As VBGLShaderFunction
+    If Not DiffuseColor Is Nothing Then Set DiffuseFunction = AddFunction(VBGLShaderFunction.CreateDiffuse())
 
-    Call VBGLShaderWorkflow.Create(Workflows, "AddWithValue", "VAR0 = 0.2 * VAR1"                                          , LightColor             , Ambient)
-    Call VBGLShaderWorkflow.Create(Workflows, "AddWithValue", "VAR0 = normalize(VAR1)"                                     , Inputt(CurrentIn)      , Norm)
-    Call VBGLShaderWorkflow.Create(Workflows, "AddWithValue", "VAR0 = normalize(UNIFORM" & CurrentIn & " - VAR1)"          , NormalM                , LightDirection)
-    Call VBGLShaderWorkflow.Create(Workflows, "AddWithValue", "VAR0 = VAR1"                                                , NormLightResult        , Diff)
-    Call VBGLShaderWorkflow.Create(Workflows, "AddWithValue", "VAR0 = VAR1"                                                , DiffuseResult          , Diffuse)
-    Call VBGLShaderWorkflow.Create(Workflows, "AddWithValue", "VAR0 = (Ambient" & NormalIndex & " + VAR1) * ObjectColor"   , Diffuse                , Result)
-    Call VBGLShaderWorkflow.Create(Workflows, VBGLShaderUseOnOutput , "VAR0 * VAR1"                                               , Result                 , ShaderOutput)
-    Call VBGLShaderWorkflow.Create(Workflows, "MoveOutput"  , Empty                                                         , Diffuse                , Diffuse)
+    Dim SpecularColor As VBGLShaderVariable
+    Set SpecularColor = VBGLShaderVariable.Find(Inputt, "SpecularColor")
+    Dim SpecularFunction  As VBGLShaderFunction
+    If Not SpecularColor Is Nothing Then Set SpecularFunction = AddFunction(VBGLShaderFunction.CreateSpecular())
+
+
+    If AmbientFunction Is Nothing And DiffuseFunction Is Nothing And SpecularFunction Is Nothing Then
+        Else
+        Dim ColorResult      As VBGLShaderVariable: Set ColorResult      = VBGLShaderVariable.Create("var", "vec3", "ColorResult")
+
+        Dim FragmentPosition      As VBGLShaderVariable: Set FragmentPosition = VBGLShaderVariable.Find(Inputt, "FragmentPosition") : If FragmentPosition Is Nothing Then Set FragmentPosition   = VBGLShaderVariable.Create("vec3" , "var", "vec3(0.0, 0.0, 0.0)")
+        Dim ViewPosition          As VBGLShaderVariable: Set ViewPosition     = VBGLShaderVariable.Find(Inputt, "ViewPosition")     : If ViewPosition     Is Nothing Then Set ViewPosition       = VBGLShaderVariable.Create("vec3" , "var", "vec3(0.0, 0.0, 0.0)")
+        Dim AmbientFactor         As VBGLShaderVariable: Set AmbientFactor    = VBGLShaderVariable.Find(Inputt, "AmbientFactor")    : If AmbientFactor    Is Nothing Then Set AmbientFactor      = VBGLShaderVariable.Create("float", "var", "0.2")
+        Dim SpecularFactor        As VBGLShaderVariable: Set SpecularFactor   = VBGLShaderVariable.Find(Inputt, "SpecularFactor")   : If SpecularFactor   Is Nothing Then Set SpecularFactor     = VBGLShaderVariable.Create("float", "var", "0.1")
+        Dim LightPosition         As VBGLShaderVariable: Set LightPosition    = VBGLShaderVariable.Find(Inputt, "LightPosition")    : If LightPosition    Is Nothing Then Set LightPosition      = VBGLShaderVariable.Create("vec3" , "var", "vec3(0.0, 0.0, 0.0)")
+        Dim LightColor            As VBGLShaderVariable: Set LightColor       = VBGLShaderVariable.Find(Inputt, "LightColor")       : If LightColor       Is Nothing Then Set LightColor         = VBGLShaderVariable.Create("vec3" , "var", "vec3(1.0, 1.0, 1.0)")
+        Dim Shininess             As VBGLShaderVariable: Set Shininess        = VBGLShaderVariable.Find(Inputt, "Shininess")        : If Shininess        Is Nothing Then Set Shininess          = VBGLShaderVariable.Create("float", "var", "32")
+
+        Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderAddWithValue, "VAR0 = vec3(0.0, 0.0, 0.0)", ColorResult)
+        If Not AmbientFunction  Is Nothing Then Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderAssign, "VAR0 = VAR1 + Ambient(VAR2, VAR3)"                                , ColorResult, ColorResult, AmbientColor, AmbientFactor)
+        If Not DiffuseFunction  Is Nothing Then Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderAssign, "VAR0 = VAR1 + Diffuse(VAR2, VAR3, VAR4, VAR5)"                    , ColorResult, ColorResult, CurrentVar , LightPosition, FragmentPosition, DiffuseColor)
+        If Not SpecularFunction Is Nothing Then Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderAssign, "VAR0 = VAR1 + Specular(VAR2, VAR3, VAR4, VAR5, VAR6, VAR7, VAR8)" , ColorResult, ColorResult, CurrentVar , LightPosition, ViewPosition    , FragmentPosition, SpecularColor, SpecularFactor, Shininess)
+        Call VBGLShaderWorkflow.Add(Workflows, VBGLShaderUseOnOutput, "VAR0 * VAR1 * VAR2", ThisFunc.ReturnFunc, ColorResult, LightColor)
+    End If
 End Sub
 
 Private Sub GetOutputs()
     Dim i As Long
     For i = 0 To USize(Workflows)
         If Workflows(i).WFType = VBGLShaderPass Then
-            Call AddVariable(Output, "out", Workflows(i).Goal.DataType, Replace(Workflows(i).Goal.Name, "in", "out"))
+            Call VBGLShaderVariable.AddVariable(Output, Workflows(i).Var(0))
         End If
     Next i
 End Sub
 
-
+Private Sub AddUniforms(Uniforms() As VBGLShaderVariable)
+    Dim i As Long
+    For i = 0 To Ubound(Uniforms)
+        If Not Uniforms(i) Is Nothing Then
+            Call VBGLShaderVariable.AddVariable(Inputt, Uniforms(i))
+            If ShortenArray(Uniforms, i) = False Then Exit Sub
+            i = i - 1
+        Else
+            Call ShortenArray(Uniforms, i)
+            Exit For
+        End If
+    Next i
+End Sub
 
 
 
@@ -280,105 +272,44 @@ Public Function GetShader() As String
     GetShader   = "#version " & Version & vbCrLf
     GetShader   = GetShader & GetVariables(Inputt)
     GetShader   = GetShader & GetVariables(Output)
-    GetShader   = GetShader & "void main()" & vbCrLf
-    GetShader   = GetShader &  "{" & vbCrLf
-    GetShader   = GetShader & Incant & ShaderOutput.Name & " = VAR0" & LineEnd
-    GetShader   = CompleteWorkflow(GetShader)
-    GetShader   = GetShader &  "}" & vbCrLf
+    Dim i As Long
+    For i = 0 To USize(Functions)
+        GetShader = GetShader & Functions(i).GetFunction
+    Next i
+    GetShader = GetShader & ThisFunc.GetFunction
     If Not NextShader Is Nothing Then GetShader   = GetShader & "|" & NextShader.GetShader
 End Function
 
 Private Function GetVariables(Arr() As VBGLShaderVariable) As String
     Dim i As Long
-    For i = 0 To VSize(Arr)
+    For i = 0 To USize(Arr)
         GetVariables = GetVariables & Arr(i).State & " " & Arr(i).DataType & " " & Arr(i).Name & LineEnd
     Next i
     GetVariables = GetVariables & vbCrLf
 End Function
 
-Private Function CompleteWorkflow(Func As Functionn, Text As String) As String
-    Dim i As Long
-    Dim NewLine As String
-    CompleteWorkflow = Text
-    For i = 0 To USize(Workflows)
-        CompleteWorkflow = Func.Workflow(i).GetString(CompleteWorkflow)
-    Next i
-    CompleteWorkflow = Replace(CompleteWorkflow, "GOAL * ", "")
-End Function
-
-'Create next shader in pipeline
-
-'State|DataType|Name/ 0
-'State|DataType|Name/ 1
-'State|DataType|Name/ 2
-'State|DataType|Name/ 3
-Public Sub SetUpFromInput(InputArr As String, Uniforms() As String)
-    Dim Vars() As String
-    Vars = Split(InputArr, "/")
-
-    Dim i As Long
-    For i = 0 To Ubound(Vars)
-        Dim VarValues() As String
-        VarValues = Split(Vars(i), "|")
-        Call AddVariable(Inputt, "in", VarValues(1), VarValues(2))
-    Next i
-    Call SetUpAll(Uniforms)
-End Sub
-
-'State|DataType|Name/ 0
-'State|DataType|Name/ 1
-'State|DataType|Name/ 2
-'State|DataType|Name/ 3
-Private Function CreateForInput() As String
-    Dim i As Long
-    For i = 0 To VSize(Output)
-        CreateForInput = CreateForInput & Output(i).State & "|" & Output(i).DataType & "|" & Output(i).Name & "/"
-    Next i
-    CreateForInput = Mid(CreateForInput, 1, Len(CreateForInput) - 1)
-End Function
-
-
-
-
-
-
-' Handle UDT
-Private Sub VBGLShaderWorkflow.Create(WF() As VBGLShaderWorkflow, WFType As String, Template As String, ParamArray Vars() As Variant)
-    Dim Size As Long: Size = USize(WF) + 1
-    ReDim Preserve WF(Size)
-    Set WF(Size) = New VBGLShaderWorkflow
-    WF(Size).WFType   = WFType
-    WF(Size).Template = Template
-    Call WF(Size).AddVariable()
-
-    
+Private Function ReverseVariables(Arr() As VBGLShaderVariable) As VBGLShaderVariable()
     Dim i As Long
     Dim Temp() As VBGLShaderVariable
-    ReDim Temp(Ubound(Vars))
-    For i = 0 To Ubound(Vars)
-        Temp(i) = Vars(i)
+    ReDim Temp(USize(Arr))
+    For i = 0 To USize(Arr)
+        Set Temp(i) = ReverseVariable(Arr(i))
     Next i
-    WF(Size).Vars = Temp
-End Sub
-Private Function USize(Arr() As VBGLShaderWorkflow)
+    ReverseVariables = Temp
+End Function
+
+
+
+
+
+Private Function USize(Arr As Variant) As Long
     On Error Resume Next
     USize = -1
     USize = Ubound(Arr)
 End Function
 
-Private Function AddVariable(Shader() As VBGLShaderVariable, State As String, DataType As String, Name As String) As VBGLShaderVariable
-    Dim Size As Long: Size = VSize(Shader) + 1
-    ReDim Preserve Shader(Size)
-    Shader(Size) = MakeVariable(State, DataType, Name)
-    AddVariable = Shader(Size)
-End Function
-Private Function VSize(Arr() As VBGLShaderVariable)
-    On Error Resume Next
-    VSize = -1
-    VSize = Ubound(Arr)
-End Function
-
 Private Function ReverseVariable(Var As VBGLShaderVariable) As VBGLShaderVariable
+    Set ReverseVariable = New VBGLShaderVariable
     If Var.State Like "*in*" Then
         ReverseVariable.State = "out"
         ReverseVariable.Name  = Replace(Var.Name, "in", "out")
@@ -389,46 +320,19 @@ Private Function ReverseVariable(Var As VBGLShaderVariable) As VBGLShaderVariabl
     ReverseVariable.DataType = Var.DataType
 End Function
 
-Private Function FindVariable(Vars() As VBGLShaderVariable, Name As String) As Long
+Private Function ShortenArray(Arr() As VBGLShaderVariable, Index As Long) As Boolean
     Dim i As Long
-    FindVariable = -1
-    For i = 0 To VSize(Vars)
-        If Vars(i).Name = Name Then
-            FindVariable = i
-            Exit For
-        End If
-    Next i
-End Function
-
-Private Function MakeVariable(State As String, DataType As String, Name As String) As VBGLShaderVariable
-    MakeVariable.State    = State
-    MakeVariable.DataType = DataType
-    MakeVariable.Name     = Name
-End Function
-
-Private Function MakeNewVariable(Template As String, Goal As VBGLShaderVariable, VAR1 As VBGLShaderVariable) As VBGLShaderVariable
-    Dim NewName     As String: NewName = TransformType(Goal, VAR1)
-    Dim NewTemplate As String
-    NewTemplate = Replace(Template, "GOAL", Goal.Name)
-    NewTemplate = Replace(NewTemplate, "VAR1", NewName)
-    MakeNewVariable.State    = "var"
-    MakeNewVariable.DataType = Goal.DataType
-    MakeNewVariable.Name     = NewTemplate
-End Function
-
-Private Function FindFunction(Name As String) As Long
-    Dim i As Long
-    FindFunction = -1
-    For i = 0 To FSize(Functions)
-        If Functions(i).Name = Name Then
-            FindFunction = i
-            Exit For
-        End If
-    Next i
-End Function
-
-Private Function FSize(Arr() As Functionn)
-    On Error Resume Next
-    FSize = -1
-    FSize = Ubound(Arr)
+    Dim NeUSize As Long: NeUSize = Ubound(Arr) - 1
+    Dim Temp() As VBGLShaderVariable
+    If NeUSize <> -1 Then
+        ReDim Temp(NeUSize)
+        Dim Counter As Long
+        For i = 0 To NeUSize
+            If Counter = Index Then Counter = Counter + 1
+            Set Temp(i) = Arr(Counter)
+            Counter = Counter + 1
+        Next i
+        ShortenArray = True
+    End If
+    Arr = Temp
 End Function

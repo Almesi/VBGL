@@ -36,10 +36,13 @@ Public Function Create(n_Name As String, GroupData As String) As GLGroup
     With Create
         .Name      = n_Name
         Call .GetSubGroups(GroupData, "usemtl ", Empty, Empty)
+        Call .MergeSubGroups()
     End With
     If USize(Create.SubGroups) < 0 Then Set Create = Nothing
 End Function
 
+' I FUCKING HATE THIS SUB
+' Not working, material gets assigned to smoothing
 Public Sub GetSubGroups(Data As String, ByVal SearchValue As String, ByVal FirstValue As String, ByVal SecondValue As String)
     Dim PrevSearch  As String
     If Data = Empty Then Exit Sub
@@ -57,6 +60,8 @@ Public Sub GetSubGroups(Data As String, ByVal SearchValue As String, ByVal First
         Temp        = SecondPoint
         SecondPoint = FirstPoint
         FirstPoint  = Temp
+        PrevSearch = ChangeSearch(PrevSearch)
+        SearchValue = ChangeSearch(SearchValue)
     End If
 
     Dim CurrentData As String
@@ -80,19 +85,187 @@ Public Sub GetSubGroups(Data As String, ByVal SearchValue As String, ByVal First
     Call Add(Material, Smoothing, CurrentData)
 
     If FirstPoint = 0 And SecondPoint = 0 Then
-        FirstValue  = Empty
-        SecondValue = Empty
+        If PrevSearch  = "s " Then FirstValue  = "off" Else FirstValue = Empty
+        If SearchValue = "s " Then FirstValue  = "off" Else FirstValue = Empty
     ElseIf FirstPoint = 0 Then
-        FirstValue = Empty
+        If PrevSearch  = "s " Then FirstValue  = "off" Else FirstValue = Empty
         SecondValue = GetName(Data, SecondPoint)
     ElseIf SecondPoint = 0 Then
-        SecondValue = Empty
+        If SearchValue = "s " Then FirstValue  = "off" Else FirstValue = Empty
         FirstValue  = GetName(Data, FirstPoint)
     Else
         FirstValue  = GetName(Data, FirstPoint)
         SecondValue = GetName(Data, SecondPoint)
     End If
     If EndPoint <> 0 Then Call GetSubGroups(MidP(Data, EndPoint, Len(Data)), SearchValue, FirstValue, SecondValue)
+End Sub
+
+Public Sub MergeSubGroups()
+    Dim ReturnArr() As GLSubGroup
+    Dim Temp() As GLSubGroup
+    Dim i As Long, j As Long
+    Temp = SubGroups
+    ' Check for missing SubGroup Definition
+    Do Until USize(Temp) < i
+        If SubGroup(i).Material = Empty And SubGroup(i).Smoothing = Empty Then
+            For j = i + 1 To USize(Temp)
+                Call AddOntoSubGroup(ReturnArr, Temp, j, i)
+            Next j
+        End If
+        i = i + 1
+    Loop
+
+    ' Check for same SubGroup Definition
+    i = 0
+    j = 1
+    Do Until USize(Temp) < i - 1
+        Do Until USize(Temp) < j
+            If (SubGroup(i).Material = SubGroup(j).Material) And (SubGroup(i).Smoothing = SubGroup(j).Smoothing) Then
+                Call AddOntoSubGroup(ReturnArr, Temp, j, i)
+            End If
+            j = j + 1
+        Loop
+        i = i + 1
+        j = i + 1
+    Loop
+    SubGroups = ReturnArr
+End Sub
+
+Private Sub AddOntoSubGroup(Goal() As GLSubGroup, Arr() As GLSubGroup, First As Long, ToRemove As Long)
+    Dim NewSubGroup As GLSubGroup
+    Set NewSubGroup = CombineSubGroups(Arr(First), Arr(ToRemove))
+    Call AddSubGroup(Goal, NewSubGroup)
+    Dim i As Long
+    Dim Temp() As GLSubGroup
+    ReDim Temp(USize(Arr) - 1)
+    Dim Counter As Long
+    For i = 0 To USize(Temp)
+        If i = ToRemove Then Counter = Counter + 1
+        Set Temp(i) = Arr(Counter)
+        Counter = Counter + 1
+    Next i
+    Count = Count -1
+    Arr = Temp
+End Sub
+
+Private Function CombineSubGroups(Sub1 As GLSubGroup, Sub2 As GLSubGroup) As GLSubGroup
+    Set CombineSubGroups = New GLSubGroup
+    CombineSubGroups.Material  = Sub1.Material
+    CombineSubGroups.Smoothing = Sub1.Smoothing
+    CombineSubGroups.Vertices  = CombineVertices(Sub1.Vertices, Sub2.Vertices)
+    CombineSubGroups.Textures  = CombineVertices(Sub1.Textures, Sub2.Textures)
+    CombineSubGroups.Normals   = CombineVertices(Sub1.Normals , Sub2.Normals)
+    CombineSubGroups.Colors    = CombineVertices(Sub1.Colors  , Sub2.Colors)
+    CombineSubGroups.Faces     = CombineFaces(Sub1.Faces      , Sub2.Faces)
+    CombineSubGroups.Faces.Normalize
+    CombineSubGroups.Layout    = CombineLayout(Sub1.Layout    , Sub2.Layout)
+End Function
+
+Private Function CombineVertices(V1 As GLVertex, V2 As GLVertex) As GLVertex
+    If IsNothing(V1) Then
+        Set CombineVertices  = V2
+    ElseIf IsNothing(V2) Then
+        Set CombineVertices  = V1
+    Else
+        Set CombineVertices = New GLVertex
+        CombineVertices.Element  = V1.Element
+        CombineVertices.Count    = V1.Count + V2.Count
+        Dim Temp As VBGLData
+        Set Temp = VBGLData.Create(vbSingle)
+        Temp.Data = MergeArray(V1.Data.ByteData, V2.Data.ByteData)
+        CombineVertices.Data = Temp
+        CombineVertices.Data = MergeArray(V1.Data, V2.Data)
+    End If
+End Function
+
+Private Function CombineFaces(F1 As GLFace, F2 As GLFace)
+    If IsNothing(F1) Then
+        Set CombineFaces  = F2
+    ElseIf IsNothing(F2) Then
+        Set CombineFaces  = F1
+    Else
+        Set CombineFaces = New GLFace
+        CombineFaces.Vertex  = MergeArray(F1.Vertex  , F2.Vertex)
+        CombineFaces.Texture = MergeArray(F1.Texture , F2.Texture)
+        CombineFaces.Normal  = MergeArray(F1.Normal  , F2.Normal)
+        CombineFaces.Color   = MergeArray(F1.Color   , F2.Color)
+        CombineFaces.Count   = F1.Count + F2.Count
+    End If
+End Function
+
+Private Function CombineLayout(L1 As VBGLLayout, L2 As VBGLLayout) As VBGLLayout
+    Dim Temp() As VBGLLayoutType
+    Dim Size As Long
+    If L1.Size > L2.Size Then
+        Size = L1.Size
+    Else
+        Size = L2.Size
+    End If
+    ReDim Temp(Size)
+    Dim i As Long
+    Dim L1Element As VBGLElement
+    Dim L2Element As VBGLElement
+    For i = 0 To Size
+        Set L1Element = L1.Element(i)
+        Set L2Element = L2.Element(i)
+        If (L1Element.GetCategory() = "Position") Then 
+            If L1Element.LayoutType = VBGLLayoutType.XYZ And L1Element.LayoutType <> L2Element.LayoutType Then
+                Temp(i) = L2Element.LayoutType
+            Else
+                Temp(i) = L1Element.LayoutType
+            End If
+        End If 
+        If (L1Element.GetCategory() = "Texture")  Then 
+            If L1Element.LayoutType = VBGLLayoutType.TxTy And L1Element.LayoutType <> L2Element.LayoutType Then
+                Temp(i) = L2Element.LayoutType
+            Else
+                Temp(i) = L1Element.LayoutType
+            End If
+        End If 
+        If (L1Element.GetCategory() = "Normal")   Then 
+            If L1Element.LayoutType = VBGLLayoutType.NxNyNz And L1Element.LayoutType <> L2Element.LayoutType Then
+                Temp(i) = L2Element.LayoutType
+            Else
+                Temp(i) = L1Element.LayoutType
+            End If
+        End If 
+        If (L1Element.GetCategory() = "Color")    Then 
+            If L1Element.LayoutType = VBGLLayoutType.RGBB And L1Element.LayoutType <> L2Element.LayoutType Then
+                Temp(i) = L2Element.LayoutType
+            Else
+                Temp(i) = L1Element.LayoutType
+            End If
+        End If 
+    Next i
+    Set CombineLayout = VBGLLayout.Create(vbSingle, Temp)
+End Function
+
+Private Function MergeArray(Arr1 As Variant, Arr2 As Variant) As Variant
+    Dim i As Long
+    Dim Counter As Long
+    Dim Goal As Variant
+
+    Dim NewSize As Long
+    NewSize = (USize(Arr1) + 1) + (USize(Arr2) + 1) - 1
+    Goal = Arr1
+    ReDim Goal(NewSize)
+    For i = 0 To USize(Arr1)
+        Call Assign(Goal(Counter), Arr1(i))
+        Counter = Counter + 1
+    Next i
+    For i = 0 To USize(Arr2)
+        Call Assign(Goal(Counter), Arr2(i))
+        Counter = Counter + 1
+    Next i
+    Call Assign(MergeArray, Goal)
+End Function
+
+Private Sub Assign(Goal As Variant, Value As Variant)
+    If IsObject(Value) Then
+        Set Goal = Value
+    Else
+        Let Goal = Value
+    End If
 End Sub
 
 Private Function GetName(Data As String, Point As Long) As String
@@ -139,6 +312,21 @@ Private Sub GetSmoothingValue(Value1 As String, Value2 As String, Material As St
         Material  = Value1
     End If
 End Sub
+
+Private Sub AddSubGroup(Arr() As GLSubGroup, Value As GLSubGroup)
+    Dim Size As Long: Size = USize(Arr) + 1
+    ReDim Preserve Arr(Size)
+    Set Arr(Size) = Value
+End Sub
+
+'Purely for readability
+Private Function IsNothing(Obj As Object) As Boolean
+    IsNothing = Obj Is Nothing
+End Function
+'Purely for readability
+Private Function IsSomething(Obj As Object) As Boolean
+    IsSomething = IsNothing(Obj) Xor True
+End Function
 
 Private Sub Class_Initialize()
     Count = -1

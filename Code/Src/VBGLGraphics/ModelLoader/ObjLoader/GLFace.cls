@@ -11,8 +11,6 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Private Const UnusableValue As Long = -3545332 ' Some Random Value
-
 Private p_Vertex()  As Long
 Private p_Texture() As Long
 Private p_Normal()  As Long
@@ -42,45 +40,118 @@ Public Function Create(n_Vertex() As Long, n_Texture() As Long, n_Normal() As Lo
     End With
 End Function
 
-Public Function CreateFromStringArray(Setup As String, Arr() As String) As GLFace
+Public Function CreateFromStringArray(Layout As VBGLLayout, Arr() As String) As GLFace
     Dim ArrV() As Long
     Dim ArrT() As Long
     Dim ArrN() As Long
     Dim ArrC() As Long
-    Dim LineBreak As Long
-    Dim ArrVOffset As Long
-    Dim ArrTOffset As Long
-    Dim ArrNOffset As Long
-    Dim ArrCOffset As Long 
-    
-    Select Case True
-        Case Setup Like "*#/*#/*#/*#" : LineBreak = 4: ArrVOffset = 1: ArrTOffset = 2: ArrNOffset = 3: ArrCOffset = 4 ' 1234
-        Case Setup Like "*#/*#//*#"   : LineBreak = 3: ArrVOffset = 1: ArrTOffset = 2: ArrNOffset = 0: ArrCOffset = 3 ' 124
-        Case Setup Like "*#//*#/*#"   : LineBreak = 3: ArrVOffset = 1: ArrTOffset = 0: ArrNOffset = 2: ArrCOffset = 3 ' 134
-        Case Setup Like "/*#/*#/*#"   : LineBreak = 3: ArrVOffset = 0: ArrTOffset = 1: ArrNOffset = 2: ArrCOffset = 3 ' 234
-        Case Setup Like "*#/*#/*#"    : LineBreak = 3: ArrVOffset = 1: ArrTOffset = 2: ArrNOffset = 3: ArrCOffset = 0 ' 123
-        Case Setup Like "//*#/*#"     : LineBreak = 2: ArrVOffset = 0: ArrTOffset = 0: ArrNOffset = 1: ArrCOffset = 2 ' 34
-        Case Setup Like "/*#//*#"     : LineBreak = 2: ArrVOffset = 0: ArrTOffset = 1: ArrNOffset = 0: ArrCOffset = 2 ' 24
-        Case Setup Like "/*#/*#"      : LineBreak = 2: ArrVOffset = 0: ArrTOffset = 1: ArrNOffset = 2: ArrCOffset = 0 ' 23
-        Case Setup Like "*#///*#"     : LineBreak = 2: ArrVOffset = 1: ArrTOffset = 0: ArrNOffset = 0: ArrCOffset = 2 ' 14
-        Case Setup Like "*#//*#"      : LineBreak = 2: ArrVOffset = 1: ArrTOffset = 0: ArrNOffset = 3: ArrCOffset = 0 ' 13
-        Case Setup Like "*#/*#"       : LineBreak = 2: ArrVOffset = 1: ArrTOffset = 2: ArrNOffset = 0: ArrCOffset = 0 ' 12
-        Case Setup Like "///*#"       : LineBreak = 1: ArrVOffset = 0: ArrTOffset = 0: ArrNOffset = 0: ArrCOffset = 1 ' 4
-        Case Setup Like "//*#"        : LineBreak = 1: ArrVOffset = 0: ArrTOffset = 0: ArrNOffset = 1: ArrCOffset = 0 ' 3
-        Case Setup Like "/*#"         : LineBreak = 1: ArrVOffset = 0: ArrTOffset = 1: ArrNOffset = 0: ArrCOffset = 0 ' 2
-        Case Setup Like "*#"          : LineBreak = 1: ArrVOffset = 1: ArrTOffset = 0: ArrNOffset = 0: ArrCOffset = 0 ' 1
-    End Select
-    If ArrVOffset <> 0 Then ReDim ArrV((Ubound(Arr) + 1) / LineBreak - 1)
-    If ArrTOffset <> 0 Then ReDim ArrT((Ubound(Arr) + 1) / LineBreak - 1)
-    If ArrNOffset <> 0 Then ReDim ArrN((Ubound(Arr) + 1) / LineBreak - 1)
-    If ArrCOffset <> 0 Then ReDim ArrC((Ubound(Arr) + 1) / LineBreak - 1)
+    Dim i      As Long
+    Dim j      As Long
 
-    Dim i As Long
-    For i = 0 To (UBound(Arr) + 1) / LineBreak - 1
-        If ArrVOffset <> 0 Then ArrV(i) = CSng(Arr(i * LineBreak + ArrVOffset - 1))
-        If ArrTOffset <> 0 Then ArrT(i) = CSng(Arr(i * LineBreak + ArrTOffset - 1))
-        If ArrNOffset <> 0 Then ArrN(i) = CSng(Arr(i * LineBreak + ArrNOffset - 1))
-        If ArrCOffset <> 0 Then ArrC(i) = CSng(Arr(i * LineBreak + ArrCOffset - 1))
+    For i = 0 To Layout.Size
+        Select Case Layout.Element(i).GetCategory
+            Case "Position" : ReDim ArrV((Ubound(Arr) + 1) / (Layout.Size + 1) - 1)
+            Case "Texture"  : ReDim ArrT((Ubound(Arr) + 1) / (Layout.Size + 1) - 1)
+            Case "Normal"   : ReDim ArrN((Ubound(Arr) + 1) / (Layout.Size + 1) - 1)
+            Case "Color"    : ReDim ArrC((Ubound(Arr) + 1) / (Layout.Size + 1) - 1)
+        End Select
+    Next i
+
+    For i = 0 To ((Ubound(Arr) + 1) / (Layout.Size + 1)) - 1
+        For j = 0 To Layout.Size
+            Select Case Layout.Element(j).GetCategory
+                Case "Position" : ArrV(i) = CLng(Arr(i * (Layout.Size + 1) + j))
+                Case "Texture"  : ArrT(i) = CLng(Arr(i * (Layout.Size + 1) + j))
+                Case "Normal"   : ArrN(i) = CLng(Arr(i * (Layout.Size + 1) + j))
+                Case "Color"    : ArrC(i) = CLng(Arr(i * (Layout.Size + 1) + j))
+            End Select
+        Next j
     Next i
     Set CreateFromStringArray = Create(ArrV, ArrT, ArrN, ArrC)
+End Function
+
+Public Sub Normalize()
+    Vertex  = NormalizeArray(p_Vertex)
+    Texture = NormalizeArray(p_Texture)
+    Normal  = NormalizeArray(p_Normal)
+    Color   = NormalizeArray(p_Color)
+End Sub
+
+Private Function NormalizeArray(Arr() As Long) As Long()
+    If USize(Arr) = -1 Then Exit Function
+
+    Dim Uniques() As Long
+    Uniques = Unique(Arr)
+    Call Sort(Uniques, 0, USize(Uniques))
+
+    Dim Mapping As Object
+    Set Mapping = CreateObject("Scripting.Dictionary")
+
+    Dim i As Long
+    For i = 0 To USize(Uniques)
+        Mapping(Uniques(i)) = i
+    Next i
+
+    Dim ReturnArr() As Long
+    ReDim ReturnArr(USize(Arr))
+
+    For i = 0 To USize(Arr)
+        ReturnArr(i) = Mapping(Arr(i))
+    Next i
+
+    NormalizeArray = ReturnArr
+End Function
+
+Private Function Unique(Arr() As Long) As Long()
+    Dim Dict As Object
+    Set Dict = CreateObject("Scripting.Dictionary")
+
+    Dim i As Long
+    Dim Val As Long
+
+    If Usize(Arr) = -1 Then Exit Function
+    For i = 0 To USize(Arr)
+        Val = Arr(i)
+        If Not Dict.exists(Val) Then Call Dict.Add(Val, 0)
+    Next i
+
+    Dim ReturnArr() As Long
+    ReDim ReturnArr(0 To Dict.Count - 1)
+    i = 0
+    Dim Key As Variant
+    For Each Key In Dict.Keys
+        ReturnArr(i) = CLng(Key)
+        i = i + 1
+    Next Key
+    Unique = ReturnArr
+End Function
+
+Private Sub Sort(Arr() As Long, First As Long, Last As Long)
+    Dim Low As Long, High As Long, Mid As Long, Temp As Long
+    Low = First
+    High = Last
+    Mid = Arr((First + Last) \ 2)
+    Do While Low <= High
+        Do While Arr(Low) < Mid
+            Low = Low + 1
+        Loop
+        Do While Arr(High) > Mid
+            High = High - 1
+        Loop
+        If Low <= High Then
+            Temp = Arr(Low)
+            Arr(Low) = Arr(High)
+            Arr(High) = Temp
+            Low = Low + 1
+            High = High - 1
+        End If
+    Loop
+    If First < High Then Call Sort(Arr, First, High)
+    If Low < Last Then Call Sort(Arr, Low, Last)
+End Sub
+
+Private Function USize(Arr As Variant) As Long
+    On Error Resume Next
+    USize = -1
+    USize = Ubound(Arr)
 End Function

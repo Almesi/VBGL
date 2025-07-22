@@ -17,15 +17,15 @@ Implements IMtlLoader
 Private p_Materials() As GLMaterial
 Private Size          As Long
 Private p_DotOrComma  As String
-Private p_Loader      As GLFileLoader
+Private p_Loader      As VBGLFileLoader
 
-Public Property Let DotOrComma(n_DotOrComma  As String)       : Let p_DotOrComma = n_DotOrComma : End Property
-Public Property Let Loader(n_Loader          As GLFileLoader) : Set p_Loader     = n_Loader     : End Property
+Public Property Let DotOrComma(n_DotOrComma  As String)         : Let p_DotOrComma = n_DotOrComma : End Property
+Public Property Let Loader(n_Loader          As VBGLFileLoader) : Set p_Loader     = n_Loader     : End Property
 
-Public Property Get DotOrComma()             As String        : Let DotOrComma   = p_DotOrComma : End Property
-Public Property Get Loader()                 As GLFileLoader  : Set Loader       = p_Loader     : End Property
+Public Property Get DotOrComma()             As String          : Let DotOrComma   = p_DotOrComma : End Property
+Public Property Get Loader()                 As VBGLFileLoader  : Set Loader       = p_Loader     : End Property
 
-Public Function Create(n_Loader As GLFileLoader, Optional n_DotOrComma As String = ".") As MtlParser
+Public Function Create(n_Loader As VBGLFileLoader, Optional n_DotOrComma As String = ".") As MtlParser
     Set Create = New MtlParser
     Create.Loader     = n_Loader
     Create.DotOrComma = n_DotOrComma

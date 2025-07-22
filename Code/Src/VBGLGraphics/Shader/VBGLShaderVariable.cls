@@ -12,9 +12,9 @@ Attribute VB_Exposed = False
 Option Explicit
 
 
-p_State    As String
-p_DataType As String
-p_Name     As String
+Private p_State    As String
+Private p_DataType As String
+Private p_Name     As String
 
 Public Property Let State(n_State       As String): p_State    = n_State    : End Property
 Public Property Let DataType(n_DataType As String): p_DataType = n_DataType : End Property
@@ -27,19 +27,37 @@ Public Property Get Name()              As String : Name       = p_Name     : En
 Public Function Create(n_State As String, n_DataType As String, n_Name As String) As VBGLShaderVariable
     Set Create = New VBGLShaderVariable
     With Create
-        .State    =             n_State
-        .DataType =          n_DataType
-        .Name     =          n_Name
+        .State    = n_State
+        .DataType = n_DataType
+        .Name     = n_Name
     End With
 End Function
 
 Public Function Add(Arr() As VBGLShaderVariable, n_State As String, n_DataType As String, n_Name As String) As VBGLShaderVariable
     Dim NewVar As VBGLShaderVariable
     Set NewVar = Create(n_State, n_DataType, n_Name)
-    Dim Size As Long : Size = -1
-    On Error Resume Next
-    Size = Ubound(Arr) + 1
+    Set Add = AddVariable(Arr, NewVar)
+End Function
+
+Public Function AddVariable(Arr() As VBGLShaderVariable, Value As VBGLShaderVariable) As VBGLShaderVariable
+    Dim Size As Long: Size = USize(Arr) + 1
     ReDim Preserve Arr(Size)
-    Set Arr(Size) = NewVar
-    Set Add = NewVar
+    Set Arr(Size) = Value
+    Set AddVariable = Value
+End Function
+
+Public Function Find(Arr() As VBGLShaderVariable, Name As String) As VBGLShaderVariable
+    Dim i As Long
+    For i = 0 To USize(Arr)
+        If Arr(i).Name = Name Then
+            Set Find = Arr(i)
+            Exit For
+        End If
+    Next i
+End Function
+
+Private Function USize(Arr As Variant) As Long
+    On Error Resume Next
+    USize = -1
+    USize = Ubound(Arr)
 End Function

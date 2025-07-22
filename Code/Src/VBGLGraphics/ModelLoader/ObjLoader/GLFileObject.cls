@@ -16,15 +16,15 @@ Implements IObjLoader
 Private p_Objects()      As GLObject
 Private p_Count          As Long
 Private p_DotOrComma     As String
-Private p_Loader         As GLFileLoader
+Private p_Loader         As VBGLFileLoader
 
-Public Property Let Count(n_Count            As Long)         : Let p_Count      = n_Count      : End Property
-Public Property Let DotOrComma(n_DotOrComma  As String)       : Let p_DotOrComma = n_DotOrComma : End Property
-Public Property Let Loader(n_Loader          As GLFileLoader) : Set p_Loader     = n_Loader     : End Property
+Public Property Let Count(n_Count            As Long)           : Let p_Count      = n_Count      : End Property
+Public Property Let DotOrComma(n_DotOrComma  As String)         : Let p_DotOrComma = n_DotOrComma : End Property
+Public Property Let Loader(n_Loader          As VBGLFileLoader) : Set p_Loader     = n_Loader     : End Property
 
-Public Property Get Count()                  As Long          : Let Count        = p_Count      : End Property
-Public Property Get DotOrComma()             As String        : Let DotOrComma   = p_DotOrComma : End Property
-Public Property Get Loader()                 As GLFileLoader  : Set Loader       = p_Loader     : End Property
+Public Property Get Count()                  As Long            : Let Count        = p_Count      : End Property
+Public Property Get DotOrComma()             As String          : Let DotOrComma   = p_DotOrComma : End Property
+Public Property Get Loader()                 As VBGLFileLoader  : Set Loader       = p_Loader     : End Property
 ' 
 '# Comment
 'o ObjectName
@@ -43,7 +43,7 @@ Public Property Get Loader()                 As GLFileLoader  : Set Loader      
 
 'Seperate workflow
 'mtllib Mat.mtl
-Public Function Create(n_Loader As GLFileLoader, Optional n_DotOrComma As String = ".") As GLFileObject
+Public Function Create(n_Loader As VBGLFileLoader, Optional n_DotOrComma As String = ".") As GLFileObject
     Set Create = New GLFileObject
     With Create
         .DotOrComma     = n_DotOrComma
@@ -105,7 +105,7 @@ Private Function GetMaterialData(CurrentFilePath As String, Text As String) As S
         EndName = InStr(Pointer, GetMaterialData, vbCrLf)
         If EndName = 0 Then EndName = Len(GetMaterialData) + 1
         Name = MidP(GetMaterialData, Pointer + Len("mtllib "), EndName - 1)
-        Call Loader.Add(GetFilePath(CurrentFilePath, Name))
+        Call Loader.AddIf(GetFilePath(CurrentFilePath, Name))
         GetMaterialData = MidP(GetMaterialData, 1, Pointer - 1) & MidP(GetMaterialData, EndName + 2, Len(GetMaterialData))
     Loop
 End Function

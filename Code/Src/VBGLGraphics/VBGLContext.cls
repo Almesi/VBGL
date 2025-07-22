@@ -94,7 +94,6 @@ Public Property Get PolygonMode()              As Long     : PolygonMode      = 
 
 
 Public Function Create(Optional FilePath As String = Empty, Optional ContextProfile As Long = 0, Optional ContextFlag As Long = 0) As VBGLContext
-    
     If FilePath = Empty Then FilePath = ThisWorkBook.Path
     #If VBA7 Then
         If LoadLibrary(FilePath & "\Freeglut64.dll") = False Then
@@ -149,8 +148,12 @@ Public Sub Clear()
     Dim Mask As Long
     If BlendTest   Then Mask = Mask Or GL_COLOR_BUFFER_BIT
     If DepthTest   Then Mask = Mask Or GL_DEPTH_BUFFER_BIT
-    If StentilTest Then Mask = Mask Or GL_STENCIL_BUFFER_BIT
+    If StencilTest Then Mask = Mask Or GL_STENCIL_BUFFER_BIT
     Call glClear(Mask)
+End Sub
+
+Public Sub ClearColor(Optional r As Single = 0, Optional g As Single = 0, Optional b As Single = 0, Optional a As Single = 1)
+    Call glClearColor(r, g, b, a)
 End Sub
 
 Private Sub Class_Initialize()

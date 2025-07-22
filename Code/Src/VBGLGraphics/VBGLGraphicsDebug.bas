@@ -6,8 +6,6 @@ Option Explicit
 
 Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (ByRef Destination As Any, ByVal Source As Any, ByVal Length As Long)
 
-Public Const NullPtr As LongPtr = 0
-
 #If COMPDEBUG = 1 Then
     Public Sub GLDebugOutput(ByVal Source As Long, ByVal Typee As Long, ByVal ID As Long, ByVal Severity As Long, ByVal Length As Long, ByVal Message As LongPtr, ByVal UserParam As LongPtr)
         Dim PrintMessage As String
