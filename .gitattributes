@@ -1,6 +1,13 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-*.cls text eol=crlf
-*.bas text eol=crlf
-*.frm text eol=crlf
-*.frx text eol=crlf
+# By default, auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# VBA extensions - Prevent LF normalization
+*.bas -text diff
+*.cls -text diff
+*.frm -text diff
+
+# VBA extensions - Mark as binary
+*.frx binary
+
+# AutoHotKey
+*.ahk -text diff
