@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.cls text eol=crlf
+*.bas text eol=crlf
+*.frm text eol=crlf
+*.frx text eol=crlf
