@@ -19,10 +19,10 @@ DefLng A-Z
 Private Const PtrNull As Long = 0
 #End If
 #If VBA7 Then
-Private Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As LongPtr
+Public Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As LongPtr
 Public Declare PtrSafe Function LoadLibrary Lib "kernel32" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As LongPtr
 #Else
-Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
+Public Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
 Public Declare Function LoadLibrary Lib "kernel32" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As Long
 #End If
 '***************************************************************************************
@@ -295,9 +295,9 @@ Public Const GLUT_SRGB = &H1000&
     ' Process loop function, see freeglut_main.c
     Public Declare PtrSafe Sub glutMainLoop Lib "freeglut64" ()
     ' Window management functions, see freeglut_window.c
-    Private Declare PtrSafe Function privglutCreateWindow Lib "freeglut64" Alias "glutCreateWindow" (ByVal title As String) As Long
+    Public Declare PtrSafe Function glutCreateWindow Lib "freeglut64" Alias "glutCreateWindow" (ByVal title As String) As Long
     Public Declare PtrSafe Function glutCreateSubWindow Lib "freeglut64" (ByVal window As Long, ByVal X As Long, ByVal y As Long, ByVal Width As Long, ByVal Height As Long) As Long
-    Private Declare PtrSafe Sub privglutDestroyWindow Lib "freeglut64" Alias "glutDestroyWindow" (ByVal window As Long)
+    Public Declare PtrSafe Sub glutDestroyWindow Lib "freeglut64" Alias "glutDestroyWindow" (ByVal window As Long)
     Public Declare PtrSafe Sub glutSetWindow Lib "freeglut64" (ByVal window As Long)
     Public Declare PtrSafe Function glutGetWindow Lib "freeglut64" () As Long
     Public Declare PtrSafe Sub glutSetWindowTitle Lib "freeglut64" (ByVal title As String)
@@ -489,9 +489,9 @@ Public Const GLUT_SRGB = &H1000&
     ' Process loop function, see freeglut_main.c
     Public Declare PtrSafe Sub glutMainLoop Lib "freeglut" ()
     ' Window management functions, see freeglut_window.c
-    Private Declare PtrSafe Function privglutCreateWindow Lib "freeglut" Alias "glutCreateWindow" (ByVal title As String) As Long
+    Public Declare PtrSafe Function glutCreateWindow Lib "freeglut" Alias "glutCreateWindow" (ByVal title As String) As Long
     Public Declare PtrSafe Function glutCreateSubWindow Lib "freeglut" (ByVal window As Long, ByVal X As Long, ByVal y As Long, ByVal Width As Long, ByVal Height As Long) As Long
-    Private Declare PtrSafe Sub privglutDestroyWindow Lib "freeglut" Alias "glutDestroyWindow" (ByVal window As Long)
+    Public Declare PtrSafe Sub glutDestroyWindow Lib "freeglut" Alias "glutDestroyWindow" (ByVal window As Long)
     Public Declare PtrSafe Sub glutSetWindow Lib "freeglut" (ByVal window As Long)
     Public Declare PtrSafe Function glutGetWindow Lib "freeglut" () As Long
     Public Declare PtrSafe Sub glutSetWindowTitle Lib "freeglut" (ByVal title As String)
@@ -683,9 +683,9 @@ Public Const GLUT_SRGB = &H1000&
     ' Process loop function, see freeglut_main.c
     Public Declare Sub glutMainLoop Lib "freeglut" ()
     ' Window management functions, see freeglut_window.c
-    Private Declare Function privglutCreateWindow Lib "freeglut" Alias "glutCreateWindow" (ByVal title As String) As Long
+    Public Declare Function glutCreateWindow Lib "freeglut" Alias "glutCreateWindow" (ByVal title As String) As Long
     Public Declare Function glutCreateSubWindow Lib "freeglut" (ByVal window As Long, ByVal X As Long, ByVal y As Long, ByVal Width As Long, ByVal Height As Long) As Long
-    Private Declare Sub privglutDestroyWindow Lib "freeglut" Alias "glutDestroyWindow" (ByVal window As Long)
+    Public Declare Sub glutDestroyWindow Lib "freeglut" Alias "glutDestroyWindow" (ByVal window As Long)
     Public Declare Sub glutSetWindow Lib "freeglut" (ByVal window As Long)
     Public Declare Function glutGetWindow Lib "freeglut" () As Long
     Public Declare Sub glutSetWindowTitle Lib "freeglut" (ByVal title As String)
@@ -868,46 +868,3 @@ Public Const GLUT_SRGB = &H1000&
     Public Declare Sub glutInitContextFunc Lib "freeglut" (ByVal fnPtr As Long)
     Public Declare Sub glutAppStatusFunc Lib "freeglut" (ByVal fnPtr As Long)
 #End If
-
-Private goGlutWindowHwnd As Collection
-
-Public Function LoadFreeGlut(pPath As String) As Boolean
-    #If Win64 Then
-    Const strLib As String = "freeglut64.dll"
-    #Else
-    Const strLib As String = "freeglut.dll"
-    #End If
-    If Right(pPath, 1) <> "\" Then pPath = pPath + "\"
-    LoadFreeGlut = (LoadLibrary(pPath & strLib) <> 0)
-End Function
-
-Public Function glutCreateWindow(ByVal title As String) As Long
-    Dim lHwnd
-    Dim lwindow As Long
-    Dim lTitle As String
-    lTitle = "GlutWindow" & lwindow
-    lwindow = privglutCreateWindow(lTitle)
-    If goGlutWindowHwnd Is Nothing Then
-        Set goGlutWindowHwnd = New Collection
-    End If
-    On Error Resume Next
-    goGlutWindowHwnd.Remove CStr(lwindow)
-    On Error GoTo 0
-    lHwnd = FindWindow(vbNullString, lTitle)
-    goGlutWindowHwnd.Add lHwnd, CStr(lwindow)
-    glutSetWindowTitle title
-    glutCreateWindow = lwindow
-End Function
-
-Public Sub glutDestroyWindow(ByVal window As Long)
-    On Error Resume Next
-    goGlutWindowHwnd.Remove CStr(window)
-    On Error GoTo 0
-    privglutDestroyWindow window
-End Sub
-
-Public Function glutGetWindowHwnd(pWindow As Long)
-    On Error Resume Next
-    glutGetWindowHwnd = goGlutWindowHwnd.item(CStr(pWindow))
-    On Error GoTo 0
-End Function

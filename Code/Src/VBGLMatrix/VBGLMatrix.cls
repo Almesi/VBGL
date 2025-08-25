@@ -36,6 +36,10 @@ Public Property Get DataSingle() As Variant
     DataSingle = p_DataSingle
 End Property
 
+Public Function CreateVector(DataType As vbVarType, Optional ColumnCount As Long = 0) As VBGLMatrix
+    Set CreateVector = Create(DataType, 0, ColumnCount)
+End Function
+
 Public Function Create(DataType As vbVarType, Optional RowCount As Long = 0, Optional ColumnCount As Long = 0) As VBGLMatrix
     Set Create = New VBGLMatrix
     Select Case DataType

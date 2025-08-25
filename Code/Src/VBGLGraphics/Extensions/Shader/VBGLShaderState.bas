@@ -1,0 +1,11 @@
+Attribute VB_Name = "VBGLShaderState"
+
+Public Const VBGLShaderStateLayout     As String = "layout (location = x) in"
+Public Const VBGLShaderStateIn         As String = "in"
+Public Const VBGLShaderStateOut        As String = "out"
+Public Const VBGLShaderStateUniform    As String = "uniform"
+Public Const VBGLShaderStateUniformOut As String = "uniformOut"
+Public Const VBGLShaderStateVariable   As String = "var"
+Public Const VBGLShaderStateFunction   As String = "func"
+Public Const VBGLShaderStateArgument   As String = "arg"
+Public Const VBGLShaderStateMorph      As String = "x:y"

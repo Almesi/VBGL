@@ -6,8 +6,8 @@ To create better readability the classes are created:
 1. Objects hold a Name and Groups
 2. Groups hold a Name and Subgroups
 3. Subgroups hold a set of usable data, used Material, used Smoothing and DataLayout
-4. GLVertex hold the specific VertexData (Position, Texture, Normal or Color)
-5. GLFace holds the Indices for each VertexData in GLVertex
+4. VBGLVertex hold the specific VertexData (Position, Texture, Normal or Color)
+5. VBGLFace holds the Indices for each VertexData in GLVertex
 
 #### Objects
 * Defined by `o `
@@ -22,7 +22,7 @@ To create better readability the classes are created:
 #### SubGroups
 * Defined by `s ` and `usemtl `
 * Followed by `[Value]`
-* Everything after that will be intepreted as `GLVertex AND GLFace` Data up to the next `s ` and `usemtl `
+* Everything after that will be intepreted as `GLVertex AND VBGLFace` Data up to the next `s ` and `usemtl `
 * May combine SubGroups into one if
     1. Subgroup has no Values means every following subgroup will recieve its VertexData
     2. Subgroup has same Values as another Subgroup
@@ -32,7 +32,7 @@ To create better readability the classes are created:
 * Followed by `[Value] {[Value]} {[Value]} {[Value]}`
 * Nothing comes after it
 
-#### GLFace
+#### VBGLFace
 * Defined by `f `
 * Followed by `[Pointer] {[Pointer]} {[Pointer]} {[Pointer]}`
 * Nothing comes after it

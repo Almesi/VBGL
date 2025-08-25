@@ -9,6 +9,8 @@ Public Window            As VBGLWindow
 Public Camera            As VBGLCamera
 Public CapsuleModel      As VBGLModel
 Public CubeModel         As VBGLModel
+Public TextBox           As VBGLTextBox
+
 
 
 Public LastX As Single
@@ -19,13 +21,13 @@ Public Sub TestFunc()
 End Sub
 
 Public Function RunMain(Path As String) As Long
-    Set VBGLContext = VBGLContext.Create(Path, GLUT_CORE_PROFILE, GLUT_DEBUG)
+    Set CurrentContext = VBGLContext.Create(Path, GLUT_CORE_PROFILE, GLUT_DEBUG)
     Set Window = VBGLWindow.Create(1600, 900, GLUT_RGBA, "OpenGL Test", "4_6", True)
-    VBGLContext.BlendTest = True 
-    VBGLContext.DepthTest = True
-    VBGLContext.CullFace = True
-    Call VBGLContext.RenderValue(GL_BLEND, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-    Call VBGLContext.RenderValue(GL_CULL_FACE, GL_BACK)
+    CurrentContext.BlendTest = True 
+    CurrentContext.DepthTest = True
+    CurrentContext.CullFace = True
+    Call CurrentContext.RenderValue(GL_BLEND, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+    Call CurrentContext.RenderValue(GL_CULL_FACE, GL_BACK)
     Call glFrontFace(GL_CCW)
 
 
@@ -36,24 +38,26 @@ Public Function RunMain(Path As String) As Long
     Set NewLoader = New VBGLFileLoader
     Set MtlLoader = MtlParser.Create(NewLoader, ",")
     Set ObjLoader = GLFileObject.Create(NewLoader, ",")
-    Set CapsuleModel = VBGLModel.Create(NewLoader, Path & "\Cube", ObjLoader, MtlLoader)
-    Set CapsuleShader = CapsuleModel.LoadedShaders()(0)
-    If CapsuleShader Is Nothing Then Exit Function
+    Set CapsuleModel = VBGLModel.Create(NewLoader, Path & "\Capsule", ObjLoader, MtlLoader)
+    Set CapsuleShader = LoadedShaders(2)
+    If IsNothing(CapsuleShader) Then Exit Function
 
-    Set NewLoader = New VBGLFileLoader
-    Set MtlLoader = MtlParser.Create(NewLoader, ",")
-    Set ObjLoader = GLFileObject.Create(NewLoader, ",")
-    Set CubeModel    = VBGLModel.Create(NewLoader, Path & "\Cube", ObjLoader, MtlLoader)
-    Set CubeShader = CubeModel.LoadedShaders()(0)
-    If CubeShader Is Nothing Then Exit Function
+    Set NewLoader  = New VBGLFileLoader
+    Set MtlLoader  = MtlParser.Create(NewLoader, ",")
+    Set ObjLoader  = GLFileObject.Create(NewLoader, ",")
+    Set CubeModel  = VBGLModel.Create(NewLoader, Path & "\Cube", ObjLoader, MtlLoader)
+    Set CubeShader = LoadedShaders(2)
+    If IsNothing(CubeShader) Then Exit Function
 
     Set Camera = VBGLCamera.Create(0, 0, 10,    0, 1, 0,    -90, 0, 0,    0.5, 0.5, 45)
+
+    Set TextBox = CreateTextBox(Path & "\Fonts")
     
     LastX = 800
     LastY = 450
     Call Window.Cursor(CLng(LastX), CLng(LastY))
 
-    With VBGLContext
+    With CurrentContext
         Call .SetCallBack(VBGLGlutCallback.VBGLDisplayFunc       , AddressOf DrawLoop)
         Call .SetCallBack(VBGLGlutCallback.VBGLIdleFunc          , AddressOf DrawLoop)
         Call .SetCallBack(VBGLGlutCallback.VBGLKeyboardFunc      , AddressOf CallBackKeyBoard)
@@ -68,6 +72,10 @@ Public Sub DrawLoop()
     Static Count As Single
     Static Direction As Single
     Dim Rotat As Single
+
+    Call CurrentContext.Clear()
+    Call CurrentContext.ClearColor(0.7, 0, 0.5, 1)
+
 
     Count = Count + 1
     If Count >= 360 Then Count = 0
@@ -86,14 +94,14 @@ Public Sub DrawLoop()
     Set Rotation = VBGLMatrix.Create(vbSingle, 3, 3)
     Rotation.Data = Rotation.Rotate(3)
     Call CapsuleShader.SetAny("Model", Rotation.Data)
+    Call CapsuleModel.Draw()
 
     Call UpdateShader(CubeShader, Translate)
     Call CubeShader.SetAny("Model", Translate.Add(Rotation.Data, Translate.Data))
 
-    Call VBGLContext.Clear()
-    Call VBGLContext.ClearColor(0.7, 0, 0.5, 1)
-    Call CapsuleModel.Draw()
+
     Call CubeModel.Draw()
+    Call TextBox.Draw()
     Call glutSwapBuffers
 End Sub
 
@@ -114,9 +122,30 @@ Public Sub UpdateShader(CurrentShader As VBGLShader, Translate As IMatrixSingle)
     Call CurrentShader.Set3f("LightColor"     , +1.0, +1.0, +1.0)
 End Sub
 
-Public Sub CallBackKeyBoard(ByVal char As Byte, ByVal x As Long, ByVal y As Long)
+Public Function CreateTextBox(Path As String) As VBGLTextBox
+    Dim TopLeft()     As Single : ReDim TopLeft(2)     : TopLeft(0)     = -1: TopLeft(1)     = +0: TopLeft(2)     = 0
+    Dim TopRight()    As Single : ReDim TopRight(2)    : TopRight(0)    = +1: TopRight(1)    = +0: TopRight(2)    = 0
+    Dim BottomLeft()  As Single : ReDim BottomLeft(2)  : BottomLeft(0)  = -1: BottomLeft(1)  = -1: BottomLeft(2)  = 0
+    Dim BottomRight() As Single : ReDim BottomRight(2) : BottomRight(0) = +1: BottomRight(1) = -1: BottomRight(2) = 0
+    Dim Color()       As Single : ReDim Color(3)       : Color(0)       = +1: Color(1)       = +1: Color(2)       = 1:Color(3)       = 0
+    Dim FontColor()   As Single : ReDim FontColor(2)   : FontColor(0)   = +1: FontColor(1)   = +0: FontColor(2)   = 0
+    Dim CharsPerLine  As Long   : CharsPerLine = 16
+    Dim FontLayout As VBGLFontLayout
+    Set FontLayout = VBGLFontLayout.Create(Path & "\Consolas.png", 665, 1080, 16, "UTF8", "Consolas")
+    Dim Fonts() As VBGLFont
+    ReDim Fonts(0)
+    Set Fonts(0) = New VBGLFont
+    Fonts(0).FontLayout = FontLayout
+    Fonts(0).Text = "Test Text"
+    Fonts(0).FontColor = FontColor
+
+    Set CreateTextBox = VBGLTextBox.Create(TopLeft, TopRight, BottomLeft, BottomRight, Color, CharsPerLine, Fonts)
+    Call CreateTextBox.CreateMesh()
+End Function
+
+Public Sub CallBackKeyBoard(ByVal Char As Byte, ByVal x As Long, ByVal y As Long)
     Dim Temp As Long
-    Temp = char
+    Temp = Char
     Select Case Temp
         Case Asc("w"): Call Camera.Move(VBGLCameraMovement.FORWARD  , DeltaTime())
         Case Asc("s"): Call Camera.Move(VBGLCameraMovement.BACKWARD , DeltaTime())
@@ -125,6 +154,9 @@ Public Sub CallBackKeyBoard(ByVal char As Byte, ByVal x As Long, ByVal y As Long
         Case Asc(" "): Call Camera.Move(VBGLCameraMovement.UPP      , DeltaTime())
         Case Asc("y"): Call Camera.Move(VBGLCameraMovement.DOWN     , DeltaTime())
         Case 27: Call glutLeaveMainLoop()
+        Case 32 To 255
+            TextBox.Font(0).Text = TextBox.Font(0).Text & Chr(Char)
+            Call TextBox.UpdateData()
     End Select
 End Sub
 
