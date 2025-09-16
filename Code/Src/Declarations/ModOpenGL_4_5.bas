@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -63,21 +63,21 @@ Public Function glGetDebugMessageLog(ByVal Count As Long, ByVal BufSize As Long,
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL4_5()
-If IsDEPEnabled Then
-    glGetnUniformdvPtr = OpenGLExtProcAddress("glGetnUniformdv")
-    glGetnTexImagePtr = OpenGLExtProcAddress("glGetnTexImage")
-    glGetnCompressedTexImagePtr = OpenGLExtProcAddress("glGetnCompressedTexImage")
-    glGetGraphicsResetStatusPtr = OpenGLExtProcAddress("glGetGraphicsResetStatus")
-    glDebugMessageControlPtr = OpenGLExtProcAddress("glDebugMessageControl")
-    glDebugMessageCallbackPtr = OpenGLExtProcAddress("glDebugMessageCallback")
-    glGetDebugMessageLogPtr = OpenGLExtProcAddress("glGetDebugMessageLog")
-Else
-    RemapVBFunctionToGLFunction AddressOf glGetnUniformdv, "glGetnUniformdv"
-    RemapVBFunctionToGLFunction AddressOf glGetnTexImage, "glGetnTexImage"
-    RemapVBFunctionToGLFunction AddressOf glGetnCompressedTexImage, "glGetnCompressedTexImage"
-    RemapVBFunctionToGLFunction AddressOf glGetGraphicsResetStatus, "glGetGraphicsResetStatus"
-    RemapVBFunctionToGLFunction AddressOf glDebugMessageControl, "glDebugMessageControlPtr"
-    RemapVBFunctionToGLFunction AddressOf glDebugMessageCallback, "glDebugMessageCallbackPtr"
-    RemapVBFunctionToGLFunction AddressOf glGetDebugMessageLog, "glGetDebugMessageLogPtr"
-End If
+    If IsDEPEnabled Then
+        glGetnUniformdvPtr = OpenGLExtProcAddress("glGetnUniformdv")
+        glGetnTexImagePtr = OpenGLExtProcAddress("glGetnTexImage")
+        glGetnCompressedTexImagePtr = OpenGLExtProcAddress("glGetnCompressedTexImage")
+        glGetGraphicsResetStatusPtr = OpenGLExtProcAddress("glGetGraphicsResetStatus")
+        glDebugMessageControlPtr = OpenGLExtProcAddress("glDebugMessageControl")
+        glDebugMessageCallbackPtr = OpenGLExtProcAddress("glDebugMessageCallback")
+        glGetDebugMessageLogPtr = OpenGLExtProcAddress("glGetDebugMessageLog")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glGetnUniformdv, "glGetnUniformdv"
+        RemapVBFunctionToGLFunction AddressOf glGetnTexImage, "glGetnTexImage"
+        RemapVBFunctionToGLFunction AddressOf glGetnCompressedTexImage, "glGetnCompressedTexImage"
+        RemapVBFunctionToGLFunction AddressOf glGetGraphicsResetStatus, "glGetGraphicsResetStatus"
+        RemapVBFunctionToGLFunction AddressOf glDebugMessageControl, "glDebugMessageControlPtr"
+        RemapVBFunctionToGLFunction AddressOf glDebugMessageCallback, "glDebugMessageCallbackPtr"
+        RemapVBFunctionToGLFunction AddressOf glGetDebugMessageLog, "glGetDebugMessageLogPtr"
+    End If
 End Function

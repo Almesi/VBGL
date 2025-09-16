@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -55,13 +55,13 @@ Public Sub glGetInteger64i_v(ByVal pname As Long, ByVal index As Long, data As C
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL3_2()
-If IsDEPEnabled Then
-    glGetInteger64i_vPtr = OpenGLExtProcAddress("glGetInteger64i_v")
-    glGetBufferParameteri64vPtr = OpenGLExtProcAddress("glGetBufferParameteri64v")
-    glFramebufferTexturePtr = OpenGLExtProcAddress("glFramebufferTexture")
-Else
-    RemapVBFunctionToGLFunction AddressOf glGetInteger64i_v, "glGetInteger64i_v"
-    RemapVBFunctionToGLFunction AddressOf glGetBufferParameteri64v, "glGetBufferParameteri64v"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferTexture, "glFramebufferTexture"
-End If
+    If IsDEPEnabled Then
+        glGetInteger64i_vPtr = OpenGLExtProcAddress("glGetInteger64i_v")
+        glGetBufferParameteri64vPtr = OpenGLExtProcAddress("glGetBufferParameteri64v")
+        glFramebufferTexturePtr = OpenGLExtProcAddress("glFramebufferTexture")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glGetInteger64i_v, "glGetInteger64i_v"
+        RemapVBFunctionToGLFunction AddressOf glGetBufferParameteri64v, "glGetBufferParameteri64v"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferTexture, "glFramebufferTexture"
+    End If
 End Function

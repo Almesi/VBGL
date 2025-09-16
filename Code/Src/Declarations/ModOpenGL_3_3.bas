@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -33,9 +33,9 @@ Public Sub glVertexAttribDivisor(ByVal index As Long, ByVal divisor As Long): Ca
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL3_3()
-If IsDEPEnabled Then
-    glVertexAttribDivisorPtr = OpenGLExtProcAddress("glVertexAttribDivisor")
-Else
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribDivisor, "glVertexAttribDivisor"
-End If
+    If IsDEPEnabled Then
+        glVertexAttribDivisorPtr = OpenGLExtProcAddress("glVertexAttribDivisor")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribDivisor, "glVertexAttribDivisor"
+    End If
 End Function

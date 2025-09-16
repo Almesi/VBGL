@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -187,119 +187,119 @@ Public Sub glBindVertexArray(ByVal Arr As Long)                                 
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL3_0()
-If IsDEPEnabled Then
-    glVertexAttribIPointerPtr = OpenGLExtProcAddress("glVertexAttribIPointer")
-    glVertexAttribI4usvPtr = OpenGLExtProcAddress("glVertexAttribI4usv")
-    glVertexAttribI4uivPtr = OpenGLExtProcAddress("glVertexAttribI4uiv")
-    glVertexAttribI4uiPtr = OpenGLExtProcAddress("glVertexAttribI4ui")
-    glVertexAttribI4ubvPtr = OpenGLExtProcAddress("glVertexAttribI4ubv")
-    glVertexAttribI4svPtr = OpenGLExtProcAddress("glVertexAttribI4sv")
-    glVertexAttribI4ivPtr = OpenGLExtProcAddress("glVertexAttribI4iv")
-    glVertexAttribI4iPtr = OpenGLExtProcAddress("glVertexAttribI4i")
-    glVertexAttribI4bvPtr = OpenGLExtProcAddress("glVertexAttribI4bv")
-    glVertexAttribI3uivPtr = OpenGLExtProcAddress("glVertexAttribI3uiv")
-    glVertexAttribI3uiPtr = OpenGLExtProcAddress("glVertexAttribI3ui")
-    glVertexAttribI3ivPtr = OpenGLExtProcAddress("glVertexAttribI3iv")
-    glVertexAttribI3iPtr = OpenGLExtProcAddress("glVertexAttribI3i")
-    glVertexAttribI2uivPtr = OpenGLExtProcAddress("glVertexAttribI2uiv")
-    glVertexAttribI2uiPtr = OpenGLExtProcAddress("glVertexAttribI2ui")
-    glVertexAttribI2ivPtr = OpenGLExtProcAddress("glVertexAttribI2iv")
-    glVertexAttribI2iPtr = OpenGLExtProcAddress("glVertexAttribI2i")
-    glVertexAttribI1uivPtr = OpenGLExtProcAddress("glVertexAttribI1uiv")
-    glVertexAttribI1uiPtr = OpenGLExtProcAddress("glVertexAttribI1ui")
-    glVertexAttribI1ivPtr = OpenGLExtProcAddress("glVertexAttribI1iv")
-    glVertexAttribI1iPtr = OpenGLExtProcAddress("glVertexAttribI1i")
-    glUniform4uivPtr = OpenGLExtProcAddress("glUniform4uiv")
-    glUniform4uiPtr = OpenGLExtProcAddress("glUniform4ui")
-    glUniform3uivPtr = OpenGLExtProcAddress("glUniform3uiv")
-    glUniform3uiPtr = OpenGLExtProcAddress("glUniform3ui")
-    glUniform2uivPtr = OpenGLExtProcAddress("glUniform2uiv")
-    glUniform2uiPtr = OpenGLExtProcAddress("glUniform2ui")
-    glUniform1uivPtr = OpenGLExtProcAddress("glUniform1uiv")
-    glUniform1uiPtr = OpenGLExtProcAddress("glUniform1ui")
-    glTransformFeedbackVaryingsPtr = OpenGLExtProcAddress("glTransformFeedbackVaryings")
-    glTexParameterIuivPtr = OpenGLExtProcAddress("glTexParameterIuiv")
-    glTexParameterIivPtr = OpenGLExtProcAddress("glTexParameterIiv")
-    glIsEnablediPtr = OpenGLExtProcAddress("glIsEnabledi")
-    glGetVertexAttribIuivPtr = OpenGLExtProcAddress("glGetVertexAttribIuiv")
-    glGetVertexAttribIivPtr = OpenGLExtProcAddress("glGetVertexAttribIiv")
-    glGetUniformuivPtr = OpenGLExtProcAddress("glGetUniformuiv")
-    glGetTransformFeedbackVaryingPtr = OpenGLExtProcAddress("glGetTransformFeedbackVarying")
-    glGetTexParameterIuivPtr = OpenGLExtProcAddress("glGetTexParameterIuiv")
-    glGetTexParameterIivPtr = OpenGLExtProcAddress("glGetTexParameterIiv")
-    glGetFragDataLocationPtr = OpenGLExtProcAddress("glGetFragDataLocation")
-    glGetBooleani_vPtr = OpenGLExtProcAddress("glGetBooleani_v")
-    glEndTransformFeedbackPtr = OpenGLExtProcAddress("glEndTransformFeedback")
-    glEndConditionalRenderPtr = OpenGLExtProcAddress("glEndConditionalRender")
-    glEnableiPtr = OpenGLExtProcAddress("glEnablei")
-    glDisableiPtr = OpenGLExtProcAddress("glDisablei")
-    glColorMaskiPtr = OpenGLExtProcAddress("glColorMaski")
-    glClearBufferuivPtr = OpenGLExtProcAddress("glClearBufferuiv")
-    glClearBufferivPtr = OpenGLExtProcAddress("glClearBufferiv")
-    glClearBufferfvPtr = OpenGLExtProcAddress("glClearBufferfv")
-    glClearBufferfiPtr = OpenGLExtProcAddress("glClearBufferfi")
-    glClampColorPtr = OpenGLExtProcAddress("glClampColor")
-    glBindFragDataLocationPtr = OpenGLExtProcAddress("glBindFragDataLocation")
-    glBeginTransformFeedbackPtr = OpenGLExtProcAddress("glBeginTransformFeedback")
-    glBeginConditionalRenderPtr = OpenGLExtProcAddress("glBeginConditionalRender")
-    glGenVertexArraysPtr = OpenGLExtProcAddress("glGenVertexArrays")
-    glBindVertexArrayPtr = OpenGLExtProcAddress("glBindVertexArray")
-Else
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribIPointer, "glVertexAttribIPointer"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI4usv, "glVertexAttribI4usv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI4uiv, "glVertexAttribI4uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI4ui, "glVertexAttribI4ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI4ubv, "glVertexAttribI4ubv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI4sv, "glVertexAttribI4sv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI4iv, "glVertexAttribI4iv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI4i, "glVertexAttribI4i"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI4bv, "glVertexAttribI4bv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI3uiv, "glVertexAttribI3uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI3ui, "glVertexAttribI3ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI3iv, "glVertexAttribI3iv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI3i, "glVertexAttribI3i"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI2uiv, "glVertexAttribI2uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI2ui, "glVertexAttribI2ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI2iv, "glVertexAttribI2iv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI2i, "glVertexAttribI2i"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI1uiv, "glVertexAttribI1uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI1ui, "glVertexAttribI1ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI1iv, "glVertexAttribI1iv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribI1i, "glVertexAttribI1i"
-    RemapVBFunctionToGLFunction AddressOf glUniform4uiv, "glUniform4uiv"
-    RemapVBFunctionToGLFunction AddressOf glUniform4ui, "glUniform4ui"
-    RemapVBFunctionToGLFunction AddressOf glUniform3uiv, "glUniform3uiv"
-    RemapVBFunctionToGLFunction AddressOf glUniform3ui, "glUniform3ui"
-    RemapVBFunctionToGLFunction AddressOf glUniform2uiv, "glUniform2uiv"
-    RemapVBFunctionToGLFunction AddressOf glUniform2ui, "glUniform2ui"
-    RemapVBFunctionToGLFunction AddressOf glUniform1uiv, "glUniform1uiv"
-    RemapVBFunctionToGLFunction AddressOf glUniform1ui, "glUniform1ui"
-    RemapVBFunctionToGLFunction AddressOf glTransformFeedbackVaryings, "glTransformFeedbackVaryings"
-    RemapVBFunctionToGLFunction AddressOf glTexParameterIuiv, "glTexParameterIuiv"
-    RemapVBFunctionToGLFunction AddressOf glTexParameterIiv, "glTexParameterIiv"
-    RemapVBFunctionToGLFunction AddressOf glIsEnabledi, "glIsEnabledi"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribIuiv, "glGetVertexAttribIuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribIiv, "glGetVertexAttribIiv"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformuiv, "glGetUniformuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetTransformFeedbackVarying, "glGetTransformFeedbackVarying"
-    RemapVBFunctionToGLFunction AddressOf glGetTexParameterIuiv, "glGetTexParameterIuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetTexParameterIiv, "glGetTexParameterIiv"
-    RemapVBFunctionToGLFunction AddressOf glGetFragDataLocation, "glGetFragDataLocation"
-    RemapVBFunctionToGLFunction AddressOf glGetBooleani_v, "glGetBooleani_v"
-    RemapVBFunctionToGLFunction AddressOf glEndTransformFeedback, "glEndTransformFeedback"
-    RemapVBFunctionToGLFunction AddressOf glEndConditionalRender, "glEndConditionalRender"
-    RemapVBFunctionToGLFunction AddressOf glEnablei, "glEnablei"
-    RemapVBFunctionToGLFunction AddressOf glDisablei, "glDisablei"
-    RemapVBFunctionToGLFunction AddressOf glColorMaski, "glColorMaski"
-    RemapVBFunctionToGLFunction AddressOf glClearBufferuiv, "glClearBufferuiv"
-    RemapVBFunctionToGLFunction AddressOf glClearBufferiv, "glClearBufferiv"
-    RemapVBFunctionToGLFunction AddressOf glClearBufferfv, "glClearBufferfv"
-    RemapVBFunctionToGLFunction AddressOf glClearBufferfi, "glClearBufferfi"
-    RemapVBFunctionToGLFunction AddressOf glClampColor, "glClampColor"
-    RemapVBFunctionToGLFunction AddressOf glBindFragDataLocation, "glBindFragDataLocation"
-    RemapVBFunctionToGLFunction AddressOf glBeginTransformFeedback, "glBeginTransformFeedback"
-    RemapVBFunctionToGLFunction AddressOf glBeginConditionalRender, "glBeginConditionalRender"
-    RemapVBFunctionToGLFunction AddressOf glGenVertexArrays, "glGenVertexArraysPtr"
-    RemapVBFunctionToGLFunction AddressOf glBindVertexArray, "glBindVertexArrayPtr"
-End If
+    If IsDEPEnabled Then
+        glVertexAttribIPointerPtr = OpenGLExtProcAddress("glVertexAttribIPointer")
+        glVertexAttribI4usvPtr = OpenGLExtProcAddress("glVertexAttribI4usv")
+        glVertexAttribI4uivPtr = OpenGLExtProcAddress("glVertexAttribI4uiv")
+        glVertexAttribI4uiPtr = OpenGLExtProcAddress("glVertexAttribI4ui")
+        glVertexAttribI4ubvPtr = OpenGLExtProcAddress("glVertexAttribI4ubv")
+        glVertexAttribI4svPtr = OpenGLExtProcAddress("glVertexAttribI4sv")
+        glVertexAttribI4ivPtr = OpenGLExtProcAddress("glVertexAttribI4iv")
+        glVertexAttribI4iPtr = OpenGLExtProcAddress("glVertexAttribI4i")
+        glVertexAttribI4bvPtr = OpenGLExtProcAddress("glVertexAttribI4bv")
+        glVertexAttribI3uivPtr = OpenGLExtProcAddress("glVertexAttribI3uiv")
+        glVertexAttribI3uiPtr = OpenGLExtProcAddress("glVertexAttribI3ui")
+        glVertexAttribI3ivPtr = OpenGLExtProcAddress("glVertexAttribI3iv")
+        glVertexAttribI3iPtr = OpenGLExtProcAddress("glVertexAttribI3i")
+        glVertexAttribI2uivPtr = OpenGLExtProcAddress("glVertexAttribI2uiv")
+        glVertexAttribI2uiPtr = OpenGLExtProcAddress("glVertexAttribI2ui")
+        glVertexAttribI2ivPtr = OpenGLExtProcAddress("glVertexAttribI2iv")
+        glVertexAttribI2iPtr = OpenGLExtProcAddress("glVertexAttribI2i")
+        glVertexAttribI1uivPtr = OpenGLExtProcAddress("glVertexAttribI1uiv")
+        glVertexAttribI1uiPtr = OpenGLExtProcAddress("glVertexAttribI1ui")
+        glVertexAttribI1ivPtr = OpenGLExtProcAddress("glVertexAttribI1iv")
+        glVertexAttribI1iPtr = OpenGLExtProcAddress("glVertexAttribI1i")
+        glUniform4uivPtr = OpenGLExtProcAddress("glUniform4uiv")
+        glUniform4uiPtr = OpenGLExtProcAddress("glUniform4ui")
+        glUniform3uivPtr = OpenGLExtProcAddress("glUniform3uiv")
+        glUniform3uiPtr = OpenGLExtProcAddress("glUniform3ui")
+        glUniform2uivPtr = OpenGLExtProcAddress("glUniform2uiv")
+        glUniform2uiPtr = OpenGLExtProcAddress("glUniform2ui")
+        glUniform1uivPtr = OpenGLExtProcAddress("glUniform1uiv")
+        glUniform1uiPtr = OpenGLExtProcAddress("glUniform1ui")
+        glTransformFeedbackVaryingsPtr = OpenGLExtProcAddress("glTransformFeedbackVaryings")
+        glTexParameterIuivPtr = OpenGLExtProcAddress("glTexParameterIuiv")
+        glTexParameterIivPtr = OpenGLExtProcAddress("glTexParameterIiv")
+        glIsEnablediPtr = OpenGLExtProcAddress("glIsEnabledi")
+        glGetVertexAttribIuivPtr = OpenGLExtProcAddress("glGetVertexAttribIuiv")
+        glGetVertexAttribIivPtr = OpenGLExtProcAddress("glGetVertexAttribIiv")
+        glGetUniformuivPtr = OpenGLExtProcAddress("glGetUniformuiv")
+        glGetTransformFeedbackVaryingPtr = OpenGLExtProcAddress("glGetTransformFeedbackVarying")
+        glGetTexParameterIuivPtr = OpenGLExtProcAddress("glGetTexParameterIuiv")
+        glGetTexParameterIivPtr = OpenGLExtProcAddress("glGetTexParameterIiv")
+        glGetFragDataLocationPtr = OpenGLExtProcAddress("glGetFragDataLocation")
+        glGetBooleani_vPtr = OpenGLExtProcAddress("glGetBooleani_v")
+        glEndTransformFeedbackPtr = OpenGLExtProcAddress("glEndTransformFeedback")
+        glEndConditionalRenderPtr = OpenGLExtProcAddress("glEndConditionalRender")
+        glEnableiPtr = OpenGLExtProcAddress("glEnablei")
+        glDisableiPtr = OpenGLExtProcAddress("glDisablei")
+        glColorMaskiPtr = OpenGLExtProcAddress("glColorMaski")
+        glClearBufferuivPtr = OpenGLExtProcAddress("glClearBufferuiv")
+        glClearBufferivPtr = OpenGLExtProcAddress("glClearBufferiv")
+        glClearBufferfvPtr = OpenGLExtProcAddress("glClearBufferfv")
+        glClearBufferfiPtr = OpenGLExtProcAddress("glClearBufferfi")
+        glClampColorPtr = OpenGLExtProcAddress("glClampColor")
+        glBindFragDataLocationPtr = OpenGLExtProcAddress("glBindFragDataLocation")
+        glBeginTransformFeedbackPtr = OpenGLExtProcAddress("glBeginTransformFeedback")
+        glBeginConditionalRenderPtr = OpenGLExtProcAddress("glBeginConditionalRender")
+        glGenVertexArraysPtr = OpenGLExtProcAddress("glGenVertexArrays")
+        glBindVertexArrayPtr = OpenGLExtProcAddress("glBindVertexArray")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribIPointer, "glVertexAttribIPointer"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI4usv, "glVertexAttribI4usv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI4uiv, "glVertexAttribI4uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI4ui, "glVertexAttribI4ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI4ubv, "glVertexAttribI4ubv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI4sv, "glVertexAttribI4sv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI4iv, "glVertexAttribI4iv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI4i, "glVertexAttribI4i"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI4bv, "glVertexAttribI4bv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI3uiv, "glVertexAttribI3uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI3ui, "glVertexAttribI3ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI3iv, "glVertexAttribI3iv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI3i, "glVertexAttribI3i"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI2uiv, "glVertexAttribI2uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI2ui, "glVertexAttribI2ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI2iv, "glVertexAttribI2iv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI2i, "glVertexAttribI2i"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI1uiv, "glVertexAttribI1uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI1ui, "glVertexAttribI1ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI1iv, "glVertexAttribI1iv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribI1i, "glVertexAttribI1i"
+        RemapVBFunctionToGLFunction AddressOf glUniform4uiv, "glUniform4uiv"
+        RemapVBFunctionToGLFunction AddressOf glUniform4ui, "glUniform4ui"
+        RemapVBFunctionToGLFunction AddressOf glUniform3uiv, "glUniform3uiv"
+        RemapVBFunctionToGLFunction AddressOf glUniform3ui, "glUniform3ui"
+        RemapVBFunctionToGLFunction AddressOf glUniform2uiv, "glUniform2uiv"
+        RemapVBFunctionToGLFunction AddressOf glUniform2ui, "glUniform2ui"
+        RemapVBFunctionToGLFunction AddressOf glUniform1uiv, "glUniform1uiv"
+        RemapVBFunctionToGLFunction AddressOf glUniform1ui, "glUniform1ui"
+        RemapVBFunctionToGLFunction AddressOf glTransformFeedbackVaryings, "glTransformFeedbackVaryings"
+        RemapVBFunctionToGLFunction AddressOf glTexParameterIuiv, "glTexParameterIuiv"
+        RemapVBFunctionToGLFunction AddressOf glTexParameterIiv, "glTexParameterIiv"
+        RemapVBFunctionToGLFunction AddressOf glIsEnabledi, "glIsEnabledi"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribIuiv, "glGetVertexAttribIuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribIiv, "glGetVertexAttribIiv"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformuiv, "glGetUniformuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetTransformFeedbackVarying, "glGetTransformFeedbackVarying"
+        RemapVBFunctionToGLFunction AddressOf glGetTexParameterIuiv, "glGetTexParameterIuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetTexParameterIiv, "glGetTexParameterIiv"
+        RemapVBFunctionToGLFunction AddressOf glGetFragDataLocation, "glGetFragDataLocation"
+        RemapVBFunctionToGLFunction AddressOf glGetBooleani_v, "glGetBooleani_v"
+        RemapVBFunctionToGLFunction AddressOf glEndTransformFeedback, "glEndTransformFeedback"
+        RemapVBFunctionToGLFunction AddressOf glEndConditionalRender, "glEndConditionalRender"
+        RemapVBFunctionToGLFunction AddressOf glEnablei, "glEnablei"
+        RemapVBFunctionToGLFunction AddressOf glDisablei, "glDisablei"
+        RemapVBFunctionToGLFunction AddressOf glColorMaski, "glColorMaski"
+        RemapVBFunctionToGLFunction AddressOf glClearBufferuiv, "glClearBufferuiv"
+        RemapVBFunctionToGLFunction AddressOf glClearBufferiv, "glClearBufferiv"
+        RemapVBFunctionToGLFunction AddressOf glClearBufferfv, "glClearBufferfv"
+        RemapVBFunctionToGLFunction AddressOf glClearBufferfi, "glClearBufferfi"
+        RemapVBFunctionToGLFunction AddressOf glClampColor, "glClampColor"
+        RemapVBFunctionToGLFunction AddressOf glBindFragDataLocation, "glBindFragDataLocation"
+        RemapVBFunctionToGLFunction AddressOf glBeginTransformFeedback, "glBeginTransformFeedback"
+        RemapVBFunctionToGLFunction AddressOf glBeginConditionalRender, "glBeginConditionalRender"
+        RemapVBFunctionToGLFunction AddressOf glGenVertexArrays, "glGenVertexArraysPtr"
+        RemapVBFunctionToGLFunction AddressOf glBindVertexArray, "glBindVertexArrayPtr"
+    End If
 End Function

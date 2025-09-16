@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -55,13 +55,13 @@ Public Sub glSpecializeShader(ByVal shader As Long, ByVal pEntryPoint, ByVal num
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL4_6()
-If IsDEPEnabled Then
-    glSpecializeShaderPtr = OpenGLExtProcAddress("glSpecializeShader")
-    glMultiDrawElementsIndirectCountPtr = OpenGLExtProcAddress("glMultiDrawElementsIndirectCount")
-    glMultiDrawArraysIndirectCountPtr = OpenGLExtProcAddress("glMultiDrawArraysIndirectCount")
-Else
-    RemapVBFunctionToGLFunction AddressOf glSpecializeShader, "glSpecializeShader"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawElementsIndirectCount, "glMultiDrawElementsIndirectCount"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawArraysIndirectCount, "glMultiDrawArraysIndirectCount"
-End If
+    If IsDEPEnabled Then
+        glSpecializeShaderPtr = OpenGLExtProcAddress("glSpecializeShader")
+        glMultiDrawElementsIndirectCountPtr = OpenGLExtProcAddress("glMultiDrawElementsIndirectCount")
+        glMultiDrawArraysIndirectCountPtr = OpenGLExtProcAddress("glMultiDrawArraysIndirectCount")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glSpecializeShader, "glSpecializeShader"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawElementsIndirectCount, "glMultiDrawElementsIndirectCount"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawArraysIndirectCount, "glMultiDrawArraysIndirectCount"
+    End If
 End Function

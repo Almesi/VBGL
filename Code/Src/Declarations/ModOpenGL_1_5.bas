@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -86,45 +86,45 @@ Public Function glUnmapBuffer(ByVal target As Long) As Integer: glUnmapBuffer = 
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL1_5()
-If IsDEPEnabled Then
-    glUnmapBufferPtr = OpenGLExtProcAddress("glUnmapBuffer")
-    glMapBufferPtr = OpenGLExtProcAddress("glMapBuffer")
-    glIsQueryPtr = OpenGLExtProcAddress("glIsQuery")
-    glIsBufferPtr = OpenGLExtProcAddress("glIsBuffer")
-    glGetQueryivPtr = OpenGLExtProcAddress("glGetQueryiv")
-    glGetQueryObjectuivPtr = OpenGLExtProcAddress("glGetQueryObjectuiv")
-    glGetQueryObjectivPtr = OpenGLExtProcAddress("glGetQueryObjectiv")
-    glGetBufferSubDataPtr = OpenGLExtProcAddress("glGetBufferSubData")
-    glGetBufferPointervPtr = OpenGLExtProcAddress("glGetBufferPointerv")
-    glGetBufferParameterivPtr = OpenGLExtProcAddress("glGetBufferParameteriv")
-    glGenQueriesPtr = OpenGLExtProcAddress("glGenQueries")
-    glGenBuffersPtr = OpenGLExtProcAddress("glGenBuffers")
-    glEndQueryPtr = OpenGLExtProcAddress("glEndQuery")
-    glDeleteQueriesPtr = OpenGLExtProcAddress("glDeleteQueries")
-    glDeleteBuffersPtr = OpenGLExtProcAddress("glDeleteBuffers")
-    glBufferSubDataPtr = OpenGLExtProcAddress("glBufferSubData")
-    glBufferDataPtr = OpenGLExtProcAddress("glBufferData")
-    glBindBufferPtr = OpenGLExtProcAddress("glBindBuffer")
-    glBeginQueryPtr = OpenGLExtProcAddress("glBeginQuery")
-Else
-    RemapVBFunctionToGLFunction AddressOf glUnmapBuffer, "glUnmapBuffer"
-    RemapVBFunctionToGLFunction AddressOf glMapBuffer, "glMapBuffer"
-    RemapVBFunctionToGLFunction AddressOf glIsQuery, "glIsQuery"
-    RemapVBFunctionToGLFunction AddressOf glIsBuffer, "glIsBuffer"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryiv, "glGetQueryiv"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryObjectuiv, "glGetQueryObjectuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryObjectiv, "glGetQueryObjectiv"
-    RemapVBFunctionToGLFunction AddressOf glGetBufferSubData, "glGetBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glGetBufferPointerv, "glGetBufferPointerv"
-    RemapVBFunctionToGLFunction AddressOf glGetBufferParameteriv, "glGetBufferParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGenQueries, "glGenQueries"
-    RemapVBFunctionToGLFunction AddressOf glGenBuffers, "glGenBuffers"
-    RemapVBFunctionToGLFunction AddressOf glEndQuery, "glEndQuery"
-    RemapVBFunctionToGLFunction AddressOf glDeleteQueries, "glDeleteQueries"
-    RemapVBFunctionToGLFunction AddressOf glDeleteBuffers, "glDeleteBuffers"
-    RemapVBFunctionToGLFunction AddressOf glBufferSubData, "glBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glBufferData, "glBufferData"
-    RemapVBFunctionToGLFunction AddressOf glBindBuffer, "glBindBuffer"
-    RemapVBFunctionToGLFunction AddressOf glBeginQuery, "glBeginQuery"
-End If
+    If IsDEPEnabled Then
+        glUnmapBufferPtr = OpenGLExtProcAddress("glUnmapBuffer")
+        glMapBufferPtr = OpenGLExtProcAddress("glMapBuffer")
+        glIsQueryPtr = OpenGLExtProcAddress("glIsQuery")
+        glIsBufferPtr = OpenGLExtProcAddress("glIsBuffer")
+        glGetQueryivPtr = OpenGLExtProcAddress("glGetQueryiv")
+        glGetQueryObjectuivPtr = OpenGLExtProcAddress("glGetQueryObjectuiv")
+        glGetQueryObjectivPtr = OpenGLExtProcAddress("glGetQueryObjectiv")
+        glGetBufferSubDataPtr = OpenGLExtProcAddress("glGetBufferSubData")
+        glGetBufferPointervPtr = OpenGLExtProcAddress("glGetBufferPointerv")
+        glGetBufferParameterivPtr = OpenGLExtProcAddress("glGetBufferParameteriv")
+        glGenQueriesPtr = OpenGLExtProcAddress("glGenQueries")
+        glGenBuffersPtr = OpenGLExtProcAddress("glGenBuffers")
+        glEndQueryPtr = OpenGLExtProcAddress("glEndQuery")
+        glDeleteQueriesPtr = OpenGLExtProcAddress("glDeleteQueries")
+        glDeleteBuffersPtr = OpenGLExtProcAddress("glDeleteBuffers")
+        glBufferSubDataPtr = OpenGLExtProcAddress("glBufferSubData")
+        glBufferDataPtr = OpenGLExtProcAddress("glBufferData")
+        glBindBufferPtr = OpenGLExtProcAddress("glBindBuffer")
+        glBeginQueryPtr = OpenGLExtProcAddress("glBeginQuery")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glUnmapBuffer, "glUnmapBuffer"
+        RemapVBFunctionToGLFunction AddressOf glMapBuffer, "glMapBuffer"
+        RemapVBFunctionToGLFunction AddressOf glIsQuery, "glIsQuery"
+        RemapVBFunctionToGLFunction AddressOf glIsBuffer, "glIsBuffer"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryiv, "glGetQueryiv"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryObjectuiv, "glGetQueryObjectuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryObjectiv, "glGetQueryObjectiv"
+        RemapVBFunctionToGLFunction AddressOf glGetBufferSubData, "glGetBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glGetBufferPointerv, "glGetBufferPointerv"
+        RemapVBFunctionToGLFunction AddressOf glGetBufferParameteriv, "glGetBufferParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGenQueries, "glGenQueries"
+        RemapVBFunctionToGLFunction AddressOf glGenBuffers, "glGenBuffers"
+        RemapVBFunctionToGLFunction AddressOf glEndQuery, "glEndQuery"
+        RemapVBFunctionToGLFunction AddressOf glDeleteQueries, "glDeleteQueries"
+        RemapVBFunctionToGLFunction AddressOf glDeleteBuffers, "glDeleteBuffers"
+        RemapVBFunctionToGLFunction AddressOf glBufferSubData, "glBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glBufferData, "glBufferData"
+        RemapVBFunctionToGLFunction AddressOf glBindBuffer, "glBindBuffer"
+        RemapVBFunctionToGLFunction AddressOf glBeginQuery, "glBeginQuery"
+    End If
 End Function

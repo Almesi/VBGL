@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -176,99 +176,99 @@ Public Sub glSampleCoverage(ByVal value As Single, ByVal invert As Integer)     
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL1_3()
-If IsDEPEnabled Then
-    glSampleCoveragePtr = OpenGLExtProcAddress("glSampleCoverage")
-    glMultiTexCoord4svPtr = OpenGLExtProcAddress("glMultiTexCoord4sv")
-    glMultiTexCoord4sPtr = OpenGLExtProcAddress("glMultiTexCoord4s")
-    glMultiTexCoord4ivPtr = OpenGLExtProcAddress("glMultiTexCoord4iv")
-    glMultiTexCoord4iPtr = OpenGLExtProcAddress("glMultiTexCoord4i")
-    glMultiTexCoord4fvPtr = OpenGLExtProcAddress("glMultiTexCoord4fv")
-    glMultiTexCoord4fPtr = OpenGLExtProcAddress("glMultiTexCoord4f")
-    glMultiTexCoord4dvPtr = OpenGLExtProcAddress("glMultiTexCoord4dv")
-    glMultiTexCoord4dPtr = OpenGLExtProcAddress("glMultiTexCoord4d")
-    glMultiTexCoord3svPtr = OpenGLExtProcAddress("glMultiTexCoord3sv")
-    glMultiTexCoord3sPtr = OpenGLExtProcAddress("glMultiTexCoord3s")
-    glMultiTexCoord3ivPtr = OpenGLExtProcAddress("glMultiTexCoord3iv")
-    glMultiTexCoord3iPtr = OpenGLExtProcAddress("glMultiTexCoord3i")
-    glMultiTexCoord3fvPtr = OpenGLExtProcAddress("glMultiTexCoord3fv")
-    glMultiTexCoord3fPtr = OpenGLExtProcAddress("glMultiTexCoord3f")
-    glMultiTexCoord3dvPtr = OpenGLExtProcAddress("glMultiTexCoord3dv")
-    glMultiTexCoord3dPtr = OpenGLExtProcAddress("glMultiTexCoord3d")
-    glMultiTexCoord2svPtr = OpenGLExtProcAddress("glMultiTexCoord2sv")
-    glMultiTexCoord2sPtr = OpenGLExtProcAddress("glMultiTexCoord2s")
-    glMultiTexCoord2ivPtr = OpenGLExtProcAddress("glMultiTexCoord2iv")
-    glMultiTexCoord2iPtr = OpenGLExtProcAddress("glMultiTexCoord2i")
-    glMultiTexCoord2fvPtr = OpenGLExtProcAddress("glMultiTexCoord2fv")
-    glMultiTexCoord2fPtr = OpenGLExtProcAddress("glMultiTexCoord2f")
-    glMultiTexCoord2dvPtr = OpenGLExtProcAddress("glMultiTexCoord2dv")
-    glMultiTexCoord2dPtr = OpenGLExtProcAddress("glMultiTexCoord2d")
-    glMultiTexCoord1svPtr = OpenGLExtProcAddress("glMultiTexCoord1sv")
-    glMultiTexCoord1sPtr = OpenGLExtProcAddress("glMultiTexCoord1s")
-    glMultiTexCoord1ivPtr = OpenGLExtProcAddress("glMultiTexCoord1iv")
-    glMultiTexCoord1iPtr = OpenGLExtProcAddress("glMultiTexCoord1i")
-    glMultiTexCoord1fvPtr = OpenGLExtProcAddress("glMultiTexCoord1fv")
-    glMultiTexCoord1fPtr = OpenGLExtProcAddress("glMultiTexCoord1f")
-    glMultiTexCoord1dvPtr = OpenGLExtProcAddress("glMultiTexCoord1dv")
-    glMultiTexCoord1dPtr = OpenGLExtProcAddress("glMultiTexCoord1d")
-    glMultTransposeMatrixfPtr = OpenGLExtProcAddress("glMultTransposeMatrixf")
-    glMultTransposeMatrixdPtr = OpenGLExtProcAddress("glMultTransposeMatrixd")
-    glLoadTransposeMatrixfPtr = OpenGLExtProcAddress("glLoadTransposeMatrixf")
-    glLoadTransposeMatrixdPtr = OpenGLExtProcAddress("glLoadTransposeMatrixd")
-    glGetCompressedTexImagePtr = OpenGLExtProcAddress("glGetCompressedTexImage")
-    glCompressedTexSubImage3DPtr = OpenGLExtProcAddress("glCompressedTexSubImage3D")
-    glCompressedTexSubImage2DPtr = OpenGLExtProcAddress("glCompressedTexSubImage2D")
-    glCompressedTexSubImage1DPtr = OpenGLExtProcAddress("glCompressedTexSubImage1D")
-    glCompressedTexImage3DPtr = OpenGLExtProcAddress("glCompressedTexImage3D")
-    glCompressedTexImage2DPtr = OpenGLExtProcAddress("glCompressedTexImage2D")
-    glCompressedTexImage1DPtr = OpenGLExtProcAddress("glCompressedTexImage1D")
-    glClientActiveTexturePtr = OpenGLExtProcAddress("glClientActiveTexture")
-    glActiveTexturePtr = OpenGLExtProcAddress("glActiveTexture")
-Else
-    RemapVBFunctionToGLFunction AddressOf glSampleCoverage, "glSampleCoverage"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4sv, "glMultiTexCoord4sv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4s, "glMultiTexCoord4s"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4iv, "glMultiTexCoord4iv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4i, "glMultiTexCoord4i"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4fv, "glMultiTexCoord4fv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4f, "glMultiTexCoord4f"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4dv, "glMultiTexCoord4dv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4d, "glMultiTexCoord4d"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3sv, "glMultiTexCoord3sv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3s, "glMultiTexCoord3s"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3iv, "glMultiTexCoord3iv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3i, "glMultiTexCoord3i"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3fv, "glMultiTexCoord3fv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3f, "glMultiTexCoord3f"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3dv, "glMultiTexCoord3dv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3d, "glMultiTexCoord3d"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2sv, "glMultiTexCoord2sv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2s, "glMultiTexCoord2s"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2iv, "glMultiTexCoord2iv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2i, "glMultiTexCoord2i"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2fv, "glMultiTexCoord2fv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2f, "glMultiTexCoord2f"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2dv, "glMultiTexCoord2dv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2d, "glMultiTexCoord2d"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1sv, "glMultiTexCoord1sv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1s, "glMultiTexCoord1s"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1iv, "glMultiTexCoord1iv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1i, "glMultiTexCoord1i"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1fv, "glMultiTexCoord1fv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1f, "glMultiTexCoord1f"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1dv, "glMultiTexCoord1dv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1d, "glMultiTexCoord1d"
-    RemapVBFunctionToGLFunction AddressOf glMultTransposeMatrixf, "glMultTransposeMatrixf"
-    RemapVBFunctionToGLFunction AddressOf glMultTransposeMatrixd, "glMultTransposeMatrixd"
-    RemapVBFunctionToGLFunction AddressOf glLoadTransposeMatrixf, "glLoadTransposeMatrixf"
-    RemapVBFunctionToGLFunction AddressOf glLoadTransposeMatrixd, "glLoadTransposeMatrixd"
-    RemapVBFunctionToGLFunction AddressOf glGetCompressedTexImage, "glGetCompressedTexImage"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage3D, "glCompressedTexSubImage3D"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage2D, "glCompressedTexSubImage2D"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage1D, "glCompressedTexSubImage1D"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexImage3D, "glCompressedTexImage3D"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexImage2D, "glCompressedTexImage2D"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexImage1D, "glCompressedTexImage1D"
-    RemapVBFunctionToGLFunction AddressOf glClientActiveTexture, "glClientActiveTexture"
-    RemapVBFunctionToGLFunction AddressOf glActiveTexture, "glActiveTexture"
-End If
+    If IsDEPEnabled Then
+        glSampleCoveragePtr = OpenGLExtProcAddress("glSampleCoverage")
+        glMultiTexCoord4svPtr = OpenGLExtProcAddress("glMultiTexCoord4sv")
+        glMultiTexCoord4sPtr = OpenGLExtProcAddress("glMultiTexCoord4s")
+        glMultiTexCoord4ivPtr = OpenGLExtProcAddress("glMultiTexCoord4iv")
+        glMultiTexCoord4iPtr = OpenGLExtProcAddress("glMultiTexCoord4i")
+        glMultiTexCoord4fvPtr = OpenGLExtProcAddress("glMultiTexCoord4fv")
+        glMultiTexCoord4fPtr = OpenGLExtProcAddress("glMultiTexCoord4f")
+        glMultiTexCoord4dvPtr = OpenGLExtProcAddress("glMultiTexCoord4dv")
+        glMultiTexCoord4dPtr = OpenGLExtProcAddress("glMultiTexCoord4d")
+        glMultiTexCoord3svPtr = OpenGLExtProcAddress("glMultiTexCoord3sv")
+        glMultiTexCoord3sPtr = OpenGLExtProcAddress("glMultiTexCoord3s")
+        glMultiTexCoord3ivPtr = OpenGLExtProcAddress("glMultiTexCoord3iv")
+        glMultiTexCoord3iPtr = OpenGLExtProcAddress("glMultiTexCoord3i")
+        glMultiTexCoord3fvPtr = OpenGLExtProcAddress("glMultiTexCoord3fv")
+        glMultiTexCoord3fPtr = OpenGLExtProcAddress("glMultiTexCoord3f")
+        glMultiTexCoord3dvPtr = OpenGLExtProcAddress("glMultiTexCoord3dv")
+        glMultiTexCoord3dPtr = OpenGLExtProcAddress("glMultiTexCoord3d")
+        glMultiTexCoord2svPtr = OpenGLExtProcAddress("glMultiTexCoord2sv")
+        glMultiTexCoord2sPtr = OpenGLExtProcAddress("glMultiTexCoord2s")
+        glMultiTexCoord2ivPtr = OpenGLExtProcAddress("glMultiTexCoord2iv")
+        glMultiTexCoord2iPtr = OpenGLExtProcAddress("glMultiTexCoord2i")
+        glMultiTexCoord2fvPtr = OpenGLExtProcAddress("glMultiTexCoord2fv")
+        glMultiTexCoord2fPtr = OpenGLExtProcAddress("glMultiTexCoord2f")
+        glMultiTexCoord2dvPtr = OpenGLExtProcAddress("glMultiTexCoord2dv")
+        glMultiTexCoord2dPtr = OpenGLExtProcAddress("glMultiTexCoord2d")
+        glMultiTexCoord1svPtr = OpenGLExtProcAddress("glMultiTexCoord1sv")
+        glMultiTexCoord1sPtr = OpenGLExtProcAddress("glMultiTexCoord1s")
+        glMultiTexCoord1ivPtr = OpenGLExtProcAddress("glMultiTexCoord1iv")
+        glMultiTexCoord1iPtr = OpenGLExtProcAddress("glMultiTexCoord1i")
+        glMultiTexCoord1fvPtr = OpenGLExtProcAddress("glMultiTexCoord1fv")
+        glMultiTexCoord1fPtr = OpenGLExtProcAddress("glMultiTexCoord1f")
+        glMultiTexCoord1dvPtr = OpenGLExtProcAddress("glMultiTexCoord1dv")
+        glMultiTexCoord1dPtr = OpenGLExtProcAddress("glMultiTexCoord1d")
+        glMultTransposeMatrixfPtr = OpenGLExtProcAddress("glMultTransposeMatrixf")
+        glMultTransposeMatrixdPtr = OpenGLExtProcAddress("glMultTransposeMatrixd")
+        glLoadTransposeMatrixfPtr = OpenGLExtProcAddress("glLoadTransposeMatrixf")
+        glLoadTransposeMatrixdPtr = OpenGLExtProcAddress("glLoadTransposeMatrixd")
+        glGetCompressedTexImagePtr = OpenGLExtProcAddress("glGetCompressedTexImage")
+        glCompressedTexSubImage3DPtr = OpenGLExtProcAddress("glCompressedTexSubImage3D")
+        glCompressedTexSubImage2DPtr = OpenGLExtProcAddress("glCompressedTexSubImage2D")
+        glCompressedTexSubImage1DPtr = OpenGLExtProcAddress("glCompressedTexSubImage1D")
+        glCompressedTexImage3DPtr = OpenGLExtProcAddress("glCompressedTexImage3D")
+        glCompressedTexImage2DPtr = OpenGLExtProcAddress("glCompressedTexImage2D")
+        glCompressedTexImage1DPtr = OpenGLExtProcAddress("glCompressedTexImage1D")
+        glClientActiveTexturePtr = OpenGLExtProcAddress("glClientActiveTexture")
+        glActiveTexturePtr = OpenGLExtProcAddress("glActiveTexture")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glSampleCoverage, "glSampleCoverage"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4sv, "glMultiTexCoord4sv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4s, "glMultiTexCoord4s"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4iv, "glMultiTexCoord4iv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4i, "glMultiTexCoord4i"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4fv, "glMultiTexCoord4fv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4f, "glMultiTexCoord4f"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4dv, "glMultiTexCoord4dv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4d, "glMultiTexCoord4d"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3sv, "glMultiTexCoord3sv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3s, "glMultiTexCoord3s"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3iv, "glMultiTexCoord3iv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3i, "glMultiTexCoord3i"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3fv, "glMultiTexCoord3fv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3f, "glMultiTexCoord3f"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3dv, "glMultiTexCoord3dv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3d, "glMultiTexCoord3d"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2sv, "glMultiTexCoord2sv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2s, "glMultiTexCoord2s"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2iv, "glMultiTexCoord2iv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2i, "glMultiTexCoord2i"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2fv, "glMultiTexCoord2fv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2f, "glMultiTexCoord2f"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2dv, "glMultiTexCoord2dv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2d, "glMultiTexCoord2d"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1sv, "glMultiTexCoord1sv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1s, "glMultiTexCoord1s"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1iv, "glMultiTexCoord1iv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1i, "glMultiTexCoord1i"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1fv, "glMultiTexCoord1fv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1f, "glMultiTexCoord1f"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1dv, "glMultiTexCoord1dv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1d, "glMultiTexCoord1d"
+        RemapVBFunctionToGLFunction AddressOf glMultTransposeMatrixf, "glMultTransposeMatrixf"
+        RemapVBFunctionToGLFunction AddressOf glMultTransposeMatrixd, "glMultTransposeMatrixd"
+        RemapVBFunctionToGLFunction AddressOf glLoadTransposeMatrixf, "glLoadTransposeMatrixf"
+        RemapVBFunctionToGLFunction AddressOf glLoadTransposeMatrixd, "glLoadTransposeMatrixd"
+        RemapVBFunctionToGLFunction AddressOf glGetCompressedTexImage, "glGetCompressedTexImage"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage3D, "glCompressedTexSubImage3D"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage2D, "glCompressedTexSubImage2D"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage1D, "glCompressedTexSubImage1D"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexImage3D, "glCompressedTexImage3D"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexImage2D, "glCompressedTexImage2D"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexImage1D, "glCompressedTexImage1D"
+        RemapVBFunctionToGLFunction AddressOf glClientActiveTexture, "glClientActiveTexture"
+        RemapVBFunctionToGLFunction AddressOf glActiveTexture, "glActiveTexture"
+    End If
 End Function

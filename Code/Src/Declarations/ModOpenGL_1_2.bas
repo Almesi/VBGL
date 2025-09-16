@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -76,15 +76,15 @@ Public Sub glTexSubImage3D(ByVal target As Long, ByVal level As Long, ByVal xoff
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL1_2()
-If IsDEPEnabled Then
-    glTexSubImage3DPtr = OpenGLExtProcAddress("glTexSubImage3D")
-    glTexImage3DPtr = OpenGLExtProcAddress("glTexImage3D")
-    glDrawRangeElementsPtr = OpenGLExtProcAddress("glDrawRangeElements")
-    glCopyTexSubImage3DPtr = OpenGLExtProcAddress("glCopyTexSubImage3D")
-Else
-    RemapVBFunctionToGLFunction AddressOf glTexSubImage3D, "glTexSubImage3D"
-    RemapVBFunctionToGLFunction AddressOf glTexImage3D, "glTexImage3D"
-    RemapVBFunctionToGLFunction AddressOf glDrawRangeElements, "glDrawRangeElements"
-    RemapVBFunctionToGLFunction AddressOf glCopyTexSubImage3D, "glCopyTexSubImage3D"
-End If
+    If IsDEPEnabled Then
+        glTexSubImage3DPtr = OpenGLExtProcAddress("glTexSubImage3D")
+        glTexImage3DPtr = OpenGLExtProcAddress("glTexImage3D")
+        glDrawRangeElementsPtr = OpenGLExtProcAddress("glDrawRangeElements")
+        glCopyTexSubImage3DPtr = OpenGLExtProcAddress("glCopyTexSubImage3D")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glTexSubImage3D, "glTexSubImage3D"
+        RemapVBFunctionToGLFunction AddressOf glTexImage3D, "glTexImage3D"
+        RemapVBFunctionToGLFunction AddressOf glDrawRangeElements, "glDrawRangeElements"
+        RemapVBFunctionToGLFunction AddressOf glCopyTexSubImage3D, "glCopyTexSubImage3D"
+    End If
 End Function

@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -37,7 +37,9 @@ Public Const GL_COPY_WRITE_BUFFER_BINDING          = &H8F37&
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL4_2()
-If IsDEPEnabled Then
-Else
-End If
+    If IsDEPEnabled Then
+    
+    Else
+    
+    End If
 End Function

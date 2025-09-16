@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -43,52 +43,52 @@ Public Const GL_PRIMITIVE_BOUNDING_BOX_ARB                                      
 Public Const GL_MULTISAMPLE_LINE_WIDTH_RANGE_ARB                                                                                                                                                                                                                 = &H9381&
 Public Const GL_MULTISAMPLE_LINE_WIDTH_GRANULARITY_ARB                                                                                                                                                                                                               = &H9382&
 '------------------------------- GL_ARB_ES3_compatibility -------------------------------
-Public Const GL_TEXTURE_IMMUTABLE_LEVELS                   = &H82DF&
-Public Const GL_PRIMITIVE_RESTART_FIXED_INDEX              = &H8D69&
-Public Const GL_ANY_SAMPLES_PASSED_CONSERVATIVE            = &H8D6A&
-Public Const GL_MAX_ELEMENT_INDEX                          = &H8D6B&
-Public Const GL_COMPRESSED_R11_EAC                         = &H9270&
-Public Const GL_COMPRESSED_SIGNED_R11_EAC                  = &H9271&
-Public Const GL_COMPRESSED_RG11_EAC                        = &H9272&
-Public Const GL_COMPRESSED_SIGNED_RG11_EAC                 = &H9273&
-Public Const GL_COMPRESSED_RGB8_ETC2                       = &H9274&
-Public Const GL_COMPRESSED_SRGB8_ETC2                      = &H9275&
-Public Const GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2   = &H9276&
-Public Const GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2  = &H9277&
-Public Const GL_COMPRESSED_RGBA8_ETC2_EAC                  = &H9278&
-Public Const GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC           = &H9279&
+Public Const GL_TEXTURE_IMMUTABLE_LEVELS                             = &H82DF&
+Public Const GL_PRIMITIVE_RESTART_FIXED_INDEX                        = &H8D69&
+Public Const GL_ANY_SAMPLES_PASSED_CONSERVATIVE                      = &H8D6A&
+Public Const GL_MAX_ELEMENT_INDEX                                    = &H8D6B&
+Public Const GL_COMPRESSED_R11_EAC                                   = &H9270&
+Public Const GL_COMPRESSED_SIGNED_R11_EAC                            = &H9271&
+Public Const GL_COMPRESSED_RG11_EAC                                  = &H9272&
+Public Const GL_COMPRESSED_SIGNED_RG11_EAC                           = &H9273&
+Public Const GL_COMPRESSED_RGB8_ETC2                                 = &H9274&
+Public Const GL_COMPRESSED_SRGB8_ETC2                                = &H9275&
+Public Const GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2             = &H9276&
+Public Const GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2            = &H9277&
+Public Const GL_COMPRESSED_RGBA8_ETC2_EAC                            = &H9278&
+Public Const GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC                     = &H9279&
 '------------------------------- GL_ARB_arrays_of_arrays -------------------------------
 '------------------------------- GL_ARB_base_instance -------------------------------
 '------------------------------- GL_ARB_bindless_texture -------------------------------
-Public Const GL_UNSIGNED_INT64_ARB                         = &H140F&
+Public Const GL_UNSIGNED_INT64_ARB                                   = &H140F&
 '------------------------------- GL_ARB_blend_func_extended -------------------------------
-Public Const GL_SRC1_COLOR                                 = &H88F9&
-Public Const GL_ONE_MINUS_SRC1_COLOR                       = &H88FA&
-Public Const GL_ONE_MINUS_SRC1_ALPHA                       = &H88FB&
-Public Const GL_MAX_DUAL_SOURCE_DRAW_BUFFERS               = &H88FC&
+Public Const GL_SRC1_COLOR                                           = &H88F9&
+Public Const GL_ONE_MINUS_SRC1_COLOR                                 = &H88FA&
+Public Const GL_ONE_MINUS_SRC1_ALPHA                                 = &H88FB&
+Public Const GL_MAX_DUAL_SOURCE_DRAW_BUFFERS                         = &H88FC&
 '------------------------------- GL_ARB_buffer_storage -------------------------------
-Public Const GL_MAP_READ_BIT                               = &H1&
-Public Const GL_MAP_WRITE_BIT                              = &H2&
-Public Const GL_MAP_PERSISTENT_BIT                         = &H40&
-Public Const GL_MAP_COHERENT_BIT                           = &H80&
-Public Const GL_DYNAMIC_STORAGE_BIT                        = &H100&
-Public Const GL_CLIENT_STORAGE_BIT                         = &H200&
-Public Const GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT           = &H4000&
-Public Const GL_BUFFER_IMMUTABLE_STORAGE                   = &H821F&
-Public Const GL_BUFFER_STORAGE_FLAGS                       = &H8220&
+Public Const GL_MAP_READ_BIT                                         = &H1&
+Public Const GL_MAP_WRITE_BIT                                        = &H2&
+Public Const GL_MAP_PERSISTENT_BIT                                   = &H40&
+Public Const GL_MAP_COHERENT_BIT                                     = &H80&
+Public Const GL_DYNAMIC_STORAGE_BIT                                  = &H100&
+Public Const GL_CLIENT_STORAGE_BIT                                   = &H200&
+Public Const GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT                     = &H4000&
+Public Const GL_BUFFER_IMMUTABLE_STORAGE                             = &H821F&
+Public Const GL_BUFFER_STORAGE_FLAGS                                 = &H8220&
 '------------------------------- GL_ARB_cl_event -------------------------------
-Public Const GL_SYNC_CL_EVENT_ARB                          = &H8240&
-Public Const GL_SYNC_CL_EVENT_COMPLETE_ARB                 = &H8241&
+Public Const GL_SYNC_CL_EVENT_ARB                                    = &H8240&
+Public Const GL_SYNC_CL_EVENT_COMPLETE_ARB                           = &H8241&
 '------------------------------- GL_ARB_clear_buffer_object -------------------------------
 '------------------------------- GL_ARB_clear_texture -------------------------------
-Public Const GL_CLEAR_TEXTURE                              = &H9365&
+Public Const GL_CLEAR_TEXTURE                                        = &H9365&
 '------------------------------- GL_ARB_clip_control -------------------------------
 'public const GL_LOWER_LEFT                                                                                                                                                                                                              = &h8CA1&
 'public const GL_UPPER_LEFT                                                                                                                                                                                                              = &h8CA2&
-Public Const GL_CLIP_ORIGIN                                = &H935C&
-Public Const GL_CLIP_DEPTH_MODE                            = &H935D&
-Public Const GL_NEGATIVE_ONE_TO_ONE                        = &H935E&
-Public Const GL_ZERO_TO_ONE                                = &H935F&
+Public Const GL_CLIP_ORIGIN                                          = &H935C&
+Public Const GL_CLIP_DEPTH_MODE                                      = &H935D&
+Public Const GL_NEGATIVE_ONE_TO_ONE                                  = &H935E&
+Public Const GL_ZERO_TO_ONE                                          = &H935F&
 '------------------------------- GL_ARB_color_buffer_float -------------------------------
 Public Const GL_RGBA_FLOAT_MODE_ARB                                                                                                                                                                                                              = &H8820&
 Public Const GL_CLAMP_VERTEX_COLOR_ARB                                                                                                                                                                                                               = &H891A&
@@ -97,14 +97,14 @@ Public Const GL_CLAMP_READ_COLOR_ARB                                            
 Public Const GL_FIXED_ONLY_ARB                                                                                                                                                                                                               = &H891D&
 '------------------------------- GL_ARB_compatibility -------------------------------
 '------------------------------- GL_ARB_compressed_texture_pixel_storage -------------------------------
-Public Const GL_UNPACK_COMPRESSED_BLOCK_WIDTH              = &H9127&
-Public Const GL_UNPACK_COMPRESSED_BLOCK_HEIGHT             = &H9128&
-Public Const GL_UNPACK_COMPRESSED_BLOCK_DEPTH              = &H9129&
-Public Const GL_UNPACK_COMPRESSED_BLOCK_SIZE               = &H912A&
-Public Const GL_PACK_COMPRESSED_BLOCK_WIDTH                = &H912B&
-Public Const GL_PACK_COMPRESSED_BLOCK_HEIGHT               = &H912C&
-Public Const GL_PACK_COMPRESSED_BLOCK_DEPTH                = &H912D&
-Public Const GL_PACK_COMPRESSED_BLOCK_SIZE                 = &H912E&
+Public Const GL_UNPACK_COMPRESSED_BLOCK_WIDTH                        = &H9127&
+Public Const GL_UNPACK_COMPRESSED_BLOCK_HEIGHT                       = &H9128&
+Public Const GL_UNPACK_COMPRESSED_BLOCK_DEPTH                        = &H9129&
+Public Const GL_UNPACK_COMPRESSED_BLOCK_SIZE                         = &H912A&
+Public Const GL_PACK_COMPRESSED_BLOCK_WIDTH                          = &H912B&
+Public Const GL_PACK_COMPRESSED_BLOCK_HEIGHT                         = &H912C&
+Public Const GL_PACK_COMPRESSED_BLOCK_DEPTH                          = &H912D&
+Public Const GL_PACK_COMPRESSED_BLOCK_SIZE                           = &H912E&
 '------------------------------- GL_ARB_compute_shader -------------------------------
 Public Const GL_COMPUTE_SHADER_BIT                                   = &H20&
 Public Const GL_MAX_COMPUTE_SHARED_MEMORY_SIZE                       = &H8262&
@@ -125,1357 +125,1357 @@ Public Const GL_MAX_COMPUTE_IMAGE_UNIFORMS                           = &H91BD&
 Public Const GL_MAX_COMPUTE_WORK_GROUP_COUNT                         = &H91BE&
 Public Const GL_MAX_COMPUTE_WORK_GROUP_SIZE                          = &H91BF&
 '------------------------------- GL_ARB_compute_variable_group_size -------------------------------
-Public Const GL_MAX_COMPUTE_FIXED_GROUP_INVOCATIONS_ARB                                                                                                                                                                                                              = &H90EB&
-Public Const GL_MAX_COMPUTE_FIXED_GROUP_SIZE_ARB                                                                                                                                                                                                                 = &H91BF&
-Public Const GL_MAX_COMPUTE_VARIABLE_GROUP_INVOCATIONS_ARB                                                                                                                                                                                                               = &H9344&
-Public Const GL_MAX_COMPUTE_VARIABLE_GROUP_SIZE_ARB                                                                                                                                                                                                              = &H9345&
+Public Const GL_MAX_COMPUTE_FIXED_GROUP_INVOCATIONS_ARB              = &H90EB&
+Public Const GL_MAX_COMPUTE_FIXED_GROUP_SIZE_ARB                     = &H91BF&
+Public Const GL_MAX_COMPUTE_VARIABLE_GROUP_INVOCATIONS_ARB           = &H9344&
+Public Const GL_MAX_COMPUTE_VARIABLE_GROUP_SIZE_ARB                  = &H9345&
 '------------------------------- GL_ARB_conditional_render_inverted -------------------------------
-Public Const GL_QUERY_WAIT_INVERTED                                                                                                                                                                                                              = &H8E17&
-Public Const GL_QUERY_NO_WAIT_INVERTED                                                                                                                                                                                                               = &H8E18&
-Public Const GL_QUERY_BY_REGION_WAIT_INVERTED                                                                                                                                                                                                                = &H8E19&
-Public Const GL_QUERY_BY_REGION_NO_WAIT_INVERTED                                                                                                                                                                                                                 = &H8E1A&
+Public Const GL_QUERY_WAIT_INVERTED                                  = &H8E17&
+Public Const GL_QUERY_NO_WAIT_INVERTED                               = &H8E18&
+Public Const GL_QUERY_BY_REGION_WAIT_INVERTED                        = &H8E19&
+Public Const GL_QUERY_BY_REGION_NO_WAIT_INVERTED                     = &H8E1A&
 '------------------------------- GL_ARB_conservative_depth -------------------------------
 '------------------------------- GL_ARB_copy_buffer -------------------------------
-Public Const GL_COPY_READ_BUFFER                                                                                                                                                                                                                 = &H8F36&
-Public Const GL_COPY_WRITE_BUFFER                                                                                                                                                                                                                = &H8F37&
+Public Const GL_COPY_READ_BUFFER                                     = &H8F36&
+Public Const GL_COPY_WRITE_BUFFER                                    = &H8F37&
 '------------------------------- GL_ARB_copy_image -------------------------------
 '------------------------------- GL_ARB_cull_distance -------------------------------
-Public Const GL_MAX_CULL_DISTANCES                                                                                                                                                                                                               = &H82F9&
-Public Const GL_MAX_COMBINED_CLIP_AND_CULL_DISTANCES                                                                                                                                                                                                                 = &H82FA&
+Public Const GL_MAX_CULL_DISTANCES                                   = &H82F9&
+Public Const GL_MAX_COMBINED_CLIP_AND_CULL_DISTANCES                 = &H82FA&
 '------------------------------- GL_ARB_debug_output -------------------------------
-Public Const GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB                                                                                                                                                                                                                 = &H8242&
-Public Const GL_DEBUG_NEXT_LOGGED_MESSAGE_LENGTH_ARB                                                                                                                                                                                                                 = &H8243&
-Public Const GL_DEBUG_CALLBACK_FUNCTION_ARB                                                                                                                                                                                                              = &H8244&
-Public Const GL_DEBUG_CALLBACK_USER_PARAM_ARB                                                                                                                                                                                                                = &H8245&
-Public Const GL_DEBUG_SOURCE_API_ARB                                                                                                                                                                                                                 = &H8246&
-Public Const GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB                                                                                                                                                                                                               = &H8247&
-Public Const GL_DEBUG_SOURCE_SHADER_COMPILER_ARB                                                                                                                                                                                                                 = &H8248&
-Public Const GL_DEBUG_SOURCE_THIRD_PARTY_ARB                                                                                                                                                                                                                 = &H8249&
-Public Const GL_DEBUG_SOURCE_APPLICATION_ARB                                                                                                                                                                                                                 = &H824A&
-Public Const GL_DEBUG_SOURCE_OTHER_ARB                                                                                                                                                                                                               = &H824B&
-Public Const GL_DEBUG_TYPE_ERROR_ARB                                                                                                                                                                                                                 = &H824C&
-Public Const GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB                                                                                                                                                                                                               = &H824D&
-Public Const GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB                                                                                                                                                                                                                = &H824E&
-Public Const GL_DEBUG_TYPE_PORTABILITY_ARB                                                                                                                                                                                                               = &H824F&
-Public Const GL_DEBUG_TYPE_PERFORMANCE_ARB                                                                                                                                                                                                               = &H8250&
-Public Const GL_DEBUG_TYPE_OTHER_ARB                                                                                                                                                                                                                 = &H8251&
-Public Const GL_MAX_DEBUG_MESSAGE_LENGTH_ARB                                                                                                                                                                                                                 = &H9143&
-Public Const GL_MAX_DEBUG_LOGGED_MESSAGES_ARB                                                                                                                                                                                                                = &H9144&
-Public Const GL_DEBUG_LOGGED_MESSAGES_ARB                                                                                                                                                                                                                = &H9145&
-Public Const GL_DEBUG_SEVERITY_HIGH_ARB                                                                                                                                                                                                              = &H9146&
-Public Const GL_DEBUG_SEVERITY_MEDIUM_ARB                                                                                                                                                                                                                = &H9147&
-Public Const GL_DEBUG_SEVERITY_LOW_ARB                                                                                                                                                                                                               = &H9148&
+Public Const GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB                         = &H8242&
+Public Const GL_DEBUG_NEXT_LOGGED_MESSAGE_LENGTH_ARB                 = &H8243&
+Public Const GL_DEBUG_CALLBACK_FUNCTION_ARB                          = &H8244&
+Public Const GL_DEBUG_CALLBACK_USER_PARAM_ARB                        = &H8245&
+Public Const GL_DEBUG_SOURCE_API_ARB                                 = &H8246&
+Public Const GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB                       = &H8247&
+Public Const GL_DEBUG_SOURCE_SHADER_COMPILER_ARB                     = &H8248&
+Public Const GL_DEBUG_SOURCE_THIRD_PARTY_ARB                         = &H8249&
+Public Const GL_DEBUG_SOURCE_APPLICATION_ARB                         = &H824A&
+Public Const GL_DEBUG_SOURCE_OTHER_ARB                               = &H824B&
+Public Const GL_DEBUG_TYPE_ERROR_ARB                                 = &H824C&
+Public Const GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB                   = &H824D&
+Public Const GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB                    = &H824E&
+Public Const GL_DEBUG_TYPE_PORTABILITY_ARB                           = &H824F&
+Public Const GL_DEBUG_TYPE_PERFORMANCE_ARB                           = &H8250&
+Public Const GL_DEBUG_TYPE_OTHER_ARB                                 = &H8251&
+Public Const GL_MAX_DEBUG_MESSAGE_LENGTH_ARB                         = &H9143&
+Public Const GL_MAX_DEBUG_LOGGED_MESSAGES_ARB                        = &H9144&
+Public Const GL_DEBUG_LOGGED_MESSAGES_ARB                            = &H9145&
+Public Const GL_DEBUG_SEVERITY_HIGH_ARB                              = &H9146&
+Public Const GL_DEBUG_SEVERITY_MEDIUM_ARB                            = &H9147&
+Public Const GL_DEBUG_SEVERITY_LOW_ARB                               = &H9148&
 '------------------------------- GL_ARB_depth_buffer_float -------------------------------
-Public Const GL_DEPTH_COMPONENT32F                                                                                                                                                                                                               = &H8CAC&
-Public Const GL_DEPTH32F_STENCIL8                                                                                                                                                                                                                = &H8CAD&
-Public Const GL_FLOAT_32_UNSIGNED_INT_24_8_REV                                                                                                                                                                                                               = &H8DAD&
+Public Const GL_DEPTH_COMPONENT32F                                   = &H8CAC&
+Public Const GL_DEPTH32F_STENCIL8                                    = &H8CAD&
+Public Const GL_FLOAT_32_UNSIGNED_INT_24_8_REV                       = &H8DAD&
 '------------------------------- GL_ARB_depth_clamp -------------------------------
-Public Const GL_DEPTH_CLAMP                                                                                                                                                                                                              = &H864F&
+Public Const GL_DEPTH_CLAMP                                          = &H864F&
 '------------------------------- GL_ARB_depth_texture -------------------------------
-Public Const GL_DEPTH_COMPONENT16_ARB                                                                                                                                                                                                                = &H81A5&
-Public Const GL_DEPTH_COMPONENT24_ARB                                                                                                                                                                                                                = &H81A6&
-Public Const GL_DEPTH_COMPONENT32_ARB                                                                                                                                                                                                                = &H81A7&
-Public Const GL_TEXTURE_DEPTH_SIZE_ARB                                                                                                                                                                                                               = &H884A&
-Public Const GL_DEPTH_TEXTURE_MODE_ARB                                                                                                                                                                                                               = &H884B&
+Public Const GL_DEPTH_COMPONENT16_ARB                                = &H81A5&
+Public Const GL_DEPTH_COMPONENT24_ARB                                = &H81A6&
+Public Const GL_DEPTH_COMPONENT32_ARB                                = &H81A7&
+Public Const GL_TEXTURE_DEPTH_SIZE_ARB                               = &H884A&
+Public Const GL_DEPTH_TEXTURE_MODE_ARB                               = &H884B&
 '------------------------------- GL_ARB_derivative_control -------------------------------
 '------------------------------- GL_ARB_direct_state_access -------------------------------
-Public Const GL_TEXTURE_TARGET                                                                                                                                                                                                               = &H1006&
-Public Const GL_QUERY_TARGET                                                                                                                                                                                                                 = &H82EA&
+Public Const GL_TEXTURE_TARGET                                       = &H1006&
+Public Const GL_QUERY_TARGET                                         = &H82EA&
 '------------------------------- GL_ARB_draw_buffers -------------------------------
-Public Const GL_MAX_DRAW_BUFFERS_ARB                                                                                                                                                                                                                 = &H8824&
-Public Const GL_DRAW_BUFFER0_ARB                                                                                                                                                                                                                 = &H8825&
-Public Const GL_DRAW_BUFFER1_ARB                                                                                                                                                                                                                 = &H8826&
-Public Const GL_DRAW_BUFFER2_ARB                                                                                                                                                                                                                 = &H8827&
-Public Const GL_DRAW_BUFFER3_ARB                                                                                                                                                                                                                 = &H8828&
-Public Const GL_DRAW_BUFFER4_ARB                                                                                                                                                                                                                 = &H8829&
-Public Const GL_DRAW_BUFFER5_ARB                                                                                                                                                                                                                 = &H882A&
-Public Const GL_DRAW_BUFFER6_ARB                                                                                                                                                                                                                 = &H882B&
-Public Const GL_DRAW_BUFFER7_ARB                                                                                                                                                                                                                 = &H882C&
-Public Const GL_DRAW_BUFFER8_ARB                                                                                                                                                                                                                 = &H882D&
-Public Const GL_DRAW_BUFFER9_ARB                                                                                                                                                                                                                 = &H882E&
-Public Const GL_DRAW_BUFFER10_ARB                                                                                                                                                                                                                = &H882F&
-Public Const GL_DRAW_BUFFER11_ARB                                                                                                                                                                                                                = &H8830&
-Public Const GL_DRAW_BUFFER12_ARB                                                                                                                                                                                                                = &H8831&
-Public Const GL_DRAW_BUFFER13_ARB                                                                                                                                                                                                                = &H8832&
-Public Const GL_DRAW_BUFFER14_ARB                                                                                                                                                                                                                = &H8833&
-Public Const GL_DRAW_BUFFER15_ARB                                                                                                                                                                                                                = &H8834&
+Public Const GL_MAX_DRAW_BUFFERS_ARB                                 = &H8824&
+Public Const GL_DRAW_BUFFER0_ARB                                     = &H8825&
+Public Const GL_DRAW_BUFFER1_ARB                                     = &H8826&
+Public Const GL_DRAW_BUFFER2_ARB                                     = &H8827&
+Public Const GL_DRAW_BUFFER3_ARB                                     = &H8828&
+Public Const GL_DRAW_BUFFER4_ARB                                     = &H8829&
+Public Const GL_DRAW_BUFFER5_ARB                                     = &H882A&
+Public Const GL_DRAW_BUFFER6_ARB                                     = &H882B&
+Public Const GL_DRAW_BUFFER7_ARB                                     = &H882C&
+Public Const GL_DRAW_BUFFER8_ARB                                     = &H882D&
+Public Const GL_DRAW_BUFFER9_ARB                                     = &H882E&
+Public Const GL_DRAW_BUFFER10_ARB                                    = &H882F&
+Public Const GL_DRAW_BUFFER11_ARB                                    = &H8830&
+Public Const GL_DRAW_BUFFER12_ARB                                    = &H8831&
+Public Const GL_DRAW_BUFFER13_ARB                                    = &H8832&
+Public Const GL_DRAW_BUFFER14_ARB                                    = &H8833&
+Public Const GL_DRAW_BUFFER15_ARB                                    = &H8834&
 '------------------------------- GL_ARB_draw_buffers_blend -------------------------------
 '------------------------------- GL_ARB_draw_elements_base_vertex -------------------------------
 '------------------------------- GL_ARB_draw_indirect -------------------------------
-Public Const GL_DRAW_INDIRECT_BUFFER                                                                                                                                                                                                                 = &H8F3F&
-Public Const GL_DRAW_INDIRECT_BUFFER_BINDING                                                                                                                                                                                                                 = &H8F43&
+Public Const GL_DRAW_INDIRECT_BUFFER                                 = &H8F3F&
+Public Const GL_DRAW_INDIRECT_BUFFER_BINDING                         = &H8F43&
 '------------------------------- GL_ARB_draw_instanced -------------------------------
 '------------------------------- GL_ARB_enhanced_layouts -------------------------------
-Public Const GL_LOCATION_COMPONENT                                                                                                                                                                                                               = &H934A&
-Public Const GL_TRANSFORM_FEEDBACK_BUFFER_INDEX                                                                                                                                                                                                              = &H934B&
-Public Const GL_TRANSFORM_FEEDBACK_BUFFER_STRIDE                                                                                                                                                                                                                 = &H934C&
+Public Const GL_LOCATION_COMPONENT                                   = &H934A&
+Public Const GL_TRANSFORM_FEEDBACK_BUFFER_INDEX                      = &H934B&
+Public Const GL_TRANSFORM_FEEDBACK_BUFFER_STRIDE                     = &H934C&
 '------------------------------- GL_ARB_explicit_attrib_location -------------------------------
 '------------------------------- GL_ARB_explicit_uniform_location -------------------------------
-Public Const GL_MAX_UNIFORM_LOCATIONS                                                                                                                                                                                                                = &H826E&
+Public Const GL_MAX_UNIFORM_LOCATIONS                                = &H826E&
 '------------------------------- GL_ARB_fragment_coord_conventions -------------------------------
 '------------------------------- GL_ARB_fragment_layer_viewport -------------------------------
 '------------------------------- GL_ARB_fragment_program -------------------------------
-Public Const GL_FRAGMENT_PROGRAM_ARB                                                                                                                                                                                                                 = &H8804&
-Public Const GL_PROGRAM_ALU_INSTRUCTIONS_ARB                                                                                                                                                                                                                 = &H8805&
-Public Const GL_PROGRAM_TEX_INSTRUCTIONS_ARB                                                                                                                                                                                                                 = &H8806&
-Public Const GL_PROGRAM_TEX_INDIRECTIONS_ARB                                                                                                                                                                                                                 = &H8807&
-Public Const GL_PROGRAM_NATIVE_ALU_INSTRUCTIONS_ARB                                                                                                                                                                                                              = &H8808&
-Public Const GL_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB                                                                                                                                                                                                              = &H8809&
-Public Const GL_PROGRAM_NATIVE_TEX_INDIRECTIONS_ARB                                                                                                                                                                                                              = &H880A&
-Public Const GL_MAX_PROGRAM_ALU_INSTRUCTIONS_ARB                                                                                                                                                                                                                 = &H880B&
-Public Const GL_MAX_PROGRAM_TEX_INSTRUCTIONS_ARB                                                                                                                                                                                                                 = &H880C&
-Public Const GL_MAX_PROGRAM_TEX_INDIRECTIONS_ARB                                                                                                                                                                                                                 = &H880D&
-Public Const GL_MAX_PROGRAM_NATIVE_ALU_INSTRUCTIONS_ARB                                                                                                                                                                                                              = &H880E&
-Public Const GL_MAX_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB                                                                                                                                                                                                              = &H880F&
-Public Const GL_MAX_PROGRAM_NATIVE_TEX_INDIRECTIONS_ARB                                                                                                                                                                                                              = &H8810&
-Public Const GL_MAX_TEXTURE_COORDS_ARB                                                                                                                                                                                                               = &H8871&
-Public Const GL_MAX_TEXTURE_IMAGE_UNITS_ARB                                                                                                                                                                                                              = &H8872&
+Public Const GL_FRAGMENT_PROGRAM_ARB                                 = &H8804&
+Public Const GL_PROGRAM_ALU_INSTRUCTIONS_ARB                         = &H8805&
+Public Const GL_PROGRAM_TEX_INSTRUCTIONS_ARB                         = &H8806&
+Public Const GL_PROGRAM_TEX_INDIRECTIONS_ARB                         = &H8807&
+Public Const GL_PROGRAM_NATIVE_ALU_INSTRUCTIONS_ARB                  = &H8808&
+Public Const GL_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB                  = &H8809&
+Public Const GL_PROGRAM_NATIVE_TEX_INDIRECTIONS_ARB                  = &H880A&
+Public Const GL_MAX_PROGRAM_ALU_INSTRUCTIONS_ARB                     = &H880B&
+Public Const GL_MAX_PROGRAM_TEX_INSTRUCTIONS_ARB                     = &H880C&
+Public Const GL_MAX_PROGRAM_TEX_INDIRECTIONS_ARB                     = &H880D&
+Public Const GL_MAX_PROGRAM_NATIVE_ALU_INSTRUCTIONS_ARB              = &H880E&
+Public Const GL_MAX_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB              = &H880F&
+Public Const GL_MAX_PROGRAM_NATIVE_TEX_INDIRECTIONS_ARB              = &H8810&
+Public Const GL_MAX_TEXTURE_COORDS_ARB                               = &H8871&
+Public Const GL_MAX_TEXTURE_IMAGE_UNITS_ARB                          = &H8872&
 '------------------------------- GL_ARB_fragment_program_shadow -------------------------------
 '------------------------------- GL_ARB_fragment_shader -------------------------------
-Public Const GL_FRAGMENT_SHADER_ARB                                                                                                                                                                                                              = &H8B30&
-Public Const GL_MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB                                                                                                                                                                                                              = &H8B49&
-Public Const GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB                                                                                                                                                                                                              = &H8B8B&
+Public Const GL_FRAGMENT_SHADER_ARB                                  = &H8B30&
+Public Const GL_MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB                  = &H8B49&
+Public Const GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB                  = &H8B8B&
 '------------------------------- GL_ARB_fragment_shader_interlock -------------------------------
 '------------------------------- GL_ARB_framebuffer_no_attachments -------------------------------
-Public Const GL_FRAMEBUFFER_DEFAULT_WIDTH                                                                                                                                                                                                                = &H9310&
-Public Const GL_FRAMEBUFFER_DEFAULT_HEIGHT                                                                                                                                                                                                               = &H9311&
-Public Const GL_FRAMEBUFFER_DEFAULT_LAYERS                                                                                                                                                                                                               = &H9312&
-Public Const GL_FRAMEBUFFER_DEFAULT_SAMPLES                                                                                                                                                                                                              = &H9313&
-Public Const GL_FRAMEBUFFER_DEFAULT_FIXED_SAMPLE_LOCATIONS                                                                                                                                                                                                               = &H9314&
-Public Const GL_MAX_FRAMEBUFFER_WIDTH                                                                                                                                                                                                                = &H9315&
-Public Const GL_MAX_FRAMEBUFFER_HEIGHT                                                                                                                                                                                                               = &H9316&
-Public Const GL_MAX_FRAMEBUFFER_LAYERS                                                                                                                                                                                                               = &H9317&
-Public Const GL_MAX_FRAMEBUFFER_SAMPLES                                                                                                                                                                                                              = &H9318&
+Public Const GL_FRAMEBUFFER_DEFAULT_WIDTH                            = &H9310&
+Public Const GL_FRAMEBUFFER_DEFAULT_HEIGHT                           = &H9311&
+Public Const GL_FRAMEBUFFER_DEFAULT_LAYERS                           = &H9312&
+Public Const GL_FRAMEBUFFER_DEFAULT_SAMPLES                          = &H9313&
+Public Const GL_FRAMEBUFFER_DEFAULT_FIXED_SAMPLE_LOCATIONS           = &H9314&
+Public Const GL_MAX_FRAMEBUFFER_WIDTH                                = &H9315&
+Public Const GL_MAX_FRAMEBUFFER_HEIGHT                               = &H9316&
+Public Const GL_MAX_FRAMEBUFFER_LAYERS                               = &H9317&
+Public Const GL_MAX_FRAMEBUFFER_SAMPLES                              = &H9318&
 '------------------------------- GL_ARB_framebuffer_object -------------------------------
-Public Const GL_INVALID_FRAMEBUFFER_OPERATION                                                                                                                                                                                                                = &H506&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING                                                                                                                                                                                                                = &H8210&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE                                                                                                                                                                                                                = &H8211&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_RED_SIZE                                                                                                                                                                                                              = &H8212&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_GREEN_SIZE                                                                                                                                                                                                                = &H8213&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_BLUE_SIZE                                                                                                                                                                                                                 = &H8214&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_ALPHA_SIZE                                                                                                                                                                                                                = &H8215&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE                                                                                                                                                                                                                = &H8216&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE                                                                                                                                                                                                              = &H8217&
-Public Const GL_FRAMEBUFFER_DEFAULT                                                                                                                                                                                                              = &H8218&
-Public Const GL_FRAMEBUFFER_UNDEFINED                                                                                                                                                                                                                = &H8219&
-Public Const GL_DEPTH_STENCIL_ATTACHMENT                                                                                                                                                                                                                 = &H821A&
-Public Const GL_INDEX                                                                                                                                                                                                                = &H8222&
-Public Const GL_MAX_RENDERBUFFER_SIZE                                                                                                                                                                                                                = &H84E8&
-Public Const GL_DEPTH_STENCIL                                                                                                                                                                                                                = &H84F9&
-Public Const GL_UNSIGNED_INT_24_8                                                                                                                                                                                                                = &H84FA&
-Public Const GL_DEPTH24_STENCIL8                                                                                                                                                                                                                 = &H88F0&
-Public Const GL_TEXTURE_STENCIL_SIZE                                                                                                                                                                                                                 = &H88F1&
-Public Const GL_UNSIGNED_NORMALIZED                                                                                                                                                                                                              = &H8C17&
+Public Const GL_INVALID_FRAMEBUFFER_OPERATION                        = &H506&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING                = &H8210&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE                = &H8211&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_RED_SIZE                      = &H8212&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_GREEN_SIZE                    = &H8213&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_BLUE_SIZE                     = &H8214&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_ALPHA_SIZE                    = &H8215&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE                    = &H8216&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE                  = &H8217&
+Public Const GL_FRAMEBUFFER_DEFAULT                                  = &H8218&
+Public Const GL_FRAMEBUFFER_UNDEFINED                                = &H8219&
+Public Const GL_DEPTH_STENCIL_ATTACHMENT                             = &H821A&
+Public Const GL_INDEX                                                = &H8222&
+Public Const GL_MAX_RENDERBUFFER_SIZE                                = &H84E8&
+Public Const GL_DEPTH_STENCIL                                        = &H84F9&
+Public Const GL_UNSIGNED_INT_24_8                                    = &H84FA&
+Public Const GL_DEPTH24_STENCIL8                                     = &H88F0&
+Public Const GL_TEXTURE_STENCIL_SIZE                                 = &H88F1&
+Public Const GL_UNSIGNED_NORMALIZED                                  = &H8C17&
 'public const GL_SRGB                                                                                                                                                                                                                = &h8C40&
-Public Const GL_DRAW_FRAMEBUFFER_BINDING                                                                                                                                                                                                                 = &H8CA6&
-Public Const GL_FRAMEBUFFER_BINDING                                                                                                                                                                                                              = &H8CA6&
-Public Const GL_RENDERBUFFER_BINDING                                                                                                                                                                                                                 = &H8CA7&
-Public Const GL_READ_FRAMEBUFFER                                                                                                                                                                                                                 = &H8CA8&
-Public Const GL_DRAW_FRAMEBUFFER                                                                                                                                                                                                                 = &H8CA9&
-Public Const GL_READ_FRAMEBUFFER_BINDING                                                                                                                                                                                                                 = &H8CAA&
-Public Const GL_RENDERBUFFER_SAMPLES                                                                                                                                                                                                                 = &H8CAB&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE                                                                                                                                                                                                               = &H8CD0&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME                                                                                                                                                                                                               = &H8CD1&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL                                                                                                                                                                                                                 = &H8CD2&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE                                                                                                                                                                                                                 = &H8CD3&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER                                                                                                                                                                                                                 = &H8CD4&
-Public Const GL_FRAMEBUFFER_COMPLETE                                                                                                                                                                                                                 = &H8CD5&
-Public Const GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT                                                                                                                                                                                                                = &H8CD6&
-Public Const GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT                                                                                                                                                                                                                = &H8CD7&
-Public Const GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER                                                                                                                                                                                                               = &H8CDB&
-Public Const GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER                                                                                                                                                                                                               = &H8CDC&
-Public Const GL_FRAMEBUFFER_UNSUPPORTED                                                                                                                                                                                                              = &H8CDD&
-Public Const GL_MAX_COLOR_ATTACHMENTS                                                                                                                                                                                                                = &H8CDF&
-Public Const GL_COLOR_ATTACHMENT0                                                                                                                                                                                                                = &H8CE0&
-Public Const GL_COLOR_ATTACHMENT1                                                                                                                                                                                                                = &H8CE1&
-Public Const GL_COLOR_ATTACHMENT2                                                                                                                                                                                                                = &H8CE2&
-Public Const GL_COLOR_ATTACHMENT3                                                                                                                                                                                                                = &H8CE3&
-Public Const GL_COLOR_ATTACHMENT4                                                                                                                                                                                                                = &H8CE4&
-Public Const GL_COLOR_ATTACHMENT5                                                                                                                                                                                                                = &H8CE5&
-Public Const GL_COLOR_ATTACHMENT6                                                                                                                                                                                                                = &H8CE6&
-Public Const GL_COLOR_ATTACHMENT7                                                                                                                                                                                                                = &H8CE7&
-Public Const GL_COLOR_ATTACHMENT8                                                                                                                                                                                                                = &H8CE8&
-Public Const GL_COLOR_ATTACHMENT9                                                                                                                                                                                                                = &H8CE9&
-Public Const GL_COLOR_ATTACHMENT10                                                                                                                                                                                                               = &H8CEA&
-Public Const GL_COLOR_ATTACHMENT11                                                                                                                                                                                                               = &H8CEB&
-Public Const GL_COLOR_ATTACHMENT12                                                                                                                                                                                                               = &H8CEC&
-Public Const GL_COLOR_ATTACHMENT13                                                                                                                                                                                                               = &H8CED&
-Public Const GL_COLOR_ATTACHMENT14                                                                                                                                                                                                               = &H8CEE&
-Public Const GL_COLOR_ATTACHMENT15                                                                                                                                                                                                               = &H8CEF&
-Public Const GL_DEPTH_ATTACHMENT                                                                                                                                                                                                                 = &H8D00&
-Public Const GL_STENCIL_ATTACHMENT                                                                                                                                                                                                               = &H8D20&
-Public Const GL_FRAMEBUFFER                                                                                                                                                                                                              = &H8D40&
-Public Const GL_RENDERBUFFER                                                                                                                                                                                                                 = &H8D41&
-Public Const GL_RENDERBUFFER_WIDTH                                                                                                                                                                                                               = &H8D42&
-Public Const GL_RENDERBUFFER_HEIGHT                                                                                                                                                                                                              = &H8D43&
-Public Const GL_RENDERBUFFER_INTERNAL_FORMAT                                                                                                                                                                                                                 = &H8D44&
-Public Const GL_STENCIL_INDEX1                                                                                                                                                                                                               = &H8D46&
-Public Const GL_STENCIL_INDEX4                                                                                                                                                                                                               = &H8D47&
-Public Const GL_STENCIL_INDEX8                                                                                                                                                                                                               = &H8D48&
-Public Const GL_STENCIL_INDEX16                                                                                                                                                                                                              = &H8D49&
-Public Const GL_RENDERBUFFER_RED_SIZE                                                                                                                                                                                                                = &H8D50&
-Public Const GL_RENDERBUFFER_GREEN_SIZE                                                                                                                                                                                                              = &H8D51&
-Public Const GL_RENDERBUFFER_BLUE_SIZE                                                                                                                                                                                                               = &H8D52&
-Public Const GL_RENDERBUFFER_ALPHA_SIZE                                                                                                                                                                                                              = &H8D53&
-Public Const GL_RENDERBUFFER_DEPTH_SIZE                                                                                                                                                                                                              = &H8D54&
-Public Const GL_RENDERBUFFER_STENCIL_SIZE                                                                                                                                                                                                                = &H8D55&
-Public Const GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE                                                                                                                                                                                                               = &H8D56&
-Public Const GL_MAX_SAMPLES                                                                                                                                                                                                              = &H8D57&
+Public Const GL_DRAW_FRAMEBUFFER_BINDING                             = &H8CA6&
+Public Const GL_FRAMEBUFFER_BINDING                                  = &H8CA6&
+Public Const GL_RENDERBUFFER_BINDING                                 = &H8CA7&
+Public Const GL_READ_FRAMEBUFFER                                     = &H8CA8&
+Public Const GL_DRAW_FRAMEBUFFER                                     = &H8CA9&
+Public Const GL_READ_FRAMEBUFFER_BINDING                             = &H8CAA&
+Public Const GL_RENDERBUFFER_SAMPLES                                 = &H8CAB&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE                   = &H8CD0&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME                   = &H8CD1&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL                 = &H8CD2&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE         = &H8CD3&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER                 = &H8CD4&
+Public Const GL_FRAMEBUFFER_COMPLETE                                 = &H8CD5&
+Public Const GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT                    = &H8CD6&
+Public Const GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT            = &H8CD7&
+Public Const GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER                   = &H8CDB&
+Public Const GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER                   = &H8CDC&
+Public Const GL_FRAMEBUFFER_UNSUPPORTED                              = &H8CDD&
+Public Const GL_MAX_COLOR_ATTACHMENTS                                = &H8CDF&
+Public Const GL_COLOR_ATTACHMENT0                                    = &H8CE0&
+Public Const GL_COLOR_ATTACHMENT1                                    = &H8CE1&
+Public Const GL_COLOR_ATTACHMENT2                                    = &H8CE2&
+Public Const GL_COLOR_ATTACHMENT3                                    = &H8CE3&
+Public Const GL_COLOR_ATTACHMENT4                                    = &H8CE4&
+Public Const GL_COLOR_ATTACHMENT5                                    = &H8CE5&
+Public Const GL_COLOR_ATTACHMENT6                                    = &H8CE6&
+Public Const GL_COLOR_ATTACHMENT7                                    = &H8CE7&
+Public Const GL_COLOR_ATTACHMENT8                                    = &H8CE8&
+Public Const GL_COLOR_ATTACHMENT9                                    = &H8CE9&
+Public Const GL_COLOR_ATTACHMENT10                                   = &H8CEA&
+Public Const GL_COLOR_ATTACHMENT11                                   = &H8CEB&
+Public Const GL_COLOR_ATTACHMENT12                                   = &H8CEC&
+Public Const GL_COLOR_ATTACHMENT13                                   = &H8CED&
+Public Const GL_COLOR_ATTACHMENT14                                   = &H8CEE&
+Public Const GL_COLOR_ATTACHMENT15                                   = &H8CEF&
+Public Const GL_DEPTH_ATTACHMENT                                     = &H8D00&
+Public Const GL_STENCIL_ATTACHMENT                                   = &H8D20&
+Public Const GL_FRAMEBUFFER                                          = &H8D40&
+Public Const GL_RENDERBUFFER                                         = &H8D41&
+Public Const GL_RENDERBUFFER_WIDTH                                   = &H8D42&
+Public Const GL_RENDERBUFFER_HEIGHT                                  = &H8D43&
+Public Const GL_RENDERBUFFER_INTERNAL_FORMAT                         = &H8D44&
+Public Const GL_STENCIL_INDEX1                                       = &H8D46&
+Public Const GL_STENCIL_INDEX4                                       = &H8D47&
+Public Const GL_STENCIL_INDEX8                                       = &H8D48&
+Public Const GL_STENCIL_INDEX16                                      = &H8D49&
+Public Const GL_RENDERBUFFER_RED_SIZE                                = &H8D50&
+Public Const GL_RENDERBUFFER_GREEN_SIZE                              = &H8D51&
+Public Const GL_RENDERBUFFER_BLUE_SIZE                               = &H8D52&
+Public Const GL_RENDERBUFFER_ALPHA_SIZE                              = &H8D53&
+Public Const GL_RENDERBUFFER_DEPTH_SIZE                              = &H8D54&
+Public Const GL_RENDERBUFFER_STENCIL_SIZE                            = &H8D55&
+Public Const GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE                   = &H8D56&
+Public Const GL_MAX_SAMPLES                                          = &H8D57&
 '------------------------------- GL_ARB_framebuffer_sRGB -------------------------------
-Public Const GL_FRAMEBUFFER_SRGB                                                                                                                                                                                                                 = &H8DB9&
+Public Const GL_FRAMEBUFFER_SRGB                                     = &H8DB9&
 '------------------------------- GL_ARB_geometry_shader4 -------------------------------
-Public Const GL_LINES_ADJACENCY_ARB                                                                                                                                                                                                              = &HA&
-Public Const GL_LINE_STRIP_ADJACENCY_ARB                                                                                                                                                                                                                 = &HB&
-Public Const GL_TRIANGLES_ADJACENCY_ARB                                                                                                                                                                                                              = &HC&
-Public Const GL_TRIANGLE_STRIP_ADJACENCY_ARB                                                                                                                                                                                                                 = &HD&
-Public Const GL_PROGRAM_POINT_SIZE_ARB                                                                                                                                                                                                               = &H8642&
-Public Const GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB                                                                                                                                                                                                                 = &H8C29&
-'public const GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER                                                                                                                                                                                                                = &h8CD4&
-Public Const GL_FRAMEBUFFER_ATTACHMENT_LAYERED_ARB                                                                                                                                                                                                               = &H8DA7&
-Public Const GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_ARB                                                                                                                                                                                                                 = &H8DA8&
-Public Const GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_ARB                                                                                                                                                                                                               = &H8DA9&
-Public Const GL_GEOMETRY_SHADER_ARB                                                                                                                                                                                                              = &H8DD9&
-Public Const GL_GEOMETRY_VERTICES_OUT_ARB                                                                                                                                                                                                                = &H8DDA&
-Public Const GL_GEOMETRY_INPUT_TYPE_ARB                                                                                                                                                                                                              = &H8DDB&
-Public Const GL_GEOMETRY_OUTPUT_TYPE_ARB                                                                                                                                                                                                                 = &H8DDC&
-Public Const GL_MAX_GEOMETRY_VARYING_COMPONENTS_ARB                                                                                                                                                                                                              = &H8DDD&
-Public Const GL_MAX_VERTEX_VARYING_COMPONENTS_ARB                                                                                                                                                                                                                = &H8DDE&
-Public Const GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB                                                                                                                                                                                                              = &H8DDF&
-Public Const GL_MAX_GEOMETRY_OUTPUT_VERTICES_ARB                                                                                                                                                                                                                 = &H8DE0&
-Public Const GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB                                                                                                                                                                                                                 = &H8DE1&
+Public Const GL_LINES_ADJACENCY_ARB                                  = &HA&
+Public Const GL_LINE_STRIP_ADJACENCY_ARB                             = &HB&
+Public Const GL_TRIANGLES_ADJACENCY_ARB                              = &HC&
+Public Const GL_TRIANGLE_STRIP_ADJACENCY_ARB                         = &HD&
+Public Const GL_PROGRAM_POINT_SIZE_ARB                               = &H8642&
+Public Const GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB                 = &H8C29&
+'public const GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER                = &h8CD4&
+Public Const GL_FRAMEBUFFER_ATTACHMENT_LAYERED_ARB                   = &H8DA7&
+Public Const GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_ARB             = &H8DA8&
+Public Const GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_ARB               = &H8DA9&
+Public Const GL_GEOMETRY_SHADER_ARB                                  = &H8DD9&
+Public Const GL_GEOMETRY_VERTICES_OUT_ARB                            = &H8DDA&
+Public Const GL_GEOMETRY_INPUT_TYPE_ARB                              = &H8DDB&
+Public Const GL_GEOMETRY_OUTPUT_TYPE_ARB                             = &H8DDC&
+Public Const GL_MAX_GEOMETRY_VARYING_COMPONENTS_ARB                  = &H8DDD&
+Public Const GL_MAX_VERTEX_VARYING_COMPONENTS_ARB                    = &H8DDE&
+Public Const GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB                  = &H8DDF&
+Public Const GL_MAX_GEOMETRY_OUTPUT_VERTICES_ARB                     = &H8DE0&
+Public Const GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB             = &H8DE1&
 '------------------------------- GL_ARB_get_program_binary -------------------------------
-Public Const GL_PROGRAM_BINARY_RETRIEVABLE_HINT                                                                                                                                                                                                              = &H8257&
-Public Const GL_PROGRAM_BINARY_LENGTH                                                                                                                                                                                                                = &H8741&
-Public Const GL_NUM_PROGRAM_BINARY_FORMATS                                                                                                                                                                                                               = &H87FE&
-Public Const GL_PROGRAM_BINARY_FORMATS                                                                                                                                                                                                               = &H87FF&
+Public Const GL_PROGRAM_BINARY_RETRIEVABLE_HINT                      = &H8257&
+Public Const GL_PROGRAM_BINARY_LENGTH                                = &H8741&
+Public Const GL_NUM_PROGRAM_BINARY_FORMATS                           = &H87FE&
+Public Const GL_PROGRAM_BINARY_FORMATS                               = &H87FF&
 '------------------------------- GL_ARB_get_texture_sub_image -------------------------------
 '------------------------------- GL_ARB_gl_spirv -------------------------------
-Public Const GL_SHADER_BINARY_FORMAT_SPIR_V_ARB                                                                                                                                                                                                              = &H9551&
-Public Const GL_SPIR_V_BINARY_ARB                                                                                                                                                                                                                = &H9552&
+Public Const GL_SHADER_BINARY_FORMAT_SPIR_V_ARB                      = &H9551&
+Public Const GL_SPIR_V_BINARY_ARB                                    = &H9552&
 '------------------------------- GL_ARB_gpu_shader5 -------------------------------
-Public Const GL_GEOMETRY_SHADER_INVOCATIONS                                                                                                                                                                                                              = &H887F&
-Public Const GL_MAX_GEOMETRY_SHADER_INVOCATIONS                                                                                                                                                                                                              = &H8E5A&
-Public Const GL_MIN_FRAGMENT_INTERPOLATION_OFFSET                                                                                                                                                                                                                = &H8E5B&
-Public Const GL_MAX_FRAGMENT_INTERPOLATION_OFFSET                                                                                                                                                                                                                = &H8E5C&
-Public Const GL_FRAGMENT_INTERPOLATION_OFFSET_BITS                                                                                                                                                                                                               = &H8E5D&
-Public Const GL_MAX_VERTEX_STREAMS                                                                                                                                                                                                               = &H8E71&
+Public Const GL_GEOMETRY_SHADER_INVOCATIONS                          = &H887F&
+Public Const GL_MAX_GEOMETRY_SHADER_INVOCATIONS                      = &H8E5A&
+Public Const GL_MIN_FRAGMENT_INTERPOLATION_OFFSET                    = &H8E5B&
+Public Const GL_MAX_FRAGMENT_INTERPOLATION_OFFSET                    = &H8E5C&
+Public Const GL_FRAGMENT_INTERPOLATION_OFFSET_BITS                   = &H8E5D&
+Public Const GL_MAX_VERTEX_STREAMS                                   = &H8E71&
 '------------------------------- GL_ARB_gpu_shader_fp64 -------------------------------
-Public Const GL_DOUBLE_MAT2                                                                                                                                                                                                              = &H8F46&
-Public Const GL_DOUBLE_MAT3                                                                                                                                                                                                              = &H8F47&
-Public Const GL_DOUBLE_MAT4                                                                                                                                                                                                              = &H8F48&
-Public Const GL_DOUBLE_MAT2x3                                                                                                                                                                                                                = &H8F49&
-Public Const GL_DOUBLE_MAT2x4                                                                                                                                                                                                                = &H8F4A&
-Public Const GL_DOUBLE_MAT3x2                                                                                                                                                                                                                = &H8F4B&
-Public Const GL_DOUBLE_MAT3x4                                                                                                                                                                                                                = &H8F4C&
-Public Const GL_DOUBLE_MAT4x2                                                                                                                                                                                                                = &H8F4D&
-Public Const GL_DOUBLE_MAT4x3                                                                                                                                                                                                                = &H8F4E&
-Public Const GL_DOUBLE_VEC2                                                                                                                                                                                                              = &H8FFC&
-Public Const GL_DOUBLE_VEC3                                                                                                                                                                                                              = &H8FFD&
-Public Const GL_DOUBLE_VEC4                                                                                                                                                                                                              = &H8FFE&
+Public Const GL_DOUBLE_MAT2                                          = &H8F46&
+Public Const GL_DOUBLE_MAT3                                          = &H8F47&
+Public Const GL_DOUBLE_MAT4                                          = &H8F48&
+Public Const GL_DOUBLE_MAT2x3                                        = &H8F49&
+Public Const GL_DOUBLE_MAT2x4                                        = &H8F4A&
+Public Const GL_DOUBLE_MAT3x2                                        = &H8F4B&
+Public Const GL_DOUBLE_MAT3x4                                        = &H8F4C&
+Public Const GL_DOUBLE_MAT4x2                                        = &H8F4D&
+Public Const GL_DOUBLE_MAT4x3                                        = &H8F4E&
+Public Const GL_DOUBLE_VEC2                                          = &H8FFC&
+Public Const GL_DOUBLE_VEC3                                          = &H8FFD&
+Public Const GL_DOUBLE_VEC4                                          = &H8FFE&
 '------------------------------- GL_ARB_gpu_shader_int64 -------------------------------
-Public Const GL_INT64_ARB                                                                                                                                                                                                                = &H140E&
-'public const GL_UNSIGNED_INT64_ARB                                                                                                                                                                                                              = &h140F&
-Public Const GL_INT64_VEC2_ARB                                                                                                                                                                                                               = &H8FE9&
-Public Const GL_INT64_VEC3_ARB                                                                                                                                                                                                               = &H8FEA&
-Public Const GL_INT64_VEC4_ARB                                                                                                                                                                                                               = &H8FEB&
-Public Const GL_UNSIGNED_INT64_VEC2_ARB                                                                                                                                                                                                              = &H8FF5&
-Public Const GL_UNSIGNED_INT64_VEC3_ARB                                                                                                                                                                                                              = &H8FF6&
-Public Const GL_UNSIGNED_INT64_VEC4_ARB                                                                                                                                                                                                              = &H8FF7&
+Public Const GL_INT64_ARB                                            = &H140E&
+'public const GL_UNSIGNED_INT64_ARB                                  = &h140F&
+Public Const GL_INT64_VEC2_ARB                                       = &H8FE9&
+Public Const GL_INT64_VEC3_ARB                                       = &H8FEA&
+Public Const GL_INT64_VEC4_ARB                                       = &H8FEB&
+Public Const GL_UNSIGNED_INT64_VEC2_ARB                              = &H8FF5&
+Public Const GL_UNSIGNED_INT64_VEC3_ARB                              = &H8FF6&
+Public Const GL_UNSIGNED_INT64_VEC4_ARB                              = &H8FF7&
 '------------------------------- GL_ARB_half_float_pixel -------------------------------
-Public Const GL_HALF_FLOAT_ARB                                                                                                                                                                                                               = &H140B&
+Public Const GL_HALF_FLOAT_ARB                                       = &H140B&
 '------------------------------- GL_ARB_half_float_vertex -------------------------------
-Public Const GL_HALF_FLOAT                                                                                                                                                                                                               = &H140B&
+Public Const GL_HALF_FLOAT                                           = &H140B&
 '------------------------------- GL_ARB_imaging -------------------------------
-Public Const GL_CONSTANT_COLOR                                                                                                                                                                                                               = &H8001&
-Public Const GL_ONE_MINUS_CONSTANT_COLOR                                                                                                                                                                                                                 = &H8002&
-Public Const GL_CONSTANT_ALPHA                                                                                                                                                                                                               = &H8003&
-Public Const GL_ONE_MINUS_CONSTANT_ALPHA                                                                                                                                                                                                                 = &H8004&
-Public Const GL_BLEND_COLOR                                                                                                                                                                                                              = &H8005&
-Public Const GL_FUNC_ADD                                                                                                                                                                                                                 = &H8006&
-Public Const GL_MIN                                                                                                                                                                                                              = &H8007&
-Public Const GL_MAX                                                                                                                                                                                                              = &H8008&
-Public Const GL_BLEND_EQUATION                                                                                                                                                                                                               = &H8009&
-Public Const GL_FUNC_SUBTRACT                                                                                                                                                                                                                = &H800A&
-Public Const GL_FUNC_REVERSE_SUBTRACT                                                                                                                                                                                                                = &H800B&
-Public Const GL_CONVOLUTION_1D                                                                                                                                                                                                               = &H8010&
-Public Const GL_CONVOLUTION_2D                                                                                                                                                                                                               = &H8011&
-Public Const GL_SEPARABLE_2D                                                                                                                                                                                                                 = &H8012&
-Public Const GL_CONVOLUTION_BORDER_MODE                                                                                                                                                                                                              = &H8013&
-Public Const GL_CONVOLUTION_FILTER_SCALE                                                                                                                                                                                                                 = &H8014&
-Public Const GL_CONVOLUTION_FILTER_BIAS                                                                                                                                                                                                              = &H8015&
-Public Const GL_REDUCE                                                                                                                                                                                                               = &H8016&
-Public Const GL_CONVOLUTION_FORMAT                                                                                                                                                                                                               = &H8017&
-Public Const GL_CONVOLUTION_WIDTH                                                                                                                                                                                                                = &H8018&
-Public Const GL_CONVOLUTION_HEIGHT                                                                                                                                                                                                               = &H8019&
-Public Const GL_MAX_CONVOLUTION_WIDTH                                                                                                                                                                                                                = &H801A&
-Public Const GL_MAX_CONVOLUTION_HEIGHT                                                                                                                                                                                                               = &H801B&
-Public Const GL_POST_CONVOLUTION_RED_SCALE                                                                                                                                                                                                               = &H801C&
-Public Const GL_POST_CONVOLUTION_GREEN_SCALE                                                                                                                                                                                                                 = &H801D&
-Public Const GL_POST_CONVOLUTION_BLUE_SCALE                                                                                                                                                                                                              = &H801E&
-Public Const GL_POST_CONVOLUTION_ALPHA_SCALE                                                                                                                                                                                                                 = &H801F&
-Public Const GL_POST_CONVOLUTION_RED_BIAS                                                                                                                                                                                                                = &H8020&
-Public Const GL_POST_CONVOLUTION_GREEN_BIAS                                                                                                                                                                                                              = &H8021&
-Public Const GL_POST_CONVOLUTION_BLUE_BIAS                                                                                                                                                                                                               = &H8022&
-Public Const GL_POST_CONVOLUTION_ALPHA_BIAS                                                                                                                                                                                                              = &H8023&
-Public Const GL_HISTOGRAM                                                                                                                                                                                                                = &H8024&
-Public Const GL_PROXY_HISTOGRAM                                                                                                                                                                                                              = &H8025&
-Public Const GL_HISTOGRAM_WIDTH                                                                                                                                                                                                              = &H8026&
-Public Const GL_HISTOGRAM_FORMAT                                                                                                                                                                                                                 = &H8027&
-Public Const GL_HISTOGRAM_RED_SIZE                                                                                                                                                                                                               = &H8028&
-Public Const GL_HISTOGRAM_GREEN_SIZE                                                                                                                                                                                                                 = &H8029&
-Public Const GL_HISTOGRAM_BLUE_SIZE                                                                                                                                                                                                              = &H802A&
-Public Const GL_HISTOGRAM_ALPHA_SIZE                                                                                                                                                                                                                 = &H802B&
-Public Const GL_HISTOGRAM_LUMINANCE_SIZE                                                                                                                                                                                                                 = &H802C&
-Public Const GL_HISTOGRAM_SINK                                                                                                                                                                                                               = &H802D&
-Public Const GL_MINMAX                                                                                                                                                                                                               = &H802E&
-Public Const GL_MINMAX_FORMAT                                                                                                                                                                                                                = &H802F&
-Public Const GL_MINMAX_SINK                                                                                                                                                                                                              = &H8030&
-Public Const GL_TABLE_TOO_LARGE                                                                                                                                                                                                              = &H8031&
-Public Const GL_COLOR_MATRIX                                                                                                                                                                                                                 = &H80B1&
-Public Const GL_COLOR_MATRIX_STACK_DEPTH                                                                                                                                                                                                                 = &H80B2&
-Public Const GL_MAX_COLOR_MATRIX_STACK_DEPTH                                                                                                                                                                                                                 = &H80B3&
-Public Const GL_POST_COLOR_MATRIX_RED_SCALE                                                                                                                                                                                                              = &H80B4&
-Public Const GL_POST_COLOR_MATRIX_GREEN_SCALE                                                                                                                                                                                                                = &H80B5&
-Public Const GL_POST_COLOR_MATRIX_BLUE_SCALE                                                                                                                                                                                                                 = &H80B6&
-Public Const GL_POST_COLOR_MATRIX_ALPHA_SCALE                                                                                                                                                                                                                = &H80B7&
-Public Const GL_POST_COLOR_MATRIX_RED_BIAS                                                                                                                                                                                                               = &H80B8&
-Public Const GL_POST_COLOR_MATRIX_GREEN_BIAS                                                                                                                                                                                                                 = &H80B9&
-Public Const GL_POST_COLOR_MATRIX_BLUE_BIAS                                                                                                                                                                                                              = &H80BA&
-Public Const GL_POST_COLOR_MATRIX_ALPHA_BIAS                                                                                                                                                                                                                 = &H80BB&
-Public Const GL_COLOR_TABLE                                                                                                                                                                                                              = &H80D0&
-Public Const GL_POST_CONVOLUTION_COLOR_TABLE                                                                                                                                                                                                                 = &H80D1&
-Public Const GL_POST_COLOR_MATRIX_COLOR_TABLE                                                                                                                                                                                                                = &H80D2&
-Public Const GL_PROXY_COLOR_TABLE                                                                                                                                                                                                                = &H80D3&
-Public Const GL_PROXY_POST_CONVOLUTION_COLOR_TABLE                                                                                                                                                                                                               = &H80D4&
-Public Const GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE                                                                                                                                                                                                              = &H80D5&
-Public Const GL_COLOR_TABLE_SCALE                                                                                                                                                                                                                = &H80D6&
-Public Const GL_COLOR_TABLE_BIAS                                                                                                                                                                                                                 = &H80D7&
-Public Const GL_COLOR_TABLE_FORMAT                                                                                                                                                                                                               = &H80D8&
-Public Const GL_COLOR_TABLE_WIDTH                                                                                                                                                                                                                = &H80D9&
-Public Const GL_COLOR_TABLE_RED_SIZE                                                                                                                                                                                                                 = &H80DA&
-Public Const GL_COLOR_TABLE_GREEN_SIZE                                                                                                                                                                                                               = &H80DB&
-Public Const GL_COLOR_TABLE_BLUE_SIZE                                                                                                                                                                                                                = &H80DC&
-Public Const GL_COLOR_TABLE_ALPHA_SIZE                                                                                                                                                                                                               = &H80DD&
-Public Const GL_COLOR_TABLE_LUMINANCE_SIZE                                                                                                                                                                                                               = &H80DE&
-Public Const GL_COLOR_TABLE_INTENSITY_SIZE                                                                                                                                                                                                               = &H80DF&
-Public Const GL_IGNORE_BORDER                                                                                                                                                                                                                = &H8150&
-Public Const GL_CONSTANT_BORDER                                                                                                                                                                                                              = &H8151&
-Public Const GL_WRAP_BORDER                                                                                                                                                                                                              = &H8152&
-Public Const GL_REPLICATE_BORDER                                                                                                                                                                                                                 = &H8153&
-Public Const GL_CONVOLUTION_BORDER_COLOR                                                                                                                                                                                                                 = &H8154&
+Public Const GL_CONSTANT_COLOR                                       = &H8001&
+Public Const GL_ONE_MINUS_CONSTANT_COLOR                             = &H8002&
+Public Const GL_CONSTANT_ALPHA                                       = &H8003&
+Public Const GL_ONE_MINUS_CONSTANT_ALPHA                             = &H8004&
+Public Const GL_BLEND_COLOR                                          = &H8005&
+Public Const GL_FUNC_ADD                                             = &H8006&
+Public Const GL_MIN                                                  = &H8007&
+Public Const GL_MAX                                                  = &H8008&
+Public Const GL_BLEND_EQUATION                                       = &H8009&
+Public Const GL_FUNC_SUBTRACT                                        = &H800A&
+Public Const GL_FUNC_REVERSE_SUBTRACT                                = &H800B&
+Public Const GL_CONVOLUTION_1D                                       = &H8010&
+Public Const GL_CONVOLUTION_2D                                       = &H8011&
+Public Const GL_SEPARABLE_2D                                         = &H8012&
+Public Const GL_CONVOLUTION_BORDER_MODE                              = &H8013&
+Public Const GL_CONVOLUTION_FILTER_SCALE                             = &H8014&
+Public Const GL_CONVOLUTION_FILTER_BIAS                              = &H8015&
+Public Const GL_REDUCE                                               = &H8016&
+Public Const GL_CONVOLUTION_FORMAT                                   = &H8017&
+Public Const GL_CONVOLUTION_WIDTH                                    = &H8018&
+Public Const GL_CONVOLUTION_HEIGHT                                   = &H8019&
+Public Const GL_MAX_CONVOLUTION_WIDTH                                = &H801A&
+Public Const GL_MAX_CONVOLUTION_HEIGHT                               = &H801B&
+Public Const GL_POST_CONVOLUTION_RED_SCALE                           = &H801C&
+Public Const GL_POST_CONVOLUTION_GREEN_SCALE                         = &H801D&
+Public Const GL_POST_CONVOLUTION_BLUE_SCALE                          = &H801E&
+Public Const GL_POST_CONVOLUTION_ALPHA_SCALE                         = &H801F&
+Public Const GL_POST_CONVOLUTION_RED_BIAS                            = &H8020&
+Public Const GL_POST_CONVOLUTION_GREEN_BIAS                          = &H8021&
+Public Const GL_POST_CONVOLUTION_BLUE_BIAS                           = &H8022&
+Public Const GL_POST_CONVOLUTION_ALPHA_BIAS                          = &H8023&
+Public Const GL_HISTOGRAM                                            = &H8024&
+Public Const GL_PROXY_HISTOGRAM                                      = &H8025&
+Public Const GL_HISTOGRAM_WIDTH                                      = &H8026&
+Public Const GL_HISTOGRAM_FORMAT                                     = &H8027&
+Public Const GL_HISTOGRAM_RED_SIZE                                   = &H8028&
+Public Const GL_HISTOGRAM_GREEN_SIZE                                 = &H8029&
+Public Const GL_HISTOGRAM_BLUE_SIZE                                  = &H802A&
+Public Const GL_HISTOGRAM_ALPHA_SIZE                                 = &H802B&
+Public Const GL_HISTOGRAM_LUMINANCE_SIZE                             = &H802C&
+Public Const GL_HISTOGRAM_SINK                                       = &H802D&
+Public Const GL_MINMAX                                               = &H802E&
+Public Const GL_MINMAX_FORMAT                                        = &H802F&
+Public Const GL_MINMAX_SINK                                          = &H8030&
+Public Const GL_TABLE_TOO_LARGE                                      = &H8031&
+Public Const GL_COLOR_MATRIX                                         = &H80B1&
+Public Const GL_COLOR_MATRIX_STACK_DEPTH                             = &H80B2&
+Public Const GL_MAX_COLOR_MATRIX_STACK_DEPTH                         = &H80B3&
+Public Const GL_POST_COLOR_MATRIX_RED_SCALE                          = &H80B4&
+Public Const GL_POST_COLOR_MATRIX_GREEN_SCALE                        = &H80B5&
+Public Const GL_POST_COLOR_MATRIX_BLUE_SCALE                         = &H80B6&
+Public Const GL_POST_COLOR_MATRIX_ALPHA_SCALE                        = &H80B7&
+Public Const GL_POST_COLOR_MATRIX_RED_BIAS                           = &H80B8&
+Public Const GL_POST_COLOR_MATRIX_GREEN_BIAS                         = &H80B9&
+Public Const GL_POST_COLOR_MATRIX_BLUE_BIAS                          = &H80BA&
+Public Const GL_POST_COLOR_MATRIX_ALPHA_BIAS                         = &H80BB&
+Public Const GL_COLOR_TABLE                                          = &H80D0&
+Public Const GL_POST_CONVOLUTION_COLOR_TABLE                         = &H80D1&
+Public Const GL_POST_COLOR_MATRIX_COLOR_TABLE                        = &H80D2&
+Public Const GL_PROXY_COLOR_TABLE                                    = &H80D3&
+Public Const GL_PROXY_POST_CONVOLUTION_COLOR_TABLE                   = &H80D4&
+Public Const GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE                  = &H80D5&
+Public Const GL_COLOR_TABLE_SCALE                                    = &H80D6&
+Public Const GL_COLOR_TABLE_BIAS                                     = &H80D7&
+Public Const GL_COLOR_TABLE_FORMAT                                   = &H80D8&
+Public Const GL_COLOR_TABLE_WIDTH                                    = &H80D9&
+Public Const GL_COLOR_TABLE_RED_SIZE                                 = &H80DA&
+Public Const GL_COLOR_TABLE_GREEN_SIZE                               = &H80DB&
+Public Const GL_COLOR_TABLE_BLUE_SIZE                                = &H80DC&
+Public Const GL_COLOR_TABLE_ALPHA_SIZE                               = &H80DD&
+Public Const GL_COLOR_TABLE_LUMINANCE_SIZE                           = &H80DE&
+Public Const GL_COLOR_TABLE_INTENSITY_SIZE                           = &H80DF&
+Public Const GL_IGNORE_BORDER                                        = &H8150&
+Public Const GL_CONSTANT_BORDER                                      = &H8151&
+Public Const GL_WRAP_BORDER                                          = &H8152&
+Public Const GL_REPLICATE_BORDER                                     = &H8153&
+Public Const GL_CONVOLUTION_BORDER_COLOR                             = &H8154&
 '------------------------------- GL_ARB_indirect_parameters -------------------------------
-Public Const GL_PARAMETER_BUFFER_ARB                                                                                                                                                                                                                 = &H80EE&
-Public Const GL_PARAMETER_BUFFER_BINDING_ARB                                                                                                                                                                                                                 = &H80EF&
+Public Const GL_PARAMETER_BUFFER_ARB                                 = &H80EE&
+Public Const GL_PARAMETER_BUFFER_BINDING_ARB                         = &H80EF&
 '------------------------------- GL_ARB_instanced_arrays -------------------------------
-Public Const GL_VERTEX_ATTRIB_ARRAY_DIVISOR_ARB                                                                                                                                                                                                              = &H88FE&
+Public Const GL_VERTEX_ATTRIB_ARRAY_DIVISOR_ARB                      = &H88FE&
 '------------------------------- GL_ARB_internalformat_query -------------------------------
-Public Const GL_NUM_SAMPLE_COUNTS                                                                                                                                                                                                                = &H9380&
+Public Const GL_NUM_SAMPLE_COUNTS                                    = &H9380&
 '------------------------------- GL_ARB_internalformat_query2 -------------------------------
-Public Const GL_INTERNALFORMAT_SUPPORTED                                                                                                                                                                                                                 = &H826F&
-Public Const GL_INTERNALFORMAT_PREFERRED                                                                                                                                                                                                                 = &H8270&
-Public Const GL_INTERNALFORMAT_RED_SIZE                                                                                                                                                                                                              = &H8271&
-Public Const GL_INTERNALFORMAT_GREEN_SIZE                                                                                                                                                                                                                = &H8272&
-Public Const GL_INTERNALFORMAT_BLUE_SIZE                                                                                                                                                                                                                 = &H8273&
-Public Const GL_INTERNALFORMAT_ALPHA_SIZE                                                                                                                                                                                                                = &H8274&
-Public Const GL_INTERNALFORMAT_DEPTH_SIZE                                                                                                                                                                                                                = &H8275&
-Public Const GL_INTERNALFORMAT_STENCIL_SIZE                                                                                                                                                                                                              = &H8276&
-Public Const GL_INTERNALFORMAT_SHARED_SIZE                                                                                                                                                                                                               = &H8277&
-Public Const GL_INTERNALFORMAT_RED_TYPE                                                                                                                                                                                                              = &H8278&
-Public Const GL_INTERNALFORMAT_GREEN_TYPE                                                                                                                                                                                                                = &H8279&
-Public Const GL_INTERNALFORMAT_BLUE_TYPE                                                                                                                                                                                                                 = &H827A&
-Public Const GL_INTERNALFORMAT_ALPHA_TYPE                                                                                                                                                                                                                = &H827B&
-Public Const GL_INTERNALFORMAT_DEPTH_TYPE                                                                                                                                                                                                                = &H827C&
-Public Const GL_INTERNALFORMAT_STENCIL_TYPE                                                                                                                                                                                                              = &H827D&
-Public Const GL_MAX_WIDTH                                                                                                                                                                                                                = &H827E&
-Public Const GL_MAX_HEIGHT                                                                                                                                                                                                               = &H827F&
-Public Const GL_MAX_DEPTH                                                                                                                                                                                                                = &H8280&
-Public Const GL_MAX_LAYERS                                                                                                                                                                                                               = &H8281&
-Public Const GL_MAX_COMBINED_DIMENSIONS                                                                                                                                                                                                              = &H8282&
-Public Const GL_COLOR_COMPONENTS                                                                                                                                                                                                                 = &H8283&
-Public Const GL_DEPTH_COMPONENTS                                                                                                                                                                                                                 = &H8284&
-Public Const GL_STENCIL_COMPONENTS                                                                                                                                                                                                               = &H8285&
-Public Const GL_COLOR_RENDERABLE                                                                                                                                                                                                                 = &H8286&
-Public Const GL_DEPTH_RENDERABLE                                                                                                                                                                                                                 = &H8287&
-Public Const GL_STENCIL_RENDERABLE                                                                                                                                                                                                               = &H8288&
-Public Const GL_FRAMEBUFFER_RENDERABLE                                                                                                                                                                                                               = &H8289&
-Public Const GL_FRAMEBUFFER_RENDERABLE_LAYERED                                                                                                                                                                                                               = &H828A&
-Public Const GL_FRAMEBUFFER_BLEND                                                                                                                                                                                                                = &H828B&
-Public Const GL_READ_PIXELS                                                                                                                                                                                                              = &H828C&
-Public Const GL_READ_PIXELS_FORMAT                                                                                                                                                                                                               = &H828D&
-Public Const GL_READ_PIXELS_TYPE                                                                                                                                                                                                                 = &H828E&
-Public Const GL_TEXTURE_IMAGE_FORMAT                                                                                                                                                                                                                 = &H828F&
-Public Const GL_TEXTURE_IMAGE_TYPE                                                                                                                                                                                                               = &H8290&
-Public Const GL_GET_TEXTURE_IMAGE_FORMAT                                                                                                                                                                                                                 = &H8291&
-Public Const GL_GET_TEXTURE_IMAGE_TYPE                                                                                                                                                                                                               = &H8292&
-Public Const GL_MIPMAP                                                                                                                                                                                                               = &H8293&
-Public Const GL_MANUAL_GENERATE_MIPMAP                                                                                                                                                                                                               = &H8294&
-Public Const GL_AUTO_GENERATE_MIPMAP                                                                                                                                                                                                                 = &H8295&
-Public Const GL_COLOR_ENCODING                                                                                                                                                                                                               = &H8296&
-Public Const GL_SRGB_READ                                                                                                                                                                                                                = &H8297&
-Public Const GL_SRGB_WRITE                                                                                                                                                                                                               = &H8298&
-Public Const GL_SRGB_DECODE_ARB                                                                                                                                                                                                              = &H8299&
-Public Const GL_FILTER                                                                                                                                                                                                               = &H829A&
-Public Const GL_VERTEX_TEXTURE                                                                                                                                                                                                               = &H829B&
-Public Const GL_TESS_CONTROL_TEXTURE                                                                                                                                                                                                                 = &H829C&
-Public Const GL_TESS_EVALUATION_TEXTURE                                                                                                                                                                                                              = &H829D&
-Public Const GL_GEOMETRY_TEXTURE                                                                                                                                                                                                                 = &H829E&
-Public Const GL_FRAGMENT_TEXTURE                                                                                                                                                                                                                 = &H829F&
-Public Const GL_COMPUTE_TEXTURE                                                                                                                                                                                                              = &H82A0&
-Public Const GL_TEXTURE_SHADOW                                                                                                                                                                                                               = &H82A1&
-Public Const GL_TEXTURE_GATHER                                                                                                                                                                                                               = &H82A2&
-Public Const GL_TEXTURE_GATHER_SHADOW                                                                                                                                                                                                                = &H82A3&
-Public Const GL_SHADER_IMAGE_LOAD                                                                                                                                                                                                                = &H82A4&
-Public Const GL_SHADER_IMAGE_STORE                                                                                                                                                                                                               = &H82A5&
-Public Const GL_SHADER_IMAGE_ATOMIC                                                                                                                                                                                                              = &H82A6&
-Public Const GL_IMAGE_TEXEL_SIZE                                                                                                                                                                                                                 = &H82A7&
-Public Const GL_IMAGE_COMPATIBILITY_CLASS                                                                                                                                                                                                                = &H82A8&
-Public Const GL_IMAGE_PIXEL_FORMAT                                                                                                                                                                                                               = &H82A9&
-Public Const GL_IMAGE_PIXEL_TYPE                                                                                                                                                                                                                 = &H82AA&
-Public Const GL_SIMULTANEOUS_TEXTURE_AND_DEPTH_TEST                                                                                                                                                                                                              = &H82AC&
-Public Const GL_SIMULTANEOUS_TEXTURE_AND_STENCIL_TEST                                                                                                                                                                                                                = &H82AD&
-Public Const GL_SIMULTANEOUS_TEXTURE_AND_DEPTH_WRITE                                                                                                                                                                                                                 = &H82AE&
-Public Const GL_SIMULTANEOUS_TEXTURE_AND_STENCIL_WRITE                                                                                                                                                                                                               = &H82AF&
-Public Const GL_TEXTURE_COMPRESSED_BLOCK_WIDTH                                                                                                                                                                                                               = &H82B1&
-Public Const GL_TEXTURE_COMPRESSED_BLOCK_HEIGHT                                                                                                                                                                                                              = &H82B2&
-Public Const GL_TEXTURE_COMPRESSED_BLOCK_SIZE                                                                                                                                                                                                                = &H82B3&
-Public Const GL_CLEAR_BUFFER                                                                                                                                                                                                                 = &H82B4&
-Public Const GL_TEXTURE_VIEW                                                                                                                                                                                                                 = &H82B5&
-Public Const GL_VIEW_COMPATIBILITY_CLASS                                                                                                                                                                                                                 = &H82B6&
-Public Const GL_FULL_SUPPORT                                                                                                                                                                                                                 = &H82B7&
-Public Const GL_CAVEAT_SUPPORT                                                                                                                                                                                                               = &H82B8&
-Public Const GL_IMAGE_CLASS_4_X_32                                                                                                                                                                                                               = &H82B9&
-Public Const GL_IMAGE_CLASS_2_X_32                                                                                                                                                                                                               = &H82BA&
-Public Const GL_IMAGE_CLASS_1_X_32                                                                                                                                                                                                               = &H82BB&
-Public Const GL_IMAGE_CLASS_4_X_16                                                                                                                                                                                                               = &H82BC&
-Public Const GL_IMAGE_CLASS_2_X_16                                                                                                                                                                                                               = &H82BD&
-Public Const GL_IMAGE_CLASS_1_X_16                                                                                                                                                                                                               = &H82BE&
-Public Const GL_IMAGE_CLASS_4_X_8                                                                                                                                                                                                                = &H82BF&
-Public Const GL_IMAGE_CLASS_2_X_8                                                                                                                                                                                                                = &H82C0&
-Public Const GL_IMAGE_CLASS_1_X_8                                                                                                                                                                                                                = &H82C1&
-Public Const GL_IMAGE_CLASS_11_11_10                                                                                                                                                                                                                 = &H82C2&
-Public Const GL_IMAGE_CLASS_10_10_10_2                                                                                                                                                                                                               = &H82C3&
-Public Const GL_VIEW_CLASS_128_BITS                                                                                                                                                                                                              = &H82C4&
-Public Const GL_VIEW_CLASS_96_BITS                                                                                                                                                                                                               = &H82C5&
-Public Const GL_VIEW_CLASS_64_BITS                                                                                                                                                                                                               = &H82C6&
-Public Const GL_VIEW_CLASS_48_BITS                                                                                                                                                                                                               = &H82C7&
-Public Const GL_VIEW_CLASS_32_BITS                                                                                                                                                                                                               = &H82C8&
-Public Const GL_VIEW_CLASS_24_BITS                                                                                                                                                                                                               = &H82C9&
-Public Const GL_VIEW_CLASS_16_BITS                                                                                                                                                                                                               = &H82CA&
-Public Const GL_VIEW_CLASS_8_BITS                                                                                                                                                                                                                = &H82CB&
-Public Const GL_VIEW_CLASS_S3TC_DXT1_RGB                                                                                                                                                                                                                 = &H82CC&
-Public Const GL_VIEW_CLASS_S3TC_DXT1_RGBA                                                                                                                                                                                                                = &H82CD&
-Public Const GL_VIEW_CLASS_S3TC_DXT3_RGBA                                                                                                                                                                                                                = &H82CE&
-Public Const GL_VIEW_CLASS_S3TC_DXT5_RGBA                                                                                                                                                                                                                = &H82CF&
-Public Const GL_VIEW_CLASS_RGTC1_RED                                                                                                                                                                                                                 = &H82D0&
-Public Const GL_VIEW_CLASS_RGTC2_RG                                                                                                                                                                                                              = &H82D1&
-Public Const GL_VIEW_CLASS_BPTC_UNORM                                                                                                                                                                                                                = &H82D2&
-Public Const GL_VIEW_CLASS_BPTC_FLOAT                                                                                                                                                                                                                = &H82D3&
-'------------------------------- GL_ARB_invalidate_subdata -------------------------------
-'------------------------------- GL_ARB_map_buffer_alignment -------------------------------
-Public Const GL_MIN_MAP_BUFFER_ALIGNMENT                                                                                                                                                                                                                 = &H90BC&
-'------------------------------- GL_ARB_map_buffer_range -------------------------------
-'public const GL_MAP_READ_BIT                                                                                                                                                                                                                = &h0001&
-'public const GL_MAP_WRITE_BIT                                                                                                                                                                                                               = &h0002&
-Public Const GL_MAP_INVALIDATE_RANGE_BIT                                                                                                                                                                                                                 = &H4&
-Public Const GL_MAP_INVALIDATE_BUFFER_BIT                                                                                                                                                                                                                = &H8&
-Public Const GL_MAP_FLUSH_EXPLICIT_BIT                                                                                                                                                                                                               = &H10&
-Public Const GL_MAP_UNSYNCHRONIZED_BIT                                                                                                                                                                                                               = &H20&
-'------------------------------- GL_ARB_matrix_palette -------------------------------
-Public Const GL_MATRIX_PALETTE_ARB                                                                                                                                                                                                               = &H8840&
-Public Const GL_MAX_MATRIX_PALETTE_STACK_DEPTH_ARB                                                                                                                                                                                                               = &H8841&
-Public Const GL_MAX_PALETTE_MATRICES_ARB                                                                                                                                                                                                                 = &H8842&
-Public Const GL_CURRENT_PALETTE_MATRIX_ARB                                                                                                                                                                                                               = &H8843&
-Public Const GL_MATRIX_INDEX_ARRAY_ARB                                                                                                                                                                                                               = &H8844&
-Public Const GL_CURRENT_MATRIX_INDEX_ARB                                                                                                                                                                                                                 = &H8845&
-Public Const GL_MATRIX_INDEX_ARRAY_SIZE_ARB                                                                                                                                                                                                              = &H8846&
-Public Const GL_MATRIX_INDEX_ARRAY_TYPE_ARB                                                                                                                                                                                                              = &H8847&
-Public Const GL_MATRIX_INDEX_ARRAY_STRIDE_ARB                                                                                                                                                                                                                = &H8848&
-Public Const GL_MATRIX_INDEX_ARRAY_POINTER_ARB                                                                                                                                                                                                               = &H8849&
-'------------------------------- GL_ARB_multi_bind -------------------------------
-'------------------------------- GL_ARB_multi_draw_indirect -------------------------------
-'------------------------------- GL_ARB_multisample -------------------------------
-Public Const GL_MULTISAMPLE_ARB                                                                                                                                                                                                              = &H809D&
-Public Const GL_SAMPLE_ALPHA_TO_COVERAGE_ARB                                                                                                                                                                                                                 = &H809E&
-Public Const GL_SAMPLE_ALPHA_TO_ONE_ARB                                                                                                                                                                                                              = &H809F&
-Public Const GL_SAMPLE_COVERAGE_ARB                                                                                                                                                                                                              = &H80A0&
-Public Const GL_SAMPLE_BUFFERS_ARB                                                                                                                                                                                                               = &H80A8&
-Public Const GL_SAMPLES_ARB                                                                                                                                                                                                              = &H80A9&
-Public Const GL_SAMPLE_COVERAGE_VALUE_ARB                                                                                                                                                                                                                = &H80AA&
-Public Const GL_SAMPLE_COVERAGE_INVERT_ARB                                                                                                                                                                                                               = &H80AB&
-Public Const GL_MULTISAMPLE_BIT_ARB                                                                                                                                                                                                              = &H20000000
-'------------------------------- GL_ARB_multitexture -------------------------------
-Public Const GL_TEXTURE0_ARB                                                                                                                                                                                                                 = &H84C0&
-Public Const GL_TEXTURE1_ARB                                                                                                                                                                                                                 = &H84C1&
-Public Const GL_TEXTURE2_ARB                                                                                                                                                                                                                 = &H84C2&
-Public Const GL_TEXTURE3_ARB                                                                                                                                                                                                                 = &H84C3&
-Public Const GL_TEXTURE4_ARB                                                                                                                                                                                                                 = &H84C4&
-Public Const GL_TEXTURE5_ARB                                                                                                                                                                                                                 = &H84C5&
-Public Const GL_TEXTURE6_ARB                                                                                                                                                                                                                 = &H84C6&
-Public Const GL_TEXTURE7_ARB                                                                                                                                                                                                                 = &H84C7&
-Public Const GL_TEXTURE8_ARB                                                                                                                                                                                                                 = &H84C8&
-Public Const GL_TEXTURE9_ARB                                                                                                                                                                                                                 = &H84C9&
-Public Const GL_TEXTURE10_ARB                                                                                                                                                                                                                = &H84CA&
-Public Const GL_TEXTURE11_ARB                                                                                                                                                                                                                = &H84CB&
-Public Const GL_TEXTURE12_ARB                                                                                                                                                                                                                = &H84CC&
-Public Const GL_TEXTURE13_ARB                                                                                                                                                                                                                = &H84CD&
-Public Const GL_TEXTURE14_ARB                                                                                                                                                                                                                = &H84CE&
-Public Const GL_TEXTURE15_ARB                                                                                                                                                                                                                = &H84CF&
-Public Const GL_TEXTURE16_ARB                                                                                                                                                                                                                = &H84D0&
-Public Const GL_TEXTURE17_ARB                                                                                                                                                                                                                = &H84D1&
-Public Const GL_TEXTURE18_ARB                                                                                                                                                                                                                = &H84D2&
-Public Const GL_TEXTURE19_ARB                                                                                                                                                                                                                = &H84D3&
-Public Const GL_TEXTURE20_ARB                                                                                                                                                                                                                = &H84D4&
-Public Const GL_TEXTURE21_ARB                                                                                                                                                                                                                = &H84D5&
-Public Const GL_TEXTURE22_ARB                                                                                                                                                                                                                = &H84D6&
-Public Const GL_TEXTURE23_ARB                                                                                                                                                                                                                = &H84D7&
-Public Const GL_TEXTURE24_ARB                                                                                                                                                                                                                = &H84D8&
-Public Const GL_TEXTURE25_ARB                                                                                                                                                                                                                = &H84D9&
-Public Const GL_TEXTURE26_ARB                                                                                                                                                                                                                = &H84DA&
-Public Const GL_TEXTURE27_ARB                                                                                                                                                                                                                = &H84DB&
-Public Const GL_TEXTURE28_ARB                                                                                                                                                                                                                = &H84DC&
-Public Const GL_TEXTURE29_ARB                                                                                                                                                                                                                = &H84DD&
-Public Const GL_TEXTURE30_ARB                                                                                                                                                                                                                = &H84DE&
-Public Const GL_TEXTURE31_ARB                                                                                                                                                                                                                = &H84DF&
-Public Const GL_ACTIVE_TEXTURE_ARB                                                                                                                                                                                                               = &H84E0&
-Public Const GL_CLIENT_ACTIVE_TEXTURE_ARB                                                                                                                                                                                                                = &H84E1&
-Public Const GL_MAX_TEXTURE_UNITS_ARB                                                                                                                                                                                                                = &H84E2&
-'------------------------------- GL_ARB_occlusion_query -------------------------------
-Public Const GL_QUERY_COUNTER_BITS_ARB                                                                                                                                                                                                               = &H8864&
-Public Const GL_CURRENT_QUERY_ARB                                                                                                                                                                                                                = &H8865&
-Public Const GL_QUERY_RESULT_ARB                                                                                                                                                                                                                 = &H8866&
-Public Const GL_QUERY_RESULT_AVAILABLE_ARB                                                                                                                                                                                                               = &H8867&
-Public Const GL_SAMPLES_PASSED_ARB                                                                                                                                                                                                               = &H8914&
+Public Const GL_INTERNALFORMAT_SUPPORTED                             = &H826F&
+Public Const GL_INTERNALFORMAT_PREFERRED                             = &H8270&
+Public Const GL_INTERNALFORMAT_RED_SIZE                              = &H8271&
+Public Const GL_INTERNALFORMAT_GREEN_SIZE                            = &H8272&
+Public Const GL_INTERNALFORMAT_BLUE_SIZE                             = &H8273&
+Public Const GL_INTERNALFORMAT_ALPHA_SIZE                            = &H8274&
+Public Const GL_INTERNALFORMAT_DEPTH_SIZE                            = &H8275&
+Public Const GL_INTERNALFORMAT_STENCIL_SIZE                          = &H8276&
+Public Const GL_INTERNALFORMAT_SHARED_SIZE                           = &H8277&
+Public Const GL_INTERNALFORMAT_RED_TYPE                              = &H8278&
+Public Const GL_INTERNALFORMAT_GREEN_TYPE                            = &H8279&
+Public Const GL_INTERNALFORMAT_BLUE_TYPE                             = &H827A&
+Public Const GL_INTERNALFORMAT_ALPHA_TYPE                            = &H827B&
+Public Const GL_INTERNALFORMAT_DEPTH_TYPE                            = &H827C&
+Public Const GL_INTERNALFORMAT_STENCIL_TYPE                          = &H827D&
+Public Const GL_MAX_WIDTH                                            = &H827E&
+Public Const GL_MAX_HEIGHT                                           = &H827F&
+Public Const GL_MAX_DEPTH                                            = &H8280&
+Public Const GL_MAX_LAYERS                                           = &H8281&
+Public Const GL_MAX_COMBINED_DIMENSIONS                              = &H8282&
+Public Const GL_COLOR_COMPONENTS                                     = &H8283&
+Public Const GL_DEPTH_COMPONENTS                                     = &H8284&
+Public Const GL_STENCIL_COMPONENTS                                   = &H8285&
+Public Const GL_COLOR_RENDERABLE                                     = &H8286&
+Public Const GL_DEPTH_RENDERABLE                                     = &H8287&
+Public Const GL_STENCIL_RENDERABLE                                   = &H8288&
+Public Const GL_FRAMEBUFFER_RENDERABLE                               = &H8289&
+Public Const GL_FRAMEBUFFER_RENDERABLE_LAYERED                       = &H828A&
+Public Const GL_FRAMEBUFFER_BLEND                                    = &H828B&
+Public Const GL_READ_PIXELS                                          = &H828C&
+Public Const GL_READ_PIXELS_FORMAT                                   = &H828D&
+Public Const GL_READ_PIXELS_TYPE                                     = &H828E&
+Public Const GL_TEXTURE_IMAGE_FORMAT                                 = &H828F&
+Public Const GL_TEXTURE_IMAGE_TYPE                                   = &H8290&
+Public Const GL_GET_TEXTURE_IMAGE_FORMAT                             = &H8291&
+Public Const GL_GET_TEXTURE_IMAGE_TYPE                               = &H8292&
+Public Const GL_MIPMAP                                               = &H8293&
+Public Const GL_MANUAL_GENERATE_MIPMAP                               = &H8294&
+Public Const GL_AUTO_GENERATE_MIPMAP                                 = &H8295&
+Public Const GL_COLOR_ENCODING                                       = &H8296&
+Public Const GL_SRGB_READ                                            = &H8297&
+Public Const GL_SRGB_WRITE                                           = &H8298&
+Public Const GL_SRGB_DECODE_ARB                                      = &H8299&
+Public Const GL_FILTER                                               = &H829A&
+Public Const GL_VERTEX_TEXTURE                                       = &H829B&
+Public Const GL_TESS_CONTROL_TEXTURE                                 = &H829C&
+Public Const GL_TESS_EVALUATION_TEXTURE                              = &H829D&
+Public Const GL_GEOMETRY_TEXTURE                                     = &H829E&
+Public Const GL_FRAGMENT_TEXTURE                                     = &H829F&
+Public Const GL_COMPUTE_TEXTURE                                      = &H82A0&
+Public Const GL_TEXTURE_SHADOW                                       = &H82A1&
+Public Const GL_TEXTURE_GATHER                                       = &H82A2&
+Public Const GL_TEXTURE_GATHER_SHADOW                                = &H82A3&
+Public Const GL_SHADER_IMAGE_LOAD                                    = &H82A4&
+Public Const GL_SHADER_IMAGE_STORE                                   = &H82A5&
+Public Const GL_SHADER_IMAGE_ATOMIC                                  = &H82A6&
+Public Const GL_IMAGE_TEXEL_SIZE                                     = &H82A7&
+Public Const GL_IMAGE_COMPATIBILITY_CLASS                            = &H82A8&
+Public Const GL_IMAGE_PIXEL_FORMAT                                   = &H82A9&
+Public Const GL_IMAGE_PIXEL_TYPE                                     = &H82AA&
+Public Const GL_SIMULTANEOUS_TEXTURE_AND_DEPTH_TEST                  = &H82AC&
+Public Const GL_SIMULTANEOUS_TEXTURE_AND_STENCIL_TEST                = &H82AD&
+Public Const GL_SIMULTANEOUS_TEXTURE_AND_DEPTH_WRITE                 = &H82AE&
+Public Const GL_SIMULTANEOUS_TEXTURE_AND_STENCIL_WRITE               = &H82AF&
+Public Const GL_TEXTURE_COMPRESSED_BLOCK_WIDTH                       = &H82B1&
+Public Const GL_TEXTURE_COMPRESSED_BLOCK_HEIGHT                      = &H82B2&
+Public Const GL_TEXTURE_COMPRESSED_BLOCK_SIZE                        = &H82B3&
+Public Const GL_CLEAR_BUFFER                                         = &H82B4&
+Public Const GL_TEXTURE_VIEW                                         = &H82B5&
+Public Const GL_VIEW_COMPATIBILITY_CLASS                             = &H82B6&
+Public Const GL_FULL_SUPPORT                                         = &H82B7&
+Public Const GL_CAVEAT_SUPPORT                                       = &H82B8&
+Public Const GL_IMAGE_CLASS_4_X_32                                   = &H82B9&
+Public Const GL_IMAGE_CLASS_2_X_32                                   = &H82BA&
+Public Const GL_IMAGE_CLASS_1_X_32                                   = &H82BB&
+Public Const GL_IMAGE_CLASS_4_X_16                                   = &H82BC&
+Public Const GL_IMAGE_CLASS_2_X_16                                   = &H82BD&
+Public Const GL_IMAGE_CLASS_1_X_16                                   = &H82BE&
+Public Const GL_IMAGE_CLASS_4_X_8                                    = &H82BF&
+Public Const GL_IMAGE_CLASS_2_X_8                                    = &H82C0&
+Public Const GL_IMAGE_CLASS_1_X_8                                    = &H82C1&
+Public Const GL_IMAGE_CLASS_11_11_10                                 = &H82C2&
+Public Const GL_IMAGE_CLASS_10_10_10_2                               = &H82C3&
+Public Const GL_VIEW_CLASS_128_BITS                                  = &H82C4&
+Public Const GL_VIEW_CLASS_96_BITS                                   = &H82C5&
+Public Const GL_VIEW_CLASS_64_BITS                                   = &H82C6&
+Public Const GL_VIEW_CLASS_48_BITS                                   = &H82C7&
+Public Const GL_VIEW_CLASS_32_BITS                                   = &H82C8&
+Public Const GL_VIEW_CLASS_24_BITS                                   = &H82C9&
+Public Const GL_VIEW_CLASS_16_BITS                                   = &H82CA&
+Public Const GL_VIEW_CLASS_8_BITS                                    = &H82CB&
+Public Const GL_VIEW_CLASS_S3TC_DXT1_RGB                             = &H82CC&
+Public Const GL_VIEW_CLASS_S3TC_DXT1_RGBA                            = &H82CD&
+Public Const GL_VIEW_CLASS_S3TC_DXT3_RGBA                            = &H82CE&
+Public Const GL_VIEW_CLASS_S3TC_DXT5_RGBA                            = &H82CF&
+Public Const GL_VIEW_CLASS_RGTC1_RED                                 = &H82D0&
+Public Const GL_VIEW_CLASS_RGTC2_RG                                  = &H82D1&
+Public Const GL_VIEW_CLASS_BPTC_UNORM                                = &H82D2&
+Public Const GL_VIEW_CLASS_BPTC_FLOAT                                = &H82D3&
+'------------------------------- GL_ARB_invalidate_subdata ---------------------
+'------------------------------- GL_ARB_map_buffer_alignment -----------------------
+Public Const GL_MIN_MAP_BUFFER_ALIGNMENT                             = &H90BC&
+'------------------------------- GL_ARB_map_buffer_range -------------------
+'public const GL_MAP_READ_BIT                                        = &h0001&
+'public const GL_MAP_WRITE_BIT                                       = &h0002&
+Public Const GL_MAP_INVALIDATE_RANGE_BIT                             = &H4&
+Public Const GL_MAP_INVALIDATE_BUFFER_BIT                            = &H8&
+Public Const GL_MAP_FLUSH_EXPLICIT_BIT                               = &H10&
+Public Const GL_MAP_UNSYNCHRONIZED_BIT                               = &H20&
+'------------------------------- GL_ARB_matrix_palette -----------------
+Public Const GL_MATRIX_PALETTE_ARB                                   = &H8840&
+Public Const GL_MAX_MATRIX_PALETTE_STACK_DEPTH_ARB                   = &H8841&
+Public Const GL_MAX_PALETTE_MATRICES_ARB                             = &H8842&
+Public Const GL_CURRENT_PALETTE_MATRIX_ARB                           = &H8843&
+Public Const GL_MATRIX_INDEX_ARRAY_ARB                               = &H8844&
+Public Const GL_CURRENT_MATRIX_INDEX_ARB                             = &H8845&
+Public Const GL_MATRIX_INDEX_ARRAY_SIZE_ARB                          = &H8846&
+Public Const GL_MATRIX_INDEX_ARRAY_TYPE_ARB                          = &H8847&
+Public Const GL_MATRIX_INDEX_ARRAY_STRIDE_ARB                        = &H8848&
+Public Const GL_MATRIX_INDEX_ARRAY_POINTER_ARB                       = &H8849&
+'------------------------------- GL_ARB_multi_bind -------------
+'------------------------------- GL_ARB_multi_draw_indirect ----------------------
+'------------------------------- GL_ARB_multisample --------------
+Public Const GL_MULTISAMPLE_ARB                                      = &H809D&
+Public Const GL_SAMPLE_ALPHA_TO_COVERAGE_ARB                         = &H809E&
+Public Const GL_SAMPLE_ALPHA_TO_ONE_ARB                              = &H809F&
+Public Const GL_SAMPLE_COVERAGE_ARB                                  = &H80A0&
+Public Const GL_SAMPLE_BUFFERS_ARB                                   = &H80A8&
+Public Const GL_SAMPLES_ARB                                          = &H80A9&
+Public Const GL_SAMPLE_COVERAGE_VALUE_ARB                            = &H80AA&
+Public Const GL_SAMPLE_COVERAGE_INVERT_ARB                           = &H80AB&
+Public Const GL_MULTISAMPLE_BIT_ARB                                  = &H20000000
+'------------------------------- GL_ARB_multitexture ---------------
+Public Const GL_TEXTURE0_ARB                                         = &H84C0&
+Public Const GL_TEXTURE1_ARB                                         = &H84C1&
+Public Const GL_TEXTURE2_ARB                                         = &H84C2&
+Public Const GL_TEXTURE3_ARB                                         = &H84C3&
+Public Const GL_TEXTURE4_ARB                                         = &H84C4&
+Public Const GL_TEXTURE5_ARB                                         = &H84C5&
+Public Const GL_TEXTURE6_ARB                                         = &H84C6&
+Public Const GL_TEXTURE7_ARB                                         = &H84C7&
+Public Const GL_TEXTURE8_ARB                                         = &H84C8&
+Public Const GL_TEXTURE9_ARB                                         = &H84C9&
+Public Const GL_TEXTURE10_ARB                                        = &H84CA&
+Public Const GL_TEXTURE11_ARB                                        = &H84CB&
+Public Const GL_TEXTURE12_ARB                                        = &H84CC&
+Public Const GL_TEXTURE13_ARB                                        = &H84CD&
+Public Const GL_TEXTURE14_ARB                                        = &H84CE&
+Public Const GL_TEXTURE15_ARB                                        = &H84CF&
+Public Const GL_TEXTURE16_ARB                                        = &H84D0&
+Public Const GL_TEXTURE17_ARB                                        = &H84D1&
+Public Const GL_TEXTURE18_ARB                                        = &H84D2&
+Public Const GL_TEXTURE19_ARB                                        = &H84D3&
+Public Const GL_TEXTURE20_ARB                                        = &H84D4&
+Public Const GL_TEXTURE21_ARB                                        = &H84D5&
+Public Const GL_TEXTURE22_ARB                                        = &H84D6&
+Public Const GL_TEXTURE23_ARB                                        = &H84D7&
+Public Const GL_TEXTURE24_ARB                                        = &H84D8&
+Public Const GL_TEXTURE25_ARB                                        = &H84D9&
+Public Const GL_TEXTURE26_ARB                                        = &H84DA&
+Public Const GL_TEXTURE27_ARB                                        = &H84DB&
+Public Const GL_TEXTURE28_ARB                                        = &H84DC&
+Public Const GL_TEXTURE29_ARB                                        = &H84DD&
+Public Const GL_TEXTURE30_ARB                                        = &H84DE&
+Public Const GL_TEXTURE31_ARB                                        = &H84DF&
+Public Const GL_ACTIVE_TEXTURE_ARB                                   = &H84E0&
+Public Const GL_CLIENT_ACTIVE_TEXTURE_ARB                            = &H84E1&
+Public Const GL_MAX_TEXTURE_UNITS_ARB                                = &H84E2&
+'------------------------------- GL_ARB_occlusion_query ------------------
+Public Const GL_QUERY_COUNTER_BITS_ARB                               = &H8864&
+Public Const GL_CURRENT_QUERY_ARB                                    = &H8865&
+Public Const GL_QUERY_RESULT_ARB                                     = &H8866&
+Public Const GL_QUERY_RESULT_AVAILABLE_ARB                           = &H8867&
+Public Const GL_SAMPLES_PASSED_ARB                                   = &H8914&
 '------------------------------- GL_ARB_occlusion_query2 -------------------------------
-Public Const GL_ANY_SAMPLES_PASSED                                                                                                                                                                                                               = &H8C2F&
+Public Const GL_ANY_SAMPLES_PASSED                                   = &H8C2F&
 '------------------------------- GL_ARB_parallel_shader_compile -------------------------------
-Public Const GL_MAX_SHADER_COMPILER_THREADS_ARB                                                                                                                                                                                                              = &H91B0&
-Public Const GL_COMPLETION_STATUS_ARB                                                                                                                                                                                                                = &H91B1&
+Public Const GL_MAX_SHADER_COMPILER_THREADS_ARB                      = &H91B0&
+Public Const GL_COMPLETION_STATUS_ARB                                = &H91B1&
 '------------------------------- GL_ARB_pipeline_statistics_query -------------------------------
-Public Const GL_VERTICES_SUBMITTED_ARB                                                                                                                                                                                                               = &H82EE&
-Public Const GL_PRIMITIVES_SUBMITTED_ARB                                                                                                                                                                                                                 = &H82EF&
-Public Const GL_VERTEX_SHADER_INVOCATIONS_ARB                                                                                                                                                                                                                = &H82F0&
-Public Const GL_TESS_CONTROL_SHADER_PATCHES_ARB                                                                                                                                                                                                              = &H82F1&
-Public Const GL_TESS_EVALUATION_SHADER_INVOCATIONS_ARB                                                                                                                                                                                                               = &H82F2&
-Public Const GL_GEOMETRY_SHADER_PRIMITIVES_EMITTED_ARB                                                                                                                                                                                                               = &H82F3&
-Public Const GL_FRAGMENT_SHADER_INVOCATIONS_ARB                                                                                                                                                                                                              = &H82F4&
-Public Const GL_COMPUTE_SHADER_INVOCATIONS_ARB                                                                                                                                                                                                               = &H82F5&
-Public Const GL_CLIPPING_INPUT_PRIMITIVES_ARB                                                                                                                                                                                                                = &H82F6&
-Public Const GL_CLIPPING_OUTPUT_PRIMITIVES_ARB                                                                                                                                                                                                               = &H82F7&
-'public const GL_GEOMETRY_SHADER_INVOCATIONS                                                                                                                                                                                                                 = &h887F&
-'------------------------------- GL_ARB_pixel_buffer_object -------------------------------
-Public Const GL_PIXEL_PACK_BUFFER_ARB                                                                                                                                                                                                                = &H88EB&
-Public Const GL_PIXEL_UNPACK_BUFFER_ARB                                                                                                                                                                                                              = &H88EC&
-Public Const GL_PIXEL_PACK_BUFFER_BINDING_ARB                                                                                                                                                                                                                = &H88ED&
-Public Const GL_PIXEL_UNPACK_BUFFER_BINDING_ARB                                                                                                                                                                                                              = &H88EF&
-'------------------------------- GL_ARB_point_parameters -------------------------------
-Public Const GL_POINT_SIZE_MIN_ARB                                                                                                                                                                                                               = &H8126&
-Public Const GL_POINT_SIZE_MAX_ARB                                                                                                                                                                                                               = &H8127&
-Public Const GL_POINT_FADE_THRESHOLD_SIZE_ARB                                                                                                                                                                                                                = &H8128&
-Public Const GL_POINT_DISTANCE_ATTENUATION_ARB                                                                                                                                                                                                               = &H8129&
-'------------------------------- GL_ARB_point_sprite -------------------------------
-Public Const GL_POINT_SPRITE_ARB                                                                                                                                                                                                                 = &H8861&
-Public Const GL_COORD_REPLACE_ARB                                                                                                                                                                                                                = &H8862&
-'------------------------------- GL_ARB_polygon_offset_clamp -------------------------------
-'public const GL_POLYGON_OFFSET_CLAMP                                                                                                                                                                                                                = &h8E1B&
-'------------------------------- GL_ARB_post_depth_coverage -------------------------------
-'------------------------------- GL_ARB_program_interface_query -------------------------------
-Public Const GL_UNIFORM                                                                                                                                                                                                              = &H92E1&
-Public Const GL_UNIFORM_BLOCK                                                                                                                                                                                                                = &H92E2&
-Public Const GL_PROGRAM_INPUT                                                                                                                                                                                                                = &H92E3&
-Public Const GL_PROGRAM_OUTPUT                                                                                                                                                                                                               = &H92E4&
-Public Const GL_BUFFER_VARIABLE                                                                                                                                                                                                              = &H92E5&
-Public Const GL_SHADER_STORAGE_BLOCK                                                                                                                                                                                                                 = &H92E6&
-Public Const GL_IS_PER_PATCH                                                                                                                                                                                                                 = &H92E7&
-Public Const GL_VERTEX_SUBROUTINE                                                                                                                                                                                                                = &H92E8&
-Public Const GL_TESS_CONTROL_SUBROUTINE                                                                                                                                                                                                              = &H92E9&
-Public Const GL_TESS_EVALUATION_SUBROUTINE                                                                                                                                                                                                               = &H92EA&
-Public Const GL_GEOMETRY_SUBROUTINE                                                                                                                                                                                                              = &H92EB&
-Public Const GL_FRAGMENT_SUBROUTINE                                                                                                                                                                                                              = &H92EC&
-Public Const GL_COMPUTE_SUBROUTINE                                                                                                                                                                                                               = &H92ED&
-Public Const GL_VERTEX_SUBROUTINE_UNIFORM                                                                                                                                                                                                                = &H92EE&
-Public Const GL_TESS_CONTROL_SUBROUTINE_UNIFORM                                                                                                                                                                                                              = &H92EF&
-Public Const GL_TESS_EVALUATION_SUBROUTINE_UNIFORM                                                                                                                                                                                                               = &H92F0&
-Public Const GL_GEOMETRY_SUBROUTINE_UNIFORM                                                                                                                                                                                                              = &H92F1&
-Public Const GL_FRAGMENT_SUBROUTINE_UNIFORM                                                                                                                                                                                                              = &H92F2&
-Public Const GL_COMPUTE_SUBROUTINE_UNIFORM                                                                                                                                                                                                               = &H92F3&
-Public Const GL_TRANSFORM_FEEDBACK_VARYING                                                                                                                                                                                                               = &H92F4&
-Public Const GL_ACTIVE_RESOURCES                                                                                                                                                                                                                 = &H92F5&
-Public Const GL_MAX_NAME_LENGTH                                                                                                                                                                                                              = &H92F6&
-Public Const GL_MAX_NUM_ACTIVE_VARIABLES                                                                                                                                                                                                                 = &H92F7&
-Public Const GL_MAX_NUM_COMPATIBLE_SUBROUTINES                                                                                                                                                                                                               = &H92F8&
-Public Const GL_NAME_LENGTH                                                                                                                                                                                                              = &H92F9&
-Public Const GL_TYPE                                                                                                                                                                                                                 = &H92FA&
-Public Const GL_ARRAY_SIZE                                                                                                                                                                                                               = &H92FB&
-Public Const GL_OFFSET                                                                                                                                                                                                               = &H92FC&
-Public Const GL_BLOCK_INDEX                                                                                                                                                                                                              = &H92FD&
-Public Const GL_ARRAY_STRIDE                                                                                                                                                                                                                 = &H92FE&
-Public Const GL_MATRIX_STRIDE                                                                                                                                                                                                                = &H92FF&
-Public Const GL_IS_ROW_MAJOR                                                                                                                                                                                                                 = &H9300&
-Public Const GL_ATOMIC_COUNTER_BUFFER_INDEX                                                                                                                                                                                                              = &H9301&
-Public Const GL_BUFFER_BINDING                                                                                                                                                                                                               = &H9302&
-Public Const GL_BUFFER_DATA_SIZE                                                                                                                                                                                                                 = &H9303&
-Public Const GL_NUM_ACTIVE_VARIABLES                                                                                                                                                                                                                 = &H9304&
-Public Const GL_ACTIVE_VARIABLES                                                                                                                                                                                                                 = &H9305&
-Public Const GL_REFERENCED_BY_VERTEX_SHADER                                                                                                                                                                                                              = &H9306&
-Public Const GL_REFERENCED_BY_TESS_CONTROL_SHADER                                                                                                                                                                                                                = &H9307&
-Public Const GL_REFERENCED_BY_TESS_EVALUATION_SHADER                                                                                                                                                                                                                 = &H9308&
-Public Const GL_REFERENCED_BY_GEOMETRY_SHADER                                                                                                                                                                                                                = &H9309&
-Public Const GL_REFERENCED_BY_FRAGMENT_SHADER                                                                                                                                                                                                                = &H930A&
-Public Const GL_REFERENCED_BY_COMPUTE_SHADER                                                                                                                                                                                                                 = &H930B&
-Public Const GL_TOP_LEVEL_ARRAY_SIZE                                                                                                                                                                                                                 = &H930C&
-Public Const GL_TOP_LEVEL_ARRAY_STRIDE                                                                                                                                                                                                               = &H930D&
-Public Const GL_LOCATION                                                                                                                                                                                                                 = &H930E&
-Public Const GL_LOCATION_INDEX                                                                                                                                                                                                               = &H930F&
+Public Const GL_VERTICES_SUBMITTED_ARB                               = &H82EE&
+Public Const GL_PRIMITIVES_SUBMITTED_ARB                             = &H82EF&
+Public Const GL_VERTEX_SHADER_INVOCATIONS_ARB                        = &H82F0&
+Public Const GL_TESS_CONTROL_SHADER_PATCHES_ARB                      = &H82F1&
+Public Const GL_TESS_EVALUATION_SHADER_INVOCATIONS_ARB               = &H82F2&
+Public Const GL_GEOMETRY_SHADER_PRIMITIVES_EMITTED_ARB               = &H82F3&
+Public Const GL_FRAGMENT_SHADER_INVOCATIONS_ARB                      = &H82F4&
+Public Const GL_COMPUTE_SHADER_INVOCATIONS_ARB                       = &H82F5&
+Public Const GL_CLIPPING_INPUT_PRIMITIVES_ARB                        = &H82F6&
+Public Const GL_CLIPPING_OUTPUT_PRIMITIVES_ARB                       = &H82F7&
+'public const GL_GEOMETRY_SHADER_INVOCATIONS                         = &h887F&
+'------------------------------- GL_ARB_pixel_buffer_object ----------------------
+Public Const GL_PIXEL_PACK_BUFFER_ARB                                = &H88EB&
+Public Const GL_PIXEL_UNPACK_BUFFER_ARB                              = &H88EC&
+Public Const GL_PIXEL_PACK_BUFFER_BINDING_ARB                        = &H88ED&
+Public Const GL_PIXEL_UNPACK_BUFFER_BINDING_ARB                      = &H88EF&
+'------------------------------- GL_ARB_point_parameters -------------------
+Public Const GL_POINT_SIZE_MIN_ARB                                   = &H8126&
+Public Const GL_POINT_SIZE_MAX_ARB                                   = &H8127&
+Public Const GL_POINT_FADE_THRESHOLD_SIZE_ARB                        = &H8128&
+Public Const GL_POINT_DISTANCE_ATTENUATION_ARB                       = &H8129&
+'------------------------------- GL_ARB_point_sprite ---------------
+Public Const GL_POINT_SPRITE_ARB                                     = &H8861&
+Public Const GL_COORD_REPLACE_ARB                                    = &H8862&
+'------------------------------- GL_ARB_polygon_offset_clamp -----------------------
+'public const GL_POLYGON_OFFSET_CLAMP                                = &h8E1B&
+'------------------------------- GL_ARB_post_depth_coverage ----------------------
+'------------------------------- GL_ARB_program_interface_query --------------------------
+Public Const GL_UNIFORM                                              = &H92E1&
+Public Const GL_UNIFORM_BLOCK                                        = &H92E2&
+Public Const GL_PROGRAM_INPUT                                        = &H92E3&
+Public Const GL_PROGRAM_OUTPUT                                       = &H92E4&
+Public Const GL_BUFFER_VARIABLE                                      = &H92E5&
+Public Const GL_SHADER_STORAGE_BLOCK                                 = &H92E6&
+Public Const GL_IS_PER_PATCH                                         = &H92E7&
+Public Const GL_VERTEX_SUBROUTINE                                    = &H92E8&
+Public Const GL_TESS_CONTROL_SUBROUTINE                              = &H92E9&
+Public Const GL_TESS_EVALUATION_SUBROUTINE                           = &H92EA&
+Public Const GL_GEOMETRY_SUBROUTINE                                  = &H92EB&
+Public Const GL_FRAGMENT_SUBROUTINE                                  = &H92EC&
+Public Const GL_COMPUTE_SUBROUTINE                                   = &H92ED&
+Public Const GL_VERTEX_SUBROUTINE_UNIFORM                            = &H92EE&
+Public Const GL_TESS_CONTROL_SUBROUTINE_UNIFORM                      = &H92EF&
+Public Const GL_TESS_EVALUATION_SUBROUTINE_UNIFORM                   = &H92F0&
+Public Const GL_GEOMETRY_SUBROUTINE_UNIFORM                          = &H92F1&
+Public Const GL_FRAGMENT_SUBROUTINE_UNIFORM                          = &H92F2&
+Public Const GL_COMPUTE_SUBROUTINE_UNIFORM                           = &H92F3&
+Public Const GL_TRANSFORM_FEEDBACK_VARYING                           = &H92F4&
+Public Const GL_ACTIVE_RESOURCES                                     = &H92F5&
+Public Const GL_MAX_NAME_LENGTH                                      = &H92F6&
+Public Const GL_MAX_NUM_ACTIVE_VARIABLES                             = &H92F7&
+Public Const GL_MAX_NUM_COMPATIBLE_SUBROUTINES                       = &H92F8&
+Public Const GL_NAME_LENGTH                                          = &H92F9&
+Public Const GL_TYPE                                                 = &H92FA&
+Public Const GL_ARRAY_SIZE                                           = &H92FB&
+Public Const GL_OFFSET                                               = &H92FC&
+Public Const GL_BLOCK_INDEX                                          = &H92FD&
+Public Const GL_ARRAY_STRIDE                                         = &H92FE&
+Public Const GL_MATRIX_STRIDE                                        = &H92FF&
+Public Const GL_IS_ROW_MAJOR                                         = &H9300&
+Public Const GL_ATOMIC_COUNTER_BUFFER_INDEX                          = &H9301&
+Public Const GL_BUFFER_BINDING                                       = &H9302&
+Public Const GL_BUFFER_DATA_SIZE                                     = &H9303&
+Public Const GL_NUM_ACTIVE_VARIABLES                                 = &H9304&
+Public Const GL_ACTIVE_VARIABLES                                     = &H9305&
+Public Const GL_REFERENCED_BY_VERTEX_SHADER                          = &H9306&
+Public Const GL_REFERENCED_BY_TESS_CONTROL_SHADER                    = &H9307&
+Public Const GL_REFERENCED_BY_TESS_EVALUATION_SHADER                 = &H9308&
+Public Const GL_REFERENCED_BY_GEOMETRY_SHADER                        = &H9309&
+Public Const GL_REFERENCED_BY_FRAGMENT_SHADER                        = &H930A&
+Public Const GL_REFERENCED_BY_COMPUTE_SHADER                         = &H930B&
+Public Const GL_TOP_LEVEL_ARRAY_SIZE                                 = &H930C&
+Public Const GL_TOP_LEVEL_ARRAY_STRIDE                               = &H930D&
+Public Const GL_LOCATION                                             = &H930E&
+Public Const GL_LOCATION_INDEX                                       = &H930F&
 '------------------------------- GL_ARB_provoking_vertex -------------------------------
-Public Const GL_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION                                                                                                                                                                                                                 = &H8E4C&
-Public Const GL_FIRST_VERTEX_CONVENTION                                                                                                                                                                                                              = &H8E4D&
-Public Const GL_LAST_VERTEX_CONVENTION                                                                                                                                                                                                               = &H8E4E&
-Public Const GL_PROVOKING_VERTEX                                                                                                                                                                                                                 = &H8E4F&
+Public Const GL_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION             = &H8E4C&
+Public Const GL_FIRST_VERTEX_CONVENTION                              = &H8E4D&
+Public Const GL_LAST_VERTEX_CONVENTION                               = &H8E4E&
+Public Const GL_PROVOKING_VERTEX                                     = &H8E4F&
 '------------------------------- GL_ARB_query_buffer_object -------------------------------
-Public Const GL_QUERY_BUFFER_BARRIER_BIT                                                                                                                                                                                                                 = &H8000&
-Public Const GL_QUERY_BUFFER                                                                                                                                                                                                                 = &H9192&
-Public Const GL_QUERY_BUFFER_BINDING                                                                                                                                                                                                                 = &H9193&
-Public Const GL_QUERY_RESULT_NO_WAIT                                                                                                                                                                                                                 = &H9194&
+Public Const GL_QUERY_BUFFER_BARRIER_BIT                             = &H8000&
+Public Const GL_QUERY_BUFFER                                         = &H9192&
+Public Const GL_QUERY_BUFFER_BINDING                                 = &H9193&
+Public Const GL_QUERY_RESULT_NO_WAIT                                 = &H9194&
 '------------------------------- GL_ARB_robust_buffer_access_behavior -------------------------------
 '------------------------------- GL_ARB_robustness -------------------------------
-Public Const GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB                                                                                                                                                                                                               = &H4&
-Public Const GL_LOSE_CONTEXT_ON_RESET_ARB                                                                                                                                                                                                                = &H8252&
-Public Const GL_GUILTY_CONTEXT_RESET_ARB                                                                                                                                                                                                                 = &H8253&
-Public Const GL_INNOCENT_CONTEXT_RESET_ARB                                                                                                                                                                                                               = &H8254&
-Public Const GL_UNKNOWN_CONTEXT_RESET_ARB                                                                                                                                                                                                                = &H8255&
-Public Const GL_RESET_NOTIFICATION_STRATEGY_ARB                                                                                                                                                                                                              = &H8256&
-Public Const GL_NO_RESET_NOTIFICATION_ARB                                                                                                                                                                                                                = &H8261&
+Public Const GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB                   = &H4&
+Public Const GL_LOSE_CONTEXT_ON_RESET_ARB                            = &H8252&
+Public Const GL_GUILTY_CONTEXT_RESET_ARB                             = &H8253&
+Public Const GL_INNOCENT_CONTEXT_RESET_ARB                           = &H8254&
+Public Const GL_UNKNOWN_CONTEXT_RESET_ARB                            = &H8255&
+Public Const GL_RESET_NOTIFICATION_STRATEGY_ARB                      = &H8256&
+Public Const GL_NO_RESET_NOTIFICATION_ARB                            = &H8261&
 '------------------------------- GL_ARB_robustness_application_isolation -------------------------------
 '------------------------------- GL_ARB_robustness_share_group_isolation -------------------------------
 '------------------------------- GL_ARB_sample_locations -------------------------------
-Public Const GL_SAMPLE_LOCATION_ARB                                                                                                                                                                                                              = &H8E50&
-Public Const GL_SAMPLE_LOCATION_SUBPIXEL_BITS_ARB                                                                                                                                                                                                                = &H933D&
-Public Const GL_SAMPLE_LOCATION_PIXEL_GRID_WIDTH_ARB                                                                                                                                                                                                                 = &H933E&
-Public Const GL_SAMPLE_LOCATION_PIXEL_GRID_HEIGHT_ARB                                                                                                                                                                                                                = &H933F&
-Public Const GL_PROGRAMMABLE_SAMPLE_LOCATION_TABLE_SIZE_ARB                                                                                                                                                                                                              = &H9340&
-Public Const GL_PROGRAMMABLE_SAMPLE_LOCATION_ARB                                                                                                                                                                                                                 = &H9341&
-Public Const GL_FRAMEBUFFER_PROGRAMMABLE_SAMPLE_LOCATIONS_ARB                                                                                                                                                                                                                = &H9342&
-Public Const GL_FRAMEBUFFER_SAMPLE_LOCATION_PIXEL_GRID_ARB                                                                                                                                                                                                               = &H9343&
-'------------------------------- GL_ARB_sample_shading -------------------------------
-Public Const GL_SAMPLE_SHADING_ARB                                                                                                                                                                                                               = &H8C36&
-Public Const GL_MIN_SAMPLE_SHADING_VALUE_ARB                                                                                                                                                                                                                 = &H8C37&
-'------------------------------- GL_ARB_sampler_objects -------------------------------
-Public Const GL_SAMPLER_BINDING                                                                                                                                                                                                              = &H8919&
-'------------------------------- GL_ARB_seamless_cube_map -------------------------------
-Public Const GL_TEXTURE_CUBE_MAP_SEAMLESS                                                                                                                                                                                                                = &H884F&
-'------------------------------- GL_ARB_seamless_cubemap_per_texture -------------------------------
-'public const GL_TEXTURE_CUBE_MAP_SEAMLESS                                                                                                                                                                                                               = &h884F&
-'------------------------------- GL_ARB_separate_shader_objects -------------------------------
-Public Const GL_VERTEX_SHADER_BIT                                                                                                                                                                                                                = &H1&
-Public Const GL_FRAGMENT_SHADER_BIT                                                                                                                                                                                                              = &H2&
-Public Const GL_GEOMETRY_SHADER_BIT                                                                                                                                                                                                              = &H4&
-Public Const GL_TESS_CONTROL_SHADER_BIT                                                                                                                                                                                                              = &H8&
-Public Const GL_TESS_EVALUATION_SHADER_BIT                                                                                                                                                                                                               = &H10&
-Public Const GL_PROGRAM_SEPARABLE                                                                                                                                                                                                                = &H8258&
-Public Const GL_ACTIVE_PROGRAM                                                                                                                                                                                                               = &H8259&
-Public Const GL_PROGRAM_PIPELINE_BINDING                                                                                                                                                                                                                 = &H825A&
-Public Const GL_ALL_SHADER_BITS                                                                                                                                                                                                              = &HFFFFFFFF
+Public Const GL_SAMPLE_LOCATION_ARB                                  = &H8E50&
+Public Const GL_SAMPLE_LOCATION_SUBPIXEL_BITS_ARB                    = &H933D&
+Public Const GL_SAMPLE_LOCATION_PIXEL_GRID_WIDTH_ARB                 = &H933E&
+Public Const GL_SAMPLE_LOCATION_PIXEL_GRID_HEIGHT_ARB                = &H933F&
+Public Const GL_PROGRAMMABLE_SAMPLE_LOCATION_TABLE_SIZE_ARB          = &H9340&
+Public Const GL_PROGRAMMABLE_SAMPLE_LOCATION_ARB                     = &H9341&
+Public Const GL_FRAMEBUFFER_PROGRAMMABLE_SAMPLE_LOCATIONS_ARB        = &H9342&
+Public Const GL_FRAMEBUFFER_SAMPLE_LOCATION_PIXEL_GRID_ARB           = &H9343&
+'------------------------------- GL_ARB_sample_shading -----------------
+Public Const GL_SAMPLE_SHADING_ARB                                   = &H8C36&
+Public Const GL_MIN_SAMPLE_SHADING_VALUE_ARB                         = &H8C37&
+'------------------------------- GL_ARB_sampler_objects ------------------
+Public Const GL_SAMPLER_BINDING                                      = &H8919&
+'------------------------------- GL_ARB_seamless_cube_map --------------------
+Public Const GL_TEXTURE_CUBE_MAP_SEAMLESS                            = &H884F&
+'------------------------------- GL_ARB_seamless_cubemap_per_texture ------------------------------
+'public const GL_TEXTURE_CUBE_MAP_SEAMLESS                           = &h884F&
+'------------------------------- GL_ARB_separate_shader_objects --------------------------
+Public Const GL_VERTEX_SHADER_BIT                                    = &H1&
+Public Const GL_FRAGMENT_SHADER_BIT                                  = &H2&
+Public Const GL_GEOMETRY_SHADER_BIT                                  = &H4&
+Public Const GL_TESS_CONTROL_SHADER_BIT                              = &H8&
+Public Const GL_TESS_EVALUATION_SHADER_BIT                           = &H10&
+Public Const GL_PROGRAM_SEPARABLE                                    = &H8258&
+Public Const GL_ACTIVE_PROGRAM                                       = &H8259&
+Public Const GL_PROGRAM_PIPELINE_BINDING                             = &H825A&
+Public Const GL_ALL_SHADER_BITS                                      = &HFFFFFFFF
 '------------------------------- GL_ARB_shader_atomic_counter_ops -------------------------------
 '------------------------------- GL_ARB_shader_atomic_counters -------------------------------
-Public Const GL_ATOMIC_COUNTER_BUFFER                                                                                                                                                                                                                = &H92C0&
-Public Const GL_ATOMIC_COUNTER_BUFFER_BINDING                                                                                                                                                                                                                = &H92C1&
-Public Const GL_ATOMIC_COUNTER_BUFFER_START                                                                                                                                                                                                              = &H92C2&
-Public Const GL_ATOMIC_COUNTER_BUFFER_SIZE                                                                                                                                                                                                               = &H92C3&
-Public Const GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE                                                                                                                                                                                                              = &H92C4&
-Public Const GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTERS                                                                                                                                                                                                                 = &H92C5&
-Public Const GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTER_INDICES                                                                                                                                                                                                              = &H92C6&
-Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_VERTEX_SHADER                                                                                                                                                                                                                = &H92C7&
-Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_TESS_CONTROL_SHADER                                                                                                                                                                                                              = &H92C8&
-Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_TESS_EVALUATION_SHADER                                                                                                                                                                                                               = &H92C9&
-Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_GEOMETRY_SHADER                                                                                                                                                                                                              = &H92CA&
-Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_FRAGMENT_SHADER                                                                                                                                                                                                              = &H92CB&
-Public Const GL_MAX_VERTEX_ATOMIC_COUNTER_BUFFERS                                                                                                                                                                                                                = &H92CC&
-Public Const GL_MAX_TESS_CONTROL_ATOMIC_COUNTER_BUFFERS                                                                                                                                                                                                              = &H92CD&
-Public Const GL_MAX_TESS_EVALUATION_ATOMIC_COUNTER_BUFFERS                                                                                                                                                                                                               = &H92CE&
-Public Const GL_MAX_GEOMETRY_ATOMIC_COUNTER_BUFFERS                                                                                                                                                                                                              = &H92CF&
-Public Const GL_MAX_FRAGMENT_ATOMIC_COUNTER_BUFFERS                                                                                                                                                                                                              = &H92D0&
-Public Const GL_MAX_COMBINED_ATOMIC_COUNTER_BUFFERS                                                                                                                                                                                                              = &H92D1&
-Public Const GL_MAX_VERTEX_ATOMIC_COUNTERS                                                                                                                                                                                                               = &H92D2&
-Public Const GL_MAX_TESS_CONTROL_ATOMIC_COUNTERS                                                                                                                                                                                                                 = &H92D3&
-Public Const GL_MAX_TESS_EVALUATION_ATOMIC_COUNTERS                                                                                                                                                                                                              = &H92D4&
-Public Const GL_MAX_GEOMETRY_ATOMIC_COUNTERS                                                                                                                                                                                                                 = &H92D5&
-Public Const GL_MAX_FRAGMENT_ATOMIC_COUNTERS                                                                                                                                                                                                                 = &H92D6&
-Public Const GL_MAX_COMBINED_ATOMIC_COUNTERS                                                                                                                                                                                                                 = &H92D7&
-Public Const GL_MAX_ATOMIC_COUNTER_BUFFER_SIZE                                                                                                                                                                                                               = &H92D8&
-Public Const GL_ACTIVE_ATOMIC_COUNTER_BUFFERS                                                                                                                                                                                                                = &H92D9&
-Public Const GL_UNIFORM_ATOMIC_COUNTER_BUFFER_INDEX                                                                                                                                                                                                              = &H92DA&
-Public Const GL_UNSIGNED_INT_ATOMIC_COUNTER                                                                                                                                                                                                              = &H92DB&
-Public Const GL_MAX_ATOMIC_COUNTER_BUFFER_BINDINGS                                                                                                                                                                                                               = &H92DC&
+Public Const GL_ATOMIC_COUNTER_BUFFER                                      = &H92C0&
+Public Const GL_ATOMIC_COUNTER_BUFFER_BINDING                              = &H92C1&
+Public Const GL_ATOMIC_COUNTER_BUFFER_START                                = &H92C2&
+Public Const GL_ATOMIC_COUNTER_BUFFER_SIZE                                 = &H92C3&
+Public Const GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE                            = &H92C4&
+Public Const GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTERS               = &H92C5&
+Public Const GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTER_INDICES        = &H92C6&
+Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_VERTEX_SHADER          = &H92C7&
+Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_TESS_CONTROL_SHADER    = &H92C8&
+Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_TESS_EVALUATION_SHADER = &H92C9&
+Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_GEOMETRY_SHADER        = &H92CA&
+Public Const GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_FRAGMENT_SHADER        = &H92CB&
+Public Const GL_MAX_VERTEX_ATOMIC_COUNTER_BUFFERS                          = &H92CC&
+Public Const GL_MAX_TESS_CONTROL_ATOMIC_COUNTER_BUFFERS                    = &H92CD&
+Public Const GL_MAX_TESS_EVALUATION_ATOMIC_COUNTER_BUFFERS                 = &H92CE&
+Public Const GL_MAX_GEOMETRY_ATOMIC_COUNTER_BUFFERS                        = &H92CF&
+Public Const GL_MAX_FRAGMENT_ATOMIC_COUNTER_BUFFERS                        = &H92D0&
+Public Const GL_MAX_COMBINED_ATOMIC_COUNTER_BUFFERS                        = &H92D1&
+Public Const GL_MAX_VERTEX_ATOMIC_COUNTERS                                 = &H92D2&
+Public Const GL_MAX_TESS_CONTROL_ATOMIC_COUNTERS                           = &H92D3&
+Public Const GL_MAX_TESS_EVALUATION_ATOMIC_COUNTERS                        = &H92D4&
+Public Const GL_MAX_GEOMETRY_ATOMIC_COUNTERS                               = &H92D5&
+Public Const GL_MAX_FRAGMENT_ATOMIC_COUNTERS                               = &H92D6&
+Public Const GL_MAX_COMBINED_ATOMIC_COUNTERS                               = &H92D7&
+Public Const GL_MAX_ATOMIC_COUNTER_BUFFER_SIZE                             = &H92D8&
+Public Const GL_ACTIVE_ATOMIC_COUNTER_BUFFERS                              = &H92D9&
+Public Const GL_UNIFORM_ATOMIC_COUNTER_BUFFER_INDEX                        = &H92DA&
+Public Const GL_UNSIGNED_INT_ATOMIC_COUNTER                                = &H92DB&
+Public Const GL_MAX_ATOMIC_COUNTER_BUFFER_BINDINGS                         = &H92DC&
 '------------------------------- GL_ARB_shader_ballot -------------------------------
 '------------------------------- GL_ARB_shader_bit_encoding -------------------------------
 '------------------------------- GL_ARB_shader_clock -------------------------------
 '------------------------------- GL_ARB_shader_draw_parameters -------------------------------
 '------------------------------- GL_ARB_shader_group_vote -------------------------------
 '------------------------------- GL_ARB_shader_image_load_store -------------------------------
-Public Const GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT                                                                                                                                                                                                              = &H1&
-Public Const GL_ELEMENT_ARRAY_BARRIER_BIT                                                                                                                                                                                                                = &H2&
-Public Const GL_UNIFORM_BARRIER_BIT                                                                                                                                                                                                              = &H4&
-Public Const GL_TEXTURE_FETCH_BARRIER_BIT                                                                                                                                                                                                                = &H8&
-Public Const GL_SHADER_IMAGE_ACCESS_BARRIER_BIT                                                                                                                                                                                                              = &H20&
-Public Const GL_COMMAND_BARRIER_BIT                                                                                                                                                                                                              = &H40&
-Public Const GL_PIXEL_BUFFER_BARRIER_BIT                                                                                                                                                                                                                 = &H80&
-Public Const GL_TEXTURE_UPDATE_BARRIER_BIT                                                                                                                                                                                                               = &H100&
-Public Const GL_BUFFER_UPDATE_BARRIER_BIT                                                                                                                                                                                                                = &H200&
-Public Const GL_FRAMEBUFFER_BARRIER_BIT                                                                                                                                                                                                              = &H400&
-Public Const GL_TRANSFORM_FEEDBACK_BARRIER_BIT                                                                                                                                                                                                               = &H800&
-Public Const GL_ATOMIC_COUNTER_BARRIER_BIT                                                                                                                                                                                                               = &H1000&
-Public Const GL_MAX_IMAGE_UNITS                                                                                                                                                                                                              = &H8F38&
-Public Const GL_MAX_COMBINED_IMAGE_UNITS_AND_FRAGMENT_OUTPUTS                                                                                                                                                                                                                = &H8F39&
-Public Const GL_IMAGE_BINDING_NAME                                                                                                                                                                                                               = &H8F3A&
-Public Const GL_IMAGE_BINDING_LEVEL                                                                                                                                                                                                              = &H8F3B&
-Public Const GL_IMAGE_BINDING_LAYERED                                                                                                                                                                                                                = &H8F3C&
-Public Const GL_IMAGE_BINDING_LAYER                                                                                                                                                                                                              = &H8F3D&
-Public Const GL_IMAGE_BINDING_ACCESS                                                                                                                                                                                                                 = &H8F3E&
-Public Const GL_IMAGE_1D                                                                                                                                                                                                                 = &H904C&
-Public Const GL_IMAGE_2D                                                                                                                                                                                                                 = &H904D&
-Public Const GL_IMAGE_3D                                                                                                                                                                                                                 = &H904E&
-Public Const GL_IMAGE_2D_RECT                                                                                                                                                                                                                = &H904F&
-Public Const GL_IMAGE_CUBE                                                                                                                                                                                                               = &H9050&
-Public Const GL_IMAGE_BUFFER                                                                                                                                                                                                                 = &H9051&
-Public Const GL_IMAGE_1D_ARRAY                                                                                                                                                                                                               = &H9052&
-Public Const GL_IMAGE_2D_ARRAY                                                                                                                                                                                                               = &H9053&
-Public Const GL_IMAGE_CUBE_MAP_ARRAY                                                                                                                                                                                                                 = &H9054&
-Public Const GL_IMAGE_2D_MULTISAMPLE                                                                                                                                                                                                                 = &H9055&
-Public Const GL_IMAGE_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                               = &H9056&
-Public Const GL_INT_IMAGE_1D                                                                                                                                                                                                                 = &H9057&
-Public Const GL_INT_IMAGE_2D                                                                                                                                                                                                                 = &H9058&
-Public Const GL_INT_IMAGE_3D                                                                                                                                                                                                                 = &H9059&
-Public Const GL_INT_IMAGE_2D_RECT                                                                                                                                                                                                                = &H905A&
-Public Const GL_INT_IMAGE_CUBE                                                                                                                                                                                                               = &H905B&
-Public Const GL_INT_IMAGE_BUFFER                                                                                                                                                                                                                 = &H905C&
-Public Const GL_INT_IMAGE_1D_ARRAY                                                                                                                                                                                                               = &H905D&
-Public Const GL_INT_IMAGE_2D_ARRAY                                                                                                                                                                                                               = &H905E&
-Public Const GL_INT_IMAGE_CUBE_MAP_ARRAY                                                                                                                                                                                                                 = &H905F&
-Public Const GL_INT_IMAGE_2D_MULTISAMPLE                                                                                                                                                                                                                 = &H9060&
-Public Const GL_INT_IMAGE_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                               = &H9061&
-Public Const GL_UNSIGNED_INT_IMAGE_1D                                                                                                                                                                                                                = &H9062&
-Public Const GL_UNSIGNED_INT_IMAGE_2D                                                                                                                                                                                                                = &H9063&
-Public Const GL_UNSIGNED_INT_IMAGE_3D                                                                                                                                                                                                                = &H9064&
-Public Const GL_UNSIGNED_INT_IMAGE_2D_RECT                                                                                                                                                                                                               = &H9065&
-Public Const GL_UNSIGNED_INT_IMAGE_CUBE                                                                                                                                                                                                              = &H9066&
-Public Const GL_UNSIGNED_INT_IMAGE_BUFFER                                                                                                                                                                                                                = &H9067&
-Public Const GL_UNSIGNED_INT_IMAGE_1D_ARRAY                                                                                                                                                                                                              = &H9068&
-Public Const GL_UNSIGNED_INT_IMAGE_2D_ARRAY                                                                                                                                                                                                              = &H9069&
-Public Const GL_UNSIGNED_INT_IMAGE_CUBE_MAP_ARRAY                                                                                                                                                                                                                = &H906A&
-Public Const GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE                                                                                                                                                                                                                = &H906B&
-Public Const GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                              = &H906C&
-Public Const GL_MAX_IMAGE_SAMPLES                                                                                                                                                                                                                = &H906D&
-Public Const GL_IMAGE_BINDING_FORMAT                                                                                                                                                                                                                 = &H906E&
-Public Const GL_IMAGE_FORMAT_COMPATIBILITY_TYPE                                                                                                                                                                                                              = &H90C7&
-Public Const GL_IMAGE_FORMAT_COMPATIBILITY_BY_SIZE                                                                                                                                                                                                               = &H90C8&
-Public Const GL_IMAGE_FORMAT_COMPATIBILITY_BY_CLASS                                                                                                                                                                                                              = &H90C9&
-Public Const GL_MAX_VERTEX_IMAGE_UNIFORMS                                                                                                                                                                                                                = &H90CA&
-Public Const GL_MAX_TESS_CONTROL_IMAGE_UNIFORMS                                                                                                                                                                                                              = &H90CB&
-Public Const GL_MAX_TESS_EVALUATION_IMAGE_UNIFORMS                                                                                                                                                                                                               = &H90CC&
-Public Const GL_MAX_GEOMETRY_IMAGE_UNIFORMS                                                                                                                                                                                                              = &H90CD&
-Public Const GL_MAX_FRAGMENT_IMAGE_UNIFORMS                                                                                                                                                                                                              = &H90CE&
-Public Const GL_MAX_COMBINED_IMAGE_UNIFORMS                                                                                                                                                                                                              = &H90CF&
-Public Const GL_ALL_BARRIER_BITS                                                                                                                                                                                                                 = &HFFFFFFFF
-'------------------------------- GL_ARB_shader_image_size -------------------------------
-'------------------------------- GL_ARB_shader_objects -------------------------------
-Public Const GL_PROGRAM_OBJECT_ARB                                                                                                                                                                                                               = &H8B40&
-Public Const GL_SHADER_OBJECT_ARB                                                                                                                                                                                                                = &H8B48&
-Public Const GL_OBJECT_TYPE_ARB                                                                                                                                                                                                              = &H8B4E&
-Public Const GL_OBJECT_SUBTYPE_ARB                                                                                                                                                                                                               = &H8B4F&
-Public Const GL_FLOAT_VEC2_ARB                                                                                                                                                                                                               = &H8B50&
-Public Const GL_FLOAT_VEC3_ARB                                                                                                                                                                                                               = &H8B51&
-Public Const GL_FLOAT_VEC4_ARB                                                                                                                                                                                                               = &H8B52&
-Public Const GL_INT_VEC2_ARB                                                                                                                                                                                                                 = &H8B53&
-Public Const GL_INT_VEC3_ARB                                                                                                                                                                                                                 = &H8B54&
-Public Const GL_INT_VEC4_ARB                                                                                                                                                                                                                 = &H8B55&
-Public Const GL_BOOL_ARB                                                                                                                                                                                                                 = &H8B56&
-Public Const GL_BOOL_VEC2_ARB                                                                                                                                                                                                                = &H8B57&
-Public Const GL_BOOL_VEC3_ARB                                                                                                                                                                                                                = &H8B58&
-Public Const GL_BOOL_VEC4_ARB                                                                                                                                                                                                                = &H8B59&
-Public Const GL_FLOAT_MAT2_ARB                                                                                                                                                                                                               = &H8B5A&
-Public Const GL_FLOAT_MAT3_ARB                                                                                                                                                                                                               = &H8B5B&
-Public Const GL_FLOAT_MAT4_ARB                                                                                                                                                                                                               = &H8B5C&
-Public Const GL_SAMPLER_1D_ARB                                                                                                                                                                                                               = &H8B5D&
-Public Const GL_SAMPLER_2D_ARB                                                                                                                                                                                                               = &H8B5E&
-Public Const GL_SAMPLER_3D_ARB                                                                                                                                                                                                               = &H8B5F&
-Public Const GL_SAMPLER_CUBE_ARB                                                                                                                                                                                                                 = &H8B60&
-Public Const GL_SAMPLER_1D_SHADOW_ARB                                                                                                                                                                                                                = &H8B61&
-Public Const GL_SAMPLER_2D_SHADOW_ARB                                                                                                                                                                                                                = &H8B62&
-Public Const GL_SAMPLER_2D_RECT_ARB                                                                                                                                                                                                              = &H8B63&
-Public Const GL_SAMPLER_2D_RECT_SHADOW_ARB                                                                                                                                                                                                               = &H8B64&
-Public Const GL_OBJECT_DELETE_STATUS_ARB                                                                                                                                                                                                                 = &H8B80&
-Public Const GL_OBJECT_COMPILE_STATUS_ARB                                                                                                                                                                                                                = &H8B81&
-Public Const GL_OBJECT_LINK_STATUS_ARB                                                                                                                                                                                                               = &H8B82&
-Public Const GL_OBJECT_VALIDATE_STATUS_ARB                                                                                                                                                                                                               = &H8B83&
-Public Const GL_OBJECT_INFO_LOG_LENGTH_ARB                                                                                                                                                                                                               = &H8B84&
-Public Const GL_OBJECT_ATTACHED_OBJECTS_ARB                                                                                                                                                                                                              = &H8B85&
-Public Const GL_OBJECT_ACTIVE_UNIFORMS_ARB                                                                                                                                                                                                               = &H8B86&
-Public Const GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB                                                                                                                                                                                                                 = &H8B87&
-Public Const GL_OBJECT_SHADER_SOURCE_LENGTH_ARB                                                                                                                                                                                                              = &H8B88&
-'------------------------------- GL_ARB_shader_precision -------------------------------
-'------------------------------- GL_ARB_shader_stencil_export -------------------------------
-'------------------------------- GL_ARB_shader_storage_buffer_object -------------------------------
-Public Const GL_SHADER_STORAGE_BARRIER_BIT                                                                                                                                                                                                               = &H2000&
-Public Const GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES                                                                                                                                                                                                                 = &H8F39&
-Public Const GL_SHADER_STORAGE_BUFFER                                                                                                                                                                                                                = &H90D2&
-Public Const GL_SHADER_STORAGE_BUFFER_BINDING                                                                                                                                                                                                                = &H90D3&
-Public Const GL_SHADER_STORAGE_BUFFER_START                                                                                                                                                                                                              = &H90D4&
-Public Const GL_SHADER_STORAGE_BUFFER_SIZE                                                                                                                                                                                                               = &H90D5&
-Public Const GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS                                                                                                                                                                                                                 = &H90D6&
-Public Const GL_MAX_GEOMETRY_SHADER_STORAGE_BLOCKS                                                                                                                                                                                                               = &H90D7&
-Public Const GL_MAX_TESS_CONTROL_SHADER_STORAGE_BLOCKS                                                                                                                                                                                                               = &H90D8&
-Public Const GL_MAX_TESS_EVALUATION_SHADER_STORAGE_BLOCKS                                                                                                                                                                                                                = &H90D9&
-Public Const GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS                                                                                                                                                                                                               = &H90DA&
-Public Const GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS                                                                                                                                                                                                                = &H90DB&
-Public Const GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS                                                                                                                                                                                                               = &H90DC&
-Public Const GL_MAX_SHADER_STORAGE_BUFFER_BINDINGS                                                                                                                                                                                                               = &H90DD&
-Public Const GL_MAX_SHADER_STORAGE_BLOCK_SIZE                                                                                                                                                                                                                = &H90DE&
-Public Const GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT                                                                                                                                                                                                               = &H90DF&
-'------------------------------- GL_ARB_shader_subroutine -------------------------------
-Public Const GL_ACTIVE_SUBROUTINES                                                                                                                                                                                                               = &H8DE5&
-Public Const GL_ACTIVE_SUBROUTINE_UNIFORMS                                                                                                                                                                                                               = &H8DE6&
-Public Const GL_MAX_SUBROUTINES                                                                                                                                                                                                              = &H8DE7&
-Public Const GL_MAX_SUBROUTINE_UNIFORM_LOCATIONS                                                                                                                                                                                                                 = &H8DE8&
-Public Const GL_ACTIVE_SUBROUTINE_UNIFORM_LOCATIONS                                                                                                                                                                                                              = &H8E47&
-Public Const GL_ACTIVE_SUBROUTINE_MAX_LENGTH                                                                                                                                                                                                                 = &H8E48&
-Public Const GL_ACTIVE_SUBROUTINE_UNIFORM_MAX_LENGTH                                                                                                                                                                                                                 = &H8E49&
-Public Const GL_NUM_COMPATIBLE_SUBROUTINES                                                                                                                                                                                                               = &H8E4A&
-Public Const GL_COMPATIBLE_SUBROUTINES                                                                                                                                                                                                               = &H8E4B&
-'------------------------------- GL_ARB_shader_texture_image_samples -------------------------------
-'------------------------------- GL_ARB_shader_texture_lod -------------------------------
-'------------------------------- GL_ARB_shader_viewport_layer_array -------------------------------
-'------------------------------- GL_ARB_shading_language_100 -------------------------------
-Public Const GL_SHADING_LANGUAGE_VERSION_ARB                                                                                                                                                                                                                 = &H8B8C&
-'------------------------------- GL_ARB_shading_language_420pack -------------------------------
-'------------------------------- GL_ARB_shading_language_include -------------------------------
-Public Const GL_SHADER_INCLUDE_ARB                                                                                                                                                                                                               = &H8DAE&
-Public Const GL_NAMED_STRING_LENGTH_ARB                                                                                                                                                                                                              = &H8DE9&
-Public Const GL_NAMED_STRING_TYPE_ARB                                                                                                                                                                                                                = &H8DEA&
-'------------------------------- GL_ARB_shading_language_packing -------------------------------
-'------------------------------- GL_ARB_shadow -------------------------------
-Public Const GL_TEXTURE_COMPARE_MODE_ARB                                                                                                                                                                                                                 = &H884C&
-Public Const GL_TEXTURE_COMPARE_FUNC_ARB                                                                                                                                                                                                                 = &H884D&
-Public Const GL_COMPARE_R_TO_TEXTURE_ARB                                                                                                                                                                                                                 = &H884E&
-'------------------------------- GL_ARB_shadow_ambient -------------------------------
-Public Const GL_TEXTURE_COMPARE_FAIL_VALUE_ARB                                                                                                                                                                                                               = &H80BF&
-'------------------------------- GL_ARB_sparse_buffer -------------------------------
-Public Const GL_SPARSE_STORAGE_BIT_ARB                                                                                                                                                                                                               = &H400&
-Public Const GL_SPARSE_BUFFER_PAGE_SIZE_ARB                                                                                                                                                                                                              = &H82F8&
-'------------------------------- GL_ARB_sparse_texture -------------------------------
-Public Const GL_VIRTUAL_PAGE_SIZE_X_ARB                                                                                                                                                                                                              = &H9195&
-Public Const GL_VIRTUAL_PAGE_SIZE_Y_ARB                                                                                                                                                                                                              = &H9196&
-Public Const GL_VIRTUAL_PAGE_SIZE_Z_ARB                                                                                                                                                                                                              = &H9197&
-Public Const GL_MAX_SPARSE_TEXTURE_SIZE_ARB                                                                                                                                                                                                              = &H9198&
-Public Const GL_MAX_SPARSE_3D_TEXTURE_SIZE_ARB                                                                                                                                                                                                               = &H9199&
-Public Const GL_MAX_SPARSE_ARRAY_TEXTURE_LAYERS_ARB                                                                                                                                                                                                              = &H919A&
-Public Const GL_TEXTURE_SPARSE_ARB                                                                                                                                                                                                               = &H91A6&
-Public Const GL_VIRTUAL_PAGE_SIZE_INDEX_ARB                                                                                                                                                                                                              = &H91A7&
-Public Const GL_NUM_VIRTUAL_PAGE_SIZES_ARB                                                                                                                                                                                                               = &H91A8&
-Public Const GL_SPARSE_TEXTURE_FULL_ARRAY_CUBE_MIPMAPS_ARB                                                                                                                                                                                                               = &H91A9&
-Public Const GL_NUM_SPARSE_LEVELS_ARB                                                                                                                                                                                                                = &H91AA&
-'------------------------------- GL_ARB_sparse_texture2 -------------------------------
-'------------------------------- GL_ARB_sparse_texture_clamp -------------------------------
-'------------------------------- GL_ARB_spirv_extensions -------------------------------
-'public const GL_SPIR_V_EXTENSIONS                                                                                                                                                                                                               = &h9553&
-'public const GL_NUM_SPIR_V_EXTENSIONS                                                                                                                                                                                                               = &h9554&
-'------------------------------- GL_ARB_stencil_texturing -------------------------------
-Public Const GL_DEPTH_STENCIL_TEXTURE_MODE                                                                                                                                                                                                               = &H90EA&
-'------------------------------- GL_ARB_sync -------------------------------
-Public Const GL_SYNC_FLUSH_COMMANDS_BIT                                                                                                                                                                                                              = &H1&
-Public Const GL_MAX_SERVER_WAIT_TIMEOUT                                                                                                                                                                                                              = &H9111&
-Public Const GL_OBJECT_TYPE                                                                                                                                                                                                              = &H9112&
-Public Const GL_SYNC_CONDITION                                                                                                                                                                                                               = &H9113&
-Public Const GL_SYNC_STATUS                                                                                                                                                                                                              = &H9114&
-Public Const GL_SYNC_FLAGS                                                                                                                                                                                                               = &H9115&
-Public Const GL_SYNC_FENCE                                                                                                                                                                                                               = &H9116&
-Public Const GL_SYNC_GPU_COMMANDS_COMPLETE                                                                                                                                                                                                               = &H9117&
-Public Const GL_UNSIGNALED                                                                                                                                                                                                               = &H9118&
-Public Const GL_SIGNALED                                                                                                                                                                                                                 = &H9119&
-Public Const GL_ALREADY_SIGNALED                                                                                                                                                                                                                 = &H911A&
-Public Const GL_TIMEOUT_EXPIRED                                                                                                                                                                                                              = &H911B&
-Public Const GL_CONDITION_SATISFIED                                                                                                                                                                                                              = &H911C&
-Public Const GL_WAIT_FAILED                                                                                                                                                                                                              = &H911D&
-'public const GL_TIMEOUT_IGNORED                                                                                                                                                                                                                 = &hFFFFFFFFFFFFFFFFull&
-'------------------------------- GL_ARB_tessellation_shader -------------------------------
-Public Const GL_PATCHES                                                                                                                                                                                                              = &HE&
-Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_CONTROL_SHADER                                                                                                                                                                                                              = &H84F0&
-Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_EVALUATION_SHADER                                                                                                                                                                                                               = &H84F1&
-Public Const GL_MAX_TESS_CONTROL_INPUT_COMPONENTS                                                                                                                                                                                                                = &H886C&
-Public Const GL_MAX_TESS_EVALUATION_INPUT_COMPONENTS                                                                                                                                                                                                                 = &H886D&
-Public Const GL_MAX_COMBINED_TESS_CONTROL_UNIFORM_COMPONENTS                                                                                                                                                                                                                 = &H8E1E&
-Public Const GL_MAX_COMBINED_TESS_EVALUATION_UNIFORM_COMPONENTS                                                                                                                                                                                                              = &H8E1F&
-Public Const GL_PATCH_VERTICES                                                                                                                                                                                                               = &H8E72&
-Public Const GL_PATCH_DEFAULT_INNER_LEVEL                                                                                                                                                                                                                = &H8E73&
-Public Const GL_PATCH_DEFAULT_OUTER_LEVEL                                                                                                                                                                                                                = &H8E74&
-Public Const GL_TESS_CONTROL_OUTPUT_VERTICES                                                                                                                                                                                                                 = &H8E75&
-Public Const GL_TESS_GEN_MODE                                                                                                                                                                                                                = &H8E76&
-Public Const GL_TESS_GEN_SPACING                                                                                                                                                                                                                 = &H8E77&
-Public Const GL_TESS_GEN_VERTEX_ORDER                                                                                                                                                                                                                = &H8E78&
-Public Const GL_TESS_GEN_POINT_MODE                                                                                                                                                                                                              = &H8E79&
-Public Const GL_ISOLINES                                                                                                                                                                                                                 = &H8E7A&
-Public Const GL_FRACTIONAL_ODD                                                                                                                                                                                                               = &H8E7B&
-Public Const GL_FRACTIONAL_EVEN                                                                                                                                                                                                              = &H8E7C&
-Public Const GL_MAX_PATCH_VERTICES                                                                                                                                                                                                               = &H8E7D&
-Public Const GL_MAX_TESS_GEN_LEVEL                                                                                                                                                                                                               = &H8E7E&
-Public Const GL_MAX_TESS_CONTROL_UNIFORM_COMPONENTS                                                                                                                                                                                                              = &H8E7F&
-Public Const GL_MAX_TESS_EVALUATION_UNIFORM_COMPONENTS                                                                                                                                                                                                               = &H8E80&
-Public Const GL_MAX_TESS_CONTROL_TEXTURE_IMAGE_UNITS                                                                                                                                                                                                                 = &H8E81&
-Public Const GL_MAX_TESS_EVALUATION_TEXTURE_IMAGE_UNITS                                                                                                                                                                                                              = &H8E82&
-Public Const GL_MAX_TESS_CONTROL_OUTPUT_COMPONENTS                                                                                                                                                                                                               = &H8E83&
-Public Const GL_MAX_TESS_PATCH_COMPONENTS                                                                                                                                                                                                                = &H8E84&
-Public Const GL_MAX_TESS_CONTROL_TOTAL_OUTPUT_COMPONENTS                                                                                                                                                                                                                 = &H8E85&
-Public Const GL_MAX_TESS_EVALUATION_OUTPUT_COMPONENTS                                                                                                                                                                                                                = &H8E86&
-Public Const GL_TESS_EVALUATION_SHADER                                                                                                                                                                                                               = &H8E87&
-Public Const GL_TESS_CONTROL_SHADER                                                                                                                                                                                                              = &H8E88&
-Public Const GL_MAX_TESS_CONTROL_UNIFORM_BLOCKS                                                                                                                                                                                                              = &H8E89&
-Public Const GL_MAX_TESS_EVALUATION_UNIFORM_BLOCKS                                                                                                                                                                                                               = &H8E8A&
-'------------------------------- GL_ARB_texture_barrier -------------------------------
-'------------------------------- GL_ARB_texture_border_clamp -------------------------------
-Public Const GL_CLAMP_TO_BORDER_ARB                                                                                                                                                                                                              = &H812D&
-'------------------------------- GL_ARB_texture_buffer_object -------------------------------
-Public Const GL_TEXTURE_BUFFER_ARB                                                                                                                                                                                                               = &H8C2A&
-Public Const GL_MAX_TEXTURE_BUFFER_SIZE_ARB                                                                                                                                                                                                              = &H8C2B&
-Public Const GL_TEXTURE_BINDING_BUFFER_ARB                                                                                                                                                                                                               = &H8C2C&
-Public Const GL_TEXTURE_BUFFER_DATA_STORE_BINDING_ARB                                                                                                                                                                                                                = &H8C2D&
-Public Const GL_TEXTURE_BUFFER_FORMAT_ARB                                                                                                                                                                                                                = &H8C2E&
-'------------------------------- GL_ARB_texture_buffer_object_rgb32 -------------------------------
-'------------------------------- GL_ARB_texture_buffer_range -------------------------------
-Public Const GL_TEXTURE_BUFFER_OFFSET                                                                                                                                                                                                                = &H919D&
-Public Const GL_TEXTURE_BUFFER_SIZE                                                                                                                                                                                                              = &H919E&
-Public Const GL_TEXTURE_BUFFER_OFFSET_ALIGNMENT                                                                                                                                                                                                              = &H919F&
-'------------------------------- GL_ARB_texture_compression -------------------------------
-Public Const GL_COMPRESSED_ALPHA_ARB                                                                                                                                                                                                                 = &H84E9&
-Public Const GL_COMPRESSED_LUMINANCE_ARB                                                                                                                                                                                                                 = &H84EA&
-Public Const GL_COMPRESSED_LUMINANCE_ALPHA_ARB                                                                                                                                                                                                               = &H84EB&
-Public Const GL_COMPRESSED_INTENSITY_ARB                                                                                                                                                                                                                 = &H84EC&
-Public Const GL_COMPRESSED_RGB_ARB                                                                                                                                                                                                               = &H84ED&
-Public Const GL_COMPRESSED_RGBA_ARB                                                                                                                                                                                                              = &H84EE&
-Public Const GL_TEXTURE_COMPRESSION_HINT_ARB                                                                                                                                                                                                                 = &H84EF&
-Public Const GL_TEXTURE_COMPRESSED_IMAGE_SIZE_ARB                                                                                                                                                                                                                = &H86A0&
-Public Const GL_TEXTURE_COMPRESSED_ARB                                                                                                                                                                                                               = &H86A1&
-Public Const GL_NUM_COMPRESSED_TEXTURE_FORMATS_ARB                                                                                                                                                                                                               = &H86A2&
-Public Const GL_COMPRESSED_TEXTURE_FORMATS_ARB                                                                                                                                                                                                               = &H86A3&
-'------------------------------- GL_ARB_texture_compression_bptc -------------------------------
-Public Const GL_COMPRESSED_RGBA_BPTC_UNORM_ARB                                                                                                                                                                                                               = &H8E8C&
-Public Const GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB                                                                                                                                                                                                                 = &H8E8D&
-Public Const GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB                                                                                                                                                                                                                 = &H8E8E&
-Public Const GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB                                                                                                                                                                                                               = &H8E8F&
-'------------------------------- GL_ARB_texture_compression_rgtc -------------------------------
-Public Const GL_COMPRESSED_RED_RGTC1                                                                                                                                                                                                                 = &H8DBB&
-Public Const GL_COMPRESSED_SIGNED_RED_RGTC1                                                                                                                                                                                                              = &H8DBC&
-Public Const GL_COMPRESSED_RG_RGTC2                                                                                                                                                                                                              = &H8DBD&
-Public Const GL_COMPRESSED_SIGNED_RG_RGTC2                                                                                                                                                                                                               = &H8DBE&
-'------------------------------- GL_ARB_texture_cube_map -------------------------------
-Public Const GL_NORMAL_MAP_ARB                                                                                                                                                                                                               = &H8511&
-Public Const GL_REFLECTION_MAP_ARB                                                                                                                                                                                                               = &H8512&
-Public Const GL_TEXTURE_CUBE_MAP_ARB                                                                                                                                                                                                                 = &H8513&
-Public Const GL_TEXTURE_BINDING_CUBE_MAP_ARB                                                                                                                                                                                                                 = &H8514&
-Public Const GL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB                                                                                                                                                                                                              = &H8515&
-Public Const GL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB                                                                                                                                                                                                              = &H8516&
-Public Const GL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB                                                                                                                                                                                                              = &H8517&
-Public Const GL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB                                                                                                                                                                                                              = &H8518&
-Public Const GL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB                                                                                                                                                                                                              = &H8519&
-Public Const GL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB                                                                                                                                                                                                              = &H851A&
-Public Const GL_PROXY_TEXTURE_CUBE_MAP_ARB                                                                                                                                                                                                               = &H851B&
-Public Const GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB                                                                                                                                                                                                                = &H851C&
-'------------------------------- GL_ARB_texture_cube_map_array -------------------------------
-Public Const GL_TEXTURE_CUBE_MAP_ARRAY_ARB                                                                                                                                                                                                               = &H9009&
-Public Const GL_TEXTURE_BINDING_CUBE_MAP_ARRAY_ARB                                                                                                                                                                                                               = &H900A&
-Public Const GL_PROXY_TEXTURE_CUBE_MAP_ARRAY_ARB                                                                                                                                                                                                                 = &H900B&
-Public Const GL_SAMPLER_CUBE_MAP_ARRAY_ARB                                                                                                                                                                                                               = &H900C&
-Public Const GL_SAMPLER_CUBE_MAP_ARRAY_SHADOW_ARB                                                                                                                                                                                                                = &H900D&
-Public Const GL_INT_SAMPLER_CUBE_MAP_ARRAY_ARB                                                                                                                                                                                                               = &H900E&
-Public Const GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_ARB                                                                                                                                                                                                              = &H900F&
-'------------------------------- GL_ARB_texture_env_add -------------------------------
-'------------------------------- GL_ARB_texture_env_combine -------------------------------
-Public Const GL_SUBTRACT_ARB                                                                                                                                                                                                                 = &H84E7&
-Public Const GL_COMBINE_ARB                                                                                                                                                                                                              = &H8570&
-Public Const GL_COMBINE_RGB_ARB                                                                                                                                                                                                              = &H8571&
-Public Const GL_COMBINE_ALPHA_ARB                                                                                                                                                                                                                = &H8572&
-Public Const GL_RGB_SCALE_ARB                                                                                                                                                                                                                = &H8573&
-Public Const GL_ADD_SIGNED_ARB                                                                                                                                                                                                               = &H8574&
-Public Const GL_INTERPOLATE_ARB                                                                                                                                                                                                              = &H8575&
-Public Const GL_CONSTANT_ARB                                                                                                                                                                                                                 = &H8576&
-Public Const GL_PRIMARY_COLOR_ARB                                                                                                                                                                                                                = &H8577&
-Public Const GL_PREVIOUS_ARB                                                                                                                                                                                                                 = &H8578&
-Public Const GL_SOURCE0_RGB_ARB                                                                                                                                                                                                              = &H8580&
-Public Const GL_SOURCE1_RGB_ARB                                                                                                                                                                                                              = &H8581&
-Public Const GL_SOURCE2_RGB_ARB                                                                                                                                                                                                              = &H8582&
-Public Const GL_SOURCE0_ALPHA_ARB                                                                                                                                                                                                                = &H8588&
-Public Const GL_SOURCE1_ALPHA_ARB                                                                                                                                                                                                                = &H8589&
-Public Const GL_SOURCE2_ALPHA_ARB                                                                                                                                                                                                                = &H858A&
-Public Const GL_OPERAND0_RGB_ARB                                                                                                                                                                                                                 = &H8590&
-Public Const GL_OPERAND1_RGB_ARB                                                                                                                                                                                                                 = &H8591&
-Public Const GL_OPERAND2_RGB_ARB                                                                                                                                                                                                                 = &H8592&
-Public Const GL_OPERAND0_ALPHA_ARB                                                                                                                                                                                                               = &H8598&
-Public Const GL_OPERAND1_ALPHA_ARB                                                                                                                                                                                                               = &H8599&
-Public Const GL_OPERAND2_ALPHA_ARB                                                                                                                                                                                                               = &H859A&
-'------------------------------- GL_ARB_texture_env_crossbar -------------------------------
-'------------------------------- GL_ARB_texture_env_dot3 -------------------------------
-Public Const GL_DOT3_RGB_ARB                                                                                                                                                                                                                 = &H86AE&
-Public Const GL_DOT3_RGBA_ARB                                                                                                                                                                                                                = &H86AF&
-'------------------------------- GL_ARB_texture_filter_anisotropic -------------------------------
-'public const GL_TEXTURE_MAX_ANISOTROPY                                                                                                                                                                                                              = &h84FE&
-'public const GL_MAX_TEXTURE_MAX_ANISOTROPY                                                                                                                                                                                                              = &h84FF&
-'------------------------------- GL_ARB_texture_filter_minmax -------------------------------
-Public Const GL_TEXTURE_REDUCTION_MODE_ARB                                                                                                                                                                                                               = &H9366&
-Public Const GL_WEIGHTED_AVERAGE_ARB                                                                                                                                                                                                                 = &H9367&
-'------------------------------- GL_ARB_texture_float -------------------------------
-Public Const GL_RGBA32F_ARB                                                                                                                                                                                                              = &H8814&
-Public Const GL_RGB32F_ARB                                                                                                                                                                                                               = &H8815&
-Public Const GL_ALPHA32F_ARB                                                                                                                                                                                                                 = &H8816&
-Public Const GL_INTENSITY32F_ARB                                                                                                                                                                                                                 = &H8817&
-Public Const GL_LUMINANCE32F_ARB                                                                                                                                                                                                                 = &H8818&
-Public Const GL_LUMINANCE_ALPHA32F_ARB                                                                                                                                                                                                               = &H8819&
-Public Const GL_RGBA16F_ARB                                                                                                                                                                                                              = &H881A&
-Public Const GL_RGB16F_ARB                                                                                                                                                                                                               = &H881B&
-Public Const GL_ALPHA16F_ARB                                                                                                                                                                                                                 = &H881C&
-Public Const GL_INTENSITY16F_ARB                                                                                                                                                                                                                 = &H881D&
-Public Const GL_LUMINANCE16F_ARB                                                                                                                                                                                                                 = &H881E&
-Public Const GL_LUMINANCE_ALPHA16F_ARB                                                                                                                                                                                                               = &H881F&
-Public Const GL_TEXTURE_RED_TYPE_ARB                                                                                                                                                                                                                 = &H8C10&
-Public Const GL_TEXTURE_GREEN_TYPE_ARB                                                                                                                                                                                                               = &H8C11&
-Public Const GL_TEXTURE_BLUE_TYPE_ARB                                                                                                                                                                                                                = &H8C12&
-Public Const GL_TEXTURE_ALPHA_TYPE_ARB                                                                                                                                                                                                               = &H8C13&
-Public Const GL_TEXTURE_LUMINANCE_TYPE_ARB                                                                                                                                                                                                               = &H8C14&
-Public Const GL_TEXTURE_INTENSITY_TYPE_ARB                                                                                                                                                                                                               = &H8C15&
-Public Const GL_TEXTURE_DEPTH_TYPE_ARB                                                                                                                                                                                                               = &H8C16&
-Public Const GL_UNSIGNED_NORMALIZED_ARB                                                                                                                                                                                                              = &H8C17&
-'------------------------------- GL_ARB_texture_gather -------------------------------
-Public Const GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_ARB                                                                                                                                                                                                                = &H8E5E&
-Public Const GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_ARB                                                                                                                                                                                                                = &H8E5F&
-Public Const GL_MAX_PROGRAM_TEXTURE_GATHER_COMPONENTS_ARB                                                                                                                                                                                                                = &H8F9F&
-'------------------------------- GL_ARB_texture_mirror_clamp_to_edge -------------------------------
-Public Const GL_MIRROR_CLAMP_TO_EDGE                                                                                                                                                                                                                 = &H8743&
-'------------------------------- GL_ARB_texture_mirrored_repeat -------------------------------
-Public Const GL_MIRRORED_REPEAT_ARB                                                                                                                                                                                                              = &H8370&
-'------------------------------- GL_ARB_texture_multisample -------------------------------
-Public Const GL_SAMPLE_POSITION                                                                                                                                                                                                              = &H8E50&
-Public Const GL_SAMPLE_MASK                                                                                                                                                                                                              = &H8E51&
-Public Const GL_SAMPLE_MASK_VALUE                                                                                                                                                                                                                = &H8E52&
-Public Const GL_MAX_SAMPLE_MASK_WORDS                                                                                                                                                                                                                = &H8E59&
-Public Const GL_TEXTURE_2D_MULTISAMPLE                                                                                                                                                                                                               = &H9100&
-Public Const GL_PROXY_TEXTURE_2D_MULTISAMPLE                                                                                                                                                                                                                 = &H9101&
-Public Const GL_TEXTURE_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                                 = &H9102&
-Public Const GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                               = &H9103&
-Public Const GL_TEXTURE_BINDING_2D_MULTISAMPLE                                                                                                                                                                                                               = &H9104&
-Public Const GL_TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                                 = &H9105&
-Public Const GL_TEXTURE_SAMPLES                                                                                                                                                                                                              = &H9106&
-Public Const GL_TEXTURE_FIXED_SAMPLE_LOCATIONS                                                                                                                                                                                                               = &H9107&
-Public Const GL_SAMPLER_2D_MULTISAMPLE                                                                                                                                                                                                               = &H9108&
-Public Const GL_INT_SAMPLER_2D_MULTISAMPLE                                                                                                                                                                                                               = &H9109&
-Public Const GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE                                                                                                                                                                                                              = &H910A&
-Public Const GL_SAMPLER_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                                 = &H910B&
-Public Const GL_INT_SAMPLER_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                                 = &H910C&
-Public Const GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY                                                                                                                                                                                                                = &H910D&
-Public Const GL_MAX_COLOR_TEXTURE_SAMPLES                                                                                                                                                                                                                = &H910E&
-Public Const GL_MAX_DEPTH_TEXTURE_SAMPLES                                                                                                                                                                                                                = &H910F&
-Public Const GL_MAX_INTEGER_SAMPLES                                                                                                                                                                                                              = &H9110&
-'------------------------------- GL_ARB_texture_non_power_of_two -------------------------------
-'------------------------------- GL_ARB_texture_query_levels -------------------------------
-'------------------------------- GL_ARB_texture_query_lod -------------------------------
-'------------------------------- GL_ARB_texture_rectangle -------------------------------
-Public Const GL_TEXTURE_RECTANGLE_ARB                                                                                                                                                                                                                = &H84F5&
-Public Const GL_TEXTURE_BINDING_RECTANGLE_ARB                                                                                                                                                                                                                = &H84F6&
-Public Const GL_PROXY_TEXTURE_RECTANGLE_ARB                                                                                                                                                                                                              = &H84F7&
-Public Const GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB                                                                                                                                                                                                               = &H84F8&
-'public const GL_SAMPLER_2D_RECT_ARB                                                                                                                                                                                                                 = &h8B63&
-'public const GL_SAMPLER_2D_RECT_SHADOW_ARB                                                                                                                                                                                                              = &h8B64&
-'------------------------------- GL_ARB_texture_rg -------------------------------
-Public Const GL_COMPRESSED_RED                                                                                                                                                                                                               = &H8225&
-Public Const GL_COMPRESSED_RG                                                                                                                                                                                                                = &H8226&
-Public Const GL_RG                                                                                                                                                                                                               = &H8227&
-Public Const GL_RG_INTEGER                                                                                                                                                                                                               = &H8228&
-Public Const GL_R8                                                                                                                                                                                                               = &H8229&
-Public Const GL_R16                                                                                                                                                                                                              = &H822A&
-Public Const GL_RG8                                                                                                                                                                                                              = &H822B&
-Public Const GL_RG16                                                                                                                                                                                                                 = &H822C&
-Public Const GL_R16F                                                                                                                                                                                                                 = &H822D&
-Public Const GL_R32F                                                                                                                                                                                                                 = &H822E&
-Public Const GL_RG16F                                                                                                                                                                                                                = &H822F&
-Public Const GL_RG32F                                                                                                                                                                                                                = &H8230&
-Public Const GL_R8I                                                                                                                                                                                                              = &H8231&
-Public Const GL_R8UI                                                                                                                                                                                                                 = &H8232&
-Public Const GL_R16I                                                                                                                                                                                                                 = &H8233&
-Public Const GL_R16UI                                                                                                                                                                                                                = &H8234&
-Public Const GL_R32I                                                                                                                                                                                                                 = &H8235&
-Public Const GL_R32UI                                                                                                                                                                                                                = &H8236&
-Public Const GL_RG8I                                                                                                                                                                                                                 = &H8237&
-Public Const GL_RG8UI                                                                                                                                                                                                                = &H8238&
-Public Const GL_RG16I                                                                                                                                                                                                                = &H8239&
-Public Const GL_RG16UI                                                                                                                                                                                                               = &H823A&
-Public Const GL_RG32I                                                                                                                                                                                                                = &H823B&
-Public Const GL_RG32UI                                                                                                                                                                                                               = &H823C&
-'------------------------------- GL_ARB_texture_rgb10_a2ui -------------------------------
-'public const GL_RGB10_A2UI                                                                                                                                                                                                              = &h906F&
-'------------------------------- GL_ARB_texture_stencil8 -------------------------------
-'public const GL_STENCIL_INDEX                                                                                                                                                                                                               = &h1901&
-'public const GL_STENCIL_INDEX8                                                                                                                                                                                                              = &h8D48&
-'------------------------------- GL_ARB_texture_storage -------------------------------
-Public Const GL_TEXTURE_IMMUTABLE_FORMAT                                                                                                                                                                                                                 = &H912F&
-'------------------------------- GL_ARB_texture_storage_multisample -------------------------------
-'------------------------------- GL_ARB_texture_swizzle -------------------------------
-Public Const GL_TEXTURE_SWIZZLE_R                                                                                                                                                                                                                = &H8E42&
-Public Const GL_TEXTURE_SWIZZLE_G                                                                                                                                                                                                                = &H8E43&
-Public Const GL_TEXTURE_SWIZZLE_B                                                                                                                                                                                                                = &H8E44&
-Public Const GL_TEXTURE_SWIZZLE_A                                                                                                                                                                                                                = &H8E45&
-Public Const GL_TEXTURE_SWIZZLE_RGBA                                                                                                                                                                                                                 = &H8E46&
-'------------------------------- GL_ARB_texture_view -------------------------------
-Public Const GL_TEXTURE_VIEW_MIN_LEVEL                                                                                                                                                                                                               = &H82DB&
-Public Const GL_TEXTURE_VIEW_NUM_LEVELS                                                                                                                                                                                                              = &H82DC&
-Public Const GL_TEXTURE_VIEW_MIN_LAYER                                                                                                                                                                                                               = &H82DD&
-Public Const GL_TEXTURE_VIEW_NUM_LAYERS                                                                                                                                                                                                              = &H82DE&
-'public const GL_TEXTURE_IMMUTABLE_LEVELS                                                                                                                                                                                                                = &h82DF&
-'------------------------------- GL_ARB_timer_query -------------------------------
-Public Const GL_TIME_ELAPSED                                                                                                                                                                                                                 = &H88BF&
-Public Const GL_TIMESTAMP                                                                                                                                                                                                                = &H8E28&
-'------------------------------- GL_ARB_transform_feedback2 -------------------------------
-Public Const GL_TRANSFORM_FEEDBACK                                                                                                                                                                                                               = &H8E22&
-Public Const GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED                                                                                                                                                                                                                 = &H8E23&
-Public Const GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE                                                                                                                                                                                                                 = &H8E24&
-Public Const GL_TRANSFORM_FEEDBACK_BINDING                                                                                                                                                                                                               = &H8E25&
-'------------------------------- GL_ARB_transform_feedback3 -------------------------------
-Public Const GL_MAX_TRANSFORM_FEEDBACK_BUFFERS                                                                                                                                                                                                               = &H8E70&
-'public const GL_MAX_VERTEX_STREAMS                                                                                                                                                                                                              = &h8E71&
-'------------------------------- GL_ARB_transform_feedback_instanced -------------------------------
-'------------------------------- GL_ARB_transform_feedback_overflow_query -------------------------------
-Public Const GL_TRANSFORM_FEEDBACK_OVERFLOW_ARB                                                                                                                                                                                                              = &H82EC&
-Public Const GL_TRANSFORM_FEEDBACK_STREAM_OVERFLOW_ARB                                                                                                                                                                                                               = &H82ED&
-'------------------------------- GL_ARB_transpose_matrix -------------------------------
-Public Const GL_TRANSPOSE_MODELVIEW_MATRIX_ARB                                                                                                                                                                                                               = &H84E3&
-Public Const GL_TRANSPOSE_PROJECTION_MATRIX_ARB                                                                                                                                                                                                              = &H84E4&
-Public Const GL_TRANSPOSE_TEXTURE_MATRIX_ARB                                                                                                                                                                                                                 = &H84E5&
-Public Const GL_TRANSPOSE_COLOR_MATRIX_ARB                                                                                                                                                                                                               = &H84E6&
-'------------------------------- GL_ARB_uniform_buffer_object -------------------------------
-Public Const GL_UNIFORM_BUFFER                                                                                                                                                                                                               = &H8A11&
-Public Const GL_UNIFORM_BUFFER_BINDING                                                                                                                                                                                                               = &H8A28&
-Public Const GL_UNIFORM_BUFFER_START                                                                                                                                                                                                                 = &H8A29&
-Public Const GL_UNIFORM_BUFFER_SIZE                                                                                                                                                                                                              = &H8A2A&
-Public Const GL_MAX_VERTEX_UNIFORM_BLOCKS                                                                                                                                                                                                                = &H8A2B&
-Public Const GL_MAX_GEOMETRY_UNIFORM_BLOCKS                                                                                                                                                                                                              = &H8A2C&
-Public Const GL_MAX_FRAGMENT_UNIFORM_BLOCKS                                                                                                                                                                                                              = &H8A2D&
-Public Const GL_MAX_COMBINED_UNIFORM_BLOCKS                                                                                                                                                                                                              = &H8A2E&
-Public Const GL_MAX_UNIFORM_BUFFER_BINDINGS                                                                                                                                                                                                              = &H8A2F&
-Public Const GL_MAX_UNIFORM_BLOCK_SIZE                                                                                                                                                                                                               = &H8A30&
-Public Const GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS                                                                                                                                                                                                               = &H8A31&
-Public Const GL_MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS                                                                                                                                                                                                                 = &H8A32&
-Public Const GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS                                                                                                                                                                                                                 = &H8A33&
-Public Const GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT                                                                                                                                                                                                              = &H8A34&
-Public Const GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH                                                                                                                                                                                                                 = &H8A35&
-Public Const GL_ACTIVE_UNIFORM_BLOCKS                                                                                                                                                                                                                = &H8A36&
-Public Const GL_UNIFORM_TYPE                                                                                                                                                                                                                 = &H8A37&
-Public Const GL_UNIFORM_SIZE                                                                                                                                                                                                                 = &H8A38&
-Public Const GL_UNIFORM_NAME_LENGTH                                                                                                                                                                                                              = &H8A39&
-Public Const GL_UNIFORM_BLOCK_INDEX                                                                                                                                                                                                              = &H8A3A&
-Public Const GL_UNIFORM_OFFSET                                                                                                                                                                                                               = &H8A3B&
-Public Const GL_UNIFORM_ARRAY_STRIDE                                                                                                                                                                                                                 = &H8A3C&
-Public Const GL_UNIFORM_MATRIX_STRIDE                                                                                                                                                                                                                = &H8A3D&
-Public Const GL_UNIFORM_IS_ROW_MAJOR                                                                                                                                                                                                                 = &H8A3E&
-Public Const GL_UNIFORM_BLOCK_BINDING                                                                                                                                                                                                                = &H8A3F&
-Public Const GL_UNIFORM_BLOCK_DATA_SIZE                                                                                                                                                                                                              = &H8A40&
-Public Const GL_UNIFORM_BLOCK_NAME_LENGTH                                                                                                                                                                                                                = &H8A41&
-Public Const GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS                                                                                                                                                                                                                = &H8A42&
-Public Const GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES                                                                                                                                                                                                                 = &H8A43&
-Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_VERTEX_SHADER                                                                                                                                                                                                                = &H8A44&
-Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_GEOMETRY_SHADER                                                                                                                                                                                                              = &H8A45&
-Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_FRAGMENT_SHADER                                                                                                                                                                                                              = &H8A46&
-'public const GL_INVALID_INDEX                                                                                                                                                                                                               = &hFFFFFFFFu&
-'------------------------------- GL_ARB_vertex_array_bgra -------------------------------
-'public const GL_BGRA                                                                                                                                                                                                                = &h80E1&
-'------------------------------- GL_ARB_vertex_array_object -------------------------------
-Public Const GL_VERTEX_ARRAY_BINDING                                                                                                                                                                                                                 = &H85B5&
-'------------------------------- GL_ARB_vertex_attrib_64bit -------------------------------
-'------------------------------- GL_ARB_vertex_attrib_binding -------------------------------
-Public Const GL_VERTEX_ATTRIB_BINDING                                                                                                                                                                                                                = &H82D4&
-Public Const GL_VERTEX_ATTRIB_RELATIVE_OFFSET                                                                                                                                                                                                                = &H82D5&
-Public Const GL_VERTEX_BINDING_DIVISOR                                                                                                                                                                                                               = &H82D6&
-Public Const GL_VERTEX_BINDING_OFFSET                                                                                                                                                                                                                = &H82D7&
-Public Const GL_VERTEX_BINDING_STRIDE                                                                                                                                                                                                                = &H82D8&
-Public Const GL_MAX_VERTEX_ATTRIB_RELATIVE_OFFSET                                                                                                                                                                                                                = &H82D9&
-Public Const GL_MAX_VERTEX_ATTRIB_BINDINGS                                                                                                                                                                                                               = &H82DA&
-Public Const GL_VERTEX_BINDING_BUFFER                                                                                                                                                                                                                = &H8F4F&
-'------------------------------- GL_ARB_vertex_blend -------------------------------
-Public Const GL_MODELVIEW0_ARB                                                                                                                                                                                                               = &H1700&
-Public Const GL_MODELVIEW1_ARB                                                                                                                                                                                                               = &H850A&
-Public Const GL_MAX_VERTEX_UNITS_ARB                                                                                                                                                                                                                 = &H86A4&
-Public Const GL_ACTIVE_VERTEX_UNITS_ARB                                                                                                                                                                                                              = &H86A5&
-Public Const GL_WEIGHT_SUM_UNITY_ARB                                                                                                                                                                                                                 = &H86A6&
-Public Const GL_VERTEX_BLEND_ARB                                                                                                                                                                                                                 = &H86A7&
-Public Const GL_CURRENT_WEIGHT_ARB                                                                                                                                                                                                               = &H86A8&
-Public Const GL_WEIGHT_ARRAY_TYPE_ARB                                                                                                                                                                                                                = &H86A9&
-Public Const GL_WEIGHT_ARRAY_STRIDE_ARB                                                                                                                                                                                                              = &H86AA&
-Public Const GL_WEIGHT_ARRAY_SIZE_ARB                                                                                                                                                                                                                = &H86AB&
-Public Const GL_WEIGHT_ARRAY_POINTER_ARB                                                                                                                                                                                                                 = &H86AC&
-Public Const GL_WEIGHT_ARRAY_ARB                                                                                                                                                                                                                 = &H86AD&
-Public Const GL_MODELVIEW2_ARB                                                                                                                                                                                                               = &H8722&
-Public Const GL_MODELVIEW3_ARB                                                                                                                                                                                                               = &H8723&
-Public Const GL_MODELVIEW4_ARB                                                                                                                                                                                                               = &H8724&
-Public Const GL_MODELVIEW5_ARB                                                                                                                                                                                                               = &H8725&
-Public Const GL_MODELVIEW6_ARB                                                                                                                                                                                                               = &H8726&
-Public Const GL_MODELVIEW7_ARB                                                                                                                                                                                                               = &H8727&
-Public Const GL_MODELVIEW8_ARB                                                                                                                                                                                                               = &H8728&
-Public Const GL_MODELVIEW9_ARB                                                                                                                                                                                                               = &H8729&
-Public Const GL_MODELVIEW10_ARB                                                                                                                                                                                                              = &H872A&
-Public Const GL_MODELVIEW11_ARB                                                                                                                                                                                                              = &H872B&
-Public Const GL_MODELVIEW12_ARB                                                                                                                                                                                                              = &H872C&
-Public Const GL_MODELVIEW13_ARB                                                                                                                                                                                                              = &H872D&
-Public Const GL_MODELVIEW14_ARB                                                                                                                                                                                                              = &H872E&
-Public Const GL_MODELVIEW15_ARB                                                                                                                                                                                                              = &H872F&
-Public Const GL_MODELVIEW16_ARB                                                                                                                                                                                                              = &H8730&
-Public Const GL_MODELVIEW17_ARB                                                                                                                                                                                                              = &H8731&
-Public Const GL_MODELVIEW18_ARB                                                                                                                                                                                                              = &H8732&
-Public Const GL_MODELVIEW19_ARB                                                                                                                                                                                                              = &H8733&
-Public Const GL_MODELVIEW20_ARB                                                                                                                                                                                                              = &H8734&
-Public Const GL_MODELVIEW21_ARB                                                                                                                                                                                                              = &H8735&
-Public Const GL_MODELVIEW22_ARB                                                                                                                                                                                                              = &H8736&
-Public Const GL_MODELVIEW23_ARB                                                                                                                                                                                                              = &H8737&
-Public Const GL_MODELVIEW24_ARB                                                                                                                                                                                                              = &H8738&
-Public Const GL_MODELVIEW25_ARB                                                                                                                                                                                                              = &H8739&
-Public Const GL_MODELVIEW26_ARB                                                                                                                                                                                                              = &H873A&
-Public Const GL_MODELVIEW27_ARB                                                                                                                                                                                                              = &H873B&
-Public Const GL_MODELVIEW28_ARB                                                                                                                                                                                                              = &H873C&
-Public Const GL_MODELVIEW29_ARB                                                                                                                                                                                                              = &H873D&
-Public Const GL_MODELVIEW30_ARB                                                                                                                                                                                                              = &H873E&
-Public Const GL_MODELVIEW31_ARB                                                                                                                                                                                                              = &H873F&
-'------------------------------- GL_ARB_vertex_buffer_object -------------------------------
-Public Const GL_BUFFER_SIZE_ARB                                                                                                                                                                                                              = &H8764&
-Public Const GL_BUFFER_USAGE_ARB                                                                                                                                                                                                                 = &H8765&
-Public Const GL_ARRAY_BUFFER_ARB                                                                                                                                                                                                                 = &H8892&
-Public Const GL_ELEMENT_ARRAY_BUFFER_ARB                                                                                                                                                                                                                 = &H8893&
-Public Const GL_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                                 = &H8894&
-Public Const GL_ELEMENT_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                                 = &H8895&
-Public Const GL_VERTEX_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                              = &H8896&
-Public Const GL_NORMAL_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                              = &H8897&
-Public Const GL_COLOR_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                               = &H8898&
-Public Const GL_INDEX_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                               = &H8899&
-Public Const GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                               = &H889A&
-Public Const GL_EDGE_FLAG_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                               = &H889B&
-Public Const GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                                 = &H889C&
-Public Const GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                              = &H889D&
-Public Const GL_WEIGHT_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                              = &H889E&
-Public Const GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB                                                                                                                                                                                                               = &H889F&
-Public Const GL_READ_ONLY_ARB                                                                                                                                                                                                                = &H88B8&
-Public Const GL_WRITE_ONLY_ARB                                                                                                                                                                                                               = &H88B9&
-Public Const GL_READ_WRITE_ARB                                                                                                                                                                                                               = &H88BA&
-Public Const GL_BUFFER_ACCESS_ARB                                                                                                                                                                                                                = &H88BB&
-Public Const GL_BUFFER_MAPPED_ARB                                                                                                                                                                                                                = &H88BC&
-Public Const GL_BUFFER_MAP_POINTER_ARB                                                                                                                                                                                                               = &H88BD&
-Public Const GL_STREAM_DRAW_ARB                                                                                                                                                                                                              = &H88E0&
-Public Const GL_STREAM_READ_ARB                                                                                                                                                                                                              = &H88E1&
-Public Const GL_STREAM_COPY_ARB                                                                                                                                                                                                              = &H88E2&
-Public Const GL_STATIC_DRAW_ARB                                                                                                                                                                                                              = &H88E4&
-Public Const GL_STATIC_READ_ARB                                                                                                                                                                                                              = &H88E5&
-Public Const GL_STATIC_COPY_ARB                                                                                                                                                                                                              = &H88E6&
-Public Const GL_DYNAMIC_DRAW_ARB                                                                                                                                                                                                                 = &H88E8&
-Public Const GL_DYNAMIC_READ_ARB                                                                                                                                                                                                                 = &H88E9&
-Public Const GL_DYNAMIC_COPY_ARB                                                                                                                                                                                                                 = &H88EA&
-'------------------------------- GL_ARB_vertex_program -------------------------------
-Public Const GL_COLOR_SUM_ARB                                                                                                                                                                                                                = &H8458&
-Public Const GL_VERTEX_PROGRAM_ARB                                                                                                                                                                                                               = &H8620&
-Public Const GL_VERTEX_ATTRIB_ARRAY_ENABLED_ARB                                                                                                                                                                                                              = &H8622&
-Public Const GL_VERTEX_ATTRIB_ARRAY_SIZE_ARB                                                                                                                                                                                                                 = &H8623&
-Public Const GL_VERTEX_ATTRIB_ARRAY_STRIDE_ARB                                                                                                                                                                                                               = &H8624&
-Public Const GL_VERTEX_ATTRIB_ARRAY_TYPE_ARB                                                                                                                                                                                                                 = &H8625&
-Public Const GL_CURRENT_VERTEX_ATTRIB_ARB                                                                                                                                                                                                                = &H8626&
-Public Const GL_PROGRAM_LENGTH_ARB                                                                                                                                                                                                               = &H8627&
-Public Const GL_PROGRAM_STRING_ARB                                                                                                                                                                                                               = &H8628&
-Public Const GL_MAX_PROGRAM_MATRIX_STACK_DEPTH_ARB                                                                                                                                                                                                               = &H862E&
-Public Const GL_MAX_PROGRAM_MATRICES_ARB                                                                                                                                                                                                                 = &H862F&
-Public Const GL_CURRENT_MATRIX_STACK_DEPTH_ARB                                                                                                                                                                                                               = &H8640&
-Public Const GL_CURRENT_MATRIX_ARB                                                                                                                                                                                                               = &H8641&
-Public Const GL_VERTEX_PROGRAM_POINT_SIZE_ARB                                                                                                                                                                                                                = &H8642&
-Public Const GL_VERTEX_PROGRAM_TWO_SIDE_ARB                                                                                                                                                                                                              = &H8643&
-Public Const GL_VERTEX_ATTRIB_ARRAY_POINTER_ARB                                                                                                                                                                                                              = &H8645&
-Public Const GL_PROGRAM_ERROR_POSITION_ARB                                                                                                                                                                                                               = &H864B&
-Public Const GL_PROGRAM_BINDING_ARB                                                                                                                                                                                                              = &H8677&
-Public Const GL_MAX_VERTEX_ATTRIBS_ARB                                                                                                                                                                                                               = &H8869&
-Public Const GL_VERTEX_ATTRIB_ARRAY_NORMALIZED_ARB                                                                                                                                                                                                               = &H886A&
-Public Const GL_PROGRAM_ERROR_STRING_ARB                                                                                                                                                                                                                 = &H8874&
-Public Const GL_PROGRAM_FORMAT_ASCII_ARB                                                                                                                                                                                                                 = &H8875&
-Public Const GL_PROGRAM_FORMAT_ARB                                                                                                                                                                                                               = &H8876&
-Public Const GL_PROGRAM_INSTRUCTIONS_ARB                                                                                                                                                                                                                 = &H88A0&
-Public Const GL_MAX_PROGRAM_INSTRUCTIONS_ARB                                                                                                                                                                                                                 = &H88A1&
-Public Const GL_PROGRAM_NATIVE_INSTRUCTIONS_ARB                                                                                                                                                                                                              = &H88A2&
-Public Const GL_MAX_PROGRAM_NATIVE_INSTRUCTIONS_ARB                                                                                                                                                                                                              = &H88A3&
-Public Const GL_PROGRAM_TEMPORARIES_ARB                                                                                                                                                                                                              = &H88A4&
-Public Const GL_MAX_PROGRAM_TEMPORARIES_ARB                                                                                                                                                                                                              = &H88A5&
-Public Const GL_PROGRAM_NATIVE_TEMPORARIES_ARB                                                                                                                                                                                                               = &H88A6&
-Public Const GL_MAX_PROGRAM_NATIVE_TEMPORARIES_ARB                                                                                                                                                                                                               = &H88A7&
-Public Const GL_PROGRAM_PARAMETERS_ARB                                                                                                                                                                                                               = &H88A8&
-Public Const GL_MAX_PROGRAM_PARAMETERS_ARB                                                                                                                                                                                                               = &H88A9&
-Public Const GL_PROGRAM_NATIVE_PARAMETERS_ARB                                                                                                                                                                                                                = &H88AA&
-Public Const GL_MAX_PROGRAM_NATIVE_PARAMETERS_ARB                                                                                                                                                                                                                = &H88AB&
-Public Const GL_PROGRAM_ATTRIBS_ARB                                                                                                                                                                                                              = &H88AC&
-Public Const GL_MAX_PROGRAM_ATTRIBS_ARB                                                                                                                                                                                                              = &H88AD&
-Public Const GL_PROGRAM_NATIVE_ATTRIBS_ARB                                                                                                                                                                                                               = &H88AE&
-Public Const GL_MAX_PROGRAM_NATIVE_ATTRIBS_ARB                                                                                                                                                                                                               = &H88AF&
-Public Const GL_PROGRAM_ADDRESS_REGISTERS_ARB                                                                                                                                                                                                                = &H88B0&
-Public Const GL_MAX_PROGRAM_ADDRESS_REGISTERS_ARB                                                                                                                                                                                                                = &H88B1&
-Public Const GL_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB                                                                                                                                                                                                                 = &H88B2&
-Public Const GL_MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB                                                                                                                                                                                                                 = &H88B3&
-Public Const GL_MAX_PROGRAM_LOCAL_PARAMETERS_ARB                                                                                                                                                                                                                 = &H88B4&
-Public Const GL_MAX_PROGRAM_ENV_PARAMETERS_ARB                                                                                                                                                                                                               = &H88B5&
-Public Const GL_PROGRAM_UNDER_NATIVE_LIMITS_ARB                                                                                                                                                                                                              = &H88B6&
-Public Const GL_TRANSPOSE_CURRENT_MATRIX_ARB                                                                                                                                                                                                                 = &H88B7&
-Public Const GL_MATRIX0_ARB                                                                                                                                                                                                              = &H88C0&
-Public Const GL_MATRIX1_ARB                                                                                                                                                                                                              = &H88C1&
-Public Const GL_MATRIX2_ARB                                                                                                                                                                                                              = &H88C2&
-Public Const GL_MATRIX3_ARB                                                                                                                                                                                                              = &H88C3&
-Public Const GL_MATRIX4_ARB                                                                                                                                                                                                              = &H88C4&
-Public Const GL_MATRIX5_ARB                                                                                                                                                                                                              = &H88C5&
-Public Const GL_MATRIX6_ARB                                                                                                                                                                                                              = &H88C6&
-Public Const GL_MATRIX7_ARB                                                                                                                                                                                                              = &H88C7&
-Public Const GL_MATRIX8_ARB                                                                                                                                                                                                              = &H88C8&
-Public Const GL_MATRIX9_ARB                                                                                                                                                                                                              = &H88C9&
-Public Const GL_MATRIX10_ARB                                                                                                                                                                                                                 = &H88CA&
-Public Const GL_MATRIX11_ARB                                                                                                                                                                                                                 = &H88CB&
-Public Const GL_MATRIX12_ARB                                                                                                                                                                                                                 = &H88CC&
-Public Const GL_MATRIX13_ARB                                                                                                                                                                                                                 = &H88CD&
-Public Const GL_MATRIX14_ARB                                                                                                                                                                                                                 = &H88CE&
-Public Const GL_MATRIX15_ARB                                                                                                                                                                                                                 = &H88CF&
-Public Const GL_MATRIX16_ARB                                                                                                                                                                                                                 = &H88D0&
-Public Const GL_MATRIX17_ARB                                                                                                                                                                                                                 = &H88D1&
-Public Const GL_MATRIX18_ARB                                                                                                                                                                                                                 = &H88D2&
-Public Const GL_MATRIX19_ARB                                                                                                                                                                                                                 = &H88D3&
-Public Const GL_MATRIX20_ARB                                                                                                                                                                                                                 = &H88D4&
-Public Const GL_MATRIX21_ARB                                                                                                                                                                                                                 = &H88D5&
-Public Const GL_MATRIX22_ARB                                                                                                                                                                                                                 = &H88D6&
-Public Const GL_MATRIX23_ARB                                                                                                                                                                                                                 = &H88D7&
-Public Const GL_MATRIX24_ARB                                                                                                                                                                                                                 = &H88D8&
-Public Const GL_MATRIX25_ARB                                                                                                                                                                                                                 = &H88D9&
-Public Const GL_MATRIX26_ARB                                                                                                                                                                                                                 = &H88DA&
-Public Const GL_MATRIX27_ARB                                                                                                                                                                                                                 = &H88DB&
-Public Const GL_MATRIX28_ARB                                                                                                                                                                                                                 = &H88DC&
-Public Const GL_MATRIX29_ARB                                                                                                                                                                                                                 = &H88DD&
-Public Const GL_MATRIX30_ARB                                                                                                                                                                                                                 = &H88DE&
-Public Const GL_MATRIX31_ARB                                                                                                                                                                                                                 = &H88DF&
+Public Const GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT                            = &H1&
+Public Const GL_ELEMENT_ARRAY_BARRIER_BIT                                  = &H2&
+Public Const GL_UNIFORM_BARRIER_BIT                                        = &H4&
+Public Const GL_TEXTURE_FETCH_BARRIER_BIT                                  = &H8&
+Public Const GL_SHADER_IMAGE_ACCESS_BARRIER_BIT                            = &H20&
+Public Const GL_COMMAND_BARRIER_BIT                                        = &H40&
+Public Const GL_PIXEL_BUFFER_BARRIER_BIT                                   = &H80&
+Public Const GL_TEXTURE_UPDATE_BARRIER_BIT                                 = &H100&
+Public Const GL_BUFFER_UPDATE_BARRIER_BIT                                  = &H200&
+Public Const GL_FRAMEBUFFER_BARRIER_BIT                                    = &H400&
+Public Const GL_TRANSFORM_FEEDBACK_BARRIER_BIT                             = &H800&
+Public Const GL_ATOMIC_COUNTER_BARRIER_BIT                                 = &H1000&
+Public Const GL_MAX_IMAGE_UNITS                                            = &H8F38&
+Public Const GL_MAX_COMBINED_IMAGE_UNITS_AND_FRAGMENT_OUTPUTS              = &H8F39&
+Public Const GL_IMAGE_BINDING_NAME                                         = &H8F3A&
+Public Const GL_IMAGE_BINDING_LEVEL                                        = &H8F3B&
+Public Const GL_IMAGE_BINDING_LAYERED                                      = &H8F3C&
+Public Const GL_IMAGE_BINDING_LAYER                                        = &H8F3D&
+Public Const GL_IMAGE_BINDING_ACCESS                                       = &H8F3E&
+Public Const GL_IMAGE_1D                                                   = &H904C&
+Public Const GL_IMAGE_2D                                                   = &H904D&
+Public Const GL_IMAGE_3D                                                   = &H904E&
+Public Const GL_IMAGE_2D_RECT                                              = &H904F&
+Public Const GL_IMAGE_CUBE                                                 = &H9050&
+Public Const GL_IMAGE_BUFFER                                               = &H9051&
+Public Const GL_IMAGE_1D_ARRAY                                             = &H9052&
+Public Const GL_IMAGE_2D_ARRAY                                             = &H9053&
+Public Const GL_IMAGE_CUBE_MAP_ARRAY                                       = &H9054&
+Public Const GL_IMAGE_2D_MULTISAMPLE                                       = &H9055&
+Public Const GL_IMAGE_2D_MULTISAMPLE_ARRAY                                 = &H9056&
+Public Const GL_INT_IMAGE_1D                                               = &H9057&
+Public Const GL_INT_IMAGE_2D                                               = &H9058&
+Public Const GL_INT_IMAGE_3D                                               = &H9059&
+Public Const GL_INT_IMAGE_2D_RECT                                          = &H905A&
+Public Const GL_INT_IMAGE_CUBE                                             = &H905B&
+Public Const GL_INT_IMAGE_BUFFER                                           = &H905C&
+Public Const GL_INT_IMAGE_1D_ARRAY                                         = &H905D&
+Public Const GL_INT_IMAGE_2D_ARRAY                                         = &H905E&
+Public Const GL_INT_IMAGE_CUBE_MAP_ARRAY                                   = &H905F&
+Public Const GL_INT_IMAGE_2D_MULTISAMPLE                                   = &H9060&
+Public Const GL_INT_IMAGE_2D_MULTISAMPLE_ARRAY                             = &H9061&
+Public Const GL_UNSIGNED_INT_IMAGE_1D                                      = &H9062&
+Public Const GL_UNSIGNED_INT_IMAGE_2D                                      = &H9063&
+Public Const GL_UNSIGNED_INT_IMAGE_3D                                      = &H9064&
+Public Const GL_UNSIGNED_INT_IMAGE_2D_RECT                                 = &H9065&
+Public Const GL_UNSIGNED_INT_IMAGE_CUBE                                    = &H9066&
+Public Const GL_UNSIGNED_INT_IMAGE_BUFFER                                  = &H9067&
+Public Const GL_UNSIGNED_INT_IMAGE_1D_ARRAY                                = &H9068&
+Public Const GL_UNSIGNED_INT_IMAGE_2D_ARRAY                                = &H9069&
+Public Const GL_UNSIGNED_INT_IMAGE_CUBE_MAP_ARRAY                          = &H906A&
+Public Const GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE                          = &H906B&
+Public Const GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_ARRAY                    = &H906C&
+Public Const GL_MAX_IMAGE_SAMPLES                                          = &H906D&
+Public Const GL_IMAGE_BINDING_FORMAT                                       = &H906E&
+Public Const GL_IMAGE_FORMAT_COMPATIBILITY_TYPE                            = &H90C7&
+Public Const GL_IMAGE_FORMAT_COMPATIBILITY_BY_SIZE                         = &H90C8&
+Public Const GL_IMAGE_FORMAT_COMPATIBILITY_BY_CLASS                        = &H90C9&
+Public Const GL_MAX_VERTEX_IMAGE_UNIFORMS                                  = &H90CA&
+Public Const GL_MAX_TESS_CONTROL_IMAGE_UNIFORMS                            = &H90CB&
+Public Const GL_MAX_TESS_EVALUATION_IMAGE_UNIFORMS                         = &H90CC&
+Public Const GL_MAX_GEOMETRY_IMAGE_UNIFORMS                                = &H90CD&
+Public Const GL_MAX_FRAGMENT_IMAGE_UNIFORMS                                = &H90CE&
+Public Const GL_MAX_COMBINED_IMAGE_UNIFORMS                                = &H90CF&
+Public Const GL_ALL_BARRIER_BITS                                           = &HFFFFFFFF
+'------------------------------- GL_ARB_shader_image_size --------------
+'------------------------------- GL_ARB_shader_objects -----------
+Public Const GL_PROGRAM_OBJECT_ARB                                         = &H8B40&
+Public Const GL_SHADER_OBJECT_ARB                                          = &H8B48&
+Public Const GL_OBJECT_TYPE_ARB                                            = &H8B4E&
+Public Const GL_OBJECT_SUBTYPE_ARB                                         = &H8B4F&
+Public Const GL_FLOAT_VEC2_ARB                                             = &H8B50&
+Public Const GL_FLOAT_VEC3_ARB                                             = &H8B51&
+Public Const GL_FLOAT_VEC4_ARB                                             = &H8B52&
+Public Const GL_INT_VEC2_ARB                                               = &H8B53&
+Public Const GL_INT_VEC3_ARB                                               = &H8B54&
+Public Const GL_INT_VEC4_ARB                                               = &H8B55&
+Public Const GL_BOOL_ARB                                                   = &H8B56&
+Public Const GL_BOOL_VEC2_ARB                                              = &H8B57&
+Public Const GL_BOOL_VEC3_ARB                                              = &H8B58&
+Public Const GL_BOOL_VEC4_ARB                                              = &H8B59&
+Public Const GL_FLOAT_MAT2_ARB                                             = &H8B5A&
+Public Const GL_FLOAT_MAT3_ARB                                             = &H8B5B&
+Public Const GL_FLOAT_MAT4_ARB                                             = &H8B5C&
+Public Const GL_SAMPLER_1D_ARB                                             = &H8B5D&
+Public Const GL_SAMPLER_2D_ARB                                             = &H8B5E&
+Public Const GL_SAMPLER_3D_ARB                                             = &H8B5F&
+Public Const GL_SAMPLER_CUBE_ARB                                           = &H8B60&
+Public Const GL_SAMPLER_1D_SHADOW_ARB                                      = &H8B61&
+Public Const GL_SAMPLER_2D_SHADOW_ARB                                      = &H8B62&
+Public Const GL_SAMPLER_2D_RECT_ARB                                        = &H8B63&
+Public Const GL_SAMPLER_2D_RECT_SHADOW_ARB                                 = &H8B64&
+Public Const GL_OBJECT_DELETE_STATUS_ARB                                   = &H8B80&
+Public Const GL_OBJECT_COMPILE_STATUS_ARB                                  = &H8B81&
+Public Const GL_OBJECT_LINK_STATUS_ARB                                     = &H8B82&
+Public Const GL_OBJECT_VALIDATE_STATUS_ARB                                 = &H8B83&
+Public Const GL_OBJECT_INFO_LOG_LENGTH_ARB                                 = &H8B84&
+Public Const GL_OBJECT_ATTACHED_OBJECTS_ARB                                = &H8B85&
+Public Const GL_OBJECT_ACTIVE_UNIFORMS_ARB                                 = &H8B86&
+Public Const GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB                       = &H8B87&
+Public Const GL_OBJECT_SHADER_SOURCE_LENGTH_ARB                            = &H8B88&
+'------------------------------- GL_ARB_shader_precision -------------
+'------------------------------- GL_ARB_shader_stencil_export ------------------
+'------------------------------- GL_ARB_shader_storage_buffer_object -------------------------
+Public Const GL_SHADER_STORAGE_BARRIER_BIT                                 = &H2000&
+Public Const GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES                       = &H8F39&
+Public Const GL_SHADER_STORAGE_BUFFER                                      = &H90D2&
+Public Const GL_SHADER_STORAGE_BUFFER_BINDING                              = &H90D3&
+Public Const GL_SHADER_STORAGE_BUFFER_START                                = &H90D4&
+Public Const GL_SHADER_STORAGE_BUFFER_SIZE                                 = &H90D5&
+Public Const GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS                           = &H90D6&
+Public Const GL_MAX_GEOMETRY_SHADER_STORAGE_BLOCKS                         = &H90D7&
+Public Const GL_MAX_TESS_CONTROL_SHADER_STORAGE_BLOCKS                     = &H90D8&
+Public Const GL_MAX_TESS_EVALUATION_SHADER_STORAGE_BLOCKS                  = &H90D9&
+Public Const GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS                         = &H90DA&
+Public Const GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS                          = &H90DB&
+Public Const GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS                         = &H90DC&
+Public Const GL_MAX_SHADER_STORAGE_BUFFER_BINDINGS                         = &H90DD&
+Public Const GL_MAX_SHADER_STORAGE_BLOCK_SIZE                              = &H90DE&
+Public Const GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT                     = &H90DF&
+'------------------------------- GL_ARB_shader_subroutine --------------
+Public Const GL_ACTIVE_SUBROUTINES                                         = &H8DE5&
+Public Const GL_ACTIVE_SUBROUTINE_UNIFORMS                                 = &H8DE6&
+Public Const GL_MAX_SUBROUTINES                                            = &H8DE7&
+Public Const GL_MAX_SUBROUTINE_UNIFORM_LOCATIONS                           = &H8DE8&
+Public Const GL_ACTIVE_SUBROUTINE_UNIFORM_LOCATIONS                        = &H8E47&
+Public Const GL_ACTIVE_SUBROUTINE_MAX_LENGTH                               = &H8E48&
+Public Const GL_ACTIVE_SUBROUTINE_UNIFORM_MAX_LENGTH                       = &H8E49&
+Public Const GL_NUM_COMPATIBLE_SUBROUTINES                                 = &H8E4A&
+Public Const GL_COMPATIBLE_SUBROUTINES                                     = &H8E4B&
+'------------------------------- GL_ARB_shader_texture_image_samples -------------------------
+'------------------------------- GL_ARB_shader_texture_lod ---------------
+'------------------------------- GL_ARB_shader_viewport_layer_array ------------------------
+'------------------------------- GL_ARB_shading_language_100 -----------------
+Public Const GL_SHADING_LANGUAGE_VERSION_ARB                               = &H8B8C&
+'------------------------------- GL_ARB_shading_language_420pack ---------------------
+'------------------------------- GL_ARB_shading_language_include ---------------------
+Public Const GL_SHADER_INCLUDE_ARB                                         = &H8DAE&
+Public Const GL_NAMED_STRING_LENGTH_ARB                                    = &H8DE9&
+Public Const GL_NAMED_STRING_TYPE_ARB                                      = &H8DEA&
+'------------------------------- GL_ARB_shading_language_packing ---------------------
+'------------------------------- GL_ARB_shadow ---
+Public Const GL_TEXTURE_COMPARE_MODE_ARB                                   = &H884C&
+Public Const GL_TEXTURE_COMPARE_FUNC_ARB                                   = &H884D&
+Public Const GL_COMPARE_R_TO_TEXTURE_ARB                                   = &H884E&
+'------------------------------- GL_ARB_shadow_ambient -----------
+Public Const GL_TEXTURE_COMPARE_FAIL_VALUE_ARB                             = &H80BF&
+'------------------------------- GL_ARB_sparse_buffer ----------
+Public Const GL_SPARSE_STORAGE_BIT_ARB                                     = &H400&
+Public Const GL_SPARSE_BUFFER_PAGE_SIZE_ARB                                = &H82F8&
+'------------------------------- GL_ARB_sparse_texture -----------
+Public Const GL_VIRTUAL_PAGE_SIZE_X_ARB                                    = &H9195&
+Public Const GL_VIRTUAL_PAGE_SIZE_Y_ARB                                    = &H9196&
+Public Const GL_VIRTUAL_PAGE_SIZE_Z_ARB                                    = &H9197&
+Public Const GL_MAX_SPARSE_TEXTURE_SIZE_ARB                                = &H9198&
+Public Const GL_MAX_SPARSE_3D_TEXTURE_SIZE_ARB                             = &H9199&
+Public Const GL_MAX_SPARSE_ARRAY_TEXTURE_LAYERS_ARB                        = &H919A&
+Public Const GL_TEXTURE_SPARSE_ARB                                         = &H91A6&
+Public Const GL_VIRTUAL_PAGE_SIZE_INDEX_ARB                                = &H91A7&
+Public Const GL_NUM_VIRTUAL_PAGE_SIZES_ARB                                 = &H91A8&
+Public Const GL_SPARSE_TEXTURE_FULL_ARRAY_CUBE_MIPMAPS_ARB                 = &H91A9&
+Public Const GL_NUM_SPARSE_LEVELS_ARB                                      = &H91AA&
+'------------------------------- GL_ARB_sparse_texture2 ------------
+'------------------------------- GL_ARB_sparse_texture_clamp -----------------
+'------------------------------- GL_ARB_spirv_extensions -------------
+'public const GL_SPIR_V_EXTENSIONS                                         = &h9553&
+'public const GL_NUM_SPIR_V_EXTENSIONS                                     = &h9554&
+'------------------------------- GL_ARB_stencil_texturing --------------
+Public Const GL_DEPTH_STENCIL_TEXTURE_MODE                                 = &H90EA&
+'------------------------------- GL_ARB_sync -
+Public Const GL_SYNC_FLUSH_COMMANDS_BIT                                    = &H1&
+Public Const GL_MAX_SERVER_WAIT_TIMEOUT                                    = &H9111&
+Public Const GL_OBJECT_TYPE                                                = &H9112&
+Public Const GL_SYNC_CONDITION                                             = &H9113&
+Public Const GL_SYNC_STATUS                                                = &H9114&
+Public Const GL_SYNC_FLAGS                                                 = &H9115&
+Public Const GL_SYNC_FENCE                                                 = &H9116&
+Public Const GL_SYNC_GPU_COMMANDS_COMPLETE                                 = &H9117&
+Public Const GL_UNSIGNALED                                                 = &H9118&
+Public Const GL_SIGNALED                                                   = &H9119&
+Public Const GL_ALREADY_SIGNALED                                           = &H911A&
+Public Const GL_TIMEOUT_EXPIRED                                            = &H911B&
+Public Const GL_CONDITION_SATISFIED                                        = &H911C&
+Public Const GL_WAIT_FAILED                                                = &H911D&
+'public const GL_TIMEOUT_IGNORED                                           = &hFFFFFFFFFFFFFFFFull&
+'------------------------------- GL_ARB_tessellation_shader ----------------
+Public Const GL_PATCHES                                                    = &HE&
+Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_CONTROL_SHADER            = &H84F0&
+Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_EVALUATION_SHADER         = &H84F1&
+Public Const GL_MAX_TESS_CONTROL_INPUT_COMPONENTS                          = &H886C&
+Public Const GL_MAX_TESS_EVALUATION_INPUT_COMPONENTS                       = &H886D&
+Public Const GL_MAX_COMBINED_TESS_CONTROL_UNIFORM_COMPONENTS               = &H8E1E&
+Public Const GL_MAX_COMBINED_TESS_EVALUATION_UNIFORM_COMPONENTS            = &H8E1F&
+Public Const GL_PATCH_VERTICES                                             = &H8E72&
+Public Const GL_PATCH_DEFAULT_INNER_LEVEL                                  = &H8E73&
+Public Const GL_PATCH_DEFAULT_OUTER_LEVEL                                  = &H8E74&
+Public Const GL_TESS_CONTROL_OUTPUT_VERTICES                               = &H8E75&
+Public Const GL_TESS_GEN_MODE                                              = &H8E76&
+Public Const GL_TESS_GEN_SPACING                                           = &H8E77&
+Public Const GL_TESS_GEN_VERTEX_ORDER                                      = &H8E78&
+Public Const GL_TESS_GEN_POINT_MODE                                        = &H8E79&
+Public Const GL_ISOLINES                                                   = &H8E7A&
+Public Const GL_FRACTIONAL_ODD                                             = &H8E7B&
+Public Const GL_FRACTIONAL_EVEN                                            = &H8E7C&
+Public Const GL_MAX_PATCH_VERTICES                                         = &H8E7D&
+Public Const GL_MAX_TESS_GEN_LEVEL                                         = &H8E7E&
+Public Const GL_MAX_TESS_CONTROL_UNIFORM_COMPONENTS                        = &H8E7F&
+Public Const GL_MAX_TESS_EVALUATION_UNIFORM_COMPONENTS                     = &H8E80&
+Public Const GL_MAX_TESS_CONTROL_TEXTURE_IMAGE_UNITS                       = &H8E81&
+Public Const GL_MAX_TESS_EVALUATION_TEXTURE_IMAGE_UNITS                    = &H8E82&
+Public Const GL_MAX_TESS_CONTROL_OUTPUT_COMPONENTS                         = &H8E83&
+Public Const GL_MAX_TESS_PATCH_COMPONENTS                                  = &H8E84&
+Public Const GL_MAX_TESS_CONTROL_TOTAL_OUTPUT_COMPONENTS                   = &H8E85&
+Public Const GL_MAX_TESS_EVALUATION_OUTPUT_COMPONENTS                      = &H8E86&
+Public Const GL_TESS_EVALUATION_SHADER                                     = &H8E87&
+Public Const GL_TESS_CONTROL_SHADER                                        = &H8E88&
+Public Const GL_MAX_TESS_CONTROL_UNIFORM_BLOCKS                            = &H8E89&
+Public Const GL_MAX_TESS_EVALUATION_UNIFORM_BLOCKS                         = &H8E8A&
+'------------------------------- GL_ARB_texture_barrier ------------
+'------------------------------- GL_ARB_texture_border_clamp -----------------
+Public Const GL_CLAMP_TO_BORDER_ARB                                        = &H812D&
+'------------------------------- GL_ARB_texture_buffer_object ------------------
+Public Const GL_TEXTURE_BUFFER_ARB                                         = &H8C2A&
+Public Const GL_MAX_TEXTURE_BUFFER_SIZE_ARB                                = &H8C2B&
+Public Const GL_TEXTURE_BINDING_BUFFER_ARB                                 = &H8C2C&
+Public Const GL_TEXTURE_BUFFER_DATA_STORE_BINDING_ARB                      = &H8C2D&
+Public Const GL_TEXTURE_BUFFER_FORMAT_ARB                                  = &H8C2E&
+'------------------------------- GL_ARB_texture_buffer_object_rgb32 ------------------------
+'------------------------------- GL_ARB_texture_buffer_range -----------------
+Public Const GL_TEXTURE_BUFFER_OFFSET                                      = &H919D&
+Public Const GL_TEXTURE_BUFFER_SIZE                                        = &H919E&
+Public Const GL_TEXTURE_BUFFER_OFFSET_ALIGNMENT                            = &H919F&
+'------------------------------- GL_ARB_texture_compression ----------------
+Public Const GL_COMPRESSED_ALPHA_ARB                                       = &H84E9&
+Public Const GL_COMPRESSED_LUMINANCE_ARB                                   = &H84EA&
+Public Const GL_COMPRESSED_LUMINANCE_ALPHA_ARB                             = &H84EB&
+Public Const GL_COMPRESSED_INTENSITY_ARB                                   = &H84EC&
+Public Const GL_COMPRESSED_RGB_ARB                                         = &H84ED&
+Public Const GL_COMPRESSED_RGBA_ARB                                        = &H84EE&
+Public Const GL_TEXTURE_COMPRESSION_HINT_ARB                               = &H84EF&
+Public Const GL_TEXTURE_COMPRESSED_IMAGE_SIZE_ARB                          = &H86A0&
+Public Const GL_TEXTURE_COMPRESSED_ARB                                     = &H86A1&
+Public Const GL_NUM_COMPRESSED_TEXTURE_FORMATS_ARB                         = &H86A2&
+Public Const GL_COMPRESSED_TEXTURE_FORMATS_ARB                             = &H86A3&
+'------------------------------- GL_ARB_texture_compression_bptc ---------------------
+Public Const GL_COMPRESSED_RGBA_BPTC_UNORM_ARB                             = &H8E8C&
+Public Const GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB                       = &H8E8D&
+Public Const GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB                       = &H8E8E&
+Public Const GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB                     = &H8E8F&
+'------------------------------- GL_ARB_texture_compression_rgtc ---------------------
+Public Const GL_COMPRESSED_RED_RGTC1                                       = &H8DBB&
+Public Const GL_COMPRESSED_SIGNED_RED_RGTC1                                = &H8DBC&
+Public Const GL_COMPRESSED_RG_RGTC2                                        = &H8DBD&
+Public Const GL_COMPRESSED_SIGNED_RG_RGTC2                                 = &H8DBE&
+'------------------------------- GL_ARB_texture_cube_map -------------
+Public Const GL_NORMAL_MAP_ARB                                             = &H8511&
+Public Const GL_REFLECTION_MAP_ARB                                         = &H8512&
+Public Const GL_TEXTURE_CUBE_MAP_ARB                                       = &H8513&
+Public Const GL_TEXTURE_BINDING_CUBE_MAP_ARB                               = &H8514&
+Public Const GL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB                            = &H8515&
+Public Const GL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB                            = &H8516&
+Public Const GL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB                            = &H8517&
+Public Const GL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB                            = &H8518&
+Public Const GL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB                            = &H8519&
+Public Const GL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB                            = &H851A&
+Public Const GL_PROXY_TEXTURE_CUBE_MAP_ARB                                 = &H851B&
+Public Const GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB                              = &H851C&
+'------------------------------- GL_ARB_texture_cube_map_array -------------------
+Public Const GL_TEXTURE_CUBE_MAP_ARRAY_ARB                                 = &H9009&
+Public Const GL_TEXTURE_BINDING_CUBE_MAP_ARRAY_ARB                         = &H900A&
+Public Const GL_PROXY_TEXTURE_CUBE_MAP_ARRAY_ARB                           = &H900B&
+Public Const GL_SAMPLER_CUBE_MAP_ARRAY_ARB                                 = &H900C&
+Public Const GL_SAMPLER_CUBE_MAP_ARRAY_SHADOW_ARB                          = &H900D&
+Public Const GL_INT_SAMPLER_CUBE_MAP_ARRAY_ARB                             = &H900E&
+Public Const GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_ARB                    = &H900F&
+'------------------------------- GL_ARB_texture_env_add ------------
+'------------------------------- GL_ARB_texture_env_combine ----------------
+Public Const GL_SUBTRACT_ARB                                               = &H84E7&
+Public Const GL_COMBINE_ARB                                                = &H8570&
+Public Const GL_COMBINE_RGB_ARB                                            = &H8571&
+Public Const GL_COMBINE_ALPHA_ARB                                          = &H8572&
+Public Const GL_RGB_SCALE_ARB                                              = &H8573&
+Public Const GL_ADD_SIGNED_ARB                                             = &H8574&
+Public Const GL_INTERPOLATE_ARB                                            = &H8575&
+Public Const GL_CONSTANT_ARB                                               = &H8576&
+Public Const GL_PRIMARY_COLOR_ARB                                          = &H8577&
+Public Const GL_PREVIOUS_ARB                                               = &H8578&
+Public Const GL_SOURCE0_RGB_ARB                                            = &H8580&
+Public Const GL_SOURCE1_RGB_ARB                                            = &H8581&
+Public Const GL_SOURCE2_RGB_ARB                                            = &H8582&
+Public Const GL_SOURCE0_ALPHA_ARB                                          = &H8588&
+Public Const GL_SOURCE1_ALPHA_ARB                                          = &H8589&
+Public Const GL_SOURCE2_ALPHA_ARB                                          = &H858A&
+Public Const GL_OPERAND0_RGB_ARB                                           = &H8590&
+Public Const GL_OPERAND1_RGB_ARB                                           = &H8591&
+Public Const GL_OPERAND2_RGB_ARB                                           = &H8592&
+Public Const GL_OPERAND0_ALPHA_ARB                                         = &H8598&
+Public Const GL_OPERAND1_ALPHA_ARB                                         = &H8599&
+Public Const GL_OPERAND2_ALPHA_ARB                                         = &H859A&
+'------------------------------- GL_ARB_texture_env_crossbar -----------------
+'------------------------------- GL_ARB_texture_env_dot3 -------------
+Public Const GL_DOT3_RGB_ARB                                               = &H86AE&
+Public Const GL_DOT3_RGBA_ARB                                              = &H86AF&
+'------------------------------- GL_ARB_texture_filter_anisotropic -----------------------
+'public const GL_TEXTURE_MAX_ANISOTROPY                                    = &h84FE&
+'public const GL_MAX_TEXTURE_MAX_ANISOTROPY                                = &h84FF&
+'------------------------------- GL_ARB_texture_filter_minmax ------------------
+Public Const GL_TEXTURE_REDUCTION_MODE_ARB                                 = &H9366&
+Public Const GL_WEIGHTED_AVERAGE_ARB                                       = &H9367&
+'------------------------------- GL_ARB_texture_float ----------
+Public Const GL_RGBA32F_ARB                                                = &H8814&
+Public Const GL_RGB32F_ARB                                                 = &H8815&
+Public Const GL_ALPHA32F_ARB                                               = &H8816&
+Public Const GL_INTENSITY32F_ARB                                           = &H8817&
+Public Const GL_LUMINANCE32F_ARB                                           = &H8818&
+Public Const GL_LUMINANCE_ALPHA32F_ARB                                     = &H8819&
+Public Const GL_RGBA16F_ARB                                                = &H881A&
+Public Const GL_RGB16F_ARB                                                 = &H881B&
+Public Const GL_ALPHA16F_ARB                                               = &H881C&
+Public Const GL_INTENSITY16F_ARB                                           = &H881D&
+Public Const GL_LUMINANCE16F_ARB                                           = &H881E&
+Public Const GL_LUMINANCE_ALPHA16F_ARB                                     = &H881F&
+Public Const GL_TEXTURE_RED_TYPE_ARB                                       = &H8C10&
+Public Const GL_TEXTURE_GREEN_TYPE_ARB                                     = &H8C11&
+Public Const GL_TEXTURE_BLUE_TYPE_ARB                                      = &H8C12&
+Public Const GL_TEXTURE_ALPHA_TYPE_ARB                                     = &H8C13&
+Public Const GL_TEXTURE_LUMINANCE_TYPE_ARB                                 = &H8C14&
+Public Const GL_TEXTURE_INTENSITY_TYPE_ARB                                 = &H8C15&
+Public Const GL_TEXTURE_DEPTH_TYPE_ARB                                     = &H8C16&
+Public Const GL_UNSIGNED_NORMALIZED_ARB                                    = &H8C17&
+'------------------------------- GL_ARB_texture_gather -----------
+Public Const GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_ARB                      = &H8E5E&
+Public Const GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_ARB                      = &H8E5F&
+Public Const GL_MAX_PROGRAM_TEXTURE_GATHER_COMPONENTS_ARB                  = &H8F9F&
+'------------------------------- GL_ARB_texture_mirror_clamp_to_edge -------------------------
+Public Const GL_MIRROR_CLAMP_TO_EDGE                                       = &H8743&
+'------------------------------- GL_ARB_texture_mirrored_repeat --------------------
+Public Const GL_MIRRORED_REPEAT_ARB                                        = &H8370&
+'------------------------------- GL_ARB_texture_multisample ----------------
+Public Const GL_SAMPLE_POSITION                                            = &H8E50&
+Public Const GL_SAMPLE_MASK                                                = &H8E51&
+Public Const GL_SAMPLE_MASK_VALUE                                          = &H8E52&
+Public Const GL_MAX_SAMPLE_MASK_WORDS                                      = &H8E59&
+Public Const GL_TEXTURE_2D_MULTISAMPLE                                     = &H9100&
+Public Const GL_PROXY_TEXTURE_2D_MULTISAMPLE                               = &H9101&
+Public Const GL_TEXTURE_2D_MULTISAMPLE_ARRAY                               = &H9102&
+Public Const GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY                         = &H9103&
+Public Const GL_TEXTURE_BINDING_2D_MULTISAMPLE                             = &H9104&
+Public Const GL_TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY                       = &H9105&
+Public Const GL_TEXTURE_SAMPLES                                            = &H9106&
+Public Const GL_TEXTURE_FIXED_SAMPLE_LOCATIONS                             = &H9107&
+Public Const GL_SAMPLER_2D_MULTISAMPLE                                     = &H9108&
+Public Const GL_INT_SAMPLER_2D_MULTISAMPLE                                 = &H9109&
+Public Const GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE                        = &H910A&
+Public Const GL_SAMPLER_2D_MULTISAMPLE_ARRAY                               = &H910B&
+Public Const GL_INT_SAMPLER_2D_MULTISAMPLE_ARRAY                           = &H910C&
+Public Const GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY                  = &H910D&
+Public Const GL_MAX_COLOR_TEXTURE_SAMPLES                                  = &H910E&
+Public Const GL_MAX_DEPTH_TEXTURE_SAMPLES                                  = &H910F&
+Public Const GL_MAX_INTEGER_SAMPLES                                        = &H9110&
+'------------------------------- GL_ARB_texture_non_power_of_two ---------------------
+'------------------------------- GL_ARB_texture_query_levels -----------------
+'------------------------------- GL_ARB_texture_query_lod --------------
+'------------------------------- GL_ARB_texture_rectangle --------------
+Public Const GL_TEXTURE_RECTANGLE_ARB                                      = &H84F5&
+Public Const GL_TEXTURE_BINDING_RECTANGLE_ARB                              = &H84F6&
+Public Const GL_PROXY_TEXTURE_RECTANGLE_ARB                                = &H84F7&
+Public Const GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB                             = &H84F8&
+'public const GL_SAMPLER_2D_RECT_ARB                                       = &h8B63&
+'public const GL_SAMPLER_2D_RECT_SHADOW_ARB                                = &h8B64&
+'------------------------------- GL_ARB_texture_rg -------
+Public Const GL_COMPRESSED_RED                                             = &H8225&
+Public Const GL_COMPRESSED_RG                                              = &H8226&
+Public Const GL_RG                                                         = &H8227&
+Public Const GL_RG_INTEGER                                                 = &H8228&
+Public Const GL_R8                                                         = &H8229&
+Public Const GL_R16                                                        = &H822A&
+Public Const GL_RG8                                                        = &H822B&
+Public Const GL_RG16                                                       = &H822C&
+Public Const GL_R16F                                                       = &H822D&
+Public Const GL_R32F                                                       = &H822E&
+Public Const GL_RG16F                                                      = &H822F&
+Public Const GL_RG32F                                                      = &H8230&
+Public Const GL_R8I                                                        = &H8231&
+Public Const GL_R8UI                                                       = &H8232&
+Public Const GL_R16I                                                       = &H8233&
+Public Const GL_R16UI                                                      = &H8234&
+Public Const GL_R32I                                                       = &H8235&
+Public Const GL_R32UI                                                      = &H8236&
+Public Const GL_RG8I                                                       = &H8237&
+Public Const GL_RG8UI                                                      = &H8238&
+Public Const GL_RG16I                                                      = &H8239&
+Public Const GL_RG16UI                                                     = &H823A&
+Public Const GL_RG32I                                                      = &H823B&
+Public Const GL_RG32UI                                                     = &H823C&
+'------------------------------- GL_ARB_texture_rgb10_a2ui ---------------
+'public const GL_RGB10_A2UI                                                = &h906F&
+'------------------------------- GL_ARB_texture_stencil8 -------------
+'public const GL_STENCIL_INDEX                                             = &h1901&
+'public const GL_STENCIL_INDEX8                                            = &h8D48&
+'------------------------------- GL_ARB_texture_storage ------------
+Public Const GL_TEXTURE_IMMUTABLE_FORMAT                                   = &H912F&
+'------------------------------- GL_ARB_texture_storage_multisample ------------------------
+'------------------------------- GL_ARB_texture_swizzle ------------
+Public Const GL_TEXTURE_SWIZZLE_R                                          = &H8E42&
+Public Const GL_TEXTURE_SWIZZLE_G                                          = &H8E43&
+Public Const GL_TEXTURE_SWIZZLE_B                                          = &H8E44&
+Public Const GL_TEXTURE_SWIZZLE_A                                          = &H8E45&
+Public Const GL_TEXTURE_SWIZZLE_RGBA                                       = &H8E46&
+'------------------------------- GL_ARB_texture_view ---------
+Public Const GL_TEXTURE_VIEW_MIN_LEVEL                                     = &H82DB&
+Public Const GL_TEXTURE_VIEW_NUM_LEVELS                                    = &H82DC&
+Public Const GL_TEXTURE_VIEW_MIN_LAYER                                     = &H82DD&
+Public Const GL_TEXTURE_VIEW_NUM_LAYERS                                    = &H82DE&
+'public const GL_TEXTURE_IMMUTABLE_LEVELS                                  = &h82DF&
+'------------------------------- GL_ARB_timer_query --------
+Public Const GL_TIME_ELAPSED                                               = &H88BF&
+Public Const GL_TIMESTAMP                                                  = &H8E28&
+'------------------------------- GL_ARB_transform_feedback2 ----------------
+Public Const GL_TRANSFORM_FEEDBACK                                         = &H8E22&
+Public Const GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED                           = &H8E23&
+Public Const GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE                           = &H8E24&
+Public Const GL_TRANSFORM_FEEDBACK_BINDING                                 = &H8E25&
+'------------------------------- GL_ARB_transform_feedback3 ----------------
+Public Const GL_MAX_TRANSFORM_FEEDBACK_BUFFERS                             = &H8E70&
+'public const GL_MAX_VERTEX_STREAMS                                        = &h8E71&
+'------------------------------- GL_ARB_transform_feedback_instanced -------------------------
+'------------------------------- GL_ARB_transform_feedback_overflow_query ------------------------------
+Public Const GL_TRANSFORM_FEEDBACK_OVERFLOW_ARB                            = &H82EC&
+Public Const GL_TRANSFORM_FEEDBACK_STREAM_OVERFLOW_ARB                     = &H82ED&
+'------------------------------- GL_ARB_transpose_matrix -------------
+Public Const GL_TRANSPOSE_MODELVIEW_MATRIX_ARB                             = &H84E3&
+Public Const GL_TRANSPOSE_PROJECTION_MATRIX_ARB                            = &H84E4&
+Public Const GL_TRANSPOSE_TEXTURE_MATRIX_ARB                               = &H84E5&
+Public Const GL_TRANSPOSE_COLOR_MATRIX_ARB                                 = &H84E6&
+'------------------------------- GL_ARB_uniform_buffer_object ------------------
+Public Const GL_UNIFORM_BUFFER                                             = &H8A11&
+Public Const GL_UNIFORM_BUFFER_BINDING                                     = &H8A28&
+Public Const GL_UNIFORM_BUFFER_START                                       = &H8A29&
+Public Const GL_UNIFORM_BUFFER_SIZE                                        = &H8A2A&
+Public Const GL_MAX_VERTEX_UNIFORM_BLOCKS                                  = &H8A2B&
+Public Const GL_MAX_GEOMETRY_UNIFORM_BLOCKS                                = &H8A2C&
+Public Const GL_MAX_FRAGMENT_UNIFORM_BLOCKS                                = &H8A2D&
+Public Const GL_MAX_COMBINED_UNIFORM_BLOCKS                                = &H8A2E&
+Public Const GL_MAX_UNIFORM_BUFFER_BINDINGS                                = &H8A2F&
+Public Const GL_MAX_UNIFORM_BLOCK_SIZE                                     = &H8A30&
+Public Const GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS                     = &H8A31&
+Public Const GL_MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS                   = &H8A32&
+Public Const GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS                   = &H8A33&
+Public Const GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT                            = &H8A34&
+Public Const GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH                       = &H8A35&
+Public Const GL_ACTIVE_UNIFORM_BLOCKS                                      = &H8A36&
+Public Const GL_UNIFORM_TYPE                                               = &H8A37&
+Public Const GL_UNIFORM_SIZE                                               = &H8A38&
+Public Const GL_UNIFORM_NAME_LENGTH                                        = &H8A39&
+Public Const GL_UNIFORM_BLOCK_INDEX                                        = &H8A3A&
+Public Const GL_UNIFORM_OFFSET                                             = &H8A3B&
+Public Const GL_UNIFORM_ARRAY_STRIDE                                       = &H8A3C&
+Public Const GL_UNIFORM_MATRIX_STRIDE                                      = &H8A3D&
+Public Const GL_UNIFORM_IS_ROW_MAJOR                                       = &H8A3E&
+Public Const GL_UNIFORM_BLOCK_BINDING                                      = &H8A3F&
+Public Const GL_UNIFORM_BLOCK_DATA_SIZE                                    = &H8A40&
+Public Const GL_UNIFORM_BLOCK_NAME_LENGTH                                  = &H8A41&
+Public Const GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS                              = &H8A42&
+Public Const GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES                       = &H8A43&
+Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_VERTEX_SHADER                  = &H8A44&
+Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_GEOMETRY_SHADER                = &H8A45&
+Public Const GL_UNIFORM_BLOCK_REFERENCED_BY_FRAGMENT_SHADER                = &H8A46&
+'public const GL_INVALID_INDEX                                             = &hFFFFFFFFu&
+'------------------------------- GL_ARB_vertex_array_bgra --------------
+'public const GL_BGRA                                                      = &h80E1&
+'------------------------------- GL_ARB_vertex_array_object ----------------
+Public Const GL_VERTEX_ARRAY_BINDING                                       = &H85B5&
+'------------------------------- GL_ARB_vertex_attrib_64bit ----------------
+'------------------------------- GL_ARB_vertex_attrib_binding ------------------
+Public Const GL_VERTEX_ATTRIB_BINDING                                      = &H82D4&
+Public Const GL_VERTEX_ATTRIB_RELATIVE_OFFSET                              = &H82D5&
+Public Const GL_VERTEX_BINDING_DIVISOR                                     = &H82D6&
+Public Const GL_VERTEX_BINDING_OFFSET                                      = &H82D7&
+Public Const GL_VERTEX_BINDING_STRIDE                                      = &H82D8&
+Public Const GL_MAX_VERTEX_ATTRIB_RELATIVE_OFFSET                          = &H82D9&
+Public Const GL_MAX_VERTEX_ATTRIB_BINDINGS                                 = &H82DA&
+Public Const GL_VERTEX_BINDING_BUFFER                                      = &H8F4F&
+'------------------------------- GL_ARB_vertex_blend ---------
+Public Const GL_MODELVIEW0_ARB                                             = &H1700&
+Public Const GL_MODELVIEW1_ARB                                             = &H850A&
+Public Const GL_MAX_VERTEX_UNITS_ARB                                       = &H86A4&
+Public Const GL_ACTIVE_VERTEX_UNITS_ARB                                    = &H86A5&
+Public Const GL_WEIGHT_SUM_UNITY_ARB                                       = &H86A6&
+Public Const GL_VERTEX_BLEND_ARB                                           = &H86A7&
+Public Const GL_CURRENT_WEIGHT_ARB                                         = &H86A8&
+Public Const GL_WEIGHT_ARRAY_TYPE_ARB                                      = &H86A9&
+Public Const GL_WEIGHT_ARRAY_STRIDE_ARB                                    = &H86AA&
+Public Const GL_WEIGHT_ARRAY_SIZE_ARB                                      = &H86AB&
+Public Const GL_WEIGHT_ARRAY_POINTER_ARB                                   = &H86AC&
+Public Const GL_WEIGHT_ARRAY_ARB                                           = &H86AD&
+Public Const GL_MODELVIEW2_ARB                                             = &H8722&
+Public Const GL_MODELVIEW3_ARB                                             = &H8723&
+Public Const GL_MODELVIEW4_ARB                                             = &H8724&
+Public Const GL_MODELVIEW5_ARB                                             = &H8725&
+Public Const GL_MODELVIEW6_ARB                                             = &H8726&
+Public Const GL_MODELVIEW7_ARB                                             = &H8727&
+Public Const GL_MODELVIEW8_ARB                                             = &H8728&
+Public Const GL_MODELVIEW9_ARB                                             = &H8729&
+Public Const GL_MODELVIEW10_ARB                                            = &H872A&
+Public Const GL_MODELVIEW11_ARB                                            = &H872B&
+Public Const GL_MODELVIEW12_ARB                                            = &H872C&
+Public Const GL_MODELVIEW13_ARB                                            = &H872D&
+Public Const GL_MODELVIEW14_ARB                                            = &H872E&
+Public Const GL_MODELVIEW15_ARB                                            = &H872F&
+Public Const GL_MODELVIEW16_ARB                                            = &H8730&
+Public Const GL_MODELVIEW17_ARB                                            = &H8731&
+Public Const GL_MODELVIEW18_ARB                                            = &H8732&
+Public Const GL_MODELVIEW19_ARB                                            = &H8733&
+Public Const GL_MODELVIEW20_ARB                                            = &H8734&
+Public Const GL_MODELVIEW21_ARB                                            = &H8735&
+Public Const GL_MODELVIEW22_ARB                                            = &H8736&
+Public Const GL_MODELVIEW23_ARB                                            = &H8737&
+Public Const GL_MODELVIEW24_ARB                                            = &H8738&
+Public Const GL_MODELVIEW25_ARB                                            = &H8739&
+Public Const GL_MODELVIEW26_ARB                                            = &H873A&
+Public Const GL_MODELVIEW27_ARB                                            = &H873B&
+Public Const GL_MODELVIEW28_ARB                                            = &H873C&
+Public Const GL_MODELVIEW29_ARB                                            = &H873D&
+Public Const GL_MODELVIEW30_ARB                                            = &H873E&
+Public Const GL_MODELVIEW31_ARB                                            = &H873F&
+'------------------------------- GL_ARB_vertex_buffer_object -----------------
+Public Const GL_BUFFER_SIZE_ARB                                            = &H8764&
+Public Const GL_BUFFER_USAGE_ARB                                           = &H8765&
+Public Const GL_ARRAY_BUFFER_ARB                                           = &H8892&
+Public Const GL_ELEMENT_ARRAY_BUFFER_ARB                                   = &H8893&
+Public Const GL_ARRAY_BUFFER_BINDING_ARB                                   = &H8894&
+Public Const GL_ELEMENT_ARRAY_BUFFER_BINDING_ARB                           = &H8895&
+Public Const GL_VERTEX_ARRAY_BUFFER_BINDING_ARB                            = &H8896&
+Public Const GL_NORMAL_ARRAY_BUFFER_BINDING_ARB                            = &H8897&
+Public Const GL_COLOR_ARRAY_BUFFER_BINDING_ARB                             = &H8898&
+Public Const GL_INDEX_ARRAY_BUFFER_BINDING_ARB                             = &H8899&
+Public Const GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING_ARB                     = &H889A&
+Public Const GL_EDGE_FLAG_ARRAY_BUFFER_BINDING_ARB                         = &H889B&
+Public Const GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING_ARB                   = &H889C&
+Public Const GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING_ARB                    = &H889D&
+Public Const GL_WEIGHT_ARRAY_BUFFER_BINDING_ARB                            = &H889E&
+Public Const GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB                     = &H889F&
+Public Const GL_READ_ONLY_ARB                                              = &H88B8&
+Public Const GL_WRITE_ONLY_ARB                                             = &H88B9&
+Public Const GL_READ_WRITE_ARB                                             = &H88BA&
+Public Const GL_BUFFER_ACCESS_ARB                                          = &H88BB&
+Public Const GL_BUFFER_MAPPED_ARB                                          = &H88BC&
+Public Const GL_BUFFER_MAP_POINTER_ARB                                     = &H88BD&
+Public Const GL_STREAM_DRAW_ARB                                            = &H88E0&
+Public Const GL_STREAM_READ_ARB                                            = &H88E1&
+Public Const GL_STREAM_COPY_ARB                                            = &H88E2&
+Public Const GL_STATIC_DRAW_ARB                                            = &H88E4&
+Public Const GL_STATIC_READ_ARB                                            = &H88E5&
+Public Const GL_STATIC_COPY_ARB                                            = &H88E6&
+Public Const GL_DYNAMIC_DRAW_ARB                                           = &H88E8&
+Public Const GL_DYNAMIC_READ_ARB                                           = &H88E9&
+Public Const GL_DYNAMIC_COPY_ARB                                           = &H88EA&
+'------------------------------- GL_ARB_vertex_program -----------
+Public Const GL_COLOR_SUM_ARB                                              = &H8458&
+Public Const GL_VERTEX_PROGRAM_ARB                                         = &H8620&
+Public Const GL_VERTEX_ATTRIB_ARRAY_ENABLED_ARB                            = &H8622&
+Public Const GL_VERTEX_ATTRIB_ARRAY_SIZE_ARB                               = &H8623&
+Public Const GL_VERTEX_ATTRIB_ARRAY_STRIDE_ARB                             = &H8624&
+Public Const GL_VERTEX_ATTRIB_ARRAY_TYPE_ARB                               = &H8625&
+Public Const GL_CURRENT_VERTEX_ATTRIB_ARB                                  = &H8626&
+Public Const GL_PROGRAM_LENGTH_ARB                                         = &H8627&
+Public Const GL_PROGRAM_STRING_ARB                                         = &H8628&
+Public Const GL_MAX_PROGRAM_MATRIX_STACK_DEPTH_ARB                         = &H862E&
+Public Const GL_MAX_PROGRAM_MATRICES_ARB                                   = &H862F&
+Public Const GL_CURRENT_MATRIX_STACK_DEPTH_ARB                             = &H8640&
+Public Const GL_CURRENT_MATRIX_ARB                                         = &H8641&
+Public Const GL_VERTEX_PROGRAM_POINT_SIZE_ARB                              = &H8642&
+Public Const GL_VERTEX_PROGRAM_TWO_SIDE_ARB                                = &H8643&
+Public Const GL_VERTEX_ATTRIB_ARRAY_POINTER_ARB                            = &H8645&
+Public Const GL_PROGRAM_ERROR_POSITION_ARB                                 = &H864B&
+Public Const GL_PROGRAM_BINDING_ARB                                        = &H8677&
+Public Const GL_MAX_VERTEX_ATTRIBS_ARB                                     = &H8869&
+Public Const GL_VERTEX_ATTRIB_ARRAY_NORMALIZED_ARB                         = &H886A&
+Public Const GL_PROGRAM_ERROR_STRING_ARB                                   = &H8874&
+Public Const GL_PROGRAM_FORMAT_ASCII_ARB                                   = &H8875&
+Public Const GL_PROGRAM_FORMAT_ARB                                         = &H8876&
+Public Const GL_PROGRAM_INSTRUCTIONS_ARB                                   = &H88A0&
+Public Const GL_MAX_PROGRAM_INSTRUCTIONS_ARB                               = &H88A1&
+Public Const GL_PROGRAM_NATIVE_INSTRUCTIONS_ARB                            = &H88A2&
+Public Const GL_MAX_PROGRAM_NATIVE_INSTRUCTIONS_ARB                        = &H88A3&
+Public Const GL_PROGRAM_TEMPORARIES_ARB                                    = &H88A4&
+Public Const GL_MAX_PROGRAM_TEMPORARIES_ARB                                = &H88A5&
+Public Const GL_PROGRAM_NATIVE_TEMPORARIES_ARB                             = &H88A6&
+Public Const GL_MAX_PROGRAM_NATIVE_TEMPORARIES_ARB                         = &H88A7&
+Public Const GL_PROGRAM_PARAMETERS_ARB                                     = &H88A8&
+Public Const GL_MAX_PROGRAM_PARAMETERS_ARB                                 = &H88A9&
+Public Const GL_PROGRAM_NATIVE_PARAMETERS_ARB                              = &H88AA&
+Public Const GL_MAX_PROGRAM_NATIVE_PARAMETERS_ARB                          = &H88AB&
+Public Const GL_PROGRAM_ATTRIBS_ARB                                        = &H88AC&
+Public Const GL_MAX_PROGRAM_ATTRIBS_ARB                                    = &H88AD&
+Public Const GL_PROGRAM_NATIVE_ATTRIBS_ARB                                 = &H88AE&
+Public Const GL_MAX_PROGRAM_NATIVE_ATTRIBS_ARB                             = &H88AF&
+Public Const GL_PROGRAM_ADDRESS_REGISTERS_ARB                              = &H88B0&
+Public Const GL_MAX_PROGRAM_ADDRESS_REGISTERS_ARB                          = &H88B1&
+Public Const GL_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB                       = &H88B2&
+Public Const GL_MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB                   = &H88B3&
+Public Const GL_MAX_PROGRAM_LOCAL_PARAMETERS_ARB                           = &H88B4&
+Public Const GL_MAX_PROGRAM_ENV_PARAMETERS_ARB                             = &H88B5&
+Public Const GL_PROGRAM_UNDER_NATIVE_LIMITS_ARB                            = &H88B6&
+Public Const GL_TRANSPOSE_CURRENT_MATRIX_ARB                               = &H88B7&
+Public Const GL_MATRIX0_ARB                                                = &H88C0&
+Public Const GL_MATRIX1_ARB                                                = &H88C1&
+Public Const GL_MATRIX2_ARB                                                = &H88C2&
+Public Const GL_MATRIX3_ARB                                                = &H88C3&
+Public Const GL_MATRIX4_ARB                                                = &H88C4&
+Public Const GL_MATRIX5_ARB                                                = &H88C5&
+Public Const GL_MATRIX6_ARB                                                = &H88C6&
+Public Const GL_MATRIX7_ARB                                                = &H88C7&
+Public Const GL_MATRIX8_ARB                                                = &H88C8&
+Public Const GL_MATRIX9_ARB                                                = &H88C9&
+Public Const GL_MATRIX10_ARB                                               = &H88CA&
+Public Const GL_MATRIX11_ARB                                               = &H88CB&
+Public Const GL_MATRIX12_ARB                                               = &H88CC&
+Public Const GL_MATRIX13_ARB                                               = &H88CD&
+Public Const GL_MATRIX14_ARB                                               = &H88CE&
+Public Const GL_MATRIX15_ARB                                               = &H88CF&
+Public Const GL_MATRIX16_ARB                                               = &H88D0&
+Public Const GL_MATRIX17_ARB                                               = &H88D1&
+Public Const GL_MATRIX18_ARB                                               = &H88D2&
+Public Const GL_MATRIX19_ARB                                               = &H88D3&
+Public Const GL_MATRIX20_ARB                                               = &H88D4&
+Public Const GL_MATRIX21_ARB                                               = &H88D5&
+Public Const GL_MATRIX22_ARB                                               = &H88D6&
+Public Const GL_MATRIX23_ARB                                               = &H88D7&
+Public Const GL_MATRIX24_ARB                                               = &H88D8&
+Public Const GL_MATRIX25_ARB                                               = &H88D9&
+Public Const GL_MATRIX26_ARB                                               = &H88DA&
+Public Const GL_MATRIX27_ARB                                               = &H88DB&
+Public Const GL_MATRIX28_ARB                                               = &H88DC&
+Public Const GL_MATRIX29_ARB                                               = &H88DD&
+Public Const GL_MATRIX30_ARB                                               = &H88DE&
+Public Const GL_MATRIX31_ARB                                               = &H88DF&
 '------------------------------- GL_ARB_vertex_shader -------------------------------
-Public Const GL_VERTEX_SHADER_ARB                        = &H8B31&
-Public Const GL_MAX_VERTEX_UNIFORM_COMPONENTS_ARB        = &H8B4A&
-Public Const GL_MAX_VARYING_FLOATS_ARB                   = &H8B4B&
-Public Const GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS_ARB       = &H8B4C&
-Public Const GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS_ARB     = &H8B4D&
-Public Const GL_OBJECT_ACTIVE_ATTRIBUTES_ARB             = &H8B89&
-Public Const GL_OBJECT_ACTIVE_ATTRIBUTE_MAX_LENGTH_ARB   = &H8B8A&
+Public Const GL_VERTEX_SHADER_ARB                                          = &H8B31&
+Public Const GL_MAX_VERTEX_UNIFORM_COMPONENTS_ARB                          = &H8B4A&
+Public Const GL_MAX_VARYING_FLOATS_ARB                                     = &H8B4B&
+Public Const GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS_ARB                         = &H8B4C&
+Public Const GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS_ARB                       = &H8B4D&
+Public Const GL_OBJECT_ACTIVE_ATTRIBUTES_ARB                               = &H8B89&
+Public Const GL_OBJECT_ACTIVE_ATTRIBUTE_MAX_LENGTH_ARB                     = &H8B8A&
 '------------------------------- GL_ARB_vertex_type_10f_11f_11f_rev -------------------------------
 'public const GL_UNSIGNED_INT_10F_11F_11F_REV                                                                                                                                                                                                                = &h8C3B&
 '------------------------------- GL_ARB_vertex_type_2_10_10_10_rev -------------------------------
-Public Const GL_UNSIGNED_INT_2_10_10_10_REV      = &H8368&
-Public Const GL_INT_2_10_10_10_REV               = &H8D9F&
+Public Const GL_UNSIGNED_INT_2_10_10_10_REV                                = &H8368&
+Public Const GL_INT_2_10_10_10_REV                                         = &H8D9F&
 '------------------------------- GL_ARB_viewport_array -------------------------------
-'public const GL_DEPTH_RANGE                      = &h0B70&
-'public const GL_VIEWPORT                         = &h0BA2&
-'public const GL_SCISSOR_BOX                      = &h0C10&
-'public const GL_SCISSOR_TEST                     = &h0C11&
-Public Const GL_MAX_VIEWPORTS                     = &H825B&
-Public Const GL_VIEWPORT_SUBPIXEL_BITS            = &H825C&
-Public Const GL_VIEWPORT_BOUNDS_RANGE             = &H825D&
-Public Const GL_LAYER_PROVOKING_VERTEX            = &H825E&
-Public Const GL_VIEWPORT_INDEX_PROVOKING_VERTEX   = &H825F&
-Public Const GL_UNDEFINED_VERTEX                  = &H8260&
-'public const GL_FIRST_VERTEX_CONVENTION          = &h8E4D&
-'public const GL_LAST_VERTEX_CONVENTION           = &h8E4E&
-'public const GL_PROVOKING_VERTEX                 = &h8E4F&
+'public const GL_DEPTH_RANGE                                               = &h0B70&
+'public const GL_VIEWPORT                                                  = &h0BA2&
+'public const GL_SCISSOR_BOX                                               = &h0C10&
+'public const GL_SCISSOR_TEST                                              = &h0C11&
+Public Const GL_MAX_VIEWPORTS                                              = &H825B&
+Public Const GL_VIEWPORT_SUBPIXEL_BITS                                     = &H825C&
+Public Const GL_VIEWPORT_BOUNDS_RANGE                                      = &H825D&
+Public Const GL_LAYER_PROVOKING_VERTEX                                     = &H825E&
+Public Const GL_VIEWPORT_INDEX_PROVOKING_VERTEX                            = &H825F&
+Public Const GL_UNDEFINED_VERTEX                                           = &H8260&
+'public const GL_FIRST_VERTEX_CONVENTION                                   = &h8E4D&
+'public const GL_LAST_VERTEX_CONVENTION                                    = &h8E4E&
+'public const GL_PROVOKING_VERTEX                                          = &h8E4F&
 '------------------------------- GL_ARB_window_pos -------------------------------
 '***************************************************************************************
 '*                                    Fonctions                                        *
@@ -2478,1501 +2478,1501 @@ Public Sub glWindowPos3svARB(p As Integer): Call OpenGLExtCall1(glWindowPos3svAR
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGLARB()
-If IsDEPEnabled Then
-    glWindowPos3svARBPtr = OpenGLExtProcAddress("glWindowPos3svARB")
-    glWindowPos3sARBPtr = OpenGLExtProcAddress("glWindowPos3sARB")
-    glWindowPos3ivARBPtr = OpenGLExtProcAddress("glWindowPos3ivARB")
-    glWindowPos3iARBPtr = OpenGLExtProcAddress("glWindowPos3iARB")
-    glWindowPos3fvARBPtr = OpenGLExtProcAddress("glWindowPos3fvARB")
-    glWindowPos3fARBPtr = OpenGLExtProcAddress("glWindowPos3fARB")
-    glWindowPos3dvARBPtr = OpenGLExtProcAddress("glWindowPos3dvARB")
-    glWindowPos3dARBPtr = OpenGLExtProcAddress("glWindowPos3dARB")
-    glWindowPos2svARBPtr = OpenGLExtProcAddress("glWindowPos2svARB")
-    glWindowPos2sARBPtr = OpenGLExtProcAddress("glWindowPos2sARB")
-    glWindowPos2ivARBPtr = OpenGLExtProcAddress("glWindowPos2ivARB")
-    glWindowPos2iARBPtr = OpenGLExtProcAddress("glWindowPos2iARB")
-    glWindowPos2fvARBPtr = OpenGLExtProcAddress("glWindowPos2fvARB")
-    glWindowPos2fARBPtr = OpenGLExtProcAddress("glWindowPos2fARB")
-    glWindowPos2dvARBPtr = OpenGLExtProcAddress("glWindowPos2dvARB")
-    glWindowPos2dARBPtr = OpenGLExtProcAddress("glWindowPos2dARB")
-    glViewportIndexedfvPtr = OpenGLExtProcAddress("glViewportIndexedfv")
-    glViewportIndexedfPtr = OpenGLExtProcAddress("glViewportIndexedf")
-    glViewportArrayvPtr = OpenGLExtProcAddress("glViewportArrayv")
-    glScissorIndexedvPtr = OpenGLExtProcAddress("glScissorIndexedv")
-    glScissorIndexedPtr = OpenGLExtProcAddress("glScissorIndexed")
-    glScissorArrayvPtr = OpenGLExtProcAddress("glScissorArrayv")
-    glGetFloati_vPtr = OpenGLExtProcAddress("glGetFloati_v")
-    glGetDoublei_vPtr = OpenGLExtProcAddress("glGetDoublei_v")
-    glDepthRangeIndexedPtr = OpenGLExtProcAddress("glDepthRangeIndexed")
-    glDepthRangeArrayvPtr = OpenGLExtProcAddress("glDepthRangeArrayv")
-    glVertexP4uivPtr = OpenGLExtProcAddress("glVertexP4uiv")
-    glVertexP4uiPtr = OpenGLExtProcAddress("glVertexP4ui")
-    glVertexP3uivPtr = OpenGLExtProcAddress("glVertexP3uiv")
-    glVertexP3uiPtr = OpenGLExtProcAddress("glVertexP3ui")
-    glVertexP2uivPtr = OpenGLExtProcAddress("glVertexP2uiv")
-    glVertexP2uiPtr = OpenGLExtProcAddress("glVertexP2ui")
-    glVertexAttribP4uivPtr = OpenGLExtProcAddress("glVertexAttribP4uiv")
-    glVertexAttribP4uiPtr = OpenGLExtProcAddress("glVertexAttribP4ui")
-    glVertexAttribP3uivPtr = OpenGLExtProcAddress("glVertexAttribP3uiv")
-    glVertexAttribP3uiPtr = OpenGLExtProcAddress("glVertexAttribP3ui")
-    glVertexAttribP2uivPtr = OpenGLExtProcAddress("glVertexAttribP2uiv")
-    glVertexAttribP2uiPtr = OpenGLExtProcAddress("glVertexAttribP2ui")
-    glVertexAttribP1uivPtr = OpenGLExtProcAddress("glVertexAttribP1uiv")
-    glVertexAttribP1uiPtr = OpenGLExtProcAddress("glVertexAttribP1ui")
-    glTexCoordP4uivPtr = OpenGLExtProcAddress("glTexCoordP4uiv")
-    glTexCoordP4uiPtr = OpenGLExtProcAddress("glTexCoordP4ui")
-    glTexCoordP3uivPtr = OpenGLExtProcAddress("glTexCoordP3uiv")
-    glTexCoordP3uiPtr = OpenGLExtProcAddress("glTexCoordP3ui")
-    glTexCoordP2uivPtr = OpenGLExtProcAddress("glTexCoordP2uiv")
-    glTexCoordP2uiPtr = OpenGLExtProcAddress("glTexCoordP2ui")
-    glTexCoordP1uivPtr = OpenGLExtProcAddress("glTexCoordP1uiv")
-    glTexCoordP1uiPtr = OpenGLExtProcAddress("glTexCoordP1ui")
-    glSecondaryColorP3uivPtr = OpenGLExtProcAddress("glSecondaryColorP3uiv")
-    glSecondaryColorP3uiPtr = OpenGLExtProcAddress("glSecondaryColorP3ui")
-    glNormalP3uivPtr = OpenGLExtProcAddress("glNormalP3uiv")
-    glNormalP3uiPtr = OpenGLExtProcAddress("glNormalP3ui")
-    glMultiTexCoordP4uivPtr = OpenGLExtProcAddress("glMultiTexCoordP4uiv")
-    glMultiTexCoordP4uiPtr = OpenGLExtProcAddress("glMultiTexCoordP4ui")
-    glMultiTexCoordP3uivPtr = OpenGLExtProcAddress("glMultiTexCoordP3uiv")
-    glMultiTexCoordP3uiPtr = OpenGLExtProcAddress("glMultiTexCoordP3ui")
-    glMultiTexCoordP2uivPtr = OpenGLExtProcAddress("glMultiTexCoordP2uiv")
-    glMultiTexCoordP2uiPtr = OpenGLExtProcAddress("glMultiTexCoordP2ui")
-    glMultiTexCoordP1uivPtr = OpenGLExtProcAddress("glMultiTexCoordP1uiv")
-    glMultiTexCoordP1uiPtr = OpenGLExtProcAddress("glMultiTexCoordP1ui")
-    glColorP4uivPtr = OpenGLExtProcAddress("glColorP4uiv")
-    glColorP4uiPtr = OpenGLExtProcAddress("glColorP4ui")
-    glColorP3uivPtr = OpenGLExtProcAddress("glColorP3uiv")
-    glColorP3uiPtr = OpenGLExtProcAddress("glColorP3ui")
-    glGetAttribLocationARBPtr = OpenGLExtProcAddress("glGetAttribLocationARB")
-    glGetActiveAttribARBPtr = OpenGLExtProcAddress("glGetActiveAttribARB")
-    glBindAttribLocationARBPtr = OpenGLExtProcAddress("glBindAttribLocationARB")
-    glVertexAttribPointerARBPtr = OpenGLExtProcAddress("glVertexAttribPointerARB")
-    glVertexAttrib4usvARBPtr = OpenGLExtProcAddress("glVertexAttrib4usvARB")
-    glVertexAttrib4uivARBPtr = OpenGLExtProcAddress("glVertexAttrib4uivARB")
-    glVertexAttrib4ubvARBPtr = OpenGLExtProcAddress("glVertexAttrib4ubvARB")
-    glVertexAttrib4svARBPtr = OpenGLExtProcAddress("glVertexAttrib4svARB")
-    glVertexAttrib4sARBPtr = OpenGLExtProcAddress("glVertexAttrib4sARB")
-    glVertexAttrib4ivARBPtr = OpenGLExtProcAddress("glVertexAttrib4ivARB")
-    glVertexAttrib4fvARBPtr = OpenGLExtProcAddress("glVertexAttrib4fvARB")
-    glVertexAttrib4fARBPtr = OpenGLExtProcAddress("glVertexAttrib4fARB")
-    glVertexAttrib4dvARBPtr = OpenGLExtProcAddress("glVertexAttrib4dvARB")
-    glVertexAttrib4dARBPtr = OpenGLExtProcAddress("glVertexAttrib4dARB")
-    glVertexAttrib4bvARBPtr = OpenGLExtProcAddress("glVertexAttrib4bvARB")
-    glVertexAttrib4NusvARBPtr = OpenGLExtProcAddress("glVertexAttrib4NusvARB")
-    glVertexAttrib4NuivARBPtr = OpenGLExtProcAddress("glVertexAttrib4NuivARB")
-    glVertexAttrib4NubvARBPtr = OpenGLExtProcAddress("glVertexAttrib4NubvARB")
-    glVertexAttrib4NubARBPtr = OpenGLExtProcAddress("glVertexAttrib4NubARB")
-    glVertexAttrib4NsvARBPtr = OpenGLExtProcAddress("glVertexAttrib4NsvARB")
-    glVertexAttrib4NivARBPtr = OpenGLExtProcAddress("glVertexAttrib4NivARB")
-    glVertexAttrib4NbvARBPtr = OpenGLExtProcAddress("glVertexAttrib4NbvARB")
-    glVertexAttrib3svARBPtr = OpenGLExtProcAddress("glVertexAttrib3svARB")
-    glVertexAttrib3sARBPtr = OpenGLExtProcAddress("glVertexAttrib3sARB")
-    glVertexAttrib3fvARBPtr = OpenGLExtProcAddress("glVertexAttrib3fvARB")
-    glVertexAttrib3fARBPtr = OpenGLExtProcAddress("glVertexAttrib3fARB")
-    glVertexAttrib3dvARBPtr = OpenGLExtProcAddress("glVertexAttrib3dvARB")
-    glVertexAttrib3dARBPtr = OpenGLExtProcAddress("glVertexAttrib3dARB")
-    glVertexAttrib2svARBPtr = OpenGLExtProcAddress("glVertexAttrib2svARB")
-    glVertexAttrib2sARBPtr = OpenGLExtProcAddress("glVertexAttrib2sARB")
-    glVertexAttrib2fvARBPtr = OpenGLExtProcAddress("glVertexAttrib2fvARB")
-    glVertexAttrib2fARBPtr = OpenGLExtProcAddress("glVertexAttrib2fARB")
-    glVertexAttrib2dvARBPtr = OpenGLExtProcAddress("glVertexAttrib2dvARB")
-    glVertexAttrib2dARBPtr = OpenGLExtProcAddress("glVertexAttrib2dARB")
-    glVertexAttrib1svARBPtr = OpenGLExtProcAddress("glVertexAttrib1svARB")
-    glVertexAttrib1sARBPtr = OpenGLExtProcAddress("glVertexAttrib1sARB")
-    glVertexAttrib1fvARBPtr = OpenGLExtProcAddress("glVertexAttrib1fvARB")
-    glVertexAttrib1fARBPtr = OpenGLExtProcAddress("glVertexAttrib1fARB")
-    glVertexAttrib1dvARBPtr = OpenGLExtProcAddress("glVertexAttrib1dvARB")
-    glVertexAttrib1dARBPtr = OpenGLExtProcAddress("glVertexAttrib1dARB")
-    glProgramStringARBPtr = OpenGLExtProcAddress("glProgramStringARB")
-    glProgramLocalParameter4fvARBPtr = OpenGLExtProcAddress("glProgramLocalParameter4fvARB")
-    glProgramLocalParameter4fARBPtr = OpenGLExtProcAddress("glProgramLocalParameter4fARB")
-    glProgramLocalParameter4dvARBPtr = OpenGLExtProcAddress("glProgramLocalParameter4dvARB")
-    glProgramLocalParameter4dARBPtr = OpenGLExtProcAddress("glProgramLocalParameter4dARB")
-    glProgramEnvParameter4fvARBPtr = OpenGLExtProcAddress("glProgramEnvParameter4fvARB")
-    glProgramEnvParameter4fARBPtr = OpenGLExtProcAddress("glProgramEnvParameter4fARB")
-    glProgramEnvParameter4dvARBPtr = OpenGLExtProcAddress("glProgramEnvParameter4dvARB")
-    glProgramEnvParameter4dARBPtr = OpenGLExtProcAddress("glProgramEnvParameter4dARB")
-    glIsProgramARBPtr = OpenGLExtProcAddress("glIsProgramARB")
-    glGetVertexAttribivARBPtr = OpenGLExtProcAddress("glGetVertexAttribivARB")
-    glGetVertexAttribfvARBPtr = OpenGLExtProcAddress("glGetVertexAttribfvARB")
-    glGetVertexAttribdvARBPtr = OpenGLExtProcAddress("glGetVertexAttribdvARB")
-    glGetVertexAttribPointervARBPtr = OpenGLExtProcAddress("glGetVertexAttribPointervARB")
-    glGetProgramivARBPtr = OpenGLExtProcAddress("glGetProgramivARB")
-    glGetProgramStringARBPtr = OpenGLExtProcAddress("glGetProgramStringARB")
-    glGetProgramLocalParameterfvARBPtr = OpenGLExtProcAddress("glGetProgramLocalParameterfvARB")
-    glGetProgramLocalParameterdvARBPtr = OpenGLExtProcAddress("glGetProgramLocalParameterdvARB")
-    glGetProgramEnvParameterfvARBPtr = OpenGLExtProcAddress("glGetProgramEnvParameterfvARB")
-    glGetProgramEnvParameterdvARBPtr = OpenGLExtProcAddress("glGetProgramEnvParameterdvARB")
-    glGenProgramsARBPtr = OpenGLExtProcAddress("glGenProgramsARB")
-    glEnableVertexAttribArrayARBPtr = OpenGLExtProcAddress("glEnableVertexAttribArrayARB")
-    glDisableVertexAttribArrayARBPtr = OpenGLExtProcAddress("glDisableVertexAttribArrayARB")
-    glDeleteProgramsARBPtr = OpenGLExtProcAddress("glDeleteProgramsARB")
-    glBindProgramARBPtr = OpenGLExtProcAddress("glBindProgramARB")
-    glUnmapBufferARBPtr = OpenGLExtProcAddress("glUnmapBufferARB")
-    glIsBufferARBPtr = OpenGLExtProcAddress("glIsBufferARB")
-    glGetBufferSubDataARBPtr = OpenGLExtProcAddress("glGetBufferSubDataARB")
-    glGetBufferPointervARBPtr = OpenGLExtProcAddress("glGetBufferPointervARB")
-    glGetBufferParameterivARBPtr = OpenGLExtProcAddress("glGetBufferParameterivARB")
-    glGenBuffersARBPtr = OpenGLExtProcAddress("glGenBuffersARB")
-    glDeleteBuffersARBPtr = OpenGLExtProcAddress("glDeleteBuffersARB")
-    glBufferSubDataARBPtr = OpenGLExtProcAddress("glBufferSubDataARB")
-    glBufferDataARBPtr = OpenGLExtProcAddress("glBufferDataARB")
-    glBindBufferARBPtr = OpenGLExtProcAddress("glBindBufferARB")
-    glWeightusvARBPtr = OpenGLExtProcAddress("glWeightusvARB")
-    glWeightuivARBPtr = OpenGLExtProcAddress("glWeightuivARB")
-    glWeightubvARBPtr = OpenGLExtProcAddress("glWeightubvARB")
-    glWeightsvARBPtr = OpenGLExtProcAddress("glWeightsvARB")
-    glWeightivARBPtr = OpenGLExtProcAddress("glWeightivARB")
-    glWeightfvARBPtr = OpenGLExtProcAddress("glWeightfvARB")
-    glWeightdvARBPtr = OpenGLExtProcAddress("glWeightdvARB")
-    glWeightbvARBPtr = OpenGLExtProcAddress("glWeightbvARB")
-    glWeightPointerARBPtr = OpenGLExtProcAddress("glWeightPointerARB")
-    glVertexBlendARBPtr = OpenGLExtProcAddress("glVertexBlendARB")
-    glVertexBindingDivisorPtr = OpenGLExtProcAddress("glVertexBindingDivisor")
-    glVertexAttribLFormatPtr = OpenGLExtProcAddress("glVertexAttribLFormat")
-    glVertexAttribIFormatPtr = OpenGLExtProcAddress("glVertexAttribIFormat")
-    glVertexAttribFormatPtr = OpenGLExtProcAddress("glVertexAttribFormat")
-    glVertexAttribBindingPtr = OpenGLExtProcAddress("glVertexAttribBinding")
-    glVertexArrayVertexBindingDivisorEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexBindingDivisorEXT")
-    glVertexArrayVertexAttribLFormatEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexAttribLFormatEXT")
-    glVertexArrayVertexAttribIFormatEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexAttribIFormatEXT")
-    glVertexArrayVertexAttribFormatEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexAttribFormatEXT")
-    glVertexArrayVertexAttribBindingEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexAttribBindingEXT")
-    glVertexArrayBindVertexBufferEXTPtr = OpenGLExtProcAddress("glVertexArrayBindVertexBufferEXT")
-    glBindVertexBufferPtr = OpenGLExtProcAddress("glBindVertexBuffer")
-    glVertexAttribLPointerPtr = OpenGLExtProcAddress("glVertexAttribLPointer")
-    glVertexAttribL4dvPtr = OpenGLExtProcAddress("glVertexAttribL4dv")
-    glVertexAttribL4dPtr = OpenGLExtProcAddress("glVertexAttribL4d")
-    glVertexAttribL3dvPtr = OpenGLExtProcAddress("glVertexAttribL3dv")
-    glVertexAttribL3dPtr = OpenGLExtProcAddress("glVertexAttribL3d")
-    glVertexAttribL2dvPtr = OpenGLExtProcAddress("glVertexAttribL2dv")
-    glVertexAttribL2dPtr = OpenGLExtProcAddress("glVertexAttribL2d")
-    glVertexAttribL1dvPtr = OpenGLExtProcAddress("glVertexAttribL1dv")
-    glVertexAttribL1dPtr = OpenGLExtProcAddress("glVertexAttribL1d")
-    glGetVertexAttribLdvPtr = OpenGLExtProcAddress("glGetVertexAttribLdv")
-    glIsVertexArrayARBPtr = OpenGLExtProcAddress("glIsVertexArrayARB")
-    glGenVertexArraysARBPtr = OpenGLExtProcAddress("glGenVertexArraysARB")
-    glDeleteVertexArraysARBPtr = OpenGLExtProcAddress("glDeleteVertexArraysARB")
-    glBindVertexArrayARBPtr = OpenGLExtProcAddress("glBindVertexArrayARB")
-    glUniformBlockBindingPtr = OpenGLExtProcAddress("glUniformBlockBinding")
-    glGetUniformIndicesPtr = OpenGLExtProcAddress("glGetUniformIndices")
-    glGetUniformBlockIndexPtr = OpenGLExtProcAddress("glGetUniformBlockIndex")
-    glGetIntegeri_vPtr = OpenGLExtProcAddress("glGetIntegeri_v")
-    glGetActiveUniformsivPtr = OpenGLExtProcAddress("glGetActiveUniformsiv")
-    glGetActiveUniformNamePtr = OpenGLExtProcAddress("glGetActiveUniformName")
-    glGetActiveUniformBlockivPtr = OpenGLExtProcAddress("glGetActiveUniformBlockiv")
-    glGetActiveUniformBlockNamePtr = OpenGLExtProcAddress("glGetActiveUniformBlockName")
-    glBindBufferRangePtr = OpenGLExtProcAddress("glBindBufferRange")
-    glBindBufferBasePtr = OpenGLExtProcAddress("glBindBufferBase")
-    glMultTransposeMatrixfARBPtr = OpenGLExtProcAddress("glMultTransposeMatrixfARB")
-    glMultTransposeMatrixdARBPtr = OpenGLExtProcAddress("glMultTransposeMatrixdARB")
-    glLoadTransposeMatrixfARBPtr = OpenGLExtProcAddress("glLoadTransposeMatrixfARB")
-    glLoadTransposeMatrixdARBPtr = OpenGLExtProcAddress("glLoadTransposeMatrixdARB")
-    glDrawTransformFeedbackStreamInstancedPtr = OpenGLExtProcAddress("glDrawTransformFeedbackStreamInstanced")
-    glDrawTransformFeedbackInstancedPtr = OpenGLExtProcAddress("glDrawTransformFeedbackInstanced")
-    glGetQueryIndexedivPtr = OpenGLExtProcAddress("glGetQueryIndexediv")
-    glEndQueryIndexedPtr = OpenGLExtProcAddress("glEndQueryIndexed")
-    glDrawTransformFeedbackStreamPtr = OpenGLExtProcAddress("glDrawTransformFeedbackStream")
-    glBeginQueryIndexedPtr = OpenGLExtProcAddress("glBeginQueryIndexed")
-    glResumeTransformFeedbackPtr = OpenGLExtProcAddress("glResumeTransformFeedback")
-    glPauseTransformFeedbackPtr = OpenGLExtProcAddress("glPauseTransformFeedback")
-    glIsTransformFeedbackPtr = OpenGLExtProcAddress("glIsTransformFeedback")
-    glGenTransformFeedbacksPtr = OpenGLExtProcAddress("glGenTransformFeedbacks")
-    glDrawTransformFeedbackPtr = OpenGLExtProcAddress("glDrawTransformFeedback")
-    glDeleteTransformFeedbacksPtr = OpenGLExtProcAddress("glDeleteTransformFeedbacks")
-    glBindTransformFeedbackPtr = OpenGLExtProcAddress("glBindTransformFeedback")
-    glQueryCounterPtr = OpenGLExtProcAddress("glQueryCounter")
-    glGetQueryObjectui64vPtr = OpenGLExtProcAddress("glGetQueryObjectui64v")
-    glGetQueryObjecti64vPtr = OpenGLExtProcAddress("glGetQueryObjecti64v")
-    glTextureViewPtr = OpenGLExtProcAddress("glTextureView")
-    glTextureStorage3DMultisampleEXTPtr = OpenGLExtProcAddress("glTextureStorage3DMultisampleEXT")
-    glTextureStorage2DMultisampleEXTPtr = OpenGLExtProcAddress("glTextureStorage2DMultisampleEXT")
-    glTexStorage3DMultisamplePtr = OpenGLExtProcAddress("glTexStorage3DMultisample")
-    glTexStorage2DMultisamplePtr = OpenGLExtProcAddress("glTexStorage2DMultisample")
-    glTexStorage3DPtr = OpenGLExtProcAddress("glTexStorage3D")
-    glTexStorage2DPtr = OpenGLExtProcAddress("glTexStorage2D")
-    glTexStorage1DPtr = OpenGLExtProcAddress("glTexStorage1D")
-    glTexImage3DMultisamplePtr = OpenGLExtProcAddress("glTexImage3DMultisample")
-    glTexImage2DMultisamplePtr = OpenGLExtProcAddress("glTexImage2DMultisample")
-    glSampleMaskiPtr = OpenGLExtProcAddress("glSampleMaski")
-    glGetMultisamplefvPtr = OpenGLExtProcAddress("glGetMultisamplefv")
-    glGetCompressedTexImageARBPtr = OpenGLExtProcAddress("glGetCompressedTexImageARB")
-    glCompressedTexSubImage3DARBPtr = OpenGLExtProcAddress("glCompressedTexSubImage3DARB")
-    glCompressedTexSubImage2DARBPtr = OpenGLExtProcAddress("glCompressedTexSubImage2DARB")
-    glCompressedTexSubImage1DARBPtr = OpenGLExtProcAddress("glCompressedTexSubImage1DARB")
-    glCompressedTexImage3DARBPtr = OpenGLExtProcAddress("glCompressedTexImage3DARB")
-    glCompressedTexImage2DARBPtr = OpenGLExtProcAddress("glCompressedTexImage2DARB")
-    glCompressedTexImage1DARBPtr = OpenGLExtProcAddress("glCompressedTexImage1DARB")
-    glTextureBufferRangeEXTPtr = OpenGLExtProcAddress("glTextureBufferRangeEXT")
-    glTexBufferRangePtr = OpenGLExtProcAddress("glTexBufferRange")
-    glTexBufferARBPtr = OpenGLExtProcAddress("glTexBufferARB")
-    glTextureBarrierPtr = OpenGLExtProcAddress("glTextureBarrier")
-    glPatchParameteriPtr = OpenGLExtProcAddress("glPatchParameteri")
-    glPatchParameterfvPtr = OpenGLExtProcAddress("glPatchParameterfv")
-    glWaitSyncPtr = OpenGLExtProcAddress("glWaitSync")
-    glIsSyncPtr = OpenGLExtProcAddress("glIsSync")
-    glGetSyncivPtr = OpenGLExtProcAddress("glGetSynciv")
-    glGetInteger64vPtr = OpenGLExtProcAddress("glGetInteger64v")
-    glFenceSyncPtr = OpenGLExtProcAddress("glFenceSync")
-    glDeleteSyncPtr = OpenGLExtProcAddress("glDeleteSync")
-    glClientWaitSyncPtr = OpenGLExtProcAddress("glClientWaitSync")
-    glTexPageCommitmentARBPtr = OpenGLExtProcAddress("glTexPageCommitmentARB")
-    glBufferPageCommitmentARBPtr = OpenGLExtProcAddress("glBufferPageCommitmentARB")
-    glNamedStringARBPtr = OpenGLExtProcAddress("glNamedStringARB")
-    glIsNamedStringARBPtr = OpenGLExtProcAddress("glIsNamedStringARB")
-    glGetNamedStringivARBPtr = OpenGLExtProcAddress("glGetNamedStringivARB")
-    glGetNamedStringARBPtr = OpenGLExtProcAddress("glGetNamedStringARB")
-    glDeleteNamedStringARBPtr = OpenGLExtProcAddress("glDeleteNamedStringARB")
-    glCompileShaderIncludeARBPtr = OpenGLExtProcAddress("glCompileShaderIncludeARB")
-    glUniformSubroutinesuivPtr = OpenGLExtProcAddress("glUniformSubroutinesuiv")
-    glGetUniformSubroutineuivPtr = OpenGLExtProcAddress("glGetUniformSubroutineuiv")
-    glGetSubroutineUniformLocationPtr = OpenGLExtProcAddress("glGetSubroutineUniformLocation")
-    glGetSubroutineIndexPtr = OpenGLExtProcAddress("glGetSubroutineIndex")
-    glGetProgramStageivPtr = OpenGLExtProcAddress("glGetProgramStageiv")
-    glGetActiveSubroutineUniformivPtr = OpenGLExtProcAddress("glGetActiveSubroutineUniformiv")
-    glGetActiveSubroutineUniformNamePtr = OpenGLExtProcAddress("glGetActiveSubroutineUniformName")
-    glGetActiveSubroutineNamePtr = OpenGLExtProcAddress("glGetActiveSubroutineName")
-    glShaderStorageBlockBindingPtr = OpenGLExtProcAddress("glShaderStorageBlockBinding")
-    glValidateProgramARBPtr = OpenGLExtProcAddress("glValidateProgramARB")
-    glUseProgramObjectARBPtr = OpenGLExtProcAddress("glUseProgramObjectARB")
-    glUniformMatrix4fvARBPtr = OpenGLExtProcAddress("glUniformMatrix4fvARB")
-    glUniformMatrix3fvARBPtr = OpenGLExtProcAddress("glUniformMatrix3fvARB")
-    glUniformMatrix2fvARBPtr = OpenGLExtProcAddress("glUniformMatrix2fvARB")
-    glUniform4ivARBPtr = OpenGLExtProcAddress("glUniform4ivARB")
-    glUniform4iARBPtr = OpenGLExtProcAddress("glUniform4iARB")
-    glUniform4fvARBPtr = OpenGLExtProcAddress("glUniform4fvARB")
-    glUniform4fARBPtr = OpenGLExtProcAddress("glUniform4fARB")
-    glUniform3ivARBPtr = OpenGLExtProcAddress("glUniform3ivARB")
-    glUniform3iARBPtr = OpenGLExtProcAddress("glUniform3iARB")
-    glUniform3fvARBPtr = OpenGLExtProcAddress("glUniform3fvARB")
-    glUniform3fARBPtr = OpenGLExtProcAddress("glUniform3fARB")
-    glUniform2ivARBPtr = OpenGLExtProcAddress("glUniform2ivARB")
-    glUniform2iARBPtr = OpenGLExtProcAddress("glUniform2iARB")
-    glUniform2fvARBPtr = OpenGLExtProcAddress("glUniform2fvARB")
-    glUniform2fARBPtr = OpenGLExtProcAddress("glUniform2fARB")
-    glUniform1ivARBPtr = OpenGLExtProcAddress("glUniform1ivARB")
-    glUniform1iARBPtr = OpenGLExtProcAddress("glUniform1iARB")
-    glUniform1fvARBPtr = OpenGLExtProcAddress("glUniform1fvARB")
-    glUniform1fARBPtr = OpenGLExtProcAddress("glUniform1fARB")
-    glShaderSourceARBPtr = OpenGLExtProcAddress("glShaderSourceARB")
-    glLinkProgramARBPtr = OpenGLExtProcAddress("glLinkProgramARB")
-    glGetUniformivARBPtr = OpenGLExtProcAddress("glGetUniformivARB")
-    glGetUniformfvARBPtr = OpenGLExtProcAddress("glGetUniformfvARB")
-    glGetUniformLocationARBPtr = OpenGLExtProcAddress("glGetUniformLocationARB")
-    glGetShaderSourceARBPtr = OpenGLExtProcAddress("glGetShaderSourceARB")
-    glGetObjectParameterivARBPtr = OpenGLExtProcAddress("glGetObjectParameterivARB")
-    glGetObjectParameterfvARBPtr = OpenGLExtProcAddress("glGetObjectParameterfvARB")
-    glGetInfoLogARBPtr = OpenGLExtProcAddress("glGetInfoLogARB")
-    glGetHandleARBPtr = OpenGLExtProcAddress("glGetHandleARB")
-    glGetAttachedObjectsARBPtr = OpenGLExtProcAddress("glGetAttachedObjectsARB")
-    glGetActiveUniformARBPtr = OpenGLExtProcAddress("glGetActiveUniformARB")
-    glDetachObjectARBPtr = OpenGLExtProcAddress("glDetachObjectARB")
-    glDeleteObjectARBPtr = OpenGLExtProcAddress("glDeleteObjectARB")
-    glCreateShaderObjectARBPtr = OpenGLExtProcAddress("glCreateShaderObjectARB")
-    glCreateProgramObjectARBPtr = OpenGLExtProcAddress("glCreateProgramObjectARB")
-    glCompileShaderARBPtr = OpenGLExtProcAddress("glCompileShaderARB")
-    glAttachObjectARBPtr = OpenGLExtProcAddress("glAttachObjectARB")
-    glMemoryBarrierPtr = OpenGLExtProcAddress("glMemoryBarrier")
-    glBindImageTexturePtr = OpenGLExtProcAddress("glBindImageTexture")
-    glGetActiveAtomicCounterBufferivPtr = OpenGLExtProcAddress("glGetActiveAtomicCounterBufferiv")
-    glValidateProgramPipelinePtr = OpenGLExtProcAddress("glValidateProgramPipeline")
-    glUseProgramStagesPtr = OpenGLExtProcAddress("glUseProgramStages")
-    glProgramUniformMatrix4x3fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4x3fv")
-    glProgramUniformMatrix4x3dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4x3dv")
-    glProgramUniformMatrix4x2fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4x2fv")
-    glProgramUniformMatrix4x2dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4x2dv")
-    glProgramUniformMatrix4fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4fv")
-    glProgramUniformMatrix4dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4dv")
-    glProgramUniformMatrix3x4fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3x4fv")
-    glProgramUniformMatrix3x4dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3x4dv")
-    glProgramUniformMatrix3x2fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3x2fv")
-    glProgramUniformMatrix3x2dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3x2dv")
-    glProgramUniformMatrix3fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3fv")
-    glProgramUniformMatrix3dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3dv")
-    glProgramUniformMatrix2x4fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2x4fv")
-    glProgramUniformMatrix2x4dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2x4dv")
-    glProgramUniformMatrix2x3fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2x3fv")
-    glProgramUniformMatrix2x3dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2x3dv")
-    glProgramUniformMatrix2fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2fv")
-    glProgramUniformMatrix2dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2dv")
-    glProgramUniform4uivPtr = OpenGLExtProcAddress("glProgramUniform4uiv")
-    glProgramUniform4uiPtr = OpenGLExtProcAddress("glProgramUniform4ui")
-    glProgramUniform4ivPtr = OpenGLExtProcAddress("glProgramUniform4iv")
-    glProgramUniform4iPtr = OpenGLExtProcAddress("glProgramUniform4i")
-    glProgramUniform4fvPtr = OpenGLExtProcAddress("glProgramUniform4fv")
-    glProgramUniform4fPtr = OpenGLExtProcAddress("glProgramUniform4f")
-    glProgramUniform4dvPtr = OpenGLExtProcAddress("glProgramUniform4dv")
-    glProgramUniform4dPtr = OpenGLExtProcAddress("glProgramUniform4d")
-    glProgramUniform3uivPtr = OpenGLExtProcAddress("glProgramUniform3uiv")
-    glProgramUniform3uiPtr = OpenGLExtProcAddress("glProgramUniform3ui")
-    glProgramUniform3ivPtr = OpenGLExtProcAddress("glProgramUniform3iv")
-    glProgramUniform3iPtr = OpenGLExtProcAddress("glProgramUniform3i")
-    glProgramUniform3fvPtr = OpenGLExtProcAddress("glProgramUniform3fv")
-    glProgramUniform3fPtr = OpenGLExtProcAddress("glProgramUniform3f")
-    glProgramUniform3dvPtr = OpenGLExtProcAddress("glProgramUniform3dv")
-    glProgramUniform3dPtr = OpenGLExtProcAddress("glProgramUniform3d")
-    glProgramUniform2uivPtr = OpenGLExtProcAddress("glProgramUniform2uiv")
-    glProgramUniform2uiPtr = OpenGLExtProcAddress("glProgramUniform2ui")
-    glProgramUniform2ivPtr = OpenGLExtProcAddress("glProgramUniform2iv")
-    glProgramUniform2iPtr = OpenGLExtProcAddress("glProgramUniform2i")
-    glProgramUniform2fvPtr = OpenGLExtProcAddress("glProgramUniform2fv")
-    glProgramUniform2fPtr = OpenGLExtProcAddress("glProgramUniform2f")
-    glProgramUniform2dvPtr = OpenGLExtProcAddress("glProgramUniform2dv")
-    glProgramUniform2dPtr = OpenGLExtProcAddress("glProgramUniform2d")
-    glProgramUniform1uivPtr = OpenGLExtProcAddress("glProgramUniform1uiv")
-    glProgramUniform1uiPtr = OpenGLExtProcAddress("glProgramUniform1ui")
-    glProgramUniform1ivPtr = OpenGLExtProcAddress("glProgramUniform1iv")
-    glProgramUniform1iPtr = OpenGLExtProcAddress("glProgramUniform1i")
-    glProgramUniform1fvPtr = OpenGLExtProcAddress("glProgramUniform1fv")
-    glProgramUniform1fPtr = OpenGLExtProcAddress("glProgramUniform1f")
-    glProgramUniform1dvPtr = OpenGLExtProcAddress("glProgramUniform1dv")
-    glProgramUniform1dPtr = OpenGLExtProcAddress("glProgramUniform1d")
-    glIsProgramPipelinePtr = OpenGLExtProcAddress("glIsProgramPipeline")
-    glGetProgramPipelineivPtr = OpenGLExtProcAddress("glGetProgramPipelineiv")
-    glGetProgramPipelineInfoLogPtr = OpenGLExtProcAddress("glGetProgramPipelineInfoLog")
-    glGenProgramPipelinesPtr = OpenGLExtProcAddress("glGenProgramPipelines")
-    glDeleteProgramPipelinesPtr = OpenGLExtProcAddress("glDeleteProgramPipelines")
-    glCreateShaderProgramvPtr = OpenGLExtProcAddress("glCreateShaderProgramv")
-    glBindProgramPipelinePtr = OpenGLExtProcAddress("glBindProgramPipeline")
-    glActiveShaderProgramPtr = OpenGLExtProcAddress("glActiveShaderProgram")
-    glSamplerParameterivPtr = OpenGLExtProcAddress("glSamplerParameteriv")
-    glSamplerParameteriPtr = OpenGLExtProcAddress("glSamplerParameteri")
-    glSamplerParameterfvPtr = OpenGLExtProcAddress("glSamplerParameterfv")
-    glSamplerParameterfPtr = OpenGLExtProcAddress("glSamplerParameterf")
-    glSamplerParameterIuivPtr = OpenGLExtProcAddress("glSamplerParameterIuiv")
-    glSamplerParameterIivPtr = OpenGLExtProcAddress("glSamplerParameterIiv")
-    glIsSamplerPtr = OpenGLExtProcAddress("glIsSampler")
-    glGetSamplerParameterivPtr = OpenGLExtProcAddress("glGetSamplerParameteriv")
-    glGetSamplerParameterfvPtr = OpenGLExtProcAddress("glGetSamplerParameterfv")
-    glGetSamplerParameterIuivPtr = OpenGLExtProcAddress("glGetSamplerParameterIuiv")
-    glGetSamplerParameterIivPtr = OpenGLExtProcAddress("glGetSamplerParameterIiv")
-    glGenSamplersPtr = OpenGLExtProcAddress("glGenSamplers")
-    glDeleteSamplersPtr = OpenGLExtProcAddress("glDeleteSamplers")
-    glBindSamplerPtr = OpenGLExtProcAddress("glBindSampler")
-    glMinSampleShadingARBPtr = OpenGLExtProcAddress("glMinSampleShadingARB")
-    glNamedFramebufferSampleLocationsfvARBPtr = OpenGLExtProcAddress("glNamedFramebufferSampleLocationsfvARB")
-    glFramebufferSampleLocationsfvARBPtr = OpenGLExtProcAddress("glFramebufferSampleLocationsfvARB")
-    glReadnPixelsARBPtr = OpenGLExtProcAddress("glReadnPixelsARB")
-    glGetnUniformuivARBPtr = OpenGLExtProcAddress("glGetnUniformuivARB")
-    glGetnUniformivARBPtr = OpenGLExtProcAddress("glGetnUniformivARB")
-    glGetnUniformfvARBPtr = OpenGLExtProcAddress("glGetnUniformfvARB")
-    glGetnUniformdvARBPtr = OpenGLExtProcAddress("glGetnUniformdvARB")
-    glGetnTexImageARBPtr = OpenGLExtProcAddress("glGetnTexImageARB")
-    glGetnSeparableFilterARBPtr = OpenGLExtProcAddress("glGetnSeparableFilterARB")
-    glGetnPolygonStippleARBPtr = OpenGLExtProcAddress("glGetnPolygonStippleARB")
-    glGetnPixelMapusvARBPtr = OpenGLExtProcAddress("glGetnPixelMapusvARB")
-    glGetnPixelMapuivARBPtr = OpenGLExtProcAddress("glGetnPixelMapuivARB")
-    glGetnPixelMapfvARBPtr = OpenGLExtProcAddress("glGetnPixelMapfvARB")
-    glGetnMinmaxARBPtr = OpenGLExtProcAddress("glGetnMinmaxARB")
-    glGetnMapivARBPtr = OpenGLExtProcAddress("glGetnMapivARB")
-    glGetnMapfvARBPtr = OpenGLExtProcAddress("glGetnMapfvARB")
-    glGetnMapdvARBPtr = OpenGLExtProcAddress("glGetnMapdvARB")
-    glGetnHistogramARBPtr = OpenGLExtProcAddress("glGetnHistogramARB")
-    glGetnConvolutionFilterARBPtr = OpenGLExtProcAddress("glGetnConvolutionFilterARB")
-    glGetnCompressedTexImageARBPtr = OpenGLExtProcAddress("glGetnCompressedTexImageARB")
-    glGetnColorTableARBPtr = OpenGLExtProcAddress("glGetnColorTableARB")
-    glGetGraphicsResetStatusARBPtr = OpenGLExtProcAddress("glGetGraphicsResetStatusARB")
-    glProvokingVertexPtr = OpenGLExtProcAddress("glProvokingVertex")
-    glGetProgramResourceivPtr = OpenGLExtProcAddress("glGetProgramResourceiv")
-    glGetProgramResourceNamePtr = OpenGLExtProcAddress("glGetProgramResourceName")
-    glGetProgramResourceLocationIndexPtr = OpenGLExtProcAddress("glGetProgramResourceLocationIndex")
-    glGetProgramResourceLocationPtr = OpenGLExtProcAddress("glGetProgramResourceLocation")
-    glGetProgramResourceIndexPtr = OpenGLExtProcAddress("glGetProgramResourceIndex")
-    glGetProgramInterfaceivPtr = OpenGLExtProcAddress("glGetProgramInterfaceiv")
-    glPolygonOffsetClampPtr = OpenGLExtProcAddress("glPolygonOffsetClamp")
-    glPointParameterfvARBPtr = OpenGLExtProcAddress("glPointParameterfvARB")
-    glPointParameterfARBPtr = OpenGLExtProcAddress("glPointParameterfARB")
-    glMaxShaderCompilerThreadsARBPtr = OpenGLExtProcAddress("glMaxShaderCompilerThreadsARB")
-    glIsQueryARBPtr = OpenGLExtProcAddress("glIsQueryARB")
-    glGetQueryivARBPtr = OpenGLExtProcAddress("glGetQueryivARB")
-    glGetQueryObjectuivARBPtr = OpenGLExtProcAddress("glGetQueryObjectuivARB")
-    glGetQueryObjectivARBPtr = OpenGLExtProcAddress("glGetQueryObjectivARB")
-    glGenQueriesARBPtr = OpenGLExtProcAddress("glGenQueriesARB")
-    glEndQueryARBPtr = OpenGLExtProcAddress("glEndQueryARB")
-    glDeleteQueriesARBPtr = OpenGLExtProcAddress("glDeleteQueriesARB")
-    glBeginQueryARBPtr = OpenGLExtProcAddress("glBeginQueryARB")
-    glMultiTexCoord4svARBPtr = OpenGLExtProcAddress("glMultiTexCoord4svARB")
-    glMultiTexCoord4sARBPtr = OpenGLExtProcAddress("glMultiTexCoord4sARB")
-    glMultiTexCoord4ivARBPtr = OpenGLExtProcAddress("glMultiTexCoord4ivARB")
-    glMultiTexCoord4iARBPtr = OpenGLExtProcAddress("glMultiTexCoord4iARB")
-    glMultiTexCoord4fvARBPtr = OpenGLExtProcAddress("glMultiTexCoord4fvARB")
-    glMultiTexCoord4fARBPtr = OpenGLExtProcAddress("glMultiTexCoord4fARB")
-    glMultiTexCoord4dvARBPtr = OpenGLExtProcAddress("glMultiTexCoord4dvARB")
-    glMultiTexCoord4dARBPtr = OpenGLExtProcAddress("glMultiTexCoord4dARB")
-    glMultiTexCoord3svARBPtr = OpenGLExtProcAddress("glMultiTexCoord3svARB")
-    glMultiTexCoord3sARBPtr = OpenGLExtProcAddress("glMultiTexCoord3sARB")
-    glMultiTexCoord3ivARBPtr = OpenGLExtProcAddress("glMultiTexCoord3ivARB")
-    glMultiTexCoord3iARBPtr = OpenGLExtProcAddress("glMultiTexCoord3iARB")
-    glMultiTexCoord3fvARBPtr = OpenGLExtProcAddress("glMultiTexCoord3fvARB")
-    glMultiTexCoord3fARBPtr = OpenGLExtProcAddress("glMultiTexCoord3fARB")
-    glMultiTexCoord3dvARBPtr = OpenGLExtProcAddress("glMultiTexCoord3dvARB")
-    glMultiTexCoord3dARBPtr = OpenGLExtProcAddress("glMultiTexCoord3dARB")
-    glMultiTexCoord2svARBPtr = OpenGLExtProcAddress("glMultiTexCoord2svARB")
-    glMultiTexCoord2sARBPtr = OpenGLExtProcAddress("glMultiTexCoord2sARB")
-    glMultiTexCoord2ivARBPtr = OpenGLExtProcAddress("glMultiTexCoord2ivARB")
-    glMultiTexCoord2iARBPtr = OpenGLExtProcAddress("glMultiTexCoord2iARB")
-    glMultiTexCoord2fvARBPtr = OpenGLExtProcAddress("glMultiTexCoord2fvARB")
-    glMultiTexCoord2fARBPtr = OpenGLExtProcAddress("glMultiTexCoord2fARB")
-    glMultiTexCoord2dvARBPtr = OpenGLExtProcAddress("glMultiTexCoord2dvARB")
-    glMultiTexCoord2dARBPtr = OpenGLExtProcAddress("glMultiTexCoord2dARB")
-    glMultiTexCoord1svARBPtr = OpenGLExtProcAddress("glMultiTexCoord1svARB")
-    glMultiTexCoord1sARBPtr = OpenGLExtProcAddress("glMultiTexCoord1sARB")
-    glMultiTexCoord1ivARBPtr = OpenGLExtProcAddress("glMultiTexCoord1ivARB")
-    glMultiTexCoord1iARBPtr = OpenGLExtProcAddress("glMultiTexCoord1iARB")
-    glMultiTexCoord1fvARBPtr = OpenGLExtProcAddress("glMultiTexCoord1fvARB")
-    glMultiTexCoord1fARBPtr = OpenGLExtProcAddress("glMultiTexCoord1fARB")
-    glMultiTexCoord1dvARBPtr = OpenGLExtProcAddress("glMultiTexCoord1dvARB")
-    glMultiTexCoord1dARBPtr = OpenGLExtProcAddress("glMultiTexCoord1dARB")
-    glClientActiveTextureARBPtr = OpenGLExtProcAddress("glClientActiveTextureARB")
-    glActiveTextureARBPtr = OpenGLExtProcAddress("glActiveTextureARB")
-    glSampleCoverageARBPtr = OpenGLExtProcAddress("glSampleCoverageARB")
-    glMultiDrawElementsIndirectPtr = OpenGLExtProcAddress("glMultiDrawElementsIndirect")
-    glMultiDrawArraysIndirectPtr = OpenGLExtProcAddress("glMultiDrawArraysIndirect")
-    glBindVertexBuffersPtr = OpenGLExtProcAddress("glBindVertexBuffers")
-    glBindTexturesPtr = OpenGLExtProcAddress("glBindTextures")
-    glBindSamplersPtr = OpenGLExtProcAddress("glBindSamplers")
-    glBindImageTexturesPtr = OpenGLExtProcAddress("glBindImageTextures")
-    glBindBuffersRangePtr = OpenGLExtProcAddress("glBindBuffersRange")
-    glBindBuffersBasePtr = OpenGLExtProcAddress("glBindBuffersBase")
-    glMatrixIndexusvARBPtr = OpenGLExtProcAddress("glMatrixIndexusvARB")
-    glMatrixIndexuivARBPtr = OpenGLExtProcAddress("glMatrixIndexuivARB")
-    glMatrixIndexubvARBPtr = OpenGLExtProcAddress("glMatrixIndexubvARB")
-    glMatrixIndexPointerARBPtr = OpenGLExtProcAddress("glMatrixIndexPointerARB")
-    glCurrentPaletteMatrixARBPtr = OpenGLExtProcAddress("glCurrentPaletteMatrixARB")
-    glFlushMappedBufferRangePtr = OpenGLExtProcAddress("glFlushMappedBufferRange")
-    glInvalidateTexSubImagePtr = OpenGLExtProcAddress("glInvalidateTexSubImage")
-    glInvalidateTexImagePtr = OpenGLExtProcAddress("glInvalidateTexImage")
-    glInvalidateSubFramebufferPtr = OpenGLExtProcAddress("glInvalidateSubFramebuffer")
-    glInvalidateFramebufferPtr = OpenGLExtProcAddress("glInvalidateFramebuffer")
-    glInvalidateBufferSubDataPtr = OpenGLExtProcAddress("glInvalidateBufferSubData")
-    glInvalidateBufferDataPtr = OpenGLExtProcAddress("glInvalidateBufferData")
-    glGetInternalformati64vPtr = OpenGLExtProcAddress("glGetInternalformati64v")
-    glGetInternalformativPtr = OpenGLExtProcAddress("glGetInternalformativ")
-    glVertexAttribDivisorARBPtr = OpenGLExtProcAddress("glVertexAttribDivisorARB")
-    glDrawElementsInstancedARBPtr = OpenGLExtProcAddress("glDrawElementsInstancedARB")
-    glDrawArraysInstancedARBPtr = OpenGLExtProcAddress("glDrawArraysInstancedARB")
-    glMultiDrawElementsIndirectCountARBPtr = OpenGLExtProcAddress("glMultiDrawElementsIndirectCountARB")
-    glMultiDrawArraysIndirectCountARBPtr = OpenGLExtProcAddress("glMultiDrawArraysIndirectCountARB")
-    glSeparableFilter2DPtr = OpenGLExtProcAddress("glSeparableFilter2D")
-    glResetMinmaxPtr = OpenGLExtProcAddress("glResetMinmax")
-    glResetHistogramPtr = OpenGLExtProcAddress("glResetHistogram")
-    glMinmaxPtr = OpenGLExtProcAddress("glMinmax")
-    glHistogramPtr = OpenGLExtProcAddress("glHistogram")
-    glGetSeparableFilterPtr = OpenGLExtProcAddress("glGetSeparableFilter")
-    glGetMinmaxParameterivPtr = OpenGLExtProcAddress("glGetMinmaxParameteriv")
-    glGetMinmaxParameterfvPtr = OpenGLExtProcAddress("glGetMinmaxParameterfv")
-    glGetMinmaxPtr = OpenGLExtProcAddress("glGetMinmax")
-    glGetHistogramParameterivPtr = OpenGLExtProcAddress("glGetHistogramParameteriv")
-    glGetHistogramParameterfvPtr = OpenGLExtProcAddress("glGetHistogramParameterfv")
-    glGetHistogramPtr = OpenGLExtProcAddress("glGetHistogram")
-    glGetConvolutionParameterivPtr = OpenGLExtProcAddress("glGetConvolutionParameteriv")
-    glGetConvolutionParameterfvPtr = OpenGLExtProcAddress("glGetConvolutionParameterfv")
-    glGetConvolutionFilterPtr = OpenGLExtProcAddress("glGetConvolutionFilter")
-    glGetColorTableParameterivPtr = OpenGLExtProcAddress("glGetColorTableParameteriv")
-    glGetColorTableParameterfvPtr = OpenGLExtProcAddress("glGetColorTableParameterfv")
-    glGetColorTablePtr = OpenGLExtProcAddress("glGetColorTable")
-    glCopyConvolutionFilter2DPtr = OpenGLExtProcAddress("glCopyConvolutionFilter2D")
-    glCopyConvolutionFilter1DPtr = OpenGLExtProcAddress("glCopyConvolutionFilter1D")
-    glCopyColorTablePtr = OpenGLExtProcAddress("glCopyColorTable")
-    glCopyColorSubTablePtr = OpenGLExtProcAddress("glCopyColorSubTable")
-    glConvolutionParameterivPtr = OpenGLExtProcAddress("glConvolutionParameteriv")
-    glConvolutionParameteriPtr = OpenGLExtProcAddress("glConvolutionParameteri")
-    glConvolutionParameterfvPtr = OpenGLExtProcAddress("glConvolutionParameterfv")
-    glConvolutionParameterfPtr = OpenGLExtProcAddress("glConvolutionParameterf")
-    glConvolutionFilter2DPtr = OpenGLExtProcAddress("glConvolutionFilter2D")
-    glConvolutionFilter1DPtr = OpenGLExtProcAddress("glConvolutionFilter1D")
-    glColorTableParameterivPtr = OpenGLExtProcAddress("glColorTableParameteriv")
-    glColorTableParameterfvPtr = OpenGLExtProcAddress("glColorTableParameterfv")
-    glColorTablePtr = OpenGLExtProcAddress("glColorTable")
-    glColorSubTablePtr = OpenGLExtProcAddress("glColorSubTable")
-    glUniform4ui64vARBPtr = OpenGLExtProcAddress("glUniform4ui64vARB")
-    glUniform4ui64ARBPtr = OpenGLExtProcAddress("glUniform4ui64ARB")
-    glUniform4i64vARBPtr = OpenGLExtProcAddress("glUniform4i64vARB")
-    glUniform4i64ARBPtr = OpenGLExtProcAddress("glUniform4i64ARB")
-    glUniform3ui64vARBPtr = OpenGLExtProcAddress("glUniform3ui64vARB")
-    glUniform3ui64ARBPtr = OpenGLExtProcAddress("glUniform3ui64ARB")
-    glUniform3i64vARBPtr = OpenGLExtProcAddress("glUniform3i64vARB")
-    glUniform3i64ARBPtr = OpenGLExtProcAddress("glUniform3i64ARB")
-    glUniform2ui64vARBPtr = OpenGLExtProcAddress("glUniform2ui64vARB")
-    glUniform2ui64ARBPtr = OpenGLExtProcAddress("glUniform2ui64ARB")
-    glUniform2i64vARBPtr = OpenGLExtProcAddress("glUniform2i64vARB")
-    glUniform2i64ARBPtr = OpenGLExtProcAddress("glUniform2i64ARB")
-    glUniform1ui64vARBPtr = OpenGLExtProcAddress("glUniform1ui64vARB")
-    glUniform1ui64ARBPtr = OpenGLExtProcAddress("glUniform1ui64ARB")
-    glUniform1i64vARBPtr = OpenGLExtProcAddress("glUniform1i64vARB")
-    glUniform1i64ARBPtr = OpenGLExtProcAddress("glUniform1i64ARB")
-    glProgramUniform4ui64vARBPtr = OpenGLExtProcAddress("glProgramUniform4ui64vARB")
-    glProgramUniform4ui64ARBPtr = OpenGLExtProcAddress("glProgramUniform4ui64ARB")
-    glProgramUniform4i64vARBPtr = OpenGLExtProcAddress("glProgramUniform4i64vARB")
-    glProgramUniform4i64ARBPtr = OpenGLExtProcAddress("glProgramUniform4i64ARB")
-    glProgramUniform3ui64vARBPtr = OpenGLExtProcAddress("glProgramUniform3ui64vARB")
-    glProgramUniform3ui64ARBPtr = OpenGLExtProcAddress("glProgramUniform3ui64ARB")
-    glProgramUniform3i64vARBPtr = OpenGLExtProcAddress("glProgramUniform3i64vARB")
-    glProgramUniform3i64ARBPtr = OpenGLExtProcAddress("glProgramUniform3i64ARB")
-    glProgramUniform2ui64vARBPtr = OpenGLExtProcAddress("glProgramUniform2ui64vARB")
-    glProgramUniform2ui64ARBPtr = OpenGLExtProcAddress("glProgramUniform2ui64ARB")
-    glProgramUniform2i64vARBPtr = OpenGLExtProcAddress("glProgramUniform2i64vARB")
-    glProgramUniform2i64ARBPtr = OpenGLExtProcAddress("glProgramUniform2i64ARB")
-    glProgramUniform1ui64vARBPtr = OpenGLExtProcAddress("glProgramUniform1ui64vARB")
-    glProgramUniform1ui64ARBPtr = OpenGLExtProcAddress("glProgramUniform1ui64ARB")
-    glProgramUniform1i64vARBPtr = OpenGLExtProcAddress("glProgramUniform1i64vARB")
-    glProgramUniform1i64ARBPtr = OpenGLExtProcAddress("glProgramUniform1i64ARB")
-    glGetnUniformui64vARBPtr = OpenGLExtProcAddress("glGetnUniformui64vARB")
-    glGetnUniformi64vARBPtr = OpenGLExtProcAddress("glGetnUniformi64vARB")
-    glGetUniformui64vARBPtr = OpenGLExtProcAddress("glGetUniformui64vARB")
-    glGetUniformi64vARBPtr = OpenGLExtProcAddress("glGetUniformi64vARB")
-    glUniformMatrix4x3dvPtr = OpenGLExtProcAddress("glUniformMatrix4x3dv")
-    glUniformMatrix4x2dvPtr = OpenGLExtProcAddress("glUniformMatrix4x2dv")
-    glUniformMatrix4dvPtr = OpenGLExtProcAddress("glUniformMatrix4dv")
-    glUniformMatrix3x4dvPtr = OpenGLExtProcAddress("glUniformMatrix3x4dv")
-    glUniformMatrix3x2dvPtr = OpenGLExtProcAddress("glUniformMatrix3x2dv")
-    glUniformMatrix3dvPtr = OpenGLExtProcAddress("glUniformMatrix3dv")
-    glUniformMatrix2x4dvPtr = OpenGLExtProcAddress("glUniformMatrix2x4dv")
-    glUniformMatrix2x3dvPtr = OpenGLExtProcAddress("glUniformMatrix2x3dv")
-    glUniformMatrix2dvPtr = OpenGLExtProcAddress("glUniformMatrix2dv")
-    glUniform4dvPtr = OpenGLExtProcAddress("glUniform4dv")
-    glUniform4dPtr = OpenGLExtProcAddress("glUniform4d")
-    glUniform3dvPtr = OpenGLExtProcAddress("glUniform3dv")
-    glUniform3dPtr = OpenGLExtProcAddress("glUniform3d")
-    glUniform2dvPtr = OpenGLExtProcAddress("glUniform2dv")
-    glUniform2dPtr = OpenGLExtProcAddress("glUniform2d")
-    glUniform1dvPtr = OpenGLExtProcAddress("glUniform1dv")
-    glUniform1dPtr = OpenGLExtProcAddress("glUniform1d")
-    glGetUniformdvPtr = OpenGLExtProcAddress("glGetUniformdv")
-    glSpecializeShaderARBPtr = OpenGLExtProcAddress("glSpecializeShaderARB")
-    glGetTextureSubImagePtr = OpenGLExtProcAddress("glGetTextureSubImage")
-    glGetCompressedTextureSubImagePtr = OpenGLExtProcAddress("glGetCompressedTextureSubImage")
-    glProgramParameteriPtr = OpenGLExtProcAddress("glProgramParameteri")
-    glProgramBinaryPtr = OpenGLExtProcAddress("glProgramBinary")
-    glGetProgramBinaryPtr = OpenGLExtProcAddress("glGetProgramBinary")
-    glProgramParameteriARBPtr = OpenGLExtProcAddress("glProgramParameteriARB")
-    glFramebufferTextureLayerARBPtr = OpenGLExtProcAddress("glFramebufferTextureLayerARB")
-    glFramebufferTextureFaceARBPtr = OpenGLExtProcAddress("glFramebufferTextureFaceARB")
-    glFramebufferTextureARBPtr = OpenGLExtProcAddress("glFramebufferTextureARB")
-    glRenderbufferStorageMultisamplePtr = OpenGLExtProcAddress("glRenderbufferStorageMultisample")
-    glRenderbufferStoragePtr = OpenGLExtProcAddress("glRenderbufferStorage")
-    glIsRenderbufferPtr = OpenGLExtProcAddress("glIsRenderbuffer")
-    glIsFramebufferPtr = OpenGLExtProcAddress("glIsFramebuffer")
-    glGetRenderbufferParameterivPtr = OpenGLExtProcAddress("glGetRenderbufferParameteriv")
-    glGetFramebufferAttachmentParameterivPtr = OpenGLExtProcAddress("glGetFramebufferAttachmentParameteriv")
-    glGenerateMipmapPtr = OpenGLExtProcAddress("glGenerateMipmap")
-    glGenRenderbuffersPtr = OpenGLExtProcAddress("glGenRenderbuffers")
-    glGenFramebuffersPtr = OpenGLExtProcAddress("glGenFramebuffers")
-    glFramebufferTextureLayerPtr = OpenGLExtProcAddress("glFramebufferTextureLayer")
-    glFramebufferTexture3DPtr = OpenGLExtProcAddress("glFramebufferTexture3D")
-    glFramebufferTexture2DPtr = OpenGLExtProcAddress("glFramebufferTexture2D")
-    glFramebufferTexture1DPtr = OpenGLExtProcAddress("glFramebufferTexture1D")
-    glFramebufferRenderbufferPtr = OpenGLExtProcAddress("glFramebufferRenderbuffer")
-    glDeleteRenderbuffersPtr = OpenGLExtProcAddress("glDeleteRenderbuffers")
-    glDeleteFramebuffersPtr = OpenGLExtProcAddress("glDeleteFramebuffers")
-    glCheckFramebufferStatusPtr = OpenGLExtProcAddress("glCheckFramebufferStatus")
-    glBlitFramebufferPtr = OpenGLExtProcAddress("glBlitFramebuffer")
-    glBindRenderbufferPtr = OpenGLExtProcAddress("glBindRenderbuffer")
-    glBindFramebufferPtr = OpenGLExtProcAddress("glBindFramebuffer")
-    glNamedFramebufferParameteriEXTPtr = OpenGLExtProcAddress("glNamedFramebufferParameteriEXT")
-    glGetNamedFramebufferParameterivEXTPtr = OpenGLExtProcAddress("glGetNamedFramebufferParameterivEXT")
-    glGetFramebufferParameterivPtr = OpenGLExtProcAddress("glGetFramebufferParameteriv")
-    glFramebufferParameteriPtr = OpenGLExtProcAddress("glFramebufferParameteri")
-    glDrawElementsIndirectPtr = OpenGLExtProcAddress("glDrawElementsIndirect")
-    glDrawArraysIndirectPtr = OpenGLExtProcAddress("glDrawArraysIndirect")
-    glMultiDrawElementsBaseVertexPtr = OpenGLExtProcAddress("glMultiDrawElementsBaseVertex")
-    glDrawRangeElementsBaseVertexPtr = OpenGLExtProcAddress("glDrawRangeElementsBaseVertex")
-    glDrawElementsInstancedBaseVertexPtr = OpenGLExtProcAddress("glDrawElementsInstancedBaseVertex")
-    glDrawElementsBaseVertexPtr = OpenGLExtProcAddress("glDrawElementsBaseVertex")
-    glBlendFunciARBPtr = OpenGLExtProcAddress("glBlendFunciARB")
-    glBlendFuncSeparateiARBPtr = OpenGLExtProcAddress("glBlendFuncSeparateiARB")
-    glBlendEquationiARBPtr = OpenGLExtProcAddress("glBlendEquationiARB")
-    glBlendEquationSeparateiARBPtr = OpenGLExtProcAddress("glBlendEquationSeparateiARB")
-    glDrawBuffersARBPtr = OpenGLExtProcAddress("glDrawBuffersARB")
-    glVertexArrayVertexBuffersPtr = OpenGLExtProcAddress("glVertexArrayVertexBuffers")
-    glVertexArrayVertexBufferPtr = OpenGLExtProcAddress("glVertexArrayVertexBuffer")
-    glVertexArrayElementBufferPtr = OpenGLExtProcAddress("glVertexArrayElementBuffer")
-    glVertexArrayBindingDivisorPtr = OpenGLExtProcAddress("glVertexArrayBindingDivisor")
-    glVertexArrayAttribLFormatPtr = OpenGLExtProcAddress("glVertexArrayAttribLFormat")
-    glVertexArrayAttribIFormatPtr = OpenGLExtProcAddress("glVertexArrayAttribIFormat")
-    glVertexArrayAttribFormatPtr = OpenGLExtProcAddress("glVertexArrayAttribFormat")
-    glVertexArrayAttribBindingPtr = OpenGLExtProcAddress("glVertexArrayAttribBinding")
-    glUnmapNamedBufferPtr = OpenGLExtProcAddress("glUnmapNamedBuffer")
-    glTransformFeedbackBufferRangePtr = OpenGLExtProcAddress("glTransformFeedbackBufferRange")
-    glTransformFeedbackBufferBasePtr = OpenGLExtProcAddress("glTransformFeedbackBufferBase")
-    glTextureSubImage3DPtr = OpenGLExtProcAddress("glTextureSubImage3D")
-    glTextureSubImage2DPtr = OpenGLExtProcAddress("glTextureSubImage2D")
-    glTextureSubImage1DPtr = OpenGLExtProcAddress("glTextureSubImage1D")
-    glTextureStorage3DMultisamplePtr = OpenGLExtProcAddress("glTextureStorage3DMultisample")
-    glTextureStorage3DPtr = OpenGLExtProcAddress("glTextureStorage3D")
-    glTextureStorage2DMultisamplePtr = OpenGLExtProcAddress("glTextureStorage2DMultisample")
-    glTextureStorage2DPtr = OpenGLExtProcAddress("glTextureStorage2D")
-    glTextureStorage1DPtr = OpenGLExtProcAddress("glTextureStorage1D")
-    glTextureParameterivPtr = OpenGLExtProcAddress("glTextureParameteriv")
-    glTextureParameteriPtr = OpenGLExtProcAddress("glTextureParameteri")
-    glTextureParameterfvPtr = OpenGLExtProcAddress("glTextureParameterfv")
-    glTextureParameterfPtr = OpenGLExtProcAddress("glTextureParameterf")
-    glTextureParameterIuivPtr = OpenGLExtProcAddress("glTextureParameterIuiv")
-    glTextureParameterIivPtr = OpenGLExtProcAddress("glTextureParameterIiv")
-    glTextureBufferRangePtr = OpenGLExtProcAddress("glTextureBufferRange")
-    glTextureBufferPtr = OpenGLExtProcAddress("glTextureBuffer")
-    glNamedRenderbufferStorageMultisamplePtr = OpenGLExtProcAddress("glNamedRenderbufferStorageMultisample")
-    glNamedRenderbufferStoragePtr = OpenGLExtProcAddress("glNamedRenderbufferStorage")
-    glNamedFramebufferTextureLayerPtr = OpenGLExtProcAddress("glNamedFramebufferTextureLayer")
-    glNamedFramebufferTexturePtr = OpenGLExtProcAddress("glNamedFramebufferTexture")
-    glNamedFramebufferRenderbufferPtr = OpenGLExtProcAddress("glNamedFramebufferRenderbuffer")
-    glNamedFramebufferReadBufferPtr = OpenGLExtProcAddress("glNamedFramebufferReadBuffer")
-    glNamedFramebufferParameteriPtr = OpenGLExtProcAddress("glNamedFramebufferParameteri")
-    glNamedFramebufferDrawBuffersPtr = OpenGLExtProcAddress("glNamedFramebufferDrawBuffers")
-    glNamedFramebufferDrawBufferPtr = OpenGLExtProcAddress("glNamedFramebufferDrawBuffer")
-    glNamedBufferSubDataPtr = OpenGLExtProcAddress("glNamedBufferSubData")
-    glNamedBufferStoragePtr = OpenGLExtProcAddress("glNamedBufferStorage")
-    glNamedBufferDataPtr = OpenGLExtProcAddress("glNamedBufferData")
-    glInvalidateNamedFramebufferSubDataPtr = OpenGLExtProcAddress("glInvalidateNamedFramebufferSubData")
-    glInvalidateNamedFramebufferDataPtr = OpenGLExtProcAddress("glInvalidateNamedFramebufferData")
-    glGetVertexArrayivPtr = OpenGLExtProcAddress("glGetVertexArrayiv")
-    glGetVertexArrayIndexedivPtr = OpenGLExtProcAddress("glGetVertexArrayIndexediv")
-    glGetVertexArrayIndexed64ivPtr = OpenGLExtProcAddress("glGetVertexArrayIndexed64iv")
-    glGetTransformFeedbackivPtr = OpenGLExtProcAddress("glGetTransformFeedbackiv")
-    glGetTransformFeedbacki_vPtr = OpenGLExtProcAddress("glGetTransformFeedbacki_v")
-    glGetTransformFeedbacki64_vPtr = OpenGLExtProcAddress("glGetTransformFeedbacki64_v")
-    glGetTextureParameterivPtr = OpenGLExtProcAddress("glGetTextureParameteriv")
-    glGetTextureParameterfvPtr = OpenGLExtProcAddress("glGetTextureParameterfv")
-    glGetTextureParameterIuivPtr = OpenGLExtProcAddress("glGetTextureParameterIuiv")
-    glGetTextureParameterIivPtr = OpenGLExtProcAddress("glGetTextureParameterIiv")
-    glGetTextureLevelParameterivPtr = OpenGLExtProcAddress("glGetTextureLevelParameteriv")
-    glGetTextureLevelParameterfvPtr = OpenGLExtProcAddress("glGetTextureLevelParameterfv")
-    glGetTextureImagePtr = OpenGLExtProcAddress("glGetTextureImage")
-    glGetQueryBufferObjectuivPtr = OpenGLExtProcAddress("glGetQueryBufferObjectuiv")
-    glGetQueryBufferObjectui64vPtr = OpenGLExtProcAddress("glGetQueryBufferObjectui64v")
-    glGetQueryBufferObjectivPtr = OpenGLExtProcAddress("glGetQueryBufferObjectiv")
-    glGetQueryBufferObjecti64vPtr = OpenGLExtProcAddress("glGetQueryBufferObjecti64v")
-    glGetNamedRenderbufferParameterivPtr = OpenGLExtProcAddress("glGetNamedRenderbufferParameteriv")
-    glGetNamedFramebufferParameterivPtr = OpenGLExtProcAddress("glGetNamedFramebufferParameteriv")
-    glGetNamedFramebufferAttachmentParameterivPtr = OpenGLExtProcAddress("glGetNamedFramebufferAttachmentParameteriv")
-    glGetNamedBufferSubDataPtr = OpenGLExtProcAddress("glGetNamedBufferSubData")
-    glGetNamedBufferPointervPtr = OpenGLExtProcAddress("glGetNamedBufferPointerv")
-    glGetNamedBufferParameterivPtr = OpenGLExtProcAddress("glGetNamedBufferParameteriv")
-    glGetNamedBufferParameteri64vPtr = OpenGLExtProcAddress("glGetNamedBufferParameteri64v")
-    glGetCompressedTextureImagePtr = OpenGLExtProcAddress("glGetCompressedTextureImage")
-    glGenerateTextureMipmapPtr = OpenGLExtProcAddress("glGenerateTextureMipmap")
-    glFlushMappedNamedBufferRangePtr = OpenGLExtProcAddress("glFlushMappedNamedBufferRange")
-    glEnableVertexArrayAttribPtr = OpenGLExtProcAddress("glEnableVertexArrayAttrib")
-    glDisableVertexArrayAttribPtr = OpenGLExtProcAddress("glDisableVertexArrayAttrib")
-    glCreateVertexArraysPtr = OpenGLExtProcAddress("glCreateVertexArrays")
-    glCreateTransformFeedbacksPtr = OpenGLExtProcAddress("glCreateTransformFeedbacks")
-    glCreateTexturesPtr = OpenGLExtProcAddress("glCreateTextures")
-    glCreateSamplersPtr = OpenGLExtProcAddress("glCreateSamplers")
-    glCreateRenderbuffersPtr = OpenGLExtProcAddress("glCreateRenderbuffers")
-    glCreateQueriesPtr = OpenGLExtProcAddress("glCreateQueries")
-    glCreateProgramPipelinesPtr = OpenGLExtProcAddress("glCreateProgramPipelines")
-    glCreateFramebuffersPtr = OpenGLExtProcAddress("glCreateFramebuffers")
-    glCreateBuffersPtr = OpenGLExtProcAddress("glCreateBuffers")
-    glCopyTextureSubImage3DPtr = OpenGLExtProcAddress("glCopyTextureSubImage3D")
-    glCopyTextureSubImage2DPtr = OpenGLExtProcAddress("glCopyTextureSubImage2D")
-    glCopyTextureSubImage1DPtr = OpenGLExtProcAddress("glCopyTextureSubImage1D")
-    glCopyNamedBufferSubDataPtr = OpenGLExtProcAddress("glCopyNamedBufferSubData")
-    glCompressedTextureSubImage3DPtr = OpenGLExtProcAddress("glCompressedTextureSubImage3D")
-    glCompressedTextureSubImage2DPtr = OpenGLExtProcAddress("glCompressedTextureSubImage2D")
-    glCompressedTextureSubImage1DPtr = OpenGLExtProcAddress("glCompressedTextureSubImage1D")
-    glClearNamedFramebufferuivPtr = OpenGLExtProcAddress("glClearNamedFramebufferuiv")
-    glClearNamedFramebufferivPtr = OpenGLExtProcAddress("glClearNamedFramebufferiv")
-    glClearNamedFramebufferfvPtr = OpenGLExtProcAddress("glClearNamedFramebufferfv")
-    glClearNamedFramebufferfiPtr = OpenGLExtProcAddress("glClearNamedFramebufferfi")
-    glClearNamedBufferSubDataPtr = OpenGLExtProcAddress("glClearNamedBufferSubData")
-    glClearNamedBufferDataPtr = OpenGLExtProcAddress("glClearNamedBufferData")
-    glCheckNamedFramebufferStatusPtr = OpenGLExtProcAddress("glCheckNamedFramebufferStatus")
-    glBlitNamedFramebufferPtr = OpenGLExtProcAddress("glBlitNamedFramebuffer")
-    glBindTextureUnitPtr = OpenGLExtProcAddress("glBindTextureUnit")
-    glGetDebugMessageLogARBPtr = OpenGLExtProcAddress("glGetDebugMessageLogARB")
-    glDebugMessageInsertARBPtr = OpenGLExtProcAddress("glDebugMessageInsertARB")
-    glDebugMessageControlARBPtr = OpenGLExtProcAddress("glDebugMessageControlARB")
-    glDebugMessageCallbackARBPtr = OpenGLExtProcAddress("glDebugMessageCallbackARB")
-    glCopyImageSubDataPtr = OpenGLExtProcAddress("glCopyImageSubData")
-    glCopyBufferSubDataPtr = OpenGLExtProcAddress("glCopyBufferSubData")
-    glDispatchComputeGroupSizeARBPtr = OpenGLExtProcAddress("glDispatchComputeGroupSizeARB")
-    glDispatchComputeIndirectPtr = OpenGLExtProcAddress("glDispatchComputeIndirect")
-    glDispatchComputePtr = OpenGLExtProcAddress("glDispatchCompute")
-    glClampColorARBPtr = OpenGLExtProcAddress("glClampColorARB")
-    glClipControlPtr = OpenGLExtProcAddress("glClipControl")
-    glClearTexSubImagePtr = OpenGLExtProcAddress("glClearTexSubImage")
-    glClearTexImagePtr = OpenGLExtProcAddress("glClearTexImage")
-    glClearNamedBufferSubDataEXTPtr = OpenGLExtProcAddress("glClearNamedBufferSubDataEXT")
-    glClearNamedBufferDataEXTPtr = OpenGLExtProcAddress("glClearNamedBufferDataEXT")
-    glClearBufferSubDataPtr = OpenGLExtProcAddress("glClearBufferSubData")
-    glClearBufferDataPtr = OpenGLExtProcAddress("glClearBufferData")
-    glCreateSyncFromCLeventARBPtr = OpenGLExtProcAddress("glCreateSyncFromCLeventARB")
-    glBufferStoragePtr = OpenGLExtProcAddress("glBufferStorage")
-    glGetFragDataIndexPtr = OpenGLExtProcAddress("glGetFragDataIndex")
-    glBindFragDataLocationIndexedPtr = OpenGLExtProcAddress("glBindFragDataLocationIndexed")
-    glVertexAttribL1ui64vARBPtr = OpenGLExtProcAddress("glVertexAttribL1ui64vARB")
-    glVertexAttribL1ui64ARBPtr = OpenGLExtProcAddress("glVertexAttribL1ui64ARB")
-    glUniformHandleui64vARBPtr = OpenGLExtProcAddress("glUniformHandleui64vARB")
-    glUniformHandleui64ARBPtr = OpenGLExtProcAddress("glUniformHandleui64ARB")
-    glProgramUniformHandleui64vARBPtr = OpenGLExtProcAddress("glProgramUniformHandleui64vARB")
-    glProgramUniformHandleui64ARBPtr = OpenGLExtProcAddress("glProgramUniformHandleui64ARB")
-    glMakeTextureHandleResidentARBPtr = OpenGLExtProcAddress("glMakeTextureHandleResidentARB")
-    glMakeTextureHandleNonResidentARBPtr = OpenGLExtProcAddress("glMakeTextureHandleNonResidentARB")
-    glMakeImageHandleResidentARBPtr = OpenGLExtProcAddress("glMakeImageHandleResidentARB")
-    glMakeImageHandleNonResidentARBPtr = OpenGLExtProcAddress("glMakeImageHandleNonResidentARB")
-    glIsTextureHandleResidentARBPtr = OpenGLExtProcAddress("glIsTextureHandleResidentARB")
-    glIsImageHandleResidentARBPtr = OpenGLExtProcAddress("glIsImageHandleResidentARB")
-    glGetVertexAttribLui64vARBPtr = OpenGLExtProcAddress("glGetVertexAttribLui64vARB")
-    glGetTextureSamplerHandleARBPtr = OpenGLExtProcAddress("glGetTextureSamplerHandleARB")
-    glGetTextureHandleARBPtr = OpenGLExtProcAddress("glGetTextureHandleARB")
-    glGetImageHandleARBPtr = OpenGLExtProcAddress("glGetImageHandleARB")
-    glDrawElementsInstancedBaseVertexBaseInstancePtr = OpenGLExtProcAddress("glDrawElementsInstancedBaseVertexBaseInstance")
-    glDrawElementsInstancedBaseInstancePtr = OpenGLExtProcAddress("glDrawElementsInstancedBaseInstance")
-    glDrawArraysInstancedBaseInstancePtr = OpenGLExtProcAddress("glDrawArraysInstancedBaseInstance")
-    glPrimitiveBoundingBoxARBPtr = OpenGLExtProcAddress("glPrimitiveBoundingBoxARB")
-    glMemoryBarrierByRegionPtr = OpenGLExtProcAddress("glMemoryBarrierByRegion")
-    glShaderBinaryPtr = OpenGLExtProcAddress("glShaderBinary")
-    glReleaseShaderCompilerPtr = OpenGLExtProcAddress("glReleaseShaderCompiler")
-    glGetShaderPrecisionFormatPtr = OpenGLExtProcAddress("glGetShaderPrecisionFormat")
-    glDepthRangefPtr = OpenGLExtProcAddress("glDepthRangef")
-    glClearDepthfPtr = OpenGLExtProcAddress("glClearDepthf")
-Else
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3svARB, "glWindowPos3svARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3sARB, "glWindowPos3sARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3ivARB, "glWindowPos3ivARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3iARB, "glWindowPos3iARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3fvARB, "glWindowPos3fvARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3fARB, "glWindowPos3fARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3dvARB, "glWindowPos3dvARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3dARB, "glWindowPos3dARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2svARB, "glWindowPos2svARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2sARB, "glWindowPos2sARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2ivARB, "glWindowPos2ivARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2iARB, "glWindowPos2iARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2fvARB, "glWindowPos2fvARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2fARB, "glWindowPos2fARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2dvARB, "glWindowPos2dvARB"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2dARB, "glWindowPos2dARB"
-    RemapVBFunctionToGLFunction AddressOf glViewportIndexedfv, "glViewportIndexedfv"
-    RemapVBFunctionToGLFunction AddressOf glViewportIndexedf, "glViewportIndexedf"
-    RemapVBFunctionToGLFunction AddressOf glViewportArrayv, "glViewportArrayv"
-    RemapVBFunctionToGLFunction AddressOf glScissorIndexedv, "glScissorIndexedv"
-    RemapVBFunctionToGLFunction AddressOf glScissorIndexed, "glScissorIndexed"
-    RemapVBFunctionToGLFunction AddressOf glScissorArrayv, "glScissorArrayv"
-    RemapVBFunctionToGLFunction AddressOf glGetFloati_v, "glGetFloati_v"
-    RemapVBFunctionToGLFunction AddressOf glGetDoublei_v, "glGetDoublei_v"
-    RemapVBFunctionToGLFunction AddressOf glDepthRangeIndexed, "glDepthRangeIndexed"
-    RemapVBFunctionToGLFunction AddressOf glDepthRangeArrayv, "glDepthRangeArrayv"
-    RemapVBFunctionToGLFunction AddressOf glVertexP4uiv, "glVertexP4uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexP4ui, "glVertexP4ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexP3uiv, "glVertexP3uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexP3ui, "glVertexP3ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexP2uiv, "glVertexP2uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexP2ui, "glVertexP2ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribP4uiv, "glVertexAttribP4uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribP4ui, "glVertexAttribP4ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribP3uiv, "glVertexAttribP3uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribP3ui, "glVertexAttribP3ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribP2uiv, "glVertexAttribP2uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribP2ui, "glVertexAttribP2ui"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribP1uiv, "glVertexAttribP1uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribP1ui, "glVertexAttribP1ui"
-    RemapVBFunctionToGLFunction AddressOf glTexCoordP4uiv, "glTexCoordP4uiv"
-    RemapVBFunctionToGLFunction AddressOf glTexCoordP4ui, "glTexCoordP4ui"
-    RemapVBFunctionToGLFunction AddressOf glTexCoordP3uiv, "glTexCoordP3uiv"
-    RemapVBFunctionToGLFunction AddressOf glTexCoordP3ui, "glTexCoordP3ui"
-    RemapVBFunctionToGLFunction AddressOf glTexCoordP2uiv, "glTexCoordP2uiv"
-    RemapVBFunctionToGLFunction AddressOf glTexCoordP2ui, "glTexCoordP2ui"
-    RemapVBFunctionToGLFunction AddressOf glTexCoordP1uiv, "glTexCoordP1uiv"
-    RemapVBFunctionToGLFunction AddressOf glTexCoordP1ui, "glTexCoordP1ui"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColorP3uiv, "glSecondaryColorP3uiv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColorP3ui, "glSecondaryColorP3ui"
-    RemapVBFunctionToGLFunction AddressOf glNormalP3uiv, "glNormalP3uiv"
-    RemapVBFunctionToGLFunction AddressOf glNormalP3ui, "glNormalP3ui"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP4uiv, "glMultiTexCoordP4uiv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP4ui, "glMultiTexCoordP4ui"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP3uiv, "glMultiTexCoordP3uiv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP3ui, "glMultiTexCoordP3ui"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP2uiv, "glMultiTexCoordP2uiv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP2ui, "glMultiTexCoordP2ui"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP1uiv, "glMultiTexCoordP1uiv"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP1ui, "glMultiTexCoordP1ui"
-    RemapVBFunctionToGLFunction AddressOf glColorP4uiv, "glColorP4uiv"
-    RemapVBFunctionToGLFunction AddressOf glColorP4ui, "glColorP4ui"
-    RemapVBFunctionToGLFunction AddressOf glColorP3uiv, "glColorP3uiv"
-    RemapVBFunctionToGLFunction AddressOf glColorP3ui, "glColorP3ui"
-    RemapVBFunctionToGLFunction AddressOf glGetAttribLocationARB, "glGetAttribLocationARB"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveAttribARB, "glGetActiveAttribARB"
-    RemapVBFunctionToGLFunction AddressOf glBindAttribLocationARB, "glBindAttribLocationARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribPointerARB, "glVertexAttribPointerARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4usvARB, "glVertexAttrib4usvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4uivARB, "glVertexAttrib4uivARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4ubvARB, "glVertexAttrib4ubvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4svARB, "glVertexAttrib4svARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4sARB, "glVertexAttrib4sARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4ivARB, "glVertexAttrib4ivARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4fvARB, "glVertexAttrib4fvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4fARB, "glVertexAttrib4fARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4dvARB, "glVertexAttrib4dvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4dARB, "glVertexAttrib4dARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4bvARB, "glVertexAttrib4bvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NusvARB, "glVertexAttrib4NusvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NuivARB, "glVertexAttrib4NuivARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NubvARB, "glVertexAttrib4NubvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NubARB, "glVertexAttrib4NubARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NsvARB, "glVertexAttrib4NsvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NivARB, "glVertexAttrib4NivARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NbvARB, "glVertexAttrib4NbvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3svARB, "glVertexAttrib3svARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3sARB, "glVertexAttrib3sARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3fvARB, "glVertexAttrib3fvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3fARB, "glVertexAttrib3fARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3dvARB, "glVertexAttrib3dvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3dARB, "glVertexAttrib3dARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2svARB, "glVertexAttrib2svARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2sARB, "glVertexAttrib2sARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2fvARB, "glVertexAttrib2fvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2fARB, "glVertexAttrib2fARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2dvARB, "glVertexAttrib2dvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2dARB, "glVertexAttrib2dARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1svARB, "glVertexAttrib1svARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1sARB, "glVertexAttrib1sARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1fvARB, "glVertexAttrib1fvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1fARB, "glVertexAttrib1fARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1dvARB, "glVertexAttrib1dvARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1dARB, "glVertexAttrib1dARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramStringARB, "glProgramStringARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramLocalParameter4fvARB, "glProgramLocalParameter4fvARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramLocalParameter4fARB, "glProgramLocalParameter4fARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramLocalParameter4dvARB, "glProgramLocalParameter4dvARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramLocalParameter4dARB, "glProgramLocalParameter4dARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramEnvParameter4fvARB, "glProgramEnvParameter4fvARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramEnvParameter4fARB, "glProgramEnvParameter4fARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramEnvParameter4dvARB, "glProgramEnvParameter4dvARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramEnvParameter4dARB, "glProgramEnvParameter4dARB"
-    RemapVBFunctionToGLFunction AddressOf glIsProgramARB, "glIsProgramARB"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribivARB, "glGetVertexAttribivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribfvARB, "glGetVertexAttribfvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribdvARB, "glGetVertexAttribdvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribPointervARB, "glGetVertexAttribPointervARB"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramivARB, "glGetProgramivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramStringARB, "glGetProgramStringARB"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramLocalParameterfvARB, "glGetProgramLocalParameterfvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramLocalParameterdvARB, "glGetProgramLocalParameterdvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramEnvParameterfvARB, "glGetProgramEnvParameterfvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramEnvParameterdvARB, "glGetProgramEnvParameterdvARB"
-    RemapVBFunctionToGLFunction AddressOf glGenProgramsARB, "glGenProgramsARB"
-    RemapVBFunctionToGLFunction AddressOf glEnableVertexAttribArrayARB, "glEnableVertexAttribArrayARB"
-    RemapVBFunctionToGLFunction AddressOf glDisableVertexAttribArrayARB, "glDisableVertexAttribArrayARB"
-    RemapVBFunctionToGLFunction AddressOf glDeleteProgramsARB, "glDeleteProgramsARB"
-    RemapVBFunctionToGLFunction AddressOf glBindProgramARB, "glBindProgramARB"
-    RemapVBFunctionToGLFunction AddressOf glUnmapBufferARB, "glUnmapBufferARB"
-    RemapVBFunctionToGLFunction AddressOf glIsBufferARB, "glIsBufferARB"
-    RemapVBFunctionToGLFunction AddressOf glGetBufferSubDataARB, "glGetBufferSubDataARB"
-    RemapVBFunctionToGLFunction AddressOf glGetBufferPointervARB, "glGetBufferPointervARB"
-    RemapVBFunctionToGLFunction AddressOf glGetBufferParameterivARB, "glGetBufferParameterivARB"
-    RemapVBFunctionToGLFunction AddressOf glGenBuffersARB, "glGenBuffersARB"
-    RemapVBFunctionToGLFunction AddressOf glDeleteBuffersARB, "glDeleteBuffersARB"
-    RemapVBFunctionToGLFunction AddressOf glBufferSubDataARB, "glBufferSubDataARB"
-    RemapVBFunctionToGLFunction AddressOf glBufferDataARB, "glBufferDataARB"
-    RemapVBFunctionToGLFunction AddressOf glBindBufferARB, "glBindBufferARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightusvARB, "glWeightusvARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightuivARB, "glWeightuivARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightubvARB, "glWeightubvARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightsvARB, "glWeightsvARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightivARB, "glWeightivARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightfvARB, "glWeightfvARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightdvARB, "glWeightdvARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightbvARB, "glWeightbvARB"
-    RemapVBFunctionToGLFunction AddressOf glWeightPointerARB, "glWeightPointerARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexBlendARB, "glVertexBlendARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexBindingDivisor, "glVertexBindingDivisor"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribLFormat, "glVertexAttribLFormat"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribIFormat, "glVertexAttribIFormat"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribFormat, "glVertexAttribFormat"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribBinding, "glVertexAttribBinding"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexBindingDivisorEXT, "glVertexArrayVertexBindingDivisorEXT"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexAttribLFormatEXT, "glVertexArrayVertexAttribLFormatEXT"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexAttribIFormatEXT, "glVertexArrayVertexAttribIFormatEXT"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexAttribFormatEXT, "glVertexArrayVertexAttribFormatEXT"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexAttribBindingEXT, "glVertexArrayVertexAttribBindingEXT"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayBindVertexBufferEXT, "glVertexArrayBindVertexBufferEXT"
-    RemapVBFunctionToGLFunction AddressOf glBindVertexBuffer, "glBindVertexBuffer"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribLPointer, "glVertexAttribLPointer"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL4dv, "glVertexAttribL4dv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL4d, "glVertexAttribL4d"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL3dv, "glVertexAttribL3dv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL3d, "glVertexAttribL3d"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL2dv, "glVertexAttribL2dv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL2d, "glVertexAttribL2d"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL1dv, "glVertexAttribL1dv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL1d, "glVertexAttribL1d"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribLdv, "glGetVertexAttribLdv"
-    RemapVBFunctionToGLFunction AddressOf glIsVertexArrayARB, "glIsVertexArrayARB"
-    RemapVBFunctionToGLFunction AddressOf glGenVertexArraysARB, "glGenVertexArraysARB"
-    RemapVBFunctionToGLFunction AddressOf glDeleteVertexArraysARB, "glDeleteVertexArraysARB"
-    RemapVBFunctionToGLFunction AddressOf glBindVertexArrayARB, "glBindVertexArrayARB"
-    RemapVBFunctionToGLFunction AddressOf glUniformBlockBinding, "glUniformBlockBinding"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformIndices, "glGetUniformIndices"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformBlockIndex, "glGetUniformBlockIndex"
-    RemapVBFunctionToGLFunction AddressOf glGetIntegeri_v, "glGetIntegeri_v"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveUniformsiv, "glGetActiveUniformsiv"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveUniformName, "glGetActiveUniformName"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveUniformBlockiv, "glGetActiveUniformBlockiv"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveUniformBlockName, "glGetActiveUniformBlockName"
-    RemapVBFunctionToGLFunction AddressOf glBindBufferRange, "glBindBufferRange"
-    RemapVBFunctionToGLFunction AddressOf glBindBufferBase, "glBindBufferBase"
-    RemapVBFunctionToGLFunction AddressOf glMultTransposeMatrixfARB, "glMultTransposeMatrixfARB"
-    RemapVBFunctionToGLFunction AddressOf glMultTransposeMatrixdARB, "glMultTransposeMatrixdARB"
-    RemapVBFunctionToGLFunction AddressOf glLoadTransposeMatrixfARB, "glLoadTransposeMatrixfARB"
-    RemapVBFunctionToGLFunction AddressOf glLoadTransposeMatrixdARB, "glLoadTransposeMatrixdARB"
-    RemapVBFunctionToGLFunction AddressOf glDrawTransformFeedbackStreamInstanced, "glDrawTransformFeedbackStreamInstanced"
-    RemapVBFunctionToGLFunction AddressOf glDrawTransformFeedbackInstanced, "glDrawTransformFeedbackInstanced"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryIndexediv, "glGetQueryIndexediv"
-    RemapVBFunctionToGLFunction AddressOf glEndQueryIndexed, "glEndQueryIndexed"
-    RemapVBFunctionToGLFunction AddressOf glDrawTransformFeedbackStream, "glDrawTransformFeedbackStream"
-    RemapVBFunctionToGLFunction AddressOf glBeginQueryIndexed, "glBeginQueryIndexed"
-    RemapVBFunctionToGLFunction AddressOf glResumeTransformFeedback, "glResumeTransformFeedback"
-    RemapVBFunctionToGLFunction AddressOf glPauseTransformFeedback, "glPauseTransformFeedback"
-    RemapVBFunctionToGLFunction AddressOf glIsTransformFeedback, "glIsTransformFeedback"
-    RemapVBFunctionToGLFunction AddressOf glGenTransformFeedbacks, "glGenTransformFeedbacks"
-    RemapVBFunctionToGLFunction AddressOf glDrawTransformFeedback, "glDrawTransformFeedback"
-    RemapVBFunctionToGLFunction AddressOf glDeleteTransformFeedbacks, "glDeleteTransformFeedbacks"
-    RemapVBFunctionToGLFunction AddressOf glBindTransformFeedback, "glBindTransformFeedback"
-    RemapVBFunctionToGLFunction AddressOf glQueryCounter, "glQueryCounter"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryObjectui64v, "glGetQueryObjectui64v"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryObjecti64v, "glGetQueryObjecti64v"
-    RemapVBFunctionToGLFunction AddressOf glTextureView, "glTextureView"
-    RemapVBFunctionToGLFunction AddressOf glTextureStorage3DMultisampleEXT, "glTextureStorage3DMultisampleEXT"
-    RemapVBFunctionToGLFunction AddressOf glTextureStorage2DMultisampleEXT, "glTextureStorage2DMultisampleEXT"
-    RemapVBFunctionToGLFunction AddressOf glTexStorage3DMultisample, "glTexStorage3DMultisample"
-    RemapVBFunctionToGLFunction AddressOf glTexStorage2DMultisample, "glTexStorage2DMultisample"
-    RemapVBFunctionToGLFunction AddressOf glTexStorage3D, "glTexStorage3D"
-    RemapVBFunctionToGLFunction AddressOf glTexStorage2D, "glTexStorage2D"
-    RemapVBFunctionToGLFunction AddressOf glTexStorage1D, "glTexStorage1D"
-    RemapVBFunctionToGLFunction AddressOf glTexImage3DMultisample, "glTexImage3DMultisample"
-    RemapVBFunctionToGLFunction AddressOf glTexImage2DMultisample, "glTexImage2DMultisample"
-    RemapVBFunctionToGLFunction AddressOf glSampleMaski, "glSampleMaski"
-    RemapVBFunctionToGLFunction AddressOf glGetMultisamplefv, "glGetMultisamplefv"
-    RemapVBFunctionToGLFunction AddressOf glGetCompressedTexImageARB, "glGetCompressedTexImageARB"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage3DARB, "glCompressedTexSubImage3DARB"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage2DARB, "glCompressedTexSubImage2DARB"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage1DARB, "glCompressedTexSubImage1DARB"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexImage3DARB, "glCompressedTexImage3DARB"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexImage2DARB, "glCompressedTexImage2DARB"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTexImage1DARB, "glCompressedTexImage1DARB"
-    RemapVBFunctionToGLFunction AddressOf glTextureBufferRangeEXT, "glTextureBufferRangeEXT"
-    RemapVBFunctionToGLFunction AddressOf glTexBufferRange, "glTexBufferRange"
-    RemapVBFunctionToGLFunction AddressOf glTexBufferARB, "glTexBufferARB"
-    RemapVBFunctionToGLFunction AddressOf glTextureBarrier, "glTextureBarrier"
-    RemapVBFunctionToGLFunction AddressOf glPatchParameteri, "glPatchParameteri"
-    RemapVBFunctionToGLFunction AddressOf glPatchParameterfv, "glPatchParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glWaitSync, "glWaitSync"
-    RemapVBFunctionToGLFunction AddressOf glIsSync, "glIsSync"
-    RemapVBFunctionToGLFunction AddressOf glGetSynciv, "glGetSynciv"
-    RemapVBFunctionToGLFunction AddressOf glGetInteger64v, "glGetInteger64v"
-    RemapVBFunctionToGLFunction AddressOf glFenceSync, "glFenceSync"
-    RemapVBFunctionToGLFunction AddressOf glDeleteSync, "glDeleteSync"
-    RemapVBFunctionToGLFunction AddressOf glClientWaitSync, "glClientWaitSync"
-    RemapVBFunctionToGLFunction AddressOf glTexPageCommitmentARB, "glTexPageCommitmentARB"
-    RemapVBFunctionToGLFunction AddressOf glBufferPageCommitmentARB, "glBufferPageCommitmentARB"
-    RemapVBFunctionToGLFunction AddressOf glNamedStringARB, "glNamedStringARB"
-    RemapVBFunctionToGLFunction AddressOf glIsNamedStringARB, "glIsNamedStringARB"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedStringivARB, "glGetNamedStringivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedStringARB, "glGetNamedStringARB"
-    RemapVBFunctionToGLFunction AddressOf glDeleteNamedStringARB, "glDeleteNamedStringARB"
-    RemapVBFunctionToGLFunction AddressOf glCompileShaderIncludeARB, "glCompileShaderIncludeARB"
-    RemapVBFunctionToGLFunction AddressOf glUniformSubroutinesuiv, "glUniformSubroutinesuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformSubroutineuiv, "glGetUniformSubroutineuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetSubroutineUniformLocation, "glGetSubroutineUniformLocation"
-    RemapVBFunctionToGLFunction AddressOf glGetSubroutineIndex, "glGetSubroutineIndex"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramStageiv, "glGetProgramStageiv"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveSubroutineUniformiv, "glGetActiveSubroutineUniformiv"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveSubroutineUniformName, "glGetActiveSubroutineUniformName"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveSubroutineName, "glGetActiveSubroutineName"
-    RemapVBFunctionToGLFunction AddressOf glShaderStorageBlockBinding, "glShaderStorageBlockBinding"
-    RemapVBFunctionToGLFunction AddressOf glValidateProgramARB, "glValidateProgramARB"
-    RemapVBFunctionToGLFunction AddressOf glUseProgramObjectARB, "glUseProgramObjectARB"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix4fvARB, "glUniformMatrix4fvARB"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix3fvARB, "glUniformMatrix3fvARB"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix2fvARB, "glUniformMatrix2fvARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform4ivARB, "glUniform4ivARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform4iARB, "glUniform4iARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform4fvARB, "glUniform4fvARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform4fARB, "glUniform4fARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform3ivARB, "glUniform3ivARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform3iARB, "glUniform3iARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform3fvARB, "glUniform3fvARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform3fARB, "glUniform3fARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform2ivARB, "glUniform2ivARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform2iARB, "glUniform2iARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform2fvARB, "glUniform2fvARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform2fARB, "glUniform2fARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform1ivARB, "glUniform1ivARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform1iARB, "glUniform1iARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform1fvARB, "glUniform1fvARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform1fARB, "glUniform1fARB"
-    RemapVBFunctionToGLFunction AddressOf glShaderSourceARB, "glShaderSourceARB"
-    RemapVBFunctionToGLFunction AddressOf glLinkProgramARB, "glLinkProgramARB"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformivARB, "glGetUniformivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformfvARB, "glGetUniformfvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformLocationARB, "glGetUniformLocationARB"
-    RemapVBFunctionToGLFunction AddressOf glGetShaderSourceARB, "glGetShaderSourceARB"
-    RemapVBFunctionToGLFunction AddressOf glGetObjectParameterivARB, "glGetObjectParameterivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetObjectParameterfvARB, "glGetObjectParameterfvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetInfoLogARB, "glGetInfoLogARB"
-    RemapVBFunctionToGLFunction AddressOf glGetHandleARB, "glGetHandleARB"
-    RemapVBFunctionToGLFunction AddressOf glGetAttachedObjectsARB, "glGetAttachedObjectsARB"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveUniformARB, "glGetActiveUniformARB"
-    RemapVBFunctionToGLFunction AddressOf glDetachObjectARB, "glDetachObjectARB"
-    RemapVBFunctionToGLFunction AddressOf glDeleteObjectARB, "glDeleteObjectARB"
-    RemapVBFunctionToGLFunction AddressOf glCreateShaderObjectARB, "glCreateShaderObjectARB"
-    RemapVBFunctionToGLFunction AddressOf glCreateProgramObjectARB, "glCreateProgramObjectARB"
-    RemapVBFunctionToGLFunction AddressOf glCompileShaderARB, "glCompileShaderARB"
-    RemapVBFunctionToGLFunction AddressOf glAttachObjectARB, "glAttachObjectARB"
-    RemapVBFunctionToGLFunction AddressOf glMemoryBarrier, "glMemoryBarrier"
-    RemapVBFunctionToGLFunction AddressOf glBindImageTexture, "glBindImageTexture"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveAtomicCounterBufferiv, "glGetActiveAtomicCounterBufferiv"
-    RemapVBFunctionToGLFunction AddressOf glValidateProgramPipeline, "glValidateProgramPipeline"
-    RemapVBFunctionToGLFunction AddressOf glUseProgramStages, "glUseProgramStages"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4x3fv, "glProgramUniformMatrix4x3fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4x3dv, "glProgramUniformMatrix4x3dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4x2fv, "glProgramUniformMatrix4x2fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4x2dv, "glProgramUniformMatrix4x2dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4fv, "glProgramUniformMatrix4fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4dv, "glProgramUniformMatrix4dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3x4fv, "glProgramUniformMatrix3x4fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3x4dv, "glProgramUniformMatrix3x4dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3x2fv, "glProgramUniformMatrix3x2fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3x2dv, "glProgramUniformMatrix3x2dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3fv, "glProgramUniformMatrix3fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3dv, "glProgramUniformMatrix3dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2x4fv, "glProgramUniformMatrix2x4fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2x4dv, "glProgramUniformMatrix2x4dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2x3fv, "glProgramUniformMatrix2x3fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2x3dv, "glProgramUniformMatrix2x3dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2fv, "glProgramUniformMatrix2fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2dv, "glProgramUniformMatrix2dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4uiv, "glProgramUniform4uiv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4ui, "glProgramUniform4ui"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4iv, "glProgramUniform4iv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4i, "glProgramUniform4i"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4fv, "glProgramUniform4fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4f, "glProgramUniform4f"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4dv, "glProgramUniform4dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4d, "glProgramUniform4d"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3uiv, "glProgramUniform3uiv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3ui, "glProgramUniform3ui"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3iv, "glProgramUniform3iv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3i, "glProgramUniform3i"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3fv, "glProgramUniform3fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3f, "glProgramUniform3f"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3dv, "glProgramUniform3dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3d, "glProgramUniform3d"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2uiv, "glProgramUniform2uiv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2ui, "glProgramUniform2ui"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2iv, "glProgramUniform2iv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2i, "glProgramUniform2i"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2fv, "glProgramUniform2fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2f, "glProgramUniform2f"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2dv, "glProgramUniform2dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2d, "glProgramUniform2d"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1uiv, "glProgramUniform1uiv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1ui, "glProgramUniform1ui"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1iv, "glProgramUniform1iv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1i, "glProgramUniform1i"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1fv, "glProgramUniform1fv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1f, "glProgramUniform1f"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1dv, "glProgramUniform1dv"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1d, "glProgramUniform1d"
-    RemapVBFunctionToGLFunction AddressOf glIsProgramPipeline, "glIsProgramPipeline"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramPipelineiv, "glGetProgramPipelineiv"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramPipelineInfoLog, "glGetProgramPipelineInfoLog"
-    RemapVBFunctionToGLFunction AddressOf glGenProgramPipelines, "glGenProgramPipelines"
-    RemapVBFunctionToGLFunction AddressOf glDeleteProgramPipelines, "glDeleteProgramPipelines"
-    RemapVBFunctionToGLFunction AddressOf glCreateShaderProgramv, "glCreateShaderProgramv"
-    RemapVBFunctionToGLFunction AddressOf glBindProgramPipeline, "glBindProgramPipeline"
-    RemapVBFunctionToGLFunction AddressOf glActiveShaderProgram, "glActiveShaderProgram"
-    RemapVBFunctionToGLFunction AddressOf glSamplerParameteriv, "glSamplerParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glSamplerParameteri, "glSamplerParameteri"
-    RemapVBFunctionToGLFunction AddressOf glSamplerParameterfv, "glSamplerParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glSamplerParameterf, "glSamplerParameterf"
-    RemapVBFunctionToGLFunction AddressOf glSamplerParameterIuiv, "glSamplerParameterIuiv"
-    RemapVBFunctionToGLFunction AddressOf glSamplerParameterIiv, "glSamplerParameterIiv"
-    RemapVBFunctionToGLFunction AddressOf glIsSampler, "glIsSampler"
-    RemapVBFunctionToGLFunction AddressOf glGetSamplerParameteriv, "glGetSamplerParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetSamplerParameterfv, "glGetSamplerParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glGetSamplerParameterIuiv, "glGetSamplerParameterIuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetSamplerParameterIiv, "glGetSamplerParameterIiv"
-    RemapVBFunctionToGLFunction AddressOf glGenSamplers, "glGenSamplers"
-    RemapVBFunctionToGLFunction AddressOf glDeleteSamplers, "glDeleteSamplers"
-    RemapVBFunctionToGLFunction AddressOf glBindSampler, "glBindSampler"
-    RemapVBFunctionToGLFunction AddressOf glMinSampleShadingARB, "glMinSampleShadingARB"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferSampleLocationsfvARB, "glNamedFramebufferSampleLocationsfvARB"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferSampleLocationsfvARB, "glFramebufferSampleLocationsfvARB"
-    RemapVBFunctionToGLFunction AddressOf glReadnPixelsARB, "glReadnPixelsARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnUniformuivARB, "glGetnUniformuivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnUniformivARB, "glGetnUniformivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnUniformfvARB, "glGetnUniformfvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnUniformdvARB, "glGetnUniformdvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnTexImageARB, "glGetnTexImageARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnSeparableFilterARB, "glGetnSeparableFilterARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnPolygonStippleARB, "glGetnPolygonStippleARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnPixelMapusvARB, "glGetnPixelMapusvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnPixelMapuivARB, "glGetnPixelMapuivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnPixelMapfvARB, "glGetnPixelMapfvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnMinmaxARB, "glGetnMinmaxARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnMapivARB, "glGetnMapivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnMapfvARB, "glGetnMapfvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnMapdvARB, "glGetnMapdvARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnHistogramARB, "glGetnHistogramARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnConvolutionFilterARB, "glGetnConvolutionFilterARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnCompressedTexImageARB, "glGetnCompressedTexImageARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnColorTableARB, "glGetnColorTableARB"
-    RemapVBFunctionToGLFunction AddressOf glGetGraphicsResetStatusARB, "glGetGraphicsResetStatusARB"
-    RemapVBFunctionToGLFunction AddressOf glProvokingVertex, "glProvokingVertex"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramResourceiv, "glGetProgramResourceiv"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramResourceName, "glGetProgramResourceName"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramResourceLocationIndex, "glGetProgramResourceLocationIndex"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramResourceLocation, "glGetProgramResourceLocation"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramResourceIndex, "glGetProgramResourceIndex"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramInterfaceiv, "glGetProgramInterfaceiv"
-    RemapVBFunctionToGLFunction AddressOf glPolygonOffsetClamp, "glPolygonOffsetClamp"
-    RemapVBFunctionToGLFunction AddressOf glPointParameterfvARB, "glPointParameterfvARB"
-    RemapVBFunctionToGLFunction AddressOf glPointParameterfARB, "glPointParameterfARB"
-    RemapVBFunctionToGLFunction AddressOf glMaxShaderCompilerThreadsARB, "glMaxShaderCompilerThreadsARB"
-    RemapVBFunctionToGLFunction AddressOf glIsQueryARB, "glIsQueryARB"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryivARB, "glGetQueryivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryObjectuivARB, "glGetQueryObjectuivARB"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryObjectivARB, "glGetQueryObjectivARB"
-    RemapVBFunctionToGLFunction AddressOf glGenQueriesARB, "glGenQueriesARB"
-    RemapVBFunctionToGLFunction AddressOf glEndQueryARB, "glEndQueryARB"
-    RemapVBFunctionToGLFunction AddressOf glDeleteQueriesARB, "glDeleteQueriesARB"
-    RemapVBFunctionToGLFunction AddressOf glBeginQueryARB, "glBeginQueryARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4svARB, "glMultiTexCoord4svARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4sARB, "glMultiTexCoord4sARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4ivARB, "glMultiTexCoord4ivARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4iARB, "glMultiTexCoord4iARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4fvARB, "glMultiTexCoord4fvARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4fARB, "glMultiTexCoord4fARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4dvARB, "glMultiTexCoord4dvARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4dARB, "glMultiTexCoord4dARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3svARB, "glMultiTexCoord3svARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3sARB, "glMultiTexCoord3sARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3ivARB, "glMultiTexCoord3ivARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3iARB, "glMultiTexCoord3iARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3fvARB, "glMultiTexCoord3fvARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3fARB, "glMultiTexCoord3fARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3dvARB, "glMultiTexCoord3dvARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3dARB, "glMultiTexCoord3dARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2svARB, "glMultiTexCoord2svARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2sARB, "glMultiTexCoord2sARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2ivARB, "glMultiTexCoord2ivARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2iARB, "glMultiTexCoord2iARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2fvARB, "glMultiTexCoord2fvARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2fARB, "glMultiTexCoord2fARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2dvARB, "glMultiTexCoord2dvARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2dARB, "glMultiTexCoord2dARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1svARB, "glMultiTexCoord1svARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1sARB, "glMultiTexCoord1sARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1ivARB, "glMultiTexCoord1ivARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1iARB, "glMultiTexCoord1iARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1fvARB, "glMultiTexCoord1fvARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1fARB, "glMultiTexCoord1fARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1dvARB, "glMultiTexCoord1dvARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1dARB, "glMultiTexCoord1dARB"
-    RemapVBFunctionToGLFunction AddressOf glClientActiveTextureARB, "glClientActiveTextureARB"
-    RemapVBFunctionToGLFunction AddressOf glActiveTextureARB, "glActiveTextureARB"
-    RemapVBFunctionToGLFunction AddressOf glSampleCoverageARB, "glSampleCoverageARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawElementsIndirect, "glMultiDrawElementsIndirect"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawArraysIndirect, "glMultiDrawArraysIndirect"
-    RemapVBFunctionToGLFunction AddressOf glBindVertexBuffers, "glBindVertexBuffers"
-    RemapVBFunctionToGLFunction AddressOf glBindTextures, "glBindTextures"
-    RemapVBFunctionToGLFunction AddressOf glBindSamplers, "glBindSamplers"
-    RemapVBFunctionToGLFunction AddressOf glBindImageTextures, "glBindImageTextures"
-    RemapVBFunctionToGLFunction AddressOf glBindBuffersRange, "glBindBuffersRange"
-    RemapVBFunctionToGLFunction AddressOf glBindBuffersBase, "glBindBuffersBase"
-    RemapVBFunctionToGLFunction AddressOf glMatrixIndexusvARB, "glMatrixIndexusvARB"
-    RemapVBFunctionToGLFunction AddressOf glMatrixIndexuivARB, "glMatrixIndexuivARB"
-    RemapVBFunctionToGLFunction AddressOf glMatrixIndexubvARB, "glMatrixIndexubvARB"
-    RemapVBFunctionToGLFunction AddressOf glMatrixIndexPointerARB, "glMatrixIndexPointerARB"
-    RemapVBFunctionToGLFunction AddressOf glCurrentPaletteMatrixARB, "glCurrentPaletteMatrixARB"
-    RemapVBFunctionToGLFunction AddressOf glFlushMappedBufferRange, "glFlushMappedBufferRange"
-    RemapVBFunctionToGLFunction AddressOf glInvalidateTexSubImage, "glInvalidateTexSubImage"
-    RemapVBFunctionToGLFunction AddressOf glInvalidateTexImage, "glInvalidateTexImage"
-    RemapVBFunctionToGLFunction AddressOf glInvalidateSubFramebuffer, "glInvalidateSubFramebuffer"
-    RemapVBFunctionToGLFunction AddressOf glInvalidateFramebuffer, "glInvalidateFramebuffer"
-    RemapVBFunctionToGLFunction AddressOf glInvalidateBufferSubData, "glInvalidateBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glInvalidateBufferData, "glInvalidateBufferData"
-    RemapVBFunctionToGLFunction AddressOf glGetInternalformati64v, "glGetInternalformati64v"
-    RemapVBFunctionToGLFunction AddressOf glGetInternalformativ, "glGetInternalformativ"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribDivisorARB, "glVertexAttribDivisorARB"
-    RemapVBFunctionToGLFunction AddressOf glDrawElementsInstancedARB, "glDrawElementsInstancedARB"
-    RemapVBFunctionToGLFunction AddressOf glDrawArraysInstancedARB, "glDrawArraysInstancedARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawElementsIndirectCountARB, "glMultiDrawElementsIndirectCountARB"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawArraysIndirectCountARB, "glMultiDrawArraysIndirectCountARB"
-    RemapVBFunctionToGLFunction AddressOf glSeparableFilter2D, "glSeparableFilter2D"
-    RemapVBFunctionToGLFunction AddressOf glResetMinmax, "glResetMinmax"
-    RemapVBFunctionToGLFunction AddressOf glResetHistogram, "glResetHistogram"
-    RemapVBFunctionToGLFunction AddressOf glMinmax, "glMinmax"
-    RemapVBFunctionToGLFunction AddressOf glHistogram, "glHistogram"
-    RemapVBFunctionToGLFunction AddressOf glGetSeparableFilter, "glGetSeparableFilter"
-    RemapVBFunctionToGLFunction AddressOf glGetMinmaxParameteriv, "glGetMinmaxParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetMinmaxParameterfv, "glGetMinmaxParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glGetMinmax, "glGetMinmax"
-    RemapVBFunctionToGLFunction AddressOf glGetHistogramParameteriv, "glGetHistogramParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetHistogramParameterfv, "glGetHistogramParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glGetHistogram, "glGetHistogram"
-    RemapVBFunctionToGLFunction AddressOf glGetConvolutionParameteriv, "glGetConvolutionParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetConvolutionParameterfv, "glGetConvolutionParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glGetConvolutionFilter, "glGetConvolutionFilter"
-    RemapVBFunctionToGLFunction AddressOf glGetColorTableParameteriv, "glGetColorTableParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetColorTableParameterfv, "glGetColorTableParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glGetColorTable, "glGetColorTable"
-    RemapVBFunctionToGLFunction AddressOf glCopyConvolutionFilter2D, "glCopyConvolutionFilter2D"
-    RemapVBFunctionToGLFunction AddressOf glCopyConvolutionFilter1D, "glCopyConvolutionFilter1D"
-    RemapVBFunctionToGLFunction AddressOf glCopyColorTable, "glCopyColorTable"
-    RemapVBFunctionToGLFunction AddressOf glCopyColorSubTable, "glCopyColorSubTable"
-    RemapVBFunctionToGLFunction AddressOf glConvolutionParameteriv, "glConvolutionParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glConvolutionParameteri, "glConvolutionParameteri"
-    RemapVBFunctionToGLFunction AddressOf glConvolutionParameterfv, "glConvolutionParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glConvolutionParameterf, "glConvolutionParameterf"
-    RemapVBFunctionToGLFunction AddressOf glConvolutionFilter2D, "glConvolutionFilter2D"
-    RemapVBFunctionToGLFunction AddressOf glConvolutionFilter1D, "glConvolutionFilter1D"
-    RemapVBFunctionToGLFunction AddressOf glColorTableParameteriv, "glColorTableParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glColorTableParameterfv, "glColorTableParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glColorTable, "glColorTable"
-    RemapVBFunctionToGLFunction AddressOf glColorSubTable, "glColorSubTable"
-    RemapVBFunctionToGLFunction AddressOf glUniform4ui64vARB, "glUniform4ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform4ui64ARB, "glUniform4ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform4i64vARB, "glUniform4i64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform4i64ARB, "glUniform4i64ARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform3ui64vARB, "glUniform3ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform3ui64ARB, "glUniform3ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform3i64vARB, "glUniform3i64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform3i64ARB, "glUniform3i64ARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform2ui64vARB, "glUniform2ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform2ui64ARB, "glUniform2ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform2i64vARB, "glUniform2i64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform2i64ARB, "glUniform2i64ARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform1ui64vARB, "glUniform1ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform1ui64ARB, "glUniform1ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform1i64vARB, "glUniform1i64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniform1i64ARB, "glUniform1i64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4ui64vARB, "glProgramUniform4ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4ui64ARB, "glProgramUniform4ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4i64vARB, "glProgramUniform4i64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform4i64ARB, "glProgramUniform4i64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3ui64vARB, "glProgramUniform3ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3ui64ARB, "glProgramUniform3ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3i64vARB, "glProgramUniform3i64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform3i64ARB, "glProgramUniform3i64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2ui64vARB, "glProgramUniform2ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2ui64ARB, "glProgramUniform2ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2i64vARB, "glProgramUniform2i64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform2i64ARB, "glProgramUniform2i64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1ui64vARB, "glProgramUniform1ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1ui64ARB, "glProgramUniform1ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1i64vARB, "glProgramUniform1i64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniform1i64ARB, "glProgramUniform1i64ARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnUniformui64vARB, "glGetnUniformui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glGetnUniformi64vARB, "glGetnUniformi64vARB"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformui64vARB, "glGetUniformui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformi64vARB, "glGetUniformi64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix4x3dv, "glUniformMatrix4x3dv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix4x2dv, "glUniformMatrix4x2dv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix4dv, "glUniformMatrix4dv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix3x4dv, "glUniformMatrix3x4dv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix3x2dv, "glUniformMatrix3x2dv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix3dv, "glUniformMatrix3dv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix2x4dv, "glUniformMatrix2x4dv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix2x3dv, "glUniformMatrix2x3dv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix2dv, "glUniformMatrix2dv"
-    RemapVBFunctionToGLFunction AddressOf glUniform4dv, "glUniform4dv"
-    RemapVBFunctionToGLFunction AddressOf glUniform4d, "glUniform4d"
-    RemapVBFunctionToGLFunction AddressOf glUniform3dv, "glUniform3dv"
-    RemapVBFunctionToGLFunction AddressOf glUniform3d, "glUniform3d"
-    RemapVBFunctionToGLFunction AddressOf glUniform2dv, "glUniform2dv"
-    RemapVBFunctionToGLFunction AddressOf glUniform2d, "glUniform2d"
-    RemapVBFunctionToGLFunction AddressOf glUniform1dv, "glUniform1dv"
-    RemapVBFunctionToGLFunction AddressOf glUniform1d, "glUniform1d"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformdv, "glGetUniformdv"
-    RemapVBFunctionToGLFunction AddressOf glSpecializeShaderARB, "glSpecializeShaderARB"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureSubImage, "glGetTextureSubImage"
-    RemapVBFunctionToGLFunction AddressOf glGetCompressedTextureSubImage, "glGetCompressedTextureSubImage"
-    RemapVBFunctionToGLFunction AddressOf glProgramParameteri, "glProgramParameteri"
-    RemapVBFunctionToGLFunction AddressOf glProgramBinary, "glProgramBinary"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramBinary, "glGetProgramBinary"
-    RemapVBFunctionToGLFunction AddressOf glProgramParameteriARB, "glProgramParameteriARB"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferTextureLayerARB, "glFramebufferTextureLayerARB"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferTextureFaceARB, "glFramebufferTextureFaceARB"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferTextureARB, "glFramebufferTextureARB"
-    RemapVBFunctionToGLFunction AddressOf glRenderbufferStorageMultisample, "glRenderbufferStorageMultisample"
-    RemapVBFunctionToGLFunction AddressOf glRenderbufferStorage, "glRenderbufferStorage"
-    RemapVBFunctionToGLFunction AddressOf glIsRenderbuffer, "glIsRenderbuffer"
-    RemapVBFunctionToGLFunction AddressOf glIsFramebuffer, "glIsFramebuffer"
-    RemapVBFunctionToGLFunction AddressOf glGetRenderbufferParameteriv, "glGetRenderbufferParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetFramebufferAttachmentParameteriv, "glGetFramebufferAttachmentParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGenerateMipmap, "glGenerateMipmap"
-    RemapVBFunctionToGLFunction AddressOf glGenRenderbuffers, "glGenRenderbuffers"
-    RemapVBFunctionToGLFunction AddressOf glGenFramebuffers, "glGenFramebuffers"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferTextureLayer, "glFramebufferTextureLayer"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferTexture3D, "glFramebufferTexture3D"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferTexture2D, "glFramebufferTexture2D"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferTexture1D, "glFramebufferTexture1D"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferRenderbuffer, "glFramebufferRenderbuffer"
-    RemapVBFunctionToGLFunction AddressOf glDeleteRenderbuffers, "glDeleteRenderbuffers"
-    RemapVBFunctionToGLFunction AddressOf glDeleteFramebuffers, "glDeleteFramebuffers"
-    RemapVBFunctionToGLFunction AddressOf glCheckFramebufferStatus, "glCheckFramebufferStatus"
-    RemapVBFunctionToGLFunction AddressOf glBlitFramebuffer, "glBlitFramebuffer"
-    RemapVBFunctionToGLFunction AddressOf glBindRenderbuffer, "glBindRenderbuffer"
-    RemapVBFunctionToGLFunction AddressOf glBindFramebuffer, "glBindFramebuffer"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferParameteriEXT, "glNamedFramebufferParameteriEXT"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedFramebufferParameterivEXT, "glGetNamedFramebufferParameterivEXT"
-    RemapVBFunctionToGLFunction AddressOf glGetFramebufferParameteriv, "glGetFramebufferParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glFramebufferParameteri, "glFramebufferParameteri"
-    RemapVBFunctionToGLFunction AddressOf glDrawElementsIndirect, "glDrawElementsIndirect"
-    RemapVBFunctionToGLFunction AddressOf glDrawArraysIndirect, "glDrawArraysIndirect"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawElementsBaseVertex, "glMultiDrawElementsBaseVertex"
-    RemapVBFunctionToGLFunction AddressOf glDrawRangeElementsBaseVertex, "glDrawRangeElementsBaseVertex"
-    RemapVBFunctionToGLFunction AddressOf glDrawElementsInstancedBaseVertex, "glDrawElementsInstancedBaseVertex"
-    RemapVBFunctionToGLFunction AddressOf glDrawElementsBaseVertex, "glDrawElementsBaseVertex"
-    RemapVBFunctionToGLFunction AddressOf glBlendFunciARB, "glBlendFunciARB"
-    RemapVBFunctionToGLFunction AddressOf glBlendFuncSeparateiARB, "glBlendFuncSeparateiARB"
-    RemapVBFunctionToGLFunction AddressOf glBlendEquationiARB, "glBlendEquationiARB"
-    RemapVBFunctionToGLFunction AddressOf glBlendEquationSeparateiARB, "glBlendEquationSeparateiARB"
-    RemapVBFunctionToGLFunction AddressOf glDrawBuffersARB, "glDrawBuffersARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexBuffers, "glVertexArrayVertexBuffers"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexBuffer, "glVertexArrayVertexBuffer"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayElementBuffer, "glVertexArrayElementBuffer"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayBindingDivisor, "glVertexArrayBindingDivisor"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayAttribLFormat, "glVertexArrayAttribLFormat"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayAttribIFormat, "glVertexArrayAttribIFormat"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayAttribFormat, "glVertexArrayAttribFormat"
-    RemapVBFunctionToGLFunction AddressOf glVertexArrayAttribBinding, "glVertexArrayAttribBinding"
-    RemapVBFunctionToGLFunction AddressOf glUnmapNamedBuffer, "glUnmapNamedBuffer"
-    RemapVBFunctionToGLFunction AddressOf glTransformFeedbackBufferRange, "glTransformFeedbackBufferRange"
-    RemapVBFunctionToGLFunction AddressOf glTransformFeedbackBufferBase, "glTransformFeedbackBufferBase"
-    RemapVBFunctionToGLFunction AddressOf glTextureSubImage3D, "glTextureSubImage3D"
-    RemapVBFunctionToGLFunction AddressOf glTextureSubImage2D, "glTextureSubImage2D"
-    RemapVBFunctionToGLFunction AddressOf glTextureSubImage1D, "glTextureSubImage1D"
-    RemapVBFunctionToGLFunction AddressOf glTextureStorage3DMultisample, "glTextureStorage3DMultisample"
-    RemapVBFunctionToGLFunction AddressOf glTextureStorage3D, "glTextureStorage3D"
-    RemapVBFunctionToGLFunction AddressOf glTextureStorage2DMultisample, "glTextureStorage2DMultisample"
-    RemapVBFunctionToGLFunction AddressOf glTextureStorage2D, "glTextureStorage2D"
-    RemapVBFunctionToGLFunction AddressOf glTextureStorage1D, "glTextureStorage1D"
-    RemapVBFunctionToGLFunction AddressOf glTextureParameteriv, "glTextureParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glTextureParameteri, "glTextureParameteri"
-    RemapVBFunctionToGLFunction AddressOf glTextureParameterfv, "glTextureParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glTextureParameterf, "glTextureParameterf"
-    RemapVBFunctionToGLFunction AddressOf glTextureParameterIuiv, "glTextureParameterIuiv"
-    RemapVBFunctionToGLFunction AddressOf glTextureParameterIiv, "glTextureParameterIiv"
-    RemapVBFunctionToGLFunction AddressOf glTextureBufferRange, "glTextureBufferRange"
-    RemapVBFunctionToGLFunction AddressOf glTextureBuffer, "glTextureBuffer"
-    RemapVBFunctionToGLFunction AddressOf glNamedRenderbufferStorageMultisample, "glNamedRenderbufferStorageMultisample"
-    RemapVBFunctionToGLFunction AddressOf glNamedRenderbufferStorage, "glNamedRenderbufferStorage"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferTextureLayer, "glNamedFramebufferTextureLayer"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferTexture, "glNamedFramebufferTexture"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferRenderbuffer, "glNamedFramebufferRenderbuffer"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferReadBuffer, "glNamedFramebufferReadBuffer"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferParameteri, "glNamedFramebufferParameteri"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferDrawBuffers, "glNamedFramebufferDrawBuffers"
-    RemapVBFunctionToGLFunction AddressOf glNamedFramebufferDrawBuffer, "glNamedFramebufferDrawBuffer"
-    RemapVBFunctionToGLFunction AddressOf glNamedBufferSubData, "glNamedBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glNamedBufferStorage, "glNamedBufferStorage"
-    RemapVBFunctionToGLFunction AddressOf glNamedBufferData, "glNamedBufferData"
-    RemapVBFunctionToGLFunction AddressOf glInvalidateNamedFramebufferSubData, "glInvalidateNamedFramebufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glInvalidateNamedFramebufferData, "glInvalidateNamedFramebufferData"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexArrayiv, "glGetVertexArrayiv"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexArrayIndexediv, "glGetVertexArrayIndexediv"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexArrayIndexed64iv, "glGetVertexArrayIndexed64iv"
-    RemapVBFunctionToGLFunction AddressOf glGetTransformFeedbackiv, "glGetTransformFeedbackiv"
-    RemapVBFunctionToGLFunction AddressOf glGetTransformFeedbacki_v, "glGetTransformFeedbacki_v"
-    RemapVBFunctionToGLFunction AddressOf glGetTransformFeedbacki64_v, "glGetTransformFeedbacki64_v"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureParameteriv, "glGetTextureParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureParameterfv, "glGetTextureParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureParameterIuiv, "glGetTextureParameterIuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureParameterIiv, "glGetTextureParameterIiv"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureLevelParameteriv, "glGetTextureLevelParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureLevelParameterfv, "glGetTextureLevelParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureImage, "glGetTextureImage"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryBufferObjectuiv, "glGetQueryBufferObjectuiv"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryBufferObjectui64v, "glGetQueryBufferObjectui64v"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryBufferObjectiv, "glGetQueryBufferObjectiv"
-    RemapVBFunctionToGLFunction AddressOf glGetQueryBufferObjecti64v, "glGetQueryBufferObjecti64v"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedRenderbufferParameteriv, "glGetNamedRenderbufferParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedFramebufferParameteriv, "glGetNamedFramebufferParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedFramebufferAttachmentParameteriv, "glGetNamedFramebufferAttachmentParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedBufferSubData, "glGetNamedBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedBufferPointerv, "glGetNamedBufferPointerv"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedBufferParameteriv, "glGetNamedBufferParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glGetNamedBufferParameteri64v, "glGetNamedBufferParameteri64v"
-    RemapVBFunctionToGLFunction AddressOf glGetCompressedTextureImage, "glGetCompressedTextureImage"
-    RemapVBFunctionToGLFunction AddressOf glGenerateTextureMipmap, "glGenerateTextureMipmap"
-    RemapVBFunctionToGLFunction AddressOf glFlushMappedNamedBufferRange, "glFlushMappedNamedBufferRange"
-    RemapVBFunctionToGLFunction AddressOf glEnableVertexArrayAttrib, "glEnableVertexArrayAttrib"
-    RemapVBFunctionToGLFunction AddressOf glDisableVertexArrayAttrib, "glDisableVertexArrayAttrib"
-    RemapVBFunctionToGLFunction AddressOf glCreateVertexArrays, "glCreateVertexArrays"
-    RemapVBFunctionToGLFunction AddressOf glCreateTransformFeedbacks, "glCreateTransformFeedbacks"
-    RemapVBFunctionToGLFunction AddressOf glCreateTextures, "glCreateTextures"
-    RemapVBFunctionToGLFunction AddressOf glCreateSamplers, "glCreateSamplers"
-    RemapVBFunctionToGLFunction AddressOf glCreateRenderbuffers, "glCreateRenderbuffers"
-    RemapVBFunctionToGLFunction AddressOf glCreateQueries, "glCreateQueries"
-    RemapVBFunctionToGLFunction AddressOf glCreateProgramPipelines, "glCreateProgramPipelines"
-    RemapVBFunctionToGLFunction AddressOf glCreateFramebuffers, "glCreateFramebuffers"
-    RemapVBFunctionToGLFunction AddressOf glCreateBuffers, "glCreateBuffers"
-    RemapVBFunctionToGLFunction AddressOf glCopyTextureSubImage3D, "glCopyTextureSubImage3D"
-    RemapVBFunctionToGLFunction AddressOf glCopyTextureSubImage2D, "glCopyTextureSubImage2D"
-    RemapVBFunctionToGLFunction AddressOf glCopyTextureSubImage1D, "glCopyTextureSubImage1D"
-    RemapVBFunctionToGLFunction AddressOf glCopyNamedBufferSubData, "glCopyNamedBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTextureSubImage3D, "glCompressedTextureSubImage3D"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTextureSubImage2D, "glCompressedTextureSubImage2D"
-    RemapVBFunctionToGLFunction AddressOf glCompressedTextureSubImage1D, "glCompressedTextureSubImage1D"
-    RemapVBFunctionToGLFunction AddressOf glClearNamedFramebufferuiv, "glClearNamedFramebufferuiv"
-    RemapVBFunctionToGLFunction AddressOf glClearNamedFramebufferiv, "glClearNamedFramebufferiv"
-    RemapVBFunctionToGLFunction AddressOf glClearNamedFramebufferfv, "glClearNamedFramebufferfv"
-    RemapVBFunctionToGLFunction AddressOf glClearNamedFramebufferfi, "glClearNamedFramebufferfi"
-    RemapVBFunctionToGLFunction AddressOf glClearNamedBufferSubData, "glClearNamedBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glClearNamedBufferData, "glClearNamedBufferData"
-    RemapVBFunctionToGLFunction AddressOf glCheckNamedFramebufferStatus, "glCheckNamedFramebufferStatus"
-    RemapVBFunctionToGLFunction AddressOf glBlitNamedFramebuffer, "glBlitNamedFramebuffer"
-    RemapVBFunctionToGLFunction AddressOf glBindTextureUnit, "glBindTextureUnit"
-    RemapVBFunctionToGLFunction AddressOf glGetDebugMessageLogARB, "glGetDebugMessageLogARB"
-    RemapVBFunctionToGLFunction AddressOf glDebugMessageInsertARB, "glDebugMessageInsertARB"
-    RemapVBFunctionToGLFunction AddressOf glDebugMessageControlARB, "glDebugMessageControlARB"
-    RemapVBFunctionToGLFunction AddressOf glDebugMessageCallbackARB, "glDebugMessageCallbackARB"
-    RemapVBFunctionToGLFunction AddressOf glCopyImageSubData, "glCopyImageSubData"
-    RemapVBFunctionToGLFunction AddressOf glCopyBufferSubData, "glCopyBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glDispatchComputeGroupSizeARB, "glDispatchComputeGroupSizeARB"
-    RemapVBFunctionToGLFunction AddressOf glDispatchComputeIndirect, "glDispatchComputeIndirect"
-    RemapVBFunctionToGLFunction AddressOf glDispatchCompute, "glDispatchCompute"
-    RemapVBFunctionToGLFunction AddressOf glClampColorARB, "glClampColorARB"
-    RemapVBFunctionToGLFunction AddressOf glClipControl, "glClipControl"
-    RemapVBFunctionToGLFunction AddressOf glClearTexSubImage, "glClearTexSubImage"
-    RemapVBFunctionToGLFunction AddressOf glClearTexImage, "glClearTexImage"
-    RemapVBFunctionToGLFunction AddressOf glClearNamedBufferSubDataEXT, "glClearNamedBufferSubDataEXT"
-    RemapVBFunctionToGLFunction AddressOf glClearNamedBufferDataEXT, "glClearNamedBufferDataEXT"
-    RemapVBFunctionToGLFunction AddressOf glClearBufferSubData, "glClearBufferSubData"
-    RemapVBFunctionToGLFunction AddressOf glClearBufferData, "glClearBufferData"
-    RemapVBFunctionToGLFunction AddressOf glCreateSyncFromCLeventARB, "glCreateSyncFromCLeventARB"
-    RemapVBFunctionToGLFunction AddressOf glBufferStorage, "glBufferStorage"
-    RemapVBFunctionToGLFunction AddressOf glGetFragDataIndex, "glGetFragDataIndex"
-    RemapVBFunctionToGLFunction AddressOf glBindFragDataLocationIndexed, "glBindFragDataLocationIndexed"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL1ui64vARB, "glVertexAttribL1ui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribL1ui64ARB, "glVertexAttribL1ui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glUniformHandleui64vARB, "glUniformHandleui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glUniformHandleui64ARB, "glUniformHandleui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformHandleui64vARB, "glProgramUniformHandleui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glProgramUniformHandleui64ARB, "glProgramUniformHandleui64ARB"
-    RemapVBFunctionToGLFunction AddressOf glMakeTextureHandleResidentARB, "glMakeTextureHandleResidentARB"
-    RemapVBFunctionToGLFunction AddressOf glMakeTextureHandleNonResidentARB, "glMakeTextureHandleNonResidentARB"
-    RemapVBFunctionToGLFunction AddressOf glMakeImageHandleResidentARB, "glMakeImageHandleResidentARB"
-    RemapVBFunctionToGLFunction AddressOf glMakeImageHandleNonResidentARB, "glMakeImageHandleNonResidentARB"
-    RemapVBFunctionToGLFunction AddressOf glIsTextureHandleResidentARB, "glIsTextureHandleResidentARB"
-    RemapVBFunctionToGLFunction AddressOf glIsImageHandleResidentARB, "glIsImageHandleResidentARB"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribLui64vARB, "glGetVertexAttribLui64vARB"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureSamplerHandleARB, "glGetTextureSamplerHandleARB"
-    RemapVBFunctionToGLFunction AddressOf glGetTextureHandleARB, "glGetTextureHandleARB"
-    RemapVBFunctionToGLFunction AddressOf glGetImageHandleARB, "glGetImageHandleARB"
-    RemapVBFunctionToGLFunction AddressOf glDrawElementsInstancedBaseVertexBaseInstance, "glDrawElementsInstancedBaseVertexBaseInstance"
-    RemapVBFunctionToGLFunction AddressOf glDrawElementsInstancedBaseInstance, "glDrawElementsInstancedBaseInstance"
-    RemapVBFunctionToGLFunction AddressOf glDrawArraysInstancedBaseInstance, "glDrawArraysInstancedBaseInstance"
-    RemapVBFunctionToGLFunction AddressOf glPrimitiveBoundingBoxARB, "glPrimitiveBoundingBoxARB"
-    RemapVBFunctionToGLFunction AddressOf glMemoryBarrierByRegion, "glMemoryBarrierByRegion"
-    RemapVBFunctionToGLFunction AddressOf glShaderBinary, "glShaderBinary"
-    RemapVBFunctionToGLFunction AddressOf glReleaseShaderCompiler, "glReleaseShaderCompiler"
-    RemapVBFunctionToGLFunction AddressOf glGetShaderPrecisionFormat, "glGetShaderPrecisionFormat"
-    RemapVBFunctionToGLFunction AddressOf glDepthRangef, "glDepthRangef"
-    RemapVBFunctionToGLFunction AddressOf glClearDepthf, "glClearDepthf"
-End If
+    If IsDEPEnabled Then
+        glWindowPos3svARBPtr = OpenGLExtProcAddress("glWindowPos3svARB")
+        glWindowPos3sARBPtr = OpenGLExtProcAddress("glWindowPos3sARB")
+        glWindowPos3ivARBPtr = OpenGLExtProcAddress("glWindowPos3ivARB")
+        glWindowPos3iARBPtr = OpenGLExtProcAddress("glWindowPos3iARB")
+        glWindowPos3fvARBPtr = OpenGLExtProcAddress("glWindowPos3fvARB")
+        glWindowPos3fARBPtr = OpenGLExtProcAddress("glWindowPos3fARB")
+        glWindowPos3dvARBPtr = OpenGLExtProcAddress("glWindowPos3dvARB")
+        glWindowPos3dARBPtr = OpenGLExtProcAddress("glWindowPos3dARB")
+        glWindowPos2svARBPtr = OpenGLExtProcAddress("glWindowPos2svARB")
+        glWindowPos2sARBPtr = OpenGLExtProcAddress("glWindowPos2sARB")
+        glWindowPos2ivARBPtr = OpenGLExtProcAddress("glWindowPos2ivARB")
+        glWindowPos2iARBPtr = OpenGLExtProcAddress("glWindowPos2iARB")
+        glWindowPos2fvARBPtr = OpenGLExtProcAddress("glWindowPos2fvARB")
+        glWindowPos2fARBPtr = OpenGLExtProcAddress("glWindowPos2fARB")
+        glWindowPos2dvARBPtr = OpenGLExtProcAddress("glWindowPos2dvARB")
+        glWindowPos2dARBPtr = OpenGLExtProcAddress("glWindowPos2dARB")
+        glViewportIndexedfvPtr = OpenGLExtProcAddress("glViewportIndexedfv")
+        glViewportIndexedfPtr = OpenGLExtProcAddress("glViewportIndexedf")
+        glViewportArrayvPtr = OpenGLExtProcAddress("glViewportArrayv")
+        glScissorIndexedvPtr = OpenGLExtProcAddress("glScissorIndexedv")
+        glScissorIndexedPtr = OpenGLExtProcAddress("glScissorIndexed")
+        glScissorArrayvPtr = OpenGLExtProcAddress("glScissorArrayv")
+        glGetFloati_vPtr = OpenGLExtProcAddress("glGetFloati_v")
+        glGetDoublei_vPtr = OpenGLExtProcAddress("glGetDoublei_v")
+        glDepthRangeIndexedPtr = OpenGLExtProcAddress("glDepthRangeIndexed")
+        glDepthRangeArrayvPtr = OpenGLExtProcAddress("glDepthRangeArrayv")
+        glVertexP4uivPtr = OpenGLExtProcAddress("glVertexP4uiv")
+        glVertexP4uiPtr = OpenGLExtProcAddress("glVertexP4ui")
+        glVertexP3uivPtr = OpenGLExtProcAddress("glVertexP3uiv")
+        glVertexP3uiPtr = OpenGLExtProcAddress("glVertexP3ui")
+        glVertexP2uivPtr = OpenGLExtProcAddress("glVertexP2uiv")
+        glVertexP2uiPtr = OpenGLExtProcAddress("glVertexP2ui")
+        glVertexAttribP4uivPtr = OpenGLExtProcAddress("glVertexAttribP4uiv")
+        glVertexAttribP4uiPtr = OpenGLExtProcAddress("glVertexAttribP4ui")
+        glVertexAttribP3uivPtr = OpenGLExtProcAddress("glVertexAttribP3uiv")
+        glVertexAttribP3uiPtr = OpenGLExtProcAddress("glVertexAttribP3ui")
+        glVertexAttribP2uivPtr = OpenGLExtProcAddress("glVertexAttribP2uiv")
+        glVertexAttribP2uiPtr = OpenGLExtProcAddress("glVertexAttribP2ui")
+        glVertexAttribP1uivPtr = OpenGLExtProcAddress("glVertexAttribP1uiv")
+        glVertexAttribP1uiPtr = OpenGLExtProcAddress("glVertexAttribP1ui")
+        glTexCoordP4uivPtr = OpenGLExtProcAddress("glTexCoordP4uiv")
+        glTexCoordP4uiPtr = OpenGLExtProcAddress("glTexCoordP4ui")
+        glTexCoordP3uivPtr = OpenGLExtProcAddress("glTexCoordP3uiv")
+        glTexCoordP3uiPtr = OpenGLExtProcAddress("glTexCoordP3ui")
+        glTexCoordP2uivPtr = OpenGLExtProcAddress("glTexCoordP2uiv")
+        glTexCoordP2uiPtr = OpenGLExtProcAddress("glTexCoordP2ui")
+        glTexCoordP1uivPtr = OpenGLExtProcAddress("glTexCoordP1uiv")
+        glTexCoordP1uiPtr = OpenGLExtProcAddress("glTexCoordP1ui")
+        glSecondaryColorP3uivPtr = OpenGLExtProcAddress("glSecondaryColorP3uiv")
+        glSecondaryColorP3uiPtr = OpenGLExtProcAddress("glSecondaryColorP3ui")
+        glNormalP3uivPtr = OpenGLExtProcAddress("glNormalP3uiv")
+        glNormalP3uiPtr = OpenGLExtProcAddress("glNormalP3ui")
+        glMultiTexCoordP4uivPtr = OpenGLExtProcAddress("glMultiTexCoordP4uiv")
+        glMultiTexCoordP4uiPtr = OpenGLExtProcAddress("glMultiTexCoordP4ui")
+        glMultiTexCoordP3uivPtr = OpenGLExtProcAddress("glMultiTexCoordP3uiv")
+        glMultiTexCoordP3uiPtr = OpenGLExtProcAddress("glMultiTexCoordP3ui")
+        glMultiTexCoordP2uivPtr = OpenGLExtProcAddress("glMultiTexCoordP2uiv")
+        glMultiTexCoordP2uiPtr = OpenGLExtProcAddress("glMultiTexCoordP2ui")
+        glMultiTexCoordP1uivPtr = OpenGLExtProcAddress("glMultiTexCoordP1uiv")
+        glMultiTexCoordP1uiPtr = OpenGLExtProcAddress("glMultiTexCoordP1ui")
+        glColorP4uivPtr = OpenGLExtProcAddress("glColorP4uiv")
+        glColorP4uiPtr = OpenGLExtProcAddress("glColorP4ui")
+        glColorP3uivPtr = OpenGLExtProcAddress("glColorP3uiv")
+        glColorP3uiPtr = OpenGLExtProcAddress("glColorP3ui")
+        glGetAttribLocationARBPtr = OpenGLExtProcAddress("glGetAttribLocationARB")
+        glGetActiveAttribARBPtr = OpenGLExtProcAddress("glGetActiveAttribARB")
+        glBindAttribLocationARBPtr = OpenGLExtProcAddress("glBindAttribLocationARB")
+        glVertexAttribPointerARBPtr = OpenGLExtProcAddress("glVertexAttribPointerARB")
+        glVertexAttrib4usvARBPtr = OpenGLExtProcAddress("glVertexAttrib4usvARB")
+        glVertexAttrib4uivARBPtr = OpenGLExtProcAddress("glVertexAttrib4uivARB")
+        glVertexAttrib4ubvARBPtr = OpenGLExtProcAddress("glVertexAttrib4ubvARB")
+        glVertexAttrib4svARBPtr = OpenGLExtProcAddress("glVertexAttrib4svARB")
+        glVertexAttrib4sARBPtr = OpenGLExtProcAddress("glVertexAttrib4sARB")
+        glVertexAttrib4ivARBPtr = OpenGLExtProcAddress("glVertexAttrib4ivARB")
+        glVertexAttrib4fvARBPtr = OpenGLExtProcAddress("glVertexAttrib4fvARB")
+        glVertexAttrib4fARBPtr = OpenGLExtProcAddress("glVertexAttrib4fARB")
+        glVertexAttrib4dvARBPtr = OpenGLExtProcAddress("glVertexAttrib4dvARB")
+        glVertexAttrib4dARBPtr = OpenGLExtProcAddress("glVertexAttrib4dARB")
+        glVertexAttrib4bvARBPtr = OpenGLExtProcAddress("glVertexAttrib4bvARB")
+        glVertexAttrib4NusvARBPtr = OpenGLExtProcAddress("glVertexAttrib4NusvARB")
+        glVertexAttrib4NuivARBPtr = OpenGLExtProcAddress("glVertexAttrib4NuivARB")
+        glVertexAttrib4NubvARBPtr = OpenGLExtProcAddress("glVertexAttrib4NubvARB")
+        glVertexAttrib4NubARBPtr = OpenGLExtProcAddress("glVertexAttrib4NubARB")
+        glVertexAttrib4NsvARBPtr = OpenGLExtProcAddress("glVertexAttrib4NsvARB")
+        glVertexAttrib4NivARBPtr = OpenGLExtProcAddress("glVertexAttrib4NivARB")
+        glVertexAttrib4NbvARBPtr = OpenGLExtProcAddress("glVertexAttrib4NbvARB")
+        glVertexAttrib3svARBPtr = OpenGLExtProcAddress("glVertexAttrib3svARB")
+        glVertexAttrib3sARBPtr = OpenGLExtProcAddress("glVertexAttrib3sARB")
+        glVertexAttrib3fvARBPtr = OpenGLExtProcAddress("glVertexAttrib3fvARB")
+        glVertexAttrib3fARBPtr = OpenGLExtProcAddress("glVertexAttrib3fARB")
+        glVertexAttrib3dvARBPtr = OpenGLExtProcAddress("glVertexAttrib3dvARB")
+        glVertexAttrib3dARBPtr = OpenGLExtProcAddress("glVertexAttrib3dARB")
+        glVertexAttrib2svARBPtr = OpenGLExtProcAddress("glVertexAttrib2svARB")
+        glVertexAttrib2sARBPtr = OpenGLExtProcAddress("glVertexAttrib2sARB")
+        glVertexAttrib2fvARBPtr = OpenGLExtProcAddress("glVertexAttrib2fvARB")
+        glVertexAttrib2fARBPtr = OpenGLExtProcAddress("glVertexAttrib2fARB")
+        glVertexAttrib2dvARBPtr = OpenGLExtProcAddress("glVertexAttrib2dvARB")
+        glVertexAttrib2dARBPtr = OpenGLExtProcAddress("glVertexAttrib2dARB")
+        glVertexAttrib1svARBPtr = OpenGLExtProcAddress("glVertexAttrib1svARB")
+        glVertexAttrib1sARBPtr = OpenGLExtProcAddress("glVertexAttrib1sARB")
+        glVertexAttrib1fvARBPtr = OpenGLExtProcAddress("glVertexAttrib1fvARB")
+        glVertexAttrib1fARBPtr = OpenGLExtProcAddress("glVertexAttrib1fARB")
+        glVertexAttrib1dvARBPtr = OpenGLExtProcAddress("glVertexAttrib1dvARB")
+        glVertexAttrib1dARBPtr = OpenGLExtProcAddress("glVertexAttrib1dARB")
+        glProgramStringARBPtr = OpenGLExtProcAddress("glProgramStringARB")
+        glProgramLocalParameter4fvARBPtr = OpenGLExtProcAddress("glProgramLocalParameter4fvARB")
+        glProgramLocalParameter4fARBPtr = OpenGLExtProcAddress("glProgramLocalParameter4fARB")
+        glProgramLocalParameter4dvARBPtr = OpenGLExtProcAddress("glProgramLocalParameter4dvARB")
+        glProgramLocalParameter4dARBPtr = OpenGLExtProcAddress("glProgramLocalParameter4dARB")
+        glProgramEnvParameter4fvARBPtr = OpenGLExtProcAddress("glProgramEnvParameter4fvARB")
+        glProgramEnvParameter4fARBPtr = OpenGLExtProcAddress("glProgramEnvParameter4fARB")
+        glProgramEnvParameter4dvARBPtr = OpenGLExtProcAddress("glProgramEnvParameter4dvARB")
+        glProgramEnvParameter4dARBPtr = OpenGLExtProcAddress("glProgramEnvParameter4dARB")
+        glIsProgramARBPtr = OpenGLExtProcAddress("glIsProgramARB")
+        glGetVertexAttribivARBPtr = OpenGLExtProcAddress("glGetVertexAttribivARB")
+        glGetVertexAttribfvARBPtr = OpenGLExtProcAddress("glGetVertexAttribfvARB")
+        glGetVertexAttribdvARBPtr = OpenGLExtProcAddress("glGetVertexAttribdvARB")
+        glGetVertexAttribPointervARBPtr = OpenGLExtProcAddress("glGetVertexAttribPointervARB")
+        glGetProgramivARBPtr = OpenGLExtProcAddress("glGetProgramivARB")
+        glGetProgramStringARBPtr = OpenGLExtProcAddress("glGetProgramStringARB")
+        glGetProgramLocalParameterfvARBPtr = OpenGLExtProcAddress("glGetProgramLocalParameterfvARB")
+        glGetProgramLocalParameterdvARBPtr = OpenGLExtProcAddress("glGetProgramLocalParameterdvARB")
+        glGetProgramEnvParameterfvARBPtr = OpenGLExtProcAddress("glGetProgramEnvParameterfvARB")
+        glGetProgramEnvParameterdvARBPtr = OpenGLExtProcAddress("glGetProgramEnvParameterdvARB")
+        glGenProgramsARBPtr = OpenGLExtProcAddress("glGenProgramsARB")
+        glEnableVertexAttribArrayARBPtr = OpenGLExtProcAddress("glEnableVertexAttribArrayARB")
+        glDisableVertexAttribArrayARBPtr = OpenGLExtProcAddress("glDisableVertexAttribArrayARB")
+        glDeleteProgramsARBPtr = OpenGLExtProcAddress("glDeleteProgramsARB")
+        glBindProgramARBPtr = OpenGLExtProcAddress("glBindProgramARB")
+        glUnmapBufferARBPtr = OpenGLExtProcAddress("glUnmapBufferARB")
+        glIsBufferARBPtr = OpenGLExtProcAddress("glIsBufferARB")
+        glGetBufferSubDataARBPtr = OpenGLExtProcAddress("glGetBufferSubDataARB")
+        glGetBufferPointervARBPtr = OpenGLExtProcAddress("glGetBufferPointervARB")
+        glGetBufferParameterivARBPtr = OpenGLExtProcAddress("glGetBufferParameterivARB")
+        glGenBuffersARBPtr = OpenGLExtProcAddress("glGenBuffersARB")
+        glDeleteBuffersARBPtr = OpenGLExtProcAddress("glDeleteBuffersARB")
+        glBufferSubDataARBPtr = OpenGLExtProcAddress("glBufferSubDataARB")
+        glBufferDataARBPtr = OpenGLExtProcAddress("glBufferDataARB")
+        glBindBufferARBPtr = OpenGLExtProcAddress("glBindBufferARB")
+        glWeightusvARBPtr = OpenGLExtProcAddress("glWeightusvARB")
+        glWeightuivARBPtr = OpenGLExtProcAddress("glWeightuivARB")
+        glWeightubvARBPtr = OpenGLExtProcAddress("glWeightubvARB")
+        glWeightsvARBPtr = OpenGLExtProcAddress("glWeightsvARB")
+        glWeightivARBPtr = OpenGLExtProcAddress("glWeightivARB")
+        glWeightfvARBPtr = OpenGLExtProcAddress("glWeightfvARB")
+        glWeightdvARBPtr = OpenGLExtProcAddress("glWeightdvARB")
+        glWeightbvARBPtr = OpenGLExtProcAddress("glWeightbvARB")
+        glWeightPointerARBPtr = OpenGLExtProcAddress("glWeightPointerARB")
+        glVertexBlendARBPtr = OpenGLExtProcAddress("glVertexBlendARB")
+        glVertexBindingDivisorPtr = OpenGLExtProcAddress("glVertexBindingDivisor")
+        glVertexAttribLFormatPtr = OpenGLExtProcAddress("glVertexAttribLFormat")
+        glVertexAttribIFormatPtr = OpenGLExtProcAddress("glVertexAttribIFormat")
+        glVertexAttribFormatPtr = OpenGLExtProcAddress("glVertexAttribFormat")
+        glVertexAttribBindingPtr = OpenGLExtProcAddress("glVertexAttribBinding")
+        glVertexArrayVertexBindingDivisorEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexBindingDivisorEXT")
+        glVertexArrayVertexAttribLFormatEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexAttribLFormatEXT")
+        glVertexArrayVertexAttribIFormatEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexAttribIFormatEXT")
+        glVertexArrayVertexAttribFormatEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexAttribFormatEXT")
+        glVertexArrayVertexAttribBindingEXTPtr = OpenGLExtProcAddress("glVertexArrayVertexAttribBindingEXT")
+        glVertexArrayBindVertexBufferEXTPtr = OpenGLExtProcAddress("glVertexArrayBindVertexBufferEXT")
+        glBindVertexBufferPtr = OpenGLExtProcAddress("glBindVertexBuffer")
+        glVertexAttribLPointerPtr = OpenGLExtProcAddress("glVertexAttribLPointer")
+        glVertexAttribL4dvPtr = OpenGLExtProcAddress("glVertexAttribL4dv")
+        glVertexAttribL4dPtr = OpenGLExtProcAddress("glVertexAttribL4d")
+        glVertexAttribL3dvPtr = OpenGLExtProcAddress("glVertexAttribL3dv")
+        glVertexAttribL3dPtr = OpenGLExtProcAddress("glVertexAttribL3d")
+        glVertexAttribL2dvPtr = OpenGLExtProcAddress("glVertexAttribL2dv")
+        glVertexAttribL2dPtr = OpenGLExtProcAddress("glVertexAttribL2d")
+        glVertexAttribL1dvPtr = OpenGLExtProcAddress("glVertexAttribL1dv")
+        glVertexAttribL1dPtr = OpenGLExtProcAddress("glVertexAttribL1d")
+        glGetVertexAttribLdvPtr = OpenGLExtProcAddress("glGetVertexAttribLdv")
+        glIsVertexArrayARBPtr = OpenGLExtProcAddress("glIsVertexArrayARB")
+        glGenVertexArraysARBPtr = OpenGLExtProcAddress("glGenVertexArraysARB")
+        glDeleteVertexArraysARBPtr = OpenGLExtProcAddress("glDeleteVertexArraysARB")
+        glBindVertexArrayARBPtr = OpenGLExtProcAddress("glBindVertexArrayARB")
+        glUniformBlockBindingPtr = OpenGLExtProcAddress("glUniformBlockBinding")
+        glGetUniformIndicesPtr = OpenGLExtProcAddress("glGetUniformIndices")
+        glGetUniformBlockIndexPtr = OpenGLExtProcAddress("glGetUniformBlockIndex")
+        glGetIntegeri_vPtr = OpenGLExtProcAddress("glGetIntegeri_v")
+        glGetActiveUniformsivPtr = OpenGLExtProcAddress("glGetActiveUniformsiv")
+        glGetActiveUniformNamePtr = OpenGLExtProcAddress("glGetActiveUniformName")
+        glGetActiveUniformBlockivPtr = OpenGLExtProcAddress("glGetActiveUniformBlockiv")
+        glGetActiveUniformBlockNamePtr = OpenGLExtProcAddress("glGetActiveUniformBlockName")
+        glBindBufferRangePtr = OpenGLExtProcAddress("glBindBufferRange")
+        glBindBufferBasePtr = OpenGLExtProcAddress("glBindBufferBase")
+        glMultTransposeMatrixfARBPtr = OpenGLExtProcAddress("glMultTransposeMatrixfARB")
+        glMultTransposeMatrixdARBPtr = OpenGLExtProcAddress("glMultTransposeMatrixdARB")
+        glLoadTransposeMatrixfARBPtr = OpenGLExtProcAddress("glLoadTransposeMatrixfARB")
+        glLoadTransposeMatrixdARBPtr = OpenGLExtProcAddress("glLoadTransposeMatrixdARB")
+        glDrawTransformFeedbackStreamInstancedPtr = OpenGLExtProcAddress("glDrawTransformFeedbackStreamInstanced")
+        glDrawTransformFeedbackInstancedPtr = OpenGLExtProcAddress("glDrawTransformFeedbackInstanced")
+        glGetQueryIndexedivPtr = OpenGLExtProcAddress("glGetQueryIndexediv")
+        glEndQueryIndexedPtr = OpenGLExtProcAddress("glEndQueryIndexed")
+        glDrawTransformFeedbackStreamPtr = OpenGLExtProcAddress("glDrawTransformFeedbackStream")
+        glBeginQueryIndexedPtr = OpenGLExtProcAddress("glBeginQueryIndexed")
+        glResumeTransformFeedbackPtr = OpenGLExtProcAddress("glResumeTransformFeedback")
+        glPauseTransformFeedbackPtr = OpenGLExtProcAddress("glPauseTransformFeedback")
+        glIsTransformFeedbackPtr = OpenGLExtProcAddress("glIsTransformFeedback")
+        glGenTransformFeedbacksPtr = OpenGLExtProcAddress("glGenTransformFeedbacks")
+        glDrawTransformFeedbackPtr = OpenGLExtProcAddress("glDrawTransformFeedback")
+        glDeleteTransformFeedbacksPtr = OpenGLExtProcAddress("glDeleteTransformFeedbacks")
+        glBindTransformFeedbackPtr = OpenGLExtProcAddress("glBindTransformFeedback")
+        glQueryCounterPtr = OpenGLExtProcAddress("glQueryCounter")
+        glGetQueryObjectui64vPtr = OpenGLExtProcAddress("glGetQueryObjectui64v")
+        glGetQueryObjecti64vPtr = OpenGLExtProcAddress("glGetQueryObjecti64v")
+        glTextureViewPtr = OpenGLExtProcAddress("glTextureView")
+        glTextureStorage3DMultisampleEXTPtr = OpenGLExtProcAddress("glTextureStorage3DMultisampleEXT")
+        glTextureStorage2DMultisampleEXTPtr = OpenGLExtProcAddress("glTextureStorage2DMultisampleEXT")
+        glTexStorage3DMultisamplePtr = OpenGLExtProcAddress("glTexStorage3DMultisample")
+        glTexStorage2DMultisamplePtr = OpenGLExtProcAddress("glTexStorage2DMultisample")
+        glTexStorage3DPtr = OpenGLExtProcAddress("glTexStorage3D")
+        glTexStorage2DPtr = OpenGLExtProcAddress("glTexStorage2D")
+        glTexStorage1DPtr = OpenGLExtProcAddress("glTexStorage1D")
+        glTexImage3DMultisamplePtr = OpenGLExtProcAddress("glTexImage3DMultisample")
+        glTexImage2DMultisamplePtr = OpenGLExtProcAddress("glTexImage2DMultisample")
+        glSampleMaskiPtr = OpenGLExtProcAddress("glSampleMaski")
+        glGetMultisamplefvPtr = OpenGLExtProcAddress("glGetMultisamplefv")
+        glGetCompressedTexImageARBPtr = OpenGLExtProcAddress("glGetCompressedTexImageARB")
+        glCompressedTexSubImage3DARBPtr = OpenGLExtProcAddress("glCompressedTexSubImage3DARB")
+        glCompressedTexSubImage2DARBPtr = OpenGLExtProcAddress("glCompressedTexSubImage2DARB")
+        glCompressedTexSubImage1DARBPtr = OpenGLExtProcAddress("glCompressedTexSubImage1DARB")
+        glCompressedTexImage3DARBPtr = OpenGLExtProcAddress("glCompressedTexImage3DARB")
+        glCompressedTexImage2DARBPtr = OpenGLExtProcAddress("glCompressedTexImage2DARB")
+        glCompressedTexImage1DARBPtr = OpenGLExtProcAddress("glCompressedTexImage1DARB")
+        glTextureBufferRangeEXTPtr = OpenGLExtProcAddress("glTextureBufferRangeEXT")
+        glTexBufferRangePtr = OpenGLExtProcAddress("glTexBufferRange")
+        glTexBufferARBPtr = OpenGLExtProcAddress("glTexBufferARB")
+        glTextureBarrierPtr = OpenGLExtProcAddress("glTextureBarrier")
+        glPatchParameteriPtr = OpenGLExtProcAddress("glPatchParameteri")
+        glPatchParameterfvPtr = OpenGLExtProcAddress("glPatchParameterfv")
+        glWaitSyncPtr = OpenGLExtProcAddress("glWaitSync")
+        glIsSyncPtr = OpenGLExtProcAddress("glIsSync")
+        glGetSyncivPtr = OpenGLExtProcAddress("glGetSynciv")
+        glGetInteger64vPtr = OpenGLExtProcAddress("glGetInteger64v")
+        glFenceSyncPtr = OpenGLExtProcAddress("glFenceSync")
+        glDeleteSyncPtr = OpenGLExtProcAddress("glDeleteSync")
+        glClientWaitSyncPtr = OpenGLExtProcAddress("glClientWaitSync")
+        glTexPageCommitmentARBPtr = OpenGLExtProcAddress("glTexPageCommitmentARB")
+        glBufferPageCommitmentARBPtr = OpenGLExtProcAddress("glBufferPageCommitmentARB")
+        glNamedStringARBPtr = OpenGLExtProcAddress("glNamedStringARB")
+        glIsNamedStringARBPtr = OpenGLExtProcAddress("glIsNamedStringARB")
+        glGetNamedStringivARBPtr = OpenGLExtProcAddress("glGetNamedStringivARB")
+        glGetNamedStringARBPtr = OpenGLExtProcAddress("glGetNamedStringARB")
+        glDeleteNamedStringARBPtr = OpenGLExtProcAddress("glDeleteNamedStringARB")
+        glCompileShaderIncludeARBPtr = OpenGLExtProcAddress("glCompileShaderIncludeARB")
+        glUniformSubroutinesuivPtr = OpenGLExtProcAddress("glUniformSubroutinesuiv")
+        glGetUniformSubroutineuivPtr = OpenGLExtProcAddress("glGetUniformSubroutineuiv")
+        glGetSubroutineUniformLocationPtr = OpenGLExtProcAddress("glGetSubroutineUniformLocation")
+        glGetSubroutineIndexPtr = OpenGLExtProcAddress("glGetSubroutineIndex")
+        glGetProgramStageivPtr = OpenGLExtProcAddress("glGetProgramStageiv")
+        glGetActiveSubroutineUniformivPtr = OpenGLExtProcAddress("glGetActiveSubroutineUniformiv")
+        glGetActiveSubroutineUniformNamePtr = OpenGLExtProcAddress("glGetActiveSubroutineUniformName")
+        glGetActiveSubroutineNamePtr = OpenGLExtProcAddress("glGetActiveSubroutineName")
+        glShaderStorageBlockBindingPtr = OpenGLExtProcAddress("glShaderStorageBlockBinding")
+        glValidateProgramARBPtr = OpenGLExtProcAddress("glValidateProgramARB")
+        glUseProgramObjectARBPtr = OpenGLExtProcAddress("glUseProgramObjectARB")
+        glUniformMatrix4fvARBPtr = OpenGLExtProcAddress("glUniformMatrix4fvARB")
+        glUniformMatrix3fvARBPtr = OpenGLExtProcAddress("glUniformMatrix3fvARB")
+        glUniformMatrix2fvARBPtr = OpenGLExtProcAddress("glUniformMatrix2fvARB")
+        glUniform4ivARBPtr = OpenGLExtProcAddress("glUniform4ivARB")
+        glUniform4iARBPtr = OpenGLExtProcAddress("glUniform4iARB")
+        glUniform4fvARBPtr = OpenGLExtProcAddress("glUniform4fvARB")
+        glUniform4fARBPtr = OpenGLExtProcAddress("glUniform4fARB")
+        glUniform3ivARBPtr = OpenGLExtProcAddress("glUniform3ivARB")
+        glUniform3iARBPtr = OpenGLExtProcAddress("glUniform3iARB")
+        glUniform3fvARBPtr = OpenGLExtProcAddress("glUniform3fvARB")
+        glUniform3fARBPtr = OpenGLExtProcAddress("glUniform3fARB")
+        glUniform2ivARBPtr = OpenGLExtProcAddress("glUniform2ivARB")
+        glUniform2iARBPtr = OpenGLExtProcAddress("glUniform2iARB")
+        glUniform2fvARBPtr = OpenGLExtProcAddress("glUniform2fvARB")
+        glUniform2fARBPtr = OpenGLExtProcAddress("glUniform2fARB")
+        glUniform1ivARBPtr = OpenGLExtProcAddress("glUniform1ivARB")
+        glUniform1iARBPtr = OpenGLExtProcAddress("glUniform1iARB")
+        glUniform1fvARBPtr = OpenGLExtProcAddress("glUniform1fvARB")
+        glUniform1fARBPtr = OpenGLExtProcAddress("glUniform1fARB")
+        glShaderSourceARBPtr = OpenGLExtProcAddress("glShaderSourceARB")
+        glLinkProgramARBPtr = OpenGLExtProcAddress("glLinkProgramARB")
+        glGetUniformivARBPtr = OpenGLExtProcAddress("glGetUniformivARB")
+        glGetUniformfvARBPtr = OpenGLExtProcAddress("glGetUniformfvARB")
+        glGetUniformLocationARBPtr = OpenGLExtProcAddress("glGetUniformLocationARB")
+        glGetShaderSourceARBPtr = OpenGLExtProcAddress("glGetShaderSourceARB")
+        glGetObjectParameterivARBPtr = OpenGLExtProcAddress("glGetObjectParameterivARB")
+        glGetObjectParameterfvARBPtr = OpenGLExtProcAddress("glGetObjectParameterfvARB")
+        glGetInfoLogARBPtr = OpenGLExtProcAddress("glGetInfoLogARB")
+        glGetHandleARBPtr = OpenGLExtProcAddress("glGetHandleARB")
+        glGetAttachedObjectsARBPtr = OpenGLExtProcAddress("glGetAttachedObjectsARB")
+        glGetActiveUniformARBPtr = OpenGLExtProcAddress("glGetActiveUniformARB")
+        glDetachObjectARBPtr = OpenGLExtProcAddress("glDetachObjectARB")
+        glDeleteObjectARBPtr = OpenGLExtProcAddress("glDeleteObjectARB")
+        glCreateShaderObjectARBPtr = OpenGLExtProcAddress("glCreateShaderObjectARB")
+        glCreateProgramObjectARBPtr = OpenGLExtProcAddress("glCreateProgramObjectARB")
+        glCompileShaderARBPtr = OpenGLExtProcAddress("glCompileShaderARB")
+        glAttachObjectARBPtr = OpenGLExtProcAddress("glAttachObjectARB")
+        glMemoryBarrierPtr = OpenGLExtProcAddress("glMemoryBarrier")
+        glBindImageTexturePtr = OpenGLExtProcAddress("glBindImageTexture")
+        glGetActiveAtomicCounterBufferivPtr = OpenGLExtProcAddress("glGetActiveAtomicCounterBufferiv")
+        glValidateProgramPipelinePtr = OpenGLExtProcAddress("glValidateProgramPipeline")
+        glUseProgramStagesPtr = OpenGLExtProcAddress("glUseProgramStages")
+        glProgramUniformMatrix4x3fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4x3fv")
+        glProgramUniformMatrix4x3dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4x3dv")
+        glProgramUniformMatrix4x2fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4x2fv")
+        glProgramUniformMatrix4x2dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4x2dv")
+        glProgramUniformMatrix4fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4fv")
+        glProgramUniformMatrix4dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix4dv")
+        glProgramUniformMatrix3x4fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3x4fv")
+        glProgramUniformMatrix3x4dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3x4dv")
+        glProgramUniformMatrix3x2fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3x2fv")
+        glProgramUniformMatrix3x2dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3x2dv")
+        glProgramUniformMatrix3fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3fv")
+        glProgramUniformMatrix3dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix3dv")
+        glProgramUniformMatrix2x4fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2x4fv")
+        glProgramUniformMatrix2x4dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2x4dv")
+        glProgramUniformMatrix2x3fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2x3fv")
+        glProgramUniformMatrix2x3dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2x3dv")
+        glProgramUniformMatrix2fvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2fv")
+        glProgramUniformMatrix2dvPtr = OpenGLExtProcAddress("glProgramUniformMatrix2dv")
+        glProgramUniform4uivPtr = OpenGLExtProcAddress("glProgramUniform4uiv")
+        glProgramUniform4uiPtr = OpenGLExtProcAddress("glProgramUniform4ui")
+        glProgramUniform4ivPtr = OpenGLExtProcAddress("glProgramUniform4iv")
+        glProgramUniform4iPtr = OpenGLExtProcAddress("glProgramUniform4i")
+        glProgramUniform4fvPtr = OpenGLExtProcAddress("glProgramUniform4fv")
+        glProgramUniform4fPtr = OpenGLExtProcAddress("glProgramUniform4f")
+        glProgramUniform4dvPtr = OpenGLExtProcAddress("glProgramUniform4dv")
+        glProgramUniform4dPtr = OpenGLExtProcAddress("glProgramUniform4d")
+        glProgramUniform3uivPtr = OpenGLExtProcAddress("glProgramUniform3uiv")
+        glProgramUniform3uiPtr = OpenGLExtProcAddress("glProgramUniform3ui")
+        glProgramUniform3ivPtr = OpenGLExtProcAddress("glProgramUniform3iv")
+        glProgramUniform3iPtr = OpenGLExtProcAddress("glProgramUniform3i")
+        glProgramUniform3fvPtr = OpenGLExtProcAddress("glProgramUniform3fv")
+        glProgramUniform3fPtr = OpenGLExtProcAddress("glProgramUniform3f")
+        glProgramUniform3dvPtr = OpenGLExtProcAddress("glProgramUniform3dv")
+        glProgramUniform3dPtr = OpenGLExtProcAddress("glProgramUniform3d")
+        glProgramUniform2uivPtr = OpenGLExtProcAddress("glProgramUniform2uiv")
+        glProgramUniform2uiPtr = OpenGLExtProcAddress("glProgramUniform2ui")
+        glProgramUniform2ivPtr = OpenGLExtProcAddress("glProgramUniform2iv")
+        glProgramUniform2iPtr = OpenGLExtProcAddress("glProgramUniform2i")
+        glProgramUniform2fvPtr = OpenGLExtProcAddress("glProgramUniform2fv")
+        glProgramUniform2fPtr = OpenGLExtProcAddress("glProgramUniform2f")
+        glProgramUniform2dvPtr = OpenGLExtProcAddress("glProgramUniform2dv")
+        glProgramUniform2dPtr = OpenGLExtProcAddress("glProgramUniform2d")
+        glProgramUniform1uivPtr = OpenGLExtProcAddress("glProgramUniform1uiv")
+        glProgramUniform1uiPtr = OpenGLExtProcAddress("glProgramUniform1ui")
+        glProgramUniform1ivPtr = OpenGLExtProcAddress("glProgramUniform1iv")
+        glProgramUniform1iPtr = OpenGLExtProcAddress("glProgramUniform1i")
+        glProgramUniform1fvPtr = OpenGLExtProcAddress("glProgramUniform1fv")
+        glProgramUniform1fPtr = OpenGLExtProcAddress("glProgramUniform1f")
+        glProgramUniform1dvPtr = OpenGLExtProcAddress("glProgramUniform1dv")
+        glProgramUniform1dPtr = OpenGLExtProcAddress("glProgramUniform1d")
+        glIsProgramPipelinePtr = OpenGLExtProcAddress("glIsProgramPipeline")
+        glGetProgramPipelineivPtr = OpenGLExtProcAddress("glGetProgramPipelineiv")
+        glGetProgramPipelineInfoLogPtr = OpenGLExtProcAddress("glGetProgramPipelineInfoLog")
+        glGenProgramPipelinesPtr = OpenGLExtProcAddress("glGenProgramPipelines")
+        glDeleteProgramPipelinesPtr = OpenGLExtProcAddress("glDeleteProgramPipelines")
+        glCreateShaderProgramvPtr = OpenGLExtProcAddress("glCreateShaderProgramv")
+        glBindProgramPipelinePtr = OpenGLExtProcAddress("glBindProgramPipeline")
+        glActiveShaderProgramPtr = OpenGLExtProcAddress("glActiveShaderProgram")
+        glSamplerParameterivPtr = OpenGLExtProcAddress("glSamplerParameteriv")
+        glSamplerParameteriPtr = OpenGLExtProcAddress("glSamplerParameteri")
+        glSamplerParameterfvPtr = OpenGLExtProcAddress("glSamplerParameterfv")
+        glSamplerParameterfPtr = OpenGLExtProcAddress("glSamplerParameterf")
+        glSamplerParameterIuivPtr = OpenGLExtProcAddress("glSamplerParameterIuiv")
+        glSamplerParameterIivPtr = OpenGLExtProcAddress("glSamplerParameterIiv")
+        glIsSamplerPtr = OpenGLExtProcAddress("glIsSampler")
+        glGetSamplerParameterivPtr = OpenGLExtProcAddress("glGetSamplerParameteriv")
+        glGetSamplerParameterfvPtr = OpenGLExtProcAddress("glGetSamplerParameterfv")
+        glGetSamplerParameterIuivPtr = OpenGLExtProcAddress("glGetSamplerParameterIuiv")
+        glGetSamplerParameterIivPtr = OpenGLExtProcAddress("glGetSamplerParameterIiv")
+        glGenSamplersPtr = OpenGLExtProcAddress("glGenSamplers")
+        glDeleteSamplersPtr = OpenGLExtProcAddress("glDeleteSamplers")
+        glBindSamplerPtr = OpenGLExtProcAddress("glBindSampler")
+        glMinSampleShadingARBPtr = OpenGLExtProcAddress("glMinSampleShadingARB")
+        glNamedFramebufferSampleLocationsfvARBPtr = OpenGLExtProcAddress("glNamedFramebufferSampleLocationsfvARB")
+        glFramebufferSampleLocationsfvARBPtr = OpenGLExtProcAddress("glFramebufferSampleLocationsfvARB")
+        glReadnPixelsARBPtr = OpenGLExtProcAddress("glReadnPixelsARB")
+        glGetnUniformuivARBPtr = OpenGLExtProcAddress("glGetnUniformuivARB")
+        glGetnUniformivARBPtr = OpenGLExtProcAddress("glGetnUniformivARB")
+        glGetnUniformfvARBPtr = OpenGLExtProcAddress("glGetnUniformfvARB")
+        glGetnUniformdvARBPtr = OpenGLExtProcAddress("glGetnUniformdvARB")
+        glGetnTexImageARBPtr = OpenGLExtProcAddress("glGetnTexImageARB")
+        glGetnSeparableFilterARBPtr = OpenGLExtProcAddress("glGetnSeparableFilterARB")
+        glGetnPolygonStippleARBPtr = OpenGLExtProcAddress("glGetnPolygonStippleARB")
+        glGetnPixelMapusvARBPtr = OpenGLExtProcAddress("glGetnPixelMapusvARB")
+        glGetnPixelMapuivARBPtr = OpenGLExtProcAddress("glGetnPixelMapuivARB")
+        glGetnPixelMapfvARBPtr = OpenGLExtProcAddress("glGetnPixelMapfvARB")
+        glGetnMinmaxARBPtr = OpenGLExtProcAddress("glGetnMinmaxARB")
+        glGetnMapivARBPtr = OpenGLExtProcAddress("glGetnMapivARB")
+        glGetnMapfvARBPtr = OpenGLExtProcAddress("glGetnMapfvARB")
+        glGetnMapdvARBPtr = OpenGLExtProcAddress("glGetnMapdvARB")
+        glGetnHistogramARBPtr = OpenGLExtProcAddress("glGetnHistogramARB")
+        glGetnConvolutionFilterARBPtr = OpenGLExtProcAddress("glGetnConvolutionFilterARB")
+        glGetnCompressedTexImageARBPtr = OpenGLExtProcAddress("glGetnCompressedTexImageARB")
+        glGetnColorTableARBPtr = OpenGLExtProcAddress("glGetnColorTableARB")
+        glGetGraphicsResetStatusARBPtr = OpenGLExtProcAddress("glGetGraphicsResetStatusARB")
+        glProvokingVertexPtr = OpenGLExtProcAddress("glProvokingVertex")
+        glGetProgramResourceivPtr = OpenGLExtProcAddress("glGetProgramResourceiv")
+        glGetProgramResourceNamePtr = OpenGLExtProcAddress("glGetProgramResourceName")
+        glGetProgramResourceLocationIndexPtr = OpenGLExtProcAddress("glGetProgramResourceLocationIndex")
+        glGetProgramResourceLocationPtr = OpenGLExtProcAddress("glGetProgramResourceLocation")
+        glGetProgramResourceIndexPtr = OpenGLExtProcAddress("glGetProgramResourceIndex")
+        glGetProgramInterfaceivPtr = OpenGLExtProcAddress("glGetProgramInterfaceiv")
+        glPolygonOffsetClampPtr = OpenGLExtProcAddress("glPolygonOffsetClamp")
+        glPointParameterfvARBPtr = OpenGLExtProcAddress("glPointParameterfvARB")
+        glPointParameterfARBPtr = OpenGLExtProcAddress("glPointParameterfARB")
+        glMaxShaderCompilerThreadsARBPtr = OpenGLExtProcAddress("glMaxShaderCompilerThreadsARB")
+        glIsQueryARBPtr = OpenGLExtProcAddress("glIsQueryARB")
+        glGetQueryivARBPtr = OpenGLExtProcAddress("glGetQueryivARB")
+        glGetQueryObjectuivARBPtr = OpenGLExtProcAddress("glGetQueryObjectuivARB")
+        glGetQueryObjectivARBPtr = OpenGLExtProcAddress("glGetQueryObjectivARB")
+        glGenQueriesARBPtr = OpenGLExtProcAddress("glGenQueriesARB")
+        glEndQueryARBPtr = OpenGLExtProcAddress("glEndQueryARB")
+        glDeleteQueriesARBPtr = OpenGLExtProcAddress("glDeleteQueriesARB")
+        glBeginQueryARBPtr = OpenGLExtProcAddress("glBeginQueryARB")
+        glMultiTexCoord4svARBPtr = OpenGLExtProcAddress("glMultiTexCoord4svARB")
+        glMultiTexCoord4sARBPtr = OpenGLExtProcAddress("glMultiTexCoord4sARB")
+        glMultiTexCoord4ivARBPtr = OpenGLExtProcAddress("glMultiTexCoord4ivARB")
+        glMultiTexCoord4iARBPtr = OpenGLExtProcAddress("glMultiTexCoord4iARB")
+        glMultiTexCoord4fvARBPtr = OpenGLExtProcAddress("glMultiTexCoord4fvARB")
+        glMultiTexCoord4fARBPtr = OpenGLExtProcAddress("glMultiTexCoord4fARB")
+        glMultiTexCoord4dvARBPtr = OpenGLExtProcAddress("glMultiTexCoord4dvARB")
+        glMultiTexCoord4dARBPtr = OpenGLExtProcAddress("glMultiTexCoord4dARB")
+        glMultiTexCoord3svARBPtr = OpenGLExtProcAddress("glMultiTexCoord3svARB")
+        glMultiTexCoord3sARBPtr = OpenGLExtProcAddress("glMultiTexCoord3sARB")
+        glMultiTexCoord3ivARBPtr = OpenGLExtProcAddress("glMultiTexCoord3ivARB")
+        glMultiTexCoord3iARBPtr = OpenGLExtProcAddress("glMultiTexCoord3iARB")
+        glMultiTexCoord3fvARBPtr = OpenGLExtProcAddress("glMultiTexCoord3fvARB")
+        glMultiTexCoord3fARBPtr = OpenGLExtProcAddress("glMultiTexCoord3fARB")
+        glMultiTexCoord3dvARBPtr = OpenGLExtProcAddress("glMultiTexCoord3dvARB")
+        glMultiTexCoord3dARBPtr = OpenGLExtProcAddress("glMultiTexCoord3dARB")
+        glMultiTexCoord2svARBPtr = OpenGLExtProcAddress("glMultiTexCoord2svARB")
+        glMultiTexCoord2sARBPtr = OpenGLExtProcAddress("glMultiTexCoord2sARB")
+        glMultiTexCoord2ivARBPtr = OpenGLExtProcAddress("glMultiTexCoord2ivARB")
+        glMultiTexCoord2iARBPtr = OpenGLExtProcAddress("glMultiTexCoord2iARB")
+        glMultiTexCoord2fvARBPtr = OpenGLExtProcAddress("glMultiTexCoord2fvARB")
+        glMultiTexCoord2fARBPtr = OpenGLExtProcAddress("glMultiTexCoord2fARB")
+        glMultiTexCoord2dvARBPtr = OpenGLExtProcAddress("glMultiTexCoord2dvARB")
+        glMultiTexCoord2dARBPtr = OpenGLExtProcAddress("glMultiTexCoord2dARB")
+        glMultiTexCoord1svARBPtr = OpenGLExtProcAddress("glMultiTexCoord1svARB")
+        glMultiTexCoord1sARBPtr = OpenGLExtProcAddress("glMultiTexCoord1sARB")
+        glMultiTexCoord1ivARBPtr = OpenGLExtProcAddress("glMultiTexCoord1ivARB")
+        glMultiTexCoord1iARBPtr = OpenGLExtProcAddress("glMultiTexCoord1iARB")
+        glMultiTexCoord1fvARBPtr = OpenGLExtProcAddress("glMultiTexCoord1fvARB")
+        glMultiTexCoord1fARBPtr = OpenGLExtProcAddress("glMultiTexCoord1fARB")
+        glMultiTexCoord1dvARBPtr = OpenGLExtProcAddress("glMultiTexCoord1dvARB")
+        glMultiTexCoord1dARBPtr = OpenGLExtProcAddress("glMultiTexCoord1dARB")
+        glClientActiveTextureARBPtr = OpenGLExtProcAddress("glClientActiveTextureARB")
+        glActiveTextureARBPtr = OpenGLExtProcAddress("glActiveTextureARB")
+        glSampleCoverageARBPtr = OpenGLExtProcAddress("glSampleCoverageARB")
+        glMultiDrawElementsIndirectPtr = OpenGLExtProcAddress("glMultiDrawElementsIndirect")
+        glMultiDrawArraysIndirectPtr = OpenGLExtProcAddress("glMultiDrawArraysIndirect")
+        glBindVertexBuffersPtr = OpenGLExtProcAddress("glBindVertexBuffers")
+        glBindTexturesPtr = OpenGLExtProcAddress("glBindTextures")
+        glBindSamplersPtr = OpenGLExtProcAddress("glBindSamplers")
+        glBindImageTexturesPtr = OpenGLExtProcAddress("glBindImageTextures")
+        glBindBuffersRangePtr = OpenGLExtProcAddress("glBindBuffersRange")
+        glBindBuffersBasePtr = OpenGLExtProcAddress("glBindBuffersBase")
+        glMatrixIndexusvARBPtr = OpenGLExtProcAddress("glMatrixIndexusvARB")
+        glMatrixIndexuivARBPtr = OpenGLExtProcAddress("glMatrixIndexuivARB")
+        glMatrixIndexubvARBPtr = OpenGLExtProcAddress("glMatrixIndexubvARB")
+        glMatrixIndexPointerARBPtr = OpenGLExtProcAddress("glMatrixIndexPointerARB")
+        glCurrentPaletteMatrixARBPtr = OpenGLExtProcAddress("glCurrentPaletteMatrixARB")
+        glFlushMappedBufferRangePtr = OpenGLExtProcAddress("glFlushMappedBufferRange")
+        glInvalidateTexSubImagePtr = OpenGLExtProcAddress("glInvalidateTexSubImage")
+        glInvalidateTexImagePtr = OpenGLExtProcAddress("glInvalidateTexImage")
+        glInvalidateSubFramebufferPtr = OpenGLExtProcAddress("glInvalidateSubFramebuffer")
+        glInvalidateFramebufferPtr = OpenGLExtProcAddress("glInvalidateFramebuffer")
+        glInvalidateBufferSubDataPtr = OpenGLExtProcAddress("glInvalidateBufferSubData")
+        glInvalidateBufferDataPtr = OpenGLExtProcAddress("glInvalidateBufferData")
+        glGetInternalformati64vPtr = OpenGLExtProcAddress("glGetInternalformati64v")
+        glGetInternalformativPtr = OpenGLExtProcAddress("glGetInternalformativ")
+        glVertexAttribDivisorARBPtr = OpenGLExtProcAddress("glVertexAttribDivisorARB")
+        glDrawElementsInstancedARBPtr = OpenGLExtProcAddress("glDrawElementsInstancedARB")
+        glDrawArraysInstancedARBPtr = OpenGLExtProcAddress("glDrawArraysInstancedARB")
+        glMultiDrawElementsIndirectCountARBPtr = OpenGLExtProcAddress("glMultiDrawElementsIndirectCountARB")
+        glMultiDrawArraysIndirectCountARBPtr = OpenGLExtProcAddress("glMultiDrawArraysIndirectCountARB")
+        glSeparableFilter2DPtr = OpenGLExtProcAddress("glSeparableFilter2D")
+        glResetMinmaxPtr = OpenGLExtProcAddress("glResetMinmax")
+        glResetHistogramPtr = OpenGLExtProcAddress("glResetHistogram")
+        glMinmaxPtr = OpenGLExtProcAddress("glMinmax")
+        glHistogramPtr = OpenGLExtProcAddress("glHistogram")
+        glGetSeparableFilterPtr = OpenGLExtProcAddress("glGetSeparableFilter")
+        glGetMinmaxParameterivPtr = OpenGLExtProcAddress("glGetMinmaxParameteriv")
+        glGetMinmaxParameterfvPtr = OpenGLExtProcAddress("glGetMinmaxParameterfv")
+        glGetMinmaxPtr = OpenGLExtProcAddress("glGetMinmax")
+        glGetHistogramParameterivPtr = OpenGLExtProcAddress("glGetHistogramParameteriv")
+        glGetHistogramParameterfvPtr = OpenGLExtProcAddress("glGetHistogramParameterfv")
+        glGetHistogramPtr = OpenGLExtProcAddress("glGetHistogram")
+        glGetConvolutionParameterivPtr = OpenGLExtProcAddress("glGetConvolutionParameteriv")
+        glGetConvolutionParameterfvPtr = OpenGLExtProcAddress("glGetConvolutionParameterfv")
+        glGetConvolutionFilterPtr = OpenGLExtProcAddress("glGetConvolutionFilter")
+        glGetColorTableParameterivPtr = OpenGLExtProcAddress("glGetColorTableParameteriv")
+        glGetColorTableParameterfvPtr = OpenGLExtProcAddress("glGetColorTableParameterfv")
+        glGetColorTablePtr = OpenGLExtProcAddress("glGetColorTable")
+        glCopyConvolutionFilter2DPtr = OpenGLExtProcAddress("glCopyConvolutionFilter2D")
+        glCopyConvolutionFilter1DPtr = OpenGLExtProcAddress("glCopyConvolutionFilter1D")
+        glCopyColorTablePtr = OpenGLExtProcAddress("glCopyColorTable")
+        glCopyColorSubTablePtr = OpenGLExtProcAddress("glCopyColorSubTable")
+        glConvolutionParameterivPtr = OpenGLExtProcAddress("glConvolutionParameteriv")
+        glConvolutionParameteriPtr = OpenGLExtProcAddress("glConvolutionParameteri")
+        glConvolutionParameterfvPtr = OpenGLExtProcAddress("glConvolutionParameterfv")
+        glConvolutionParameterfPtr = OpenGLExtProcAddress("glConvolutionParameterf")
+        glConvolutionFilter2DPtr = OpenGLExtProcAddress("glConvolutionFilter2D")
+        glConvolutionFilter1DPtr = OpenGLExtProcAddress("glConvolutionFilter1D")
+        glColorTableParameterivPtr = OpenGLExtProcAddress("glColorTableParameteriv")
+        glColorTableParameterfvPtr = OpenGLExtProcAddress("glColorTableParameterfv")
+        glColorTablePtr = OpenGLExtProcAddress("glColorTable")
+        glColorSubTablePtr = OpenGLExtProcAddress("glColorSubTable")
+        glUniform4ui64vARBPtr = OpenGLExtProcAddress("glUniform4ui64vARB")
+        glUniform4ui64ARBPtr = OpenGLExtProcAddress("glUniform4ui64ARB")
+        glUniform4i64vARBPtr = OpenGLExtProcAddress("glUniform4i64vARB")
+        glUniform4i64ARBPtr = OpenGLExtProcAddress("glUniform4i64ARB")
+        glUniform3ui64vARBPtr = OpenGLExtProcAddress("glUniform3ui64vARB")
+        glUniform3ui64ARBPtr = OpenGLExtProcAddress("glUniform3ui64ARB")
+        glUniform3i64vARBPtr = OpenGLExtProcAddress("glUniform3i64vARB")
+        glUniform3i64ARBPtr = OpenGLExtProcAddress("glUniform3i64ARB")
+        glUniform2ui64vARBPtr = OpenGLExtProcAddress("glUniform2ui64vARB")
+        glUniform2ui64ARBPtr = OpenGLExtProcAddress("glUniform2ui64ARB")
+        glUniform2i64vARBPtr = OpenGLExtProcAddress("glUniform2i64vARB")
+        glUniform2i64ARBPtr = OpenGLExtProcAddress("glUniform2i64ARB")
+        glUniform1ui64vARBPtr = OpenGLExtProcAddress("glUniform1ui64vARB")
+        glUniform1ui64ARBPtr = OpenGLExtProcAddress("glUniform1ui64ARB")
+        glUniform1i64vARBPtr = OpenGLExtProcAddress("glUniform1i64vARB")
+        glUniform1i64ARBPtr = OpenGLExtProcAddress("glUniform1i64ARB")
+        glProgramUniform4ui64vARBPtr = OpenGLExtProcAddress("glProgramUniform4ui64vARB")
+        glProgramUniform4ui64ARBPtr = OpenGLExtProcAddress("glProgramUniform4ui64ARB")
+        glProgramUniform4i64vARBPtr = OpenGLExtProcAddress("glProgramUniform4i64vARB")
+        glProgramUniform4i64ARBPtr = OpenGLExtProcAddress("glProgramUniform4i64ARB")
+        glProgramUniform3ui64vARBPtr = OpenGLExtProcAddress("glProgramUniform3ui64vARB")
+        glProgramUniform3ui64ARBPtr = OpenGLExtProcAddress("glProgramUniform3ui64ARB")
+        glProgramUniform3i64vARBPtr = OpenGLExtProcAddress("glProgramUniform3i64vARB")
+        glProgramUniform3i64ARBPtr = OpenGLExtProcAddress("glProgramUniform3i64ARB")
+        glProgramUniform2ui64vARBPtr = OpenGLExtProcAddress("glProgramUniform2ui64vARB")
+        glProgramUniform2ui64ARBPtr = OpenGLExtProcAddress("glProgramUniform2ui64ARB")
+        glProgramUniform2i64vARBPtr = OpenGLExtProcAddress("glProgramUniform2i64vARB")
+        glProgramUniform2i64ARBPtr = OpenGLExtProcAddress("glProgramUniform2i64ARB")
+        glProgramUniform1ui64vARBPtr = OpenGLExtProcAddress("glProgramUniform1ui64vARB")
+        glProgramUniform1ui64ARBPtr = OpenGLExtProcAddress("glProgramUniform1ui64ARB")
+        glProgramUniform1i64vARBPtr = OpenGLExtProcAddress("glProgramUniform1i64vARB")
+        glProgramUniform1i64ARBPtr = OpenGLExtProcAddress("glProgramUniform1i64ARB")
+        glGetnUniformui64vARBPtr = OpenGLExtProcAddress("glGetnUniformui64vARB")
+        glGetnUniformi64vARBPtr = OpenGLExtProcAddress("glGetnUniformi64vARB")
+        glGetUniformui64vARBPtr = OpenGLExtProcAddress("glGetUniformui64vARB")
+        glGetUniformi64vARBPtr = OpenGLExtProcAddress("glGetUniformi64vARB")
+        glUniformMatrix4x3dvPtr = OpenGLExtProcAddress("glUniformMatrix4x3dv")
+        glUniformMatrix4x2dvPtr = OpenGLExtProcAddress("glUniformMatrix4x2dv")
+        glUniformMatrix4dvPtr = OpenGLExtProcAddress("glUniformMatrix4dv")
+        glUniformMatrix3x4dvPtr = OpenGLExtProcAddress("glUniformMatrix3x4dv")
+        glUniformMatrix3x2dvPtr = OpenGLExtProcAddress("glUniformMatrix3x2dv")
+        glUniformMatrix3dvPtr = OpenGLExtProcAddress("glUniformMatrix3dv")
+        glUniformMatrix2x4dvPtr = OpenGLExtProcAddress("glUniformMatrix2x4dv")
+        glUniformMatrix2x3dvPtr = OpenGLExtProcAddress("glUniformMatrix2x3dv")
+        glUniformMatrix2dvPtr = OpenGLExtProcAddress("glUniformMatrix2dv")
+        glUniform4dvPtr = OpenGLExtProcAddress("glUniform4dv")
+        glUniform4dPtr = OpenGLExtProcAddress("glUniform4d")
+        glUniform3dvPtr = OpenGLExtProcAddress("glUniform3dv")
+        glUniform3dPtr = OpenGLExtProcAddress("glUniform3d")
+        glUniform2dvPtr = OpenGLExtProcAddress("glUniform2dv")
+        glUniform2dPtr = OpenGLExtProcAddress("glUniform2d")
+        glUniform1dvPtr = OpenGLExtProcAddress("glUniform1dv")
+        glUniform1dPtr = OpenGLExtProcAddress("glUniform1d")
+        glGetUniformdvPtr = OpenGLExtProcAddress("glGetUniformdv")
+        glSpecializeShaderARBPtr = OpenGLExtProcAddress("glSpecializeShaderARB")
+        glGetTextureSubImagePtr = OpenGLExtProcAddress("glGetTextureSubImage")
+        glGetCompressedTextureSubImagePtr = OpenGLExtProcAddress("glGetCompressedTextureSubImage")
+        glProgramParameteriPtr = OpenGLExtProcAddress("glProgramParameteri")
+        glProgramBinaryPtr = OpenGLExtProcAddress("glProgramBinary")
+        glGetProgramBinaryPtr = OpenGLExtProcAddress("glGetProgramBinary")
+        glProgramParameteriARBPtr = OpenGLExtProcAddress("glProgramParameteriARB")
+        glFramebufferTextureLayerARBPtr = OpenGLExtProcAddress("glFramebufferTextureLayerARB")
+        glFramebufferTextureFaceARBPtr = OpenGLExtProcAddress("glFramebufferTextureFaceARB")
+        glFramebufferTextureARBPtr = OpenGLExtProcAddress("glFramebufferTextureARB")
+        glRenderbufferStorageMultisamplePtr = OpenGLExtProcAddress("glRenderbufferStorageMultisample")
+        glRenderbufferStoragePtr = OpenGLExtProcAddress("glRenderbufferStorage")
+        glIsRenderbufferPtr = OpenGLExtProcAddress("glIsRenderbuffer")
+        glIsFramebufferPtr = OpenGLExtProcAddress("glIsFramebuffer")
+        glGetRenderbufferParameterivPtr = OpenGLExtProcAddress("glGetRenderbufferParameteriv")
+        glGetFramebufferAttachmentParameterivPtr = OpenGLExtProcAddress("glGetFramebufferAttachmentParameteriv")
+        glGenerateMipmapPtr = OpenGLExtProcAddress("glGenerateMipmap")
+        glGenRenderbuffersPtr = OpenGLExtProcAddress("glGenRenderbuffers")
+        glGenFramebuffersPtr = OpenGLExtProcAddress("glGenFramebuffers")
+        glFramebufferTextureLayerPtr = OpenGLExtProcAddress("glFramebufferTextureLayer")
+        glFramebufferTexture3DPtr = OpenGLExtProcAddress("glFramebufferTexture3D")
+        glFramebufferTexture2DPtr = OpenGLExtProcAddress("glFramebufferTexture2D")
+        glFramebufferTexture1DPtr = OpenGLExtProcAddress("glFramebufferTexture1D")
+        glFramebufferRenderbufferPtr = OpenGLExtProcAddress("glFramebufferRenderbuffer")
+        glDeleteRenderbuffersPtr = OpenGLExtProcAddress("glDeleteRenderbuffers")
+        glDeleteFramebuffersPtr = OpenGLExtProcAddress("glDeleteFramebuffers")
+        glCheckFramebufferStatusPtr = OpenGLExtProcAddress("glCheckFramebufferStatus")
+        glBlitFramebufferPtr = OpenGLExtProcAddress("glBlitFramebuffer")
+        glBindRenderbufferPtr = OpenGLExtProcAddress("glBindRenderbuffer")
+        glBindFramebufferPtr = OpenGLExtProcAddress("glBindFramebuffer")
+        glNamedFramebufferParameteriEXTPtr = OpenGLExtProcAddress("glNamedFramebufferParameteriEXT")
+        glGetNamedFramebufferParameterivEXTPtr = OpenGLExtProcAddress("glGetNamedFramebufferParameterivEXT")
+        glGetFramebufferParameterivPtr = OpenGLExtProcAddress("glGetFramebufferParameteriv")
+        glFramebufferParameteriPtr = OpenGLExtProcAddress("glFramebufferParameteri")
+        glDrawElementsIndirectPtr = OpenGLExtProcAddress("glDrawElementsIndirect")
+        glDrawArraysIndirectPtr = OpenGLExtProcAddress("glDrawArraysIndirect")
+        glMultiDrawElementsBaseVertexPtr = OpenGLExtProcAddress("glMultiDrawElementsBaseVertex")
+        glDrawRangeElementsBaseVertexPtr = OpenGLExtProcAddress("glDrawRangeElementsBaseVertex")
+        glDrawElementsInstancedBaseVertexPtr = OpenGLExtProcAddress("glDrawElementsInstancedBaseVertex")
+        glDrawElementsBaseVertexPtr = OpenGLExtProcAddress("glDrawElementsBaseVertex")
+        glBlendFunciARBPtr = OpenGLExtProcAddress("glBlendFunciARB")
+        glBlendFuncSeparateiARBPtr = OpenGLExtProcAddress("glBlendFuncSeparateiARB")
+        glBlendEquationiARBPtr = OpenGLExtProcAddress("glBlendEquationiARB")
+        glBlendEquationSeparateiARBPtr = OpenGLExtProcAddress("glBlendEquationSeparateiARB")
+        glDrawBuffersARBPtr = OpenGLExtProcAddress("glDrawBuffersARB")
+        glVertexArrayVertexBuffersPtr = OpenGLExtProcAddress("glVertexArrayVertexBuffers")
+        glVertexArrayVertexBufferPtr = OpenGLExtProcAddress("glVertexArrayVertexBuffer")
+        glVertexArrayElementBufferPtr = OpenGLExtProcAddress("glVertexArrayElementBuffer")
+        glVertexArrayBindingDivisorPtr = OpenGLExtProcAddress("glVertexArrayBindingDivisor")
+        glVertexArrayAttribLFormatPtr = OpenGLExtProcAddress("glVertexArrayAttribLFormat")
+        glVertexArrayAttribIFormatPtr = OpenGLExtProcAddress("glVertexArrayAttribIFormat")
+        glVertexArrayAttribFormatPtr = OpenGLExtProcAddress("glVertexArrayAttribFormat")
+        glVertexArrayAttribBindingPtr = OpenGLExtProcAddress("glVertexArrayAttribBinding")
+        glUnmapNamedBufferPtr = OpenGLExtProcAddress("glUnmapNamedBuffer")
+        glTransformFeedbackBufferRangePtr = OpenGLExtProcAddress("glTransformFeedbackBufferRange")
+        glTransformFeedbackBufferBasePtr = OpenGLExtProcAddress("glTransformFeedbackBufferBase")
+        glTextureSubImage3DPtr = OpenGLExtProcAddress("glTextureSubImage3D")
+        glTextureSubImage2DPtr = OpenGLExtProcAddress("glTextureSubImage2D")
+        glTextureSubImage1DPtr = OpenGLExtProcAddress("glTextureSubImage1D")
+        glTextureStorage3DMultisamplePtr = OpenGLExtProcAddress("glTextureStorage3DMultisample")
+        glTextureStorage3DPtr = OpenGLExtProcAddress("glTextureStorage3D")
+        glTextureStorage2DMultisamplePtr = OpenGLExtProcAddress("glTextureStorage2DMultisample")
+        glTextureStorage2DPtr = OpenGLExtProcAddress("glTextureStorage2D")
+        glTextureStorage1DPtr = OpenGLExtProcAddress("glTextureStorage1D")
+        glTextureParameterivPtr = OpenGLExtProcAddress("glTextureParameteriv")
+        glTextureParameteriPtr = OpenGLExtProcAddress("glTextureParameteri")
+        glTextureParameterfvPtr = OpenGLExtProcAddress("glTextureParameterfv")
+        glTextureParameterfPtr = OpenGLExtProcAddress("glTextureParameterf")
+        glTextureParameterIuivPtr = OpenGLExtProcAddress("glTextureParameterIuiv")
+        glTextureParameterIivPtr = OpenGLExtProcAddress("glTextureParameterIiv")
+        glTextureBufferRangePtr = OpenGLExtProcAddress("glTextureBufferRange")
+        glTextureBufferPtr = OpenGLExtProcAddress("glTextureBuffer")
+        glNamedRenderbufferStorageMultisamplePtr = OpenGLExtProcAddress("glNamedRenderbufferStorageMultisample")
+        glNamedRenderbufferStoragePtr = OpenGLExtProcAddress("glNamedRenderbufferStorage")
+        glNamedFramebufferTextureLayerPtr = OpenGLExtProcAddress("glNamedFramebufferTextureLayer")
+        glNamedFramebufferTexturePtr = OpenGLExtProcAddress("glNamedFramebufferTexture")
+        glNamedFramebufferRenderbufferPtr = OpenGLExtProcAddress("glNamedFramebufferRenderbuffer")
+        glNamedFramebufferReadBufferPtr = OpenGLExtProcAddress("glNamedFramebufferReadBuffer")
+        glNamedFramebufferParameteriPtr = OpenGLExtProcAddress("glNamedFramebufferParameteri")
+        glNamedFramebufferDrawBuffersPtr = OpenGLExtProcAddress("glNamedFramebufferDrawBuffers")
+        glNamedFramebufferDrawBufferPtr = OpenGLExtProcAddress("glNamedFramebufferDrawBuffer")
+        glNamedBufferSubDataPtr = OpenGLExtProcAddress("glNamedBufferSubData")
+        glNamedBufferStoragePtr = OpenGLExtProcAddress("glNamedBufferStorage")
+        glNamedBufferDataPtr = OpenGLExtProcAddress("glNamedBufferData")
+        glInvalidateNamedFramebufferSubDataPtr = OpenGLExtProcAddress("glInvalidateNamedFramebufferSubData")
+        glInvalidateNamedFramebufferDataPtr = OpenGLExtProcAddress("glInvalidateNamedFramebufferData")
+        glGetVertexArrayivPtr = OpenGLExtProcAddress("glGetVertexArrayiv")
+        glGetVertexArrayIndexedivPtr = OpenGLExtProcAddress("glGetVertexArrayIndexediv")
+        glGetVertexArrayIndexed64ivPtr = OpenGLExtProcAddress("glGetVertexArrayIndexed64iv")
+        glGetTransformFeedbackivPtr = OpenGLExtProcAddress("glGetTransformFeedbackiv")
+        glGetTransformFeedbacki_vPtr = OpenGLExtProcAddress("glGetTransformFeedbacki_v")
+        glGetTransformFeedbacki64_vPtr = OpenGLExtProcAddress("glGetTransformFeedbacki64_v")
+        glGetTextureParameterivPtr = OpenGLExtProcAddress("glGetTextureParameteriv")
+        glGetTextureParameterfvPtr = OpenGLExtProcAddress("glGetTextureParameterfv")
+        glGetTextureParameterIuivPtr = OpenGLExtProcAddress("glGetTextureParameterIuiv")
+        glGetTextureParameterIivPtr = OpenGLExtProcAddress("glGetTextureParameterIiv")
+        glGetTextureLevelParameterivPtr = OpenGLExtProcAddress("glGetTextureLevelParameteriv")
+        glGetTextureLevelParameterfvPtr = OpenGLExtProcAddress("glGetTextureLevelParameterfv")
+        glGetTextureImagePtr = OpenGLExtProcAddress("glGetTextureImage")
+        glGetQueryBufferObjectuivPtr = OpenGLExtProcAddress("glGetQueryBufferObjectuiv")
+        glGetQueryBufferObjectui64vPtr = OpenGLExtProcAddress("glGetQueryBufferObjectui64v")
+        glGetQueryBufferObjectivPtr = OpenGLExtProcAddress("glGetQueryBufferObjectiv")
+        glGetQueryBufferObjecti64vPtr = OpenGLExtProcAddress("glGetQueryBufferObjecti64v")
+        glGetNamedRenderbufferParameterivPtr = OpenGLExtProcAddress("glGetNamedRenderbufferParameteriv")
+        glGetNamedFramebufferParameterivPtr = OpenGLExtProcAddress("glGetNamedFramebufferParameteriv")
+        glGetNamedFramebufferAttachmentParameterivPtr = OpenGLExtProcAddress("glGetNamedFramebufferAttachmentParameteriv")
+        glGetNamedBufferSubDataPtr = OpenGLExtProcAddress("glGetNamedBufferSubData")
+        glGetNamedBufferPointervPtr = OpenGLExtProcAddress("glGetNamedBufferPointerv")
+        glGetNamedBufferParameterivPtr = OpenGLExtProcAddress("glGetNamedBufferParameteriv")
+        glGetNamedBufferParameteri64vPtr = OpenGLExtProcAddress("glGetNamedBufferParameteri64v")
+        glGetCompressedTextureImagePtr = OpenGLExtProcAddress("glGetCompressedTextureImage")
+        glGenerateTextureMipmapPtr = OpenGLExtProcAddress("glGenerateTextureMipmap")
+        glFlushMappedNamedBufferRangePtr = OpenGLExtProcAddress("glFlushMappedNamedBufferRange")
+        glEnableVertexArrayAttribPtr = OpenGLExtProcAddress("glEnableVertexArrayAttrib")
+        glDisableVertexArrayAttribPtr = OpenGLExtProcAddress("glDisableVertexArrayAttrib")
+        glCreateVertexArraysPtr = OpenGLExtProcAddress("glCreateVertexArrays")
+        glCreateTransformFeedbacksPtr = OpenGLExtProcAddress("glCreateTransformFeedbacks")
+        glCreateTexturesPtr = OpenGLExtProcAddress("glCreateTextures")
+        glCreateSamplersPtr = OpenGLExtProcAddress("glCreateSamplers")
+        glCreateRenderbuffersPtr = OpenGLExtProcAddress("glCreateRenderbuffers")
+        glCreateQueriesPtr = OpenGLExtProcAddress("glCreateQueries")
+        glCreateProgramPipelinesPtr = OpenGLExtProcAddress("glCreateProgramPipelines")
+        glCreateFramebuffersPtr = OpenGLExtProcAddress("glCreateFramebuffers")
+        glCreateBuffersPtr = OpenGLExtProcAddress("glCreateBuffers")
+        glCopyTextureSubImage3DPtr = OpenGLExtProcAddress("glCopyTextureSubImage3D")
+        glCopyTextureSubImage2DPtr = OpenGLExtProcAddress("glCopyTextureSubImage2D")
+        glCopyTextureSubImage1DPtr = OpenGLExtProcAddress("glCopyTextureSubImage1D")
+        glCopyNamedBufferSubDataPtr = OpenGLExtProcAddress("glCopyNamedBufferSubData")
+        glCompressedTextureSubImage3DPtr = OpenGLExtProcAddress("glCompressedTextureSubImage3D")
+        glCompressedTextureSubImage2DPtr = OpenGLExtProcAddress("glCompressedTextureSubImage2D")
+        glCompressedTextureSubImage1DPtr = OpenGLExtProcAddress("glCompressedTextureSubImage1D")
+        glClearNamedFramebufferuivPtr = OpenGLExtProcAddress("glClearNamedFramebufferuiv")
+        glClearNamedFramebufferivPtr = OpenGLExtProcAddress("glClearNamedFramebufferiv")
+        glClearNamedFramebufferfvPtr = OpenGLExtProcAddress("glClearNamedFramebufferfv")
+        glClearNamedFramebufferfiPtr = OpenGLExtProcAddress("glClearNamedFramebufferfi")
+        glClearNamedBufferSubDataPtr = OpenGLExtProcAddress("glClearNamedBufferSubData")
+        glClearNamedBufferDataPtr = OpenGLExtProcAddress("glClearNamedBufferData")
+        glCheckNamedFramebufferStatusPtr = OpenGLExtProcAddress("glCheckNamedFramebufferStatus")
+        glBlitNamedFramebufferPtr = OpenGLExtProcAddress("glBlitNamedFramebuffer")
+        glBindTextureUnitPtr = OpenGLExtProcAddress("glBindTextureUnit")
+        glGetDebugMessageLogARBPtr = OpenGLExtProcAddress("glGetDebugMessageLogARB")
+        glDebugMessageInsertARBPtr = OpenGLExtProcAddress("glDebugMessageInsertARB")
+        glDebugMessageControlARBPtr = OpenGLExtProcAddress("glDebugMessageControlARB")
+        glDebugMessageCallbackARBPtr = OpenGLExtProcAddress("glDebugMessageCallbackARB")
+        glCopyImageSubDataPtr = OpenGLExtProcAddress("glCopyImageSubData")
+        glCopyBufferSubDataPtr = OpenGLExtProcAddress("glCopyBufferSubData")
+        glDispatchComputeGroupSizeARBPtr = OpenGLExtProcAddress("glDispatchComputeGroupSizeARB")
+        glDispatchComputeIndirectPtr = OpenGLExtProcAddress("glDispatchComputeIndirect")
+        glDispatchComputePtr = OpenGLExtProcAddress("glDispatchCompute")
+        glClampColorARBPtr = OpenGLExtProcAddress("glClampColorARB")
+        glClipControlPtr = OpenGLExtProcAddress("glClipControl")
+        glClearTexSubImagePtr = OpenGLExtProcAddress("glClearTexSubImage")
+        glClearTexImagePtr = OpenGLExtProcAddress("glClearTexImage")
+        glClearNamedBufferSubDataEXTPtr = OpenGLExtProcAddress("glClearNamedBufferSubDataEXT")
+        glClearNamedBufferDataEXTPtr = OpenGLExtProcAddress("glClearNamedBufferDataEXT")
+        glClearBufferSubDataPtr = OpenGLExtProcAddress("glClearBufferSubData")
+        glClearBufferDataPtr = OpenGLExtProcAddress("glClearBufferData")
+        glCreateSyncFromCLeventARBPtr = OpenGLExtProcAddress("glCreateSyncFromCLeventARB")
+        glBufferStoragePtr = OpenGLExtProcAddress("glBufferStorage")
+        glGetFragDataIndexPtr = OpenGLExtProcAddress("glGetFragDataIndex")
+        glBindFragDataLocationIndexedPtr = OpenGLExtProcAddress("glBindFragDataLocationIndexed")
+        glVertexAttribL1ui64vARBPtr = OpenGLExtProcAddress("glVertexAttribL1ui64vARB")
+        glVertexAttribL1ui64ARBPtr = OpenGLExtProcAddress("glVertexAttribL1ui64ARB")
+        glUniformHandleui64vARBPtr = OpenGLExtProcAddress("glUniformHandleui64vARB")
+        glUniformHandleui64ARBPtr = OpenGLExtProcAddress("glUniformHandleui64ARB")
+        glProgramUniformHandleui64vARBPtr = OpenGLExtProcAddress("glProgramUniformHandleui64vARB")
+        glProgramUniformHandleui64ARBPtr = OpenGLExtProcAddress("glProgramUniformHandleui64ARB")
+        glMakeTextureHandleResidentARBPtr = OpenGLExtProcAddress("glMakeTextureHandleResidentARB")
+        glMakeTextureHandleNonResidentARBPtr = OpenGLExtProcAddress("glMakeTextureHandleNonResidentARB")
+        glMakeImageHandleResidentARBPtr = OpenGLExtProcAddress("glMakeImageHandleResidentARB")
+        glMakeImageHandleNonResidentARBPtr = OpenGLExtProcAddress("glMakeImageHandleNonResidentARB")
+        glIsTextureHandleResidentARBPtr = OpenGLExtProcAddress("glIsTextureHandleResidentARB")
+        glIsImageHandleResidentARBPtr = OpenGLExtProcAddress("glIsImageHandleResidentARB")
+        glGetVertexAttribLui64vARBPtr = OpenGLExtProcAddress("glGetVertexAttribLui64vARB")
+        glGetTextureSamplerHandleARBPtr = OpenGLExtProcAddress("glGetTextureSamplerHandleARB")
+        glGetTextureHandleARBPtr = OpenGLExtProcAddress("glGetTextureHandleARB")
+        glGetImageHandleARBPtr = OpenGLExtProcAddress("glGetImageHandleARB")
+        glDrawElementsInstancedBaseVertexBaseInstancePtr = OpenGLExtProcAddress("glDrawElementsInstancedBaseVertexBaseInstance")
+        glDrawElementsInstancedBaseInstancePtr = OpenGLExtProcAddress("glDrawElementsInstancedBaseInstance")
+        glDrawArraysInstancedBaseInstancePtr = OpenGLExtProcAddress("glDrawArraysInstancedBaseInstance")
+        glPrimitiveBoundingBoxARBPtr = OpenGLExtProcAddress("glPrimitiveBoundingBoxARB")
+        glMemoryBarrierByRegionPtr = OpenGLExtProcAddress("glMemoryBarrierByRegion")
+        glShaderBinaryPtr = OpenGLExtProcAddress("glShaderBinary")
+        glReleaseShaderCompilerPtr = OpenGLExtProcAddress("glReleaseShaderCompiler")
+        glGetShaderPrecisionFormatPtr = OpenGLExtProcAddress("glGetShaderPrecisionFormat")
+        glDepthRangefPtr = OpenGLExtProcAddress("glDepthRangef")
+        glClearDepthfPtr = OpenGLExtProcAddress("glClearDepthf")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3svARB, "glWindowPos3svARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3sARB, "glWindowPos3sARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3ivARB, "glWindowPos3ivARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3iARB, "glWindowPos3iARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3fvARB, "glWindowPos3fvARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3fARB, "glWindowPos3fARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3dvARB, "glWindowPos3dvARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3dARB, "glWindowPos3dARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2svARB, "glWindowPos2svARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2sARB, "glWindowPos2sARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2ivARB, "glWindowPos2ivARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2iARB, "glWindowPos2iARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2fvARB, "glWindowPos2fvARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2fARB, "glWindowPos2fARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2dvARB, "glWindowPos2dvARB"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2dARB, "glWindowPos2dARB"
+        RemapVBFunctionToGLFunction AddressOf glViewportIndexedfv, "glViewportIndexedfv"
+        RemapVBFunctionToGLFunction AddressOf glViewportIndexedf, "glViewportIndexedf"
+        RemapVBFunctionToGLFunction AddressOf glViewportArrayv, "glViewportArrayv"
+        RemapVBFunctionToGLFunction AddressOf glScissorIndexedv, "glScissorIndexedv"
+        RemapVBFunctionToGLFunction AddressOf glScissorIndexed, "glScissorIndexed"
+        RemapVBFunctionToGLFunction AddressOf glScissorArrayv, "glScissorArrayv"
+        RemapVBFunctionToGLFunction AddressOf glGetFloati_v, "glGetFloati_v"
+        RemapVBFunctionToGLFunction AddressOf glGetDoublei_v, "glGetDoublei_v"
+        RemapVBFunctionToGLFunction AddressOf glDepthRangeIndexed, "glDepthRangeIndexed"
+        RemapVBFunctionToGLFunction AddressOf glDepthRangeArrayv, "glDepthRangeArrayv"
+        RemapVBFunctionToGLFunction AddressOf glVertexP4uiv, "glVertexP4uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexP4ui, "glVertexP4ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexP3uiv, "glVertexP3uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexP3ui, "glVertexP3ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexP2uiv, "glVertexP2uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexP2ui, "glVertexP2ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribP4uiv, "glVertexAttribP4uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribP4ui, "glVertexAttribP4ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribP3uiv, "glVertexAttribP3uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribP3ui, "glVertexAttribP3ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribP2uiv, "glVertexAttribP2uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribP2ui, "glVertexAttribP2ui"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribP1uiv, "glVertexAttribP1uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribP1ui, "glVertexAttribP1ui"
+        RemapVBFunctionToGLFunction AddressOf glTexCoordP4uiv, "glTexCoordP4uiv"
+        RemapVBFunctionToGLFunction AddressOf glTexCoordP4ui, "glTexCoordP4ui"
+        RemapVBFunctionToGLFunction AddressOf glTexCoordP3uiv, "glTexCoordP3uiv"
+        RemapVBFunctionToGLFunction AddressOf glTexCoordP3ui, "glTexCoordP3ui"
+        RemapVBFunctionToGLFunction AddressOf glTexCoordP2uiv, "glTexCoordP2uiv"
+        RemapVBFunctionToGLFunction AddressOf glTexCoordP2ui, "glTexCoordP2ui"
+        RemapVBFunctionToGLFunction AddressOf glTexCoordP1uiv, "glTexCoordP1uiv"
+        RemapVBFunctionToGLFunction AddressOf glTexCoordP1ui, "glTexCoordP1ui"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColorP3uiv, "glSecondaryColorP3uiv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColorP3ui, "glSecondaryColorP3ui"
+        RemapVBFunctionToGLFunction AddressOf glNormalP3uiv, "glNormalP3uiv"
+        RemapVBFunctionToGLFunction AddressOf glNormalP3ui, "glNormalP3ui"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP4uiv, "glMultiTexCoordP4uiv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP4ui, "glMultiTexCoordP4ui"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP3uiv, "glMultiTexCoordP3uiv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP3ui, "glMultiTexCoordP3ui"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP2uiv, "glMultiTexCoordP2uiv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP2ui, "glMultiTexCoordP2ui"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP1uiv, "glMultiTexCoordP1uiv"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoordP1ui, "glMultiTexCoordP1ui"
+        RemapVBFunctionToGLFunction AddressOf glColorP4uiv, "glColorP4uiv"
+        RemapVBFunctionToGLFunction AddressOf glColorP4ui, "glColorP4ui"
+        RemapVBFunctionToGLFunction AddressOf glColorP3uiv, "glColorP3uiv"
+        RemapVBFunctionToGLFunction AddressOf glColorP3ui, "glColorP3ui"
+        RemapVBFunctionToGLFunction AddressOf glGetAttribLocationARB, "glGetAttribLocationARB"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveAttribARB, "glGetActiveAttribARB"
+        RemapVBFunctionToGLFunction AddressOf glBindAttribLocationARB, "glBindAttribLocationARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribPointerARB, "glVertexAttribPointerARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4usvARB, "glVertexAttrib4usvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4uivARB, "glVertexAttrib4uivARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4ubvARB, "glVertexAttrib4ubvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4svARB, "glVertexAttrib4svARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4sARB, "glVertexAttrib4sARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4ivARB, "glVertexAttrib4ivARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4fvARB, "glVertexAttrib4fvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4fARB, "glVertexAttrib4fARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4dvARB, "glVertexAttrib4dvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4dARB, "glVertexAttrib4dARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4bvARB, "glVertexAttrib4bvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NusvARB, "glVertexAttrib4NusvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NuivARB, "glVertexAttrib4NuivARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NubvARB, "glVertexAttrib4NubvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NubARB, "glVertexAttrib4NubARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NsvARB, "glVertexAttrib4NsvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NivARB, "glVertexAttrib4NivARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4NbvARB, "glVertexAttrib4NbvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3svARB, "glVertexAttrib3svARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3sARB, "glVertexAttrib3sARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3fvARB, "glVertexAttrib3fvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3fARB, "glVertexAttrib3fARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3dvARB, "glVertexAttrib3dvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3dARB, "glVertexAttrib3dARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2svARB, "glVertexAttrib2svARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2sARB, "glVertexAttrib2sARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2fvARB, "glVertexAttrib2fvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2fARB, "glVertexAttrib2fARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2dvARB, "glVertexAttrib2dvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2dARB, "glVertexAttrib2dARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1svARB, "glVertexAttrib1svARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1sARB, "glVertexAttrib1sARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1fvARB, "glVertexAttrib1fvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1fARB, "glVertexAttrib1fARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1dvARB, "glVertexAttrib1dvARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1dARB, "glVertexAttrib1dARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramStringARB, "glProgramStringARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramLocalParameter4fvARB, "glProgramLocalParameter4fvARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramLocalParameter4fARB, "glProgramLocalParameter4fARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramLocalParameter4dvARB, "glProgramLocalParameter4dvARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramLocalParameter4dARB, "glProgramLocalParameter4dARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramEnvParameter4fvARB, "glProgramEnvParameter4fvARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramEnvParameter4fARB, "glProgramEnvParameter4fARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramEnvParameter4dvARB, "glProgramEnvParameter4dvARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramEnvParameter4dARB, "glProgramEnvParameter4dARB"
+        RemapVBFunctionToGLFunction AddressOf glIsProgramARB, "glIsProgramARB"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribivARB, "glGetVertexAttribivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribfvARB, "glGetVertexAttribfvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribdvARB, "glGetVertexAttribdvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribPointervARB, "glGetVertexAttribPointervARB"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramivARB, "glGetProgramivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramStringARB, "glGetProgramStringARB"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramLocalParameterfvARB, "glGetProgramLocalParameterfvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramLocalParameterdvARB, "glGetProgramLocalParameterdvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramEnvParameterfvARB, "glGetProgramEnvParameterfvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramEnvParameterdvARB, "glGetProgramEnvParameterdvARB"
+        RemapVBFunctionToGLFunction AddressOf glGenProgramsARB, "glGenProgramsARB"
+        RemapVBFunctionToGLFunction AddressOf glEnableVertexAttribArrayARB, "glEnableVertexAttribArrayARB"
+        RemapVBFunctionToGLFunction AddressOf glDisableVertexAttribArrayARB, "glDisableVertexAttribArrayARB"
+        RemapVBFunctionToGLFunction AddressOf glDeleteProgramsARB, "glDeleteProgramsARB"
+        RemapVBFunctionToGLFunction AddressOf glBindProgramARB, "glBindProgramARB"
+        RemapVBFunctionToGLFunction AddressOf glUnmapBufferARB, "glUnmapBufferARB"
+        RemapVBFunctionToGLFunction AddressOf glIsBufferARB, "glIsBufferARB"
+        RemapVBFunctionToGLFunction AddressOf glGetBufferSubDataARB, "glGetBufferSubDataARB"
+        RemapVBFunctionToGLFunction AddressOf glGetBufferPointervARB, "glGetBufferPointervARB"
+        RemapVBFunctionToGLFunction AddressOf glGetBufferParameterivARB, "glGetBufferParameterivARB"
+        RemapVBFunctionToGLFunction AddressOf glGenBuffersARB, "glGenBuffersARB"
+        RemapVBFunctionToGLFunction AddressOf glDeleteBuffersARB, "glDeleteBuffersARB"
+        RemapVBFunctionToGLFunction AddressOf glBufferSubDataARB, "glBufferSubDataARB"
+        RemapVBFunctionToGLFunction AddressOf glBufferDataARB, "glBufferDataARB"
+        RemapVBFunctionToGLFunction AddressOf glBindBufferARB, "glBindBufferARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightusvARB, "glWeightusvARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightuivARB, "glWeightuivARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightubvARB, "glWeightubvARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightsvARB, "glWeightsvARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightivARB, "glWeightivARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightfvARB, "glWeightfvARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightdvARB, "glWeightdvARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightbvARB, "glWeightbvARB"
+        RemapVBFunctionToGLFunction AddressOf glWeightPointerARB, "glWeightPointerARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexBlendARB, "glVertexBlendARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexBindingDivisor, "glVertexBindingDivisor"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribLFormat, "glVertexAttribLFormat"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribIFormat, "glVertexAttribIFormat"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribFormat, "glVertexAttribFormat"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribBinding, "glVertexAttribBinding"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexBindingDivisorEXT, "glVertexArrayVertexBindingDivisorEXT"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexAttribLFormatEXT, "glVertexArrayVertexAttribLFormatEXT"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexAttribIFormatEXT, "glVertexArrayVertexAttribIFormatEXT"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexAttribFormatEXT, "glVertexArrayVertexAttribFormatEXT"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexAttribBindingEXT, "glVertexArrayVertexAttribBindingEXT"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayBindVertexBufferEXT, "glVertexArrayBindVertexBufferEXT"
+        RemapVBFunctionToGLFunction AddressOf glBindVertexBuffer, "glBindVertexBuffer"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribLPointer, "glVertexAttribLPointer"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL4dv, "glVertexAttribL4dv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL4d, "glVertexAttribL4d"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL3dv, "glVertexAttribL3dv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL3d, "glVertexAttribL3d"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL2dv, "glVertexAttribL2dv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL2d, "glVertexAttribL2d"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL1dv, "glVertexAttribL1dv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL1d, "glVertexAttribL1d"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribLdv, "glGetVertexAttribLdv"
+        RemapVBFunctionToGLFunction AddressOf glIsVertexArrayARB, "glIsVertexArrayARB"
+        RemapVBFunctionToGLFunction AddressOf glGenVertexArraysARB, "glGenVertexArraysARB"
+        RemapVBFunctionToGLFunction AddressOf glDeleteVertexArraysARB, "glDeleteVertexArraysARB"
+        RemapVBFunctionToGLFunction AddressOf glBindVertexArrayARB, "glBindVertexArrayARB"
+        RemapVBFunctionToGLFunction AddressOf glUniformBlockBinding, "glUniformBlockBinding"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformIndices, "glGetUniformIndices"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformBlockIndex, "glGetUniformBlockIndex"
+        RemapVBFunctionToGLFunction AddressOf glGetIntegeri_v, "glGetIntegeri_v"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveUniformsiv, "glGetActiveUniformsiv"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveUniformName, "glGetActiveUniformName"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveUniformBlockiv, "glGetActiveUniformBlockiv"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveUniformBlockName, "glGetActiveUniformBlockName"
+        RemapVBFunctionToGLFunction AddressOf glBindBufferRange, "glBindBufferRange"
+        RemapVBFunctionToGLFunction AddressOf glBindBufferBase, "glBindBufferBase"
+        RemapVBFunctionToGLFunction AddressOf glMultTransposeMatrixfARB, "glMultTransposeMatrixfARB"
+        RemapVBFunctionToGLFunction AddressOf glMultTransposeMatrixdARB, "glMultTransposeMatrixdARB"
+        RemapVBFunctionToGLFunction AddressOf glLoadTransposeMatrixfARB, "glLoadTransposeMatrixfARB"
+        RemapVBFunctionToGLFunction AddressOf glLoadTransposeMatrixdARB, "glLoadTransposeMatrixdARB"
+        RemapVBFunctionToGLFunction AddressOf glDrawTransformFeedbackStreamInstanced, "glDrawTransformFeedbackStreamInstanced"
+        RemapVBFunctionToGLFunction AddressOf glDrawTransformFeedbackInstanced, "glDrawTransformFeedbackInstanced"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryIndexediv, "glGetQueryIndexediv"
+        RemapVBFunctionToGLFunction AddressOf glEndQueryIndexed, "glEndQueryIndexed"
+        RemapVBFunctionToGLFunction AddressOf glDrawTransformFeedbackStream, "glDrawTransformFeedbackStream"
+        RemapVBFunctionToGLFunction AddressOf glBeginQueryIndexed, "glBeginQueryIndexed"
+        RemapVBFunctionToGLFunction AddressOf glResumeTransformFeedback, "glResumeTransformFeedback"
+        RemapVBFunctionToGLFunction AddressOf glPauseTransformFeedback, "glPauseTransformFeedback"
+        RemapVBFunctionToGLFunction AddressOf glIsTransformFeedback, "glIsTransformFeedback"
+        RemapVBFunctionToGLFunction AddressOf glGenTransformFeedbacks, "glGenTransformFeedbacks"
+        RemapVBFunctionToGLFunction AddressOf glDrawTransformFeedback, "glDrawTransformFeedback"
+        RemapVBFunctionToGLFunction AddressOf glDeleteTransformFeedbacks, "glDeleteTransformFeedbacks"
+        RemapVBFunctionToGLFunction AddressOf glBindTransformFeedback, "glBindTransformFeedback"
+        RemapVBFunctionToGLFunction AddressOf glQueryCounter, "glQueryCounter"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryObjectui64v, "glGetQueryObjectui64v"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryObjecti64v, "glGetQueryObjecti64v"
+        RemapVBFunctionToGLFunction AddressOf glTextureView, "glTextureView"
+        RemapVBFunctionToGLFunction AddressOf glTextureStorage3DMultisampleEXT, "glTextureStorage3DMultisampleEXT"
+        RemapVBFunctionToGLFunction AddressOf glTextureStorage2DMultisampleEXT, "glTextureStorage2DMultisampleEXT"
+        RemapVBFunctionToGLFunction AddressOf glTexStorage3DMultisample, "glTexStorage3DMultisample"
+        RemapVBFunctionToGLFunction AddressOf glTexStorage2DMultisample, "glTexStorage2DMultisample"
+        RemapVBFunctionToGLFunction AddressOf glTexStorage3D, "glTexStorage3D"
+        RemapVBFunctionToGLFunction AddressOf glTexStorage2D, "glTexStorage2D"
+        RemapVBFunctionToGLFunction AddressOf glTexStorage1D, "glTexStorage1D"
+        RemapVBFunctionToGLFunction AddressOf glTexImage3DMultisample, "glTexImage3DMultisample"
+        RemapVBFunctionToGLFunction AddressOf glTexImage2DMultisample, "glTexImage2DMultisample"
+        RemapVBFunctionToGLFunction AddressOf glSampleMaski, "glSampleMaski"
+        RemapVBFunctionToGLFunction AddressOf glGetMultisamplefv, "glGetMultisamplefv"
+        RemapVBFunctionToGLFunction AddressOf glGetCompressedTexImageARB, "glGetCompressedTexImageARB"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage3DARB, "glCompressedTexSubImage3DARB"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage2DARB, "glCompressedTexSubImage2DARB"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexSubImage1DARB, "glCompressedTexSubImage1DARB"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexImage3DARB, "glCompressedTexImage3DARB"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexImage2DARB, "glCompressedTexImage2DARB"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTexImage1DARB, "glCompressedTexImage1DARB"
+        RemapVBFunctionToGLFunction AddressOf glTextureBufferRangeEXT, "glTextureBufferRangeEXT"
+        RemapVBFunctionToGLFunction AddressOf glTexBufferRange, "glTexBufferRange"
+        RemapVBFunctionToGLFunction AddressOf glTexBufferARB, "glTexBufferARB"
+        RemapVBFunctionToGLFunction AddressOf glTextureBarrier, "glTextureBarrier"
+        RemapVBFunctionToGLFunction AddressOf glPatchParameteri, "glPatchParameteri"
+        RemapVBFunctionToGLFunction AddressOf glPatchParameterfv, "glPatchParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glWaitSync, "glWaitSync"
+        RemapVBFunctionToGLFunction AddressOf glIsSync, "glIsSync"
+        RemapVBFunctionToGLFunction AddressOf glGetSynciv, "glGetSynciv"
+        RemapVBFunctionToGLFunction AddressOf glGetInteger64v, "glGetInteger64v"
+        RemapVBFunctionToGLFunction AddressOf glFenceSync, "glFenceSync"
+        RemapVBFunctionToGLFunction AddressOf glDeleteSync, "glDeleteSync"
+        RemapVBFunctionToGLFunction AddressOf glClientWaitSync, "glClientWaitSync"
+        RemapVBFunctionToGLFunction AddressOf glTexPageCommitmentARB, "glTexPageCommitmentARB"
+        RemapVBFunctionToGLFunction AddressOf glBufferPageCommitmentARB, "glBufferPageCommitmentARB"
+        RemapVBFunctionToGLFunction AddressOf glNamedStringARB, "glNamedStringARB"
+        RemapVBFunctionToGLFunction AddressOf glIsNamedStringARB, "glIsNamedStringARB"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedStringivARB, "glGetNamedStringivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedStringARB, "glGetNamedStringARB"
+        RemapVBFunctionToGLFunction AddressOf glDeleteNamedStringARB, "glDeleteNamedStringARB"
+        RemapVBFunctionToGLFunction AddressOf glCompileShaderIncludeARB, "glCompileShaderIncludeARB"
+        RemapVBFunctionToGLFunction AddressOf glUniformSubroutinesuiv, "glUniformSubroutinesuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformSubroutineuiv, "glGetUniformSubroutineuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetSubroutineUniformLocation, "glGetSubroutineUniformLocation"
+        RemapVBFunctionToGLFunction AddressOf glGetSubroutineIndex, "glGetSubroutineIndex"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramStageiv, "glGetProgramStageiv"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveSubroutineUniformiv, "glGetActiveSubroutineUniformiv"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveSubroutineUniformName, "glGetActiveSubroutineUniformName"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveSubroutineName, "glGetActiveSubroutineName"
+        RemapVBFunctionToGLFunction AddressOf glShaderStorageBlockBinding, "glShaderStorageBlockBinding"
+        RemapVBFunctionToGLFunction AddressOf glValidateProgramARB, "glValidateProgramARB"
+        RemapVBFunctionToGLFunction AddressOf glUseProgramObjectARB, "glUseProgramObjectARB"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix4fvARB, "glUniformMatrix4fvARB"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix3fvARB, "glUniformMatrix3fvARB"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix2fvARB, "glUniformMatrix2fvARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform4ivARB, "glUniform4ivARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform4iARB, "glUniform4iARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform4fvARB, "glUniform4fvARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform4fARB, "glUniform4fARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform3ivARB, "glUniform3ivARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform3iARB, "glUniform3iARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform3fvARB, "glUniform3fvARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform3fARB, "glUniform3fARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform2ivARB, "glUniform2ivARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform2iARB, "glUniform2iARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform2fvARB, "glUniform2fvARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform2fARB, "glUniform2fARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform1ivARB, "glUniform1ivARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform1iARB, "glUniform1iARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform1fvARB, "glUniform1fvARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform1fARB, "glUniform1fARB"
+        RemapVBFunctionToGLFunction AddressOf glShaderSourceARB, "glShaderSourceARB"
+        RemapVBFunctionToGLFunction AddressOf glLinkProgramARB, "glLinkProgramARB"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformivARB, "glGetUniformivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformfvARB, "glGetUniformfvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformLocationARB, "glGetUniformLocationARB"
+        RemapVBFunctionToGLFunction AddressOf glGetShaderSourceARB, "glGetShaderSourceARB"
+        RemapVBFunctionToGLFunction AddressOf glGetObjectParameterivARB, "glGetObjectParameterivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetObjectParameterfvARB, "glGetObjectParameterfvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetInfoLogARB, "glGetInfoLogARB"
+        RemapVBFunctionToGLFunction AddressOf glGetHandleARB, "glGetHandleARB"
+        RemapVBFunctionToGLFunction AddressOf glGetAttachedObjectsARB, "glGetAttachedObjectsARB"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveUniformARB, "glGetActiveUniformARB"
+        RemapVBFunctionToGLFunction AddressOf glDetachObjectARB, "glDetachObjectARB"
+        RemapVBFunctionToGLFunction AddressOf glDeleteObjectARB, "glDeleteObjectARB"
+        RemapVBFunctionToGLFunction AddressOf glCreateShaderObjectARB, "glCreateShaderObjectARB"
+        RemapVBFunctionToGLFunction AddressOf glCreateProgramObjectARB, "glCreateProgramObjectARB"
+        RemapVBFunctionToGLFunction AddressOf glCompileShaderARB, "glCompileShaderARB"
+        RemapVBFunctionToGLFunction AddressOf glAttachObjectARB, "glAttachObjectARB"
+        RemapVBFunctionToGLFunction AddressOf glMemoryBarrier, "glMemoryBarrier"
+        RemapVBFunctionToGLFunction AddressOf glBindImageTexture, "glBindImageTexture"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveAtomicCounterBufferiv, "glGetActiveAtomicCounterBufferiv"
+        RemapVBFunctionToGLFunction AddressOf glValidateProgramPipeline, "glValidateProgramPipeline"
+        RemapVBFunctionToGLFunction AddressOf glUseProgramStages, "glUseProgramStages"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4x3fv, "glProgramUniformMatrix4x3fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4x3dv, "glProgramUniformMatrix4x3dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4x2fv, "glProgramUniformMatrix4x2fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4x2dv, "glProgramUniformMatrix4x2dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4fv, "glProgramUniformMatrix4fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix4dv, "glProgramUniformMatrix4dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3x4fv, "glProgramUniformMatrix3x4fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3x4dv, "glProgramUniformMatrix3x4dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3x2fv, "glProgramUniformMatrix3x2fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3x2dv, "glProgramUniformMatrix3x2dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3fv, "glProgramUniformMatrix3fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix3dv, "glProgramUniformMatrix3dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2x4fv, "glProgramUniformMatrix2x4fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2x4dv, "glProgramUniformMatrix2x4dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2x3fv, "glProgramUniformMatrix2x3fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2x3dv, "glProgramUniformMatrix2x3dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2fv, "glProgramUniformMatrix2fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformMatrix2dv, "glProgramUniformMatrix2dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4uiv, "glProgramUniform4uiv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4ui, "glProgramUniform4ui"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4iv, "glProgramUniform4iv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4i, "glProgramUniform4i"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4fv, "glProgramUniform4fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4f, "glProgramUniform4f"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4dv, "glProgramUniform4dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4d, "glProgramUniform4d"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3uiv, "glProgramUniform3uiv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3ui, "glProgramUniform3ui"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3iv, "glProgramUniform3iv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3i, "glProgramUniform3i"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3fv, "glProgramUniform3fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3f, "glProgramUniform3f"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3dv, "glProgramUniform3dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3d, "glProgramUniform3d"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2uiv, "glProgramUniform2uiv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2ui, "glProgramUniform2ui"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2iv, "glProgramUniform2iv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2i, "glProgramUniform2i"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2fv, "glProgramUniform2fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2f, "glProgramUniform2f"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2dv, "glProgramUniform2dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2d, "glProgramUniform2d"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1uiv, "glProgramUniform1uiv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1ui, "glProgramUniform1ui"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1iv, "glProgramUniform1iv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1i, "glProgramUniform1i"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1fv, "glProgramUniform1fv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1f, "glProgramUniform1f"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1dv, "glProgramUniform1dv"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1d, "glProgramUniform1d"
+        RemapVBFunctionToGLFunction AddressOf glIsProgramPipeline, "glIsProgramPipeline"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramPipelineiv, "glGetProgramPipelineiv"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramPipelineInfoLog, "glGetProgramPipelineInfoLog"
+        RemapVBFunctionToGLFunction AddressOf glGenProgramPipelines, "glGenProgramPipelines"
+        RemapVBFunctionToGLFunction AddressOf glDeleteProgramPipelines, "glDeleteProgramPipelines"
+        RemapVBFunctionToGLFunction AddressOf glCreateShaderProgramv, "glCreateShaderProgramv"
+        RemapVBFunctionToGLFunction AddressOf glBindProgramPipeline, "glBindProgramPipeline"
+        RemapVBFunctionToGLFunction AddressOf glActiveShaderProgram, "glActiveShaderProgram"
+        RemapVBFunctionToGLFunction AddressOf glSamplerParameteriv, "glSamplerParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glSamplerParameteri, "glSamplerParameteri"
+        RemapVBFunctionToGLFunction AddressOf glSamplerParameterfv, "glSamplerParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glSamplerParameterf, "glSamplerParameterf"
+        RemapVBFunctionToGLFunction AddressOf glSamplerParameterIuiv, "glSamplerParameterIuiv"
+        RemapVBFunctionToGLFunction AddressOf glSamplerParameterIiv, "glSamplerParameterIiv"
+        RemapVBFunctionToGLFunction AddressOf glIsSampler, "glIsSampler"
+        RemapVBFunctionToGLFunction AddressOf glGetSamplerParameteriv, "glGetSamplerParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetSamplerParameterfv, "glGetSamplerParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glGetSamplerParameterIuiv, "glGetSamplerParameterIuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetSamplerParameterIiv, "glGetSamplerParameterIiv"
+        RemapVBFunctionToGLFunction AddressOf glGenSamplers, "glGenSamplers"
+        RemapVBFunctionToGLFunction AddressOf glDeleteSamplers, "glDeleteSamplers"
+        RemapVBFunctionToGLFunction AddressOf glBindSampler, "glBindSampler"
+        RemapVBFunctionToGLFunction AddressOf glMinSampleShadingARB, "glMinSampleShadingARB"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferSampleLocationsfvARB, "glNamedFramebufferSampleLocationsfvARB"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferSampleLocationsfvARB, "glFramebufferSampleLocationsfvARB"
+        RemapVBFunctionToGLFunction AddressOf glReadnPixelsARB, "glReadnPixelsARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnUniformuivARB, "glGetnUniformuivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnUniformivARB, "glGetnUniformivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnUniformfvARB, "glGetnUniformfvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnUniformdvARB, "glGetnUniformdvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnTexImageARB, "glGetnTexImageARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnSeparableFilterARB, "glGetnSeparableFilterARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnPolygonStippleARB, "glGetnPolygonStippleARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnPixelMapusvARB, "glGetnPixelMapusvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnPixelMapuivARB, "glGetnPixelMapuivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnPixelMapfvARB, "glGetnPixelMapfvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnMinmaxARB, "glGetnMinmaxARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnMapivARB, "glGetnMapivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnMapfvARB, "glGetnMapfvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnMapdvARB, "glGetnMapdvARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnHistogramARB, "glGetnHistogramARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnConvolutionFilterARB, "glGetnConvolutionFilterARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnCompressedTexImageARB, "glGetnCompressedTexImageARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnColorTableARB, "glGetnColorTableARB"
+        RemapVBFunctionToGLFunction AddressOf glGetGraphicsResetStatusARB, "glGetGraphicsResetStatusARB"
+        RemapVBFunctionToGLFunction AddressOf glProvokingVertex, "glProvokingVertex"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramResourceiv, "glGetProgramResourceiv"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramResourceName, "glGetProgramResourceName"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramResourceLocationIndex, "glGetProgramResourceLocationIndex"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramResourceLocation, "glGetProgramResourceLocation"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramResourceIndex, "glGetProgramResourceIndex"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramInterfaceiv, "glGetProgramInterfaceiv"
+        RemapVBFunctionToGLFunction AddressOf glPolygonOffsetClamp, "glPolygonOffsetClamp"
+        RemapVBFunctionToGLFunction AddressOf glPointParameterfvARB, "glPointParameterfvARB"
+        RemapVBFunctionToGLFunction AddressOf glPointParameterfARB, "glPointParameterfARB"
+        RemapVBFunctionToGLFunction AddressOf glMaxShaderCompilerThreadsARB, "glMaxShaderCompilerThreadsARB"
+        RemapVBFunctionToGLFunction AddressOf glIsQueryARB, "glIsQueryARB"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryivARB, "glGetQueryivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryObjectuivARB, "glGetQueryObjectuivARB"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryObjectivARB, "glGetQueryObjectivARB"
+        RemapVBFunctionToGLFunction AddressOf glGenQueriesARB, "glGenQueriesARB"
+        RemapVBFunctionToGLFunction AddressOf glEndQueryARB, "glEndQueryARB"
+        RemapVBFunctionToGLFunction AddressOf glDeleteQueriesARB, "glDeleteQueriesARB"
+        RemapVBFunctionToGLFunction AddressOf glBeginQueryARB, "glBeginQueryARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4svARB, "glMultiTexCoord4svARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4sARB, "glMultiTexCoord4sARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4ivARB, "glMultiTexCoord4ivARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4iARB, "glMultiTexCoord4iARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4fvARB, "glMultiTexCoord4fvARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4fARB, "glMultiTexCoord4fARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4dvARB, "glMultiTexCoord4dvARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord4dARB, "glMultiTexCoord4dARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3svARB, "glMultiTexCoord3svARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3sARB, "glMultiTexCoord3sARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3ivARB, "glMultiTexCoord3ivARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3iARB, "glMultiTexCoord3iARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3fvARB, "glMultiTexCoord3fvARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3fARB, "glMultiTexCoord3fARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3dvARB, "glMultiTexCoord3dvARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord3dARB, "glMultiTexCoord3dARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2svARB, "glMultiTexCoord2svARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2sARB, "glMultiTexCoord2sARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2ivARB, "glMultiTexCoord2ivARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2iARB, "glMultiTexCoord2iARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2fvARB, "glMultiTexCoord2fvARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2fARB, "glMultiTexCoord2fARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2dvARB, "glMultiTexCoord2dvARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord2dARB, "glMultiTexCoord2dARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1svARB, "glMultiTexCoord1svARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1sARB, "glMultiTexCoord1sARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1ivARB, "glMultiTexCoord1ivARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1iARB, "glMultiTexCoord1iARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1fvARB, "glMultiTexCoord1fvARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1fARB, "glMultiTexCoord1fARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1dvARB, "glMultiTexCoord1dvARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiTexCoord1dARB, "glMultiTexCoord1dARB"
+        RemapVBFunctionToGLFunction AddressOf glClientActiveTextureARB, "glClientActiveTextureARB"
+        RemapVBFunctionToGLFunction AddressOf glActiveTextureARB, "glActiveTextureARB"
+        RemapVBFunctionToGLFunction AddressOf glSampleCoverageARB, "glSampleCoverageARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawElementsIndirect, "glMultiDrawElementsIndirect"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawArraysIndirect, "glMultiDrawArraysIndirect"
+        RemapVBFunctionToGLFunction AddressOf glBindVertexBuffers, "glBindVertexBuffers"
+        RemapVBFunctionToGLFunction AddressOf glBindTextures, "glBindTextures"
+        RemapVBFunctionToGLFunction AddressOf glBindSamplers, "glBindSamplers"
+        RemapVBFunctionToGLFunction AddressOf glBindImageTextures, "glBindImageTextures"
+        RemapVBFunctionToGLFunction AddressOf glBindBuffersRange, "glBindBuffersRange"
+        RemapVBFunctionToGLFunction AddressOf glBindBuffersBase, "glBindBuffersBase"
+        RemapVBFunctionToGLFunction AddressOf glMatrixIndexusvARB, "glMatrixIndexusvARB"
+        RemapVBFunctionToGLFunction AddressOf glMatrixIndexuivARB, "glMatrixIndexuivARB"
+        RemapVBFunctionToGLFunction AddressOf glMatrixIndexubvARB, "glMatrixIndexubvARB"
+        RemapVBFunctionToGLFunction AddressOf glMatrixIndexPointerARB, "glMatrixIndexPointerARB"
+        RemapVBFunctionToGLFunction AddressOf glCurrentPaletteMatrixARB, "glCurrentPaletteMatrixARB"
+        RemapVBFunctionToGLFunction AddressOf glFlushMappedBufferRange, "glFlushMappedBufferRange"
+        RemapVBFunctionToGLFunction AddressOf glInvalidateTexSubImage, "glInvalidateTexSubImage"
+        RemapVBFunctionToGLFunction AddressOf glInvalidateTexImage, "glInvalidateTexImage"
+        RemapVBFunctionToGLFunction AddressOf glInvalidateSubFramebuffer, "glInvalidateSubFramebuffer"
+        RemapVBFunctionToGLFunction AddressOf glInvalidateFramebuffer, "glInvalidateFramebuffer"
+        RemapVBFunctionToGLFunction AddressOf glInvalidateBufferSubData, "glInvalidateBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glInvalidateBufferData, "glInvalidateBufferData"
+        RemapVBFunctionToGLFunction AddressOf glGetInternalformati64v, "glGetInternalformati64v"
+        RemapVBFunctionToGLFunction AddressOf glGetInternalformativ, "glGetInternalformativ"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribDivisorARB, "glVertexAttribDivisorARB"
+        RemapVBFunctionToGLFunction AddressOf glDrawElementsInstancedARB, "glDrawElementsInstancedARB"
+        RemapVBFunctionToGLFunction AddressOf glDrawArraysInstancedARB, "glDrawArraysInstancedARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawElementsIndirectCountARB, "glMultiDrawElementsIndirectCountARB"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawArraysIndirectCountARB, "glMultiDrawArraysIndirectCountARB"
+        RemapVBFunctionToGLFunction AddressOf glSeparableFilter2D, "glSeparableFilter2D"
+        RemapVBFunctionToGLFunction AddressOf glResetMinmax, "glResetMinmax"
+        RemapVBFunctionToGLFunction AddressOf glResetHistogram, "glResetHistogram"
+        RemapVBFunctionToGLFunction AddressOf glMinmax, "glMinmax"
+        RemapVBFunctionToGLFunction AddressOf glHistogram, "glHistogram"
+        RemapVBFunctionToGLFunction AddressOf glGetSeparableFilter, "glGetSeparableFilter"
+        RemapVBFunctionToGLFunction AddressOf glGetMinmaxParameteriv, "glGetMinmaxParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetMinmaxParameterfv, "glGetMinmaxParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glGetMinmax, "glGetMinmax"
+        RemapVBFunctionToGLFunction AddressOf glGetHistogramParameteriv, "glGetHistogramParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetHistogramParameterfv, "glGetHistogramParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glGetHistogram, "glGetHistogram"
+        RemapVBFunctionToGLFunction AddressOf glGetConvolutionParameteriv, "glGetConvolutionParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetConvolutionParameterfv, "glGetConvolutionParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glGetConvolutionFilter, "glGetConvolutionFilter"
+        RemapVBFunctionToGLFunction AddressOf glGetColorTableParameteriv, "glGetColorTableParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetColorTableParameterfv, "glGetColorTableParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glGetColorTable, "glGetColorTable"
+        RemapVBFunctionToGLFunction AddressOf glCopyConvolutionFilter2D, "glCopyConvolutionFilter2D"
+        RemapVBFunctionToGLFunction AddressOf glCopyConvolutionFilter1D, "glCopyConvolutionFilter1D"
+        RemapVBFunctionToGLFunction AddressOf glCopyColorTable, "glCopyColorTable"
+        RemapVBFunctionToGLFunction AddressOf glCopyColorSubTable, "glCopyColorSubTable"
+        RemapVBFunctionToGLFunction AddressOf glConvolutionParameteriv, "glConvolutionParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glConvolutionParameteri, "glConvolutionParameteri"
+        RemapVBFunctionToGLFunction AddressOf glConvolutionParameterfv, "glConvolutionParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glConvolutionParameterf, "glConvolutionParameterf"
+        RemapVBFunctionToGLFunction AddressOf glConvolutionFilter2D, "glConvolutionFilter2D"
+        RemapVBFunctionToGLFunction AddressOf glConvolutionFilter1D, "glConvolutionFilter1D"
+        RemapVBFunctionToGLFunction AddressOf glColorTableParameteriv, "glColorTableParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glColorTableParameterfv, "glColorTableParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glColorTable, "glColorTable"
+        RemapVBFunctionToGLFunction AddressOf glColorSubTable, "glColorSubTable"
+        RemapVBFunctionToGLFunction AddressOf glUniform4ui64vARB, "glUniform4ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform4ui64ARB, "glUniform4ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform4i64vARB, "glUniform4i64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform4i64ARB, "glUniform4i64ARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform3ui64vARB, "glUniform3ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform3ui64ARB, "glUniform3ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform3i64vARB, "glUniform3i64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform3i64ARB, "glUniform3i64ARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform2ui64vARB, "glUniform2ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform2ui64ARB, "glUniform2ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform2i64vARB, "glUniform2i64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform2i64ARB, "glUniform2i64ARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform1ui64vARB, "glUniform1ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform1ui64ARB, "glUniform1ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform1i64vARB, "glUniform1i64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniform1i64ARB, "glUniform1i64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4ui64vARB, "glProgramUniform4ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4ui64ARB, "glProgramUniform4ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4i64vARB, "glProgramUniform4i64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform4i64ARB, "glProgramUniform4i64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3ui64vARB, "glProgramUniform3ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3ui64ARB, "glProgramUniform3ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3i64vARB, "glProgramUniform3i64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform3i64ARB, "glProgramUniform3i64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2ui64vARB, "glProgramUniform2ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2ui64ARB, "glProgramUniform2ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2i64vARB, "glProgramUniform2i64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform2i64ARB, "glProgramUniform2i64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1ui64vARB, "glProgramUniform1ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1ui64ARB, "glProgramUniform1ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1i64vARB, "glProgramUniform1i64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniform1i64ARB, "glProgramUniform1i64ARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnUniformui64vARB, "glGetnUniformui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glGetnUniformi64vARB, "glGetnUniformi64vARB"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformui64vARB, "glGetUniformui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformi64vARB, "glGetUniformi64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix4x3dv, "glUniformMatrix4x3dv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix4x2dv, "glUniformMatrix4x2dv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix4dv, "glUniformMatrix4dv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix3x4dv, "glUniformMatrix3x4dv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix3x2dv, "glUniformMatrix3x2dv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix3dv, "glUniformMatrix3dv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix2x4dv, "glUniformMatrix2x4dv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix2x3dv, "glUniformMatrix2x3dv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix2dv, "glUniformMatrix2dv"
+        RemapVBFunctionToGLFunction AddressOf glUniform4dv, "glUniform4dv"
+        RemapVBFunctionToGLFunction AddressOf glUniform4d, "glUniform4d"
+        RemapVBFunctionToGLFunction AddressOf glUniform3dv, "glUniform3dv"
+        RemapVBFunctionToGLFunction AddressOf glUniform3d, "glUniform3d"
+        RemapVBFunctionToGLFunction AddressOf glUniform2dv, "glUniform2dv"
+        RemapVBFunctionToGLFunction AddressOf glUniform2d, "glUniform2d"
+        RemapVBFunctionToGLFunction AddressOf glUniform1dv, "glUniform1dv"
+        RemapVBFunctionToGLFunction AddressOf glUniform1d, "glUniform1d"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformdv, "glGetUniformdv"
+        RemapVBFunctionToGLFunction AddressOf glSpecializeShaderARB, "glSpecializeShaderARB"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureSubImage, "glGetTextureSubImage"
+        RemapVBFunctionToGLFunction AddressOf glGetCompressedTextureSubImage, "glGetCompressedTextureSubImage"
+        RemapVBFunctionToGLFunction AddressOf glProgramParameteri, "glProgramParameteri"
+        RemapVBFunctionToGLFunction AddressOf glProgramBinary, "glProgramBinary"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramBinary, "glGetProgramBinary"
+        RemapVBFunctionToGLFunction AddressOf glProgramParameteriARB, "glProgramParameteriARB"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferTextureLayerARB, "glFramebufferTextureLayerARB"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferTextureFaceARB, "glFramebufferTextureFaceARB"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferTextureARB, "glFramebufferTextureARB"
+        RemapVBFunctionToGLFunction AddressOf glRenderbufferStorageMultisample, "glRenderbufferStorageMultisample"
+        RemapVBFunctionToGLFunction AddressOf glRenderbufferStorage, "glRenderbufferStorage"
+        RemapVBFunctionToGLFunction AddressOf glIsRenderbuffer, "glIsRenderbuffer"
+        RemapVBFunctionToGLFunction AddressOf glIsFramebuffer, "glIsFramebuffer"
+        RemapVBFunctionToGLFunction AddressOf glGetRenderbufferParameteriv, "glGetRenderbufferParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetFramebufferAttachmentParameteriv, "glGetFramebufferAttachmentParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGenerateMipmap, "glGenerateMipmap"
+        RemapVBFunctionToGLFunction AddressOf glGenRenderbuffers, "glGenRenderbuffers"
+        RemapVBFunctionToGLFunction AddressOf glGenFramebuffers, "glGenFramebuffers"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferTextureLayer, "glFramebufferTextureLayer"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferTexture3D, "glFramebufferTexture3D"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferTexture2D, "glFramebufferTexture2D"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferTexture1D, "glFramebufferTexture1D"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferRenderbuffer, "glFramebufferRenderbuffer"
+        RemapVBFunctionToGLFunction AddressOf glDeleteRenderbuffers, "glDeleteRenderbuffers"
+        RemapVBFunctionToGLFunction AddressOf glDeleteFramebuffers, "glDeleteFramebuffers"
+        RemapVBFunctionToGLFunction AddressOf glCheckFramebufferStatus, "glCheckFramebufferStatus"
+        RemapVBFunctionToGLFunction AddressOf glBlitFramebuffer, "glBlitFramebuffer"
+        RemapVBFunctionToGLFunction AddressOf glBindRenderbuffer, "glBindRenderbuffer"
+        RemapVBFunctionToGLFunction AddressOf glBindFramebuffer, "glBindFramebuffer"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferParameteriEXT, "glNamedFramebufferParameteriEXT"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedFramebufferParameterivEXT, "glGetNamedFramebufferParameterivEXT"
+        RemapVBFunctionToGLFunction AddressOf glGetFramebufferParameteriv, "glGetFramebufferParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glFramebufferParameteri, "glFramebufferParameteri"
+        RemapVBFunctionToGLFunction AddressOf glDrawElementsIndirect, "glDrawElementsIndirect"
+        RemapVBFunctionToGLFunction AddressOf glDrawArraysIndirect, "glDrawArraysIndirect"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawElementsBaseVertex, "glMultiDrawElementsBaseVertex"
+        RemapVBFunctionToGLFunction AddressOf glDrawRangeElementsBaseVertex, "glDrawRangeElementsBaseVertex"
+        RemapVBFunctionToGLFunction AddressOf glDrawElementsInstancedBaseVertex, "glDrawElementsInstancedBaseVertex"
+        RemapVBFunctionToGLFunction AddressOf glDrawElementsBaseVertex, "glDrawElementsBaseVertex"
+        RemapVBFunctionToGLFunction AddressOf glBlendFunciARB, "glBlendFunciARB"
+        RemapVBFunctionToGLFunction AddressOf glBlendFuncSeparateiARB, "glBlendFuncSeparateiARB"
+        RemapVBFunctionToGLFunction AddressOf glBlendEquationiARB, "glBlendEquationiARB"
+        RemapVBFunctionToGLFunction AddressOf glBlendEquationSeparateiARB, "glBlendEquationSeparateiARB"
+        RemapVBFunctionToGLFunction AddressOf glDrawBuffersARB, "glDrawBuffersARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexBuffers, "glVertexArrayVertexBuffers"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayVertexBuffer, "glVertexArrayVertexBuffer"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayElementBuffer, "glVertexArrayElementBuffer"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayBindingDivisor, "glVertexArrayBindingDivisor"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayAttribLFormat, "glVertexArrayAttribLFormat"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayAttribIFormat, "glVertexArrayAttribIFormat"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayAttribFormat, "glVertexArrayAttribFormat"
+        RemapVBFunctionToGLFunction AddressOf glVertexArrayAttribBinding, "glVertexArrayAttribBinding"
+        RemapVBFunctionToGLFunction AddressOf glUnmapNamedBuffer, "glUnmapNamedBuffer"
+        RemapVBFunctionToGLFunction AddressOf glTransformFeedbackBufferRange, "glTransformFeedbackBufferRange"
+        RemapVBFunctionToGLFunction AddressOf glTransformFeedbackBufferBase, "glTransformFeedbackBufferBase"
+        RemapVBFunctionToGLFunction AddressOf glTextureSubImage3D, "glTextureSubImage3D"
+        RemapVBFunctionToGLFunction AddressOf glTextureSubImage2D, "glTextureSubImage2D"
+        RemapVBFunctionToGLFunction AddressOf glTextureSubImage1D, "glTextureSubImage1D"
+        RemapVBFunctionToGLFunction AddressOf glTextureStorage3DMultisample, "glTextureStorage3DMultisample"
+        RemapVBFunctionToGLFunction AddressOf glTextureStorage3D, "glTextureStorage3D"
+        RemapVBFunctionToGLFunction AddressOf glTextureStorage2DMultisample, "glTextureStorage2DMultisample"
+        RemapVBFunctionToGLFunction AddressOf glTextureStorage2D, "glTextureStorage2D"
+        RemapVBFunctionToGLFunction AddressOf glTextureStorage1D, "glTextureStorage1D"
+        RemapVBFunctionToGLFunction AddressOf glTextureParameteriv, "glTextureParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glTextureParameteri, "glTextureParameteri"
+        RemapVBFunctionToGLFunction AddressOf glTextureParameterfv, "glTextureParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glTextureParameterf, "glTextureParameterf"
+        RemapVBFunctionToGLFunction AddressOf glTextureParameterIuiv, "glTextureParameterIuiv"
+        RemapVBFunctionToGLFunction AddressOf glTextureParameterIiv, "glTextureParameterIiv"
+        RemapVBFunctionToGLFunction AddressOf glTextureBufferRange, "glTextureBufferRange"
+        RemapVBFunctionToGLFunction AddressOf glTextureBuffer, "glTextureBuffer"
+        RemapVBFunctionToGLFunction AddressOf glNamedRenderbufferStorageMultisample, "glNamedRenderbufferStorageMultisample"
+        RemapVBFunctionToGLFunction AddressOf glNamedRenderbufferStorage, "glNamedRenderbufferStorage"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferTextureLayer, "glNamedFramebufferTextureLayer"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferTexture, "glNamedFramebufferTexture"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferRenderbuffer, "glNamedFramebufferRenderbuffer"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferReadBuffer, "glNamedFramebufferReadBuffer"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferParameteri, "glNamedFramebufferParameteri"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferDrawBuffers, "glNamedFramebufferDrawBuffers"
+        RemapVBFunctionToGLFunction AddressOf glNamedFramebufferDrawBuffer, "glNamedFramebufferDrawBuffer"
+        RemapVBFunctionToGLFunction AddressOf glNamedBufferSubData, "glNamedBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glNamedBufferStorage, "glNamedBufferStorage"
+        RemapVBFunctionToGLFunction AddressOf glNamedBufferData, "glNamedBufferData"
+        RemapVBFunctionToGLFunction AddressOf glInvalidateNamedFramebufferSubData, "glInvalidateNamedFramebufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glInvalidateNamedFramebufferData, "glInvalidateNamedFramebufferData"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexArrayiv, "glGetVertexArrayiv"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexArrayIndexediv, "glGetVertexArrayIndexediv"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexArrayIndexed64iv, "glGetVertexArrayIndexed64iv"
+        RemapVBFunctionToGLFunction AddressOf glGetTransformFeedbackiv, "glGetTransformFeedbackiv"
+        RemapVBFunctionToGLFunction AddressOf glGetTransformFeedbacki_v, "glGetTransformFeedbacki_v"
+        RemapVBFunctionToGLFunction AddressOf glGetTransformFeedbacki64_v, "glGetTransformFeedbacki64_v"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureParameteriv, "glGetTextureParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureParameterfv, "glGetTextureParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureParameterIuiv, "glGetTextureParameterIuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureParameterIiv, "glGetTextureParameterIiv"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureLevelParameteriv, "glGetTextureLevelParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureLevelParameterfv, "glGetTextureLevelParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureImage, "glGetTextureImage"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryBufferObjectuiv, "glGetQueryBufferObjectuiv"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryBufferObjectui64v, "glGetQueryBufferObjectui64v"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryBufferObjectiv, "glGetQueryBufferObjectiv"
+        RemapVBFunctionToGLFunction AddressOf glGetQueryBufferObjecti64v, "glGetQueryBufferObjecti64v"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedRenderbufferParameteriv, "glGetNamedRenderbufferParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedFramebufferParameteriv, "glGetNamedFramebufferParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedFramebufferAttachmentParameteriv, "glGetNamedFramebufferAttachmentParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedBufferSubData, "glGetNamedBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedBufferPointerv, "glGetNamedBufferPointerv"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedBufferParameteriv, "glGetNamedBufferParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glGetNamedBufferParameteri64v, "glGetNamedBufferParameteri64v"
+        RemapVBFunctionToGLFunction AddressOf glGetCompressedTextureImage, "glGetCompressedTextureImage"
+        RemapVBFunctionToGLFunction AddressOf glGenerateTextureMipmap, "glGenerateTextureMipmap"
+        RemapVBFunctionToGLFunction AddressOf glFlushMappedNamedBufferRange, "glFlushMappedNamedBufferRange"
+        RemapVBFunctionToGLFunction AddressOf glEnableVertexArrayAttrib, "glEnableVertexArrayAttrib"
+        RemapVBFunctionToGLFunction AddressOf glDisableVertexArrayAttrib, "glDisableVertexArrayAttrib"
+        RemapVBFunctionToGLFunction AddressOf glCreateVertexArrays, "glCreateVertexArrays"
+        RemapVBFunctionToGLFunction AddressOf glCreateTransformFeedbacks, "glCreateTransformFeedbacks"
+        RemapVBFunctionToGLFunction AddressOf glCreateTextures, "glCreateTextures"
+        RemapVBFunctionToGLFunction AddressOf glCreateSamplers, "glCreateSamplers"
+        RemapVBFunctionToGLFunction AddressOf glCreateRenderbuffers, "glCreateRenderbuffers"
+        RemapVBFunctionToGLFunction AddressOf glCreateQueries, "glCreateQueries"
+        RemapVBFunctionToGLFunction AddressOf glCreateProgramPipelines, "glCreateProgramPipelines"
+        RemapVBFunctionToGLFunction AddressOf glCreateFramebuffers, "glCreateFramebuffers"
+        RemapVBFunctionToGLFunction AddressOf glCreateBuffers, "glCreateBuffers"
+        RemapVBFunctionToGLFunction AddressOf glCopyTextureSubImage3D, "glCopyTextureSubImage3D"
+        RemapVBFunctionToGLFunction AddressOf glCopyTextureSubImage2D, "glCopyTextureSubImage2D"
+        RemapVBFunctionToGLFunction AddressOf glCopyTextureSubImage1D, "glCopyTextureSubImage1D"
+        RemapVBFunctionToGLFunction AddressOf glCopyNamedBufferSubData, "glCopyNamedBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTextureSubImage3D, "glCompressedTextureSubImage3D"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTextureSubImage2D, "glCompressedTextureSubImage2D"
+        RemapVBFunctionToGLFunction AddressOf glCompressedTextureSubImage1D, "glCompressedTextureSubImage1D"
+        RemapVBFunctionToGLFunction AddressOf glClearNamedFramebufferuiv, "glClearNamedFramebufferuiv"
+        RemapVBFunctionToGLFunction AddressOf glClearNamedFramebufferiv, "glClearNamedFramebufferiv"
+        RemapVBFunctionToGLFunction AddressOf glClearNamedFramebufferfv, "glClearNamedFramebufferfv"
+        RemapVBFunctionToGLFunction AddressOf glClearNamedFramebufferfi, "glClearNamedFramebufferfi"
+        RemapVBFunctionToGLFunction AddressOf glClearNamedBufferSubData, "glClearNamedBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glClearNamedBufferData, "glClearNamedBufferData"
+        RemapVBFunctionToGLFunction AddressOf glCheckNamedFramebufferStatus, "glCheckNamedFramebufferStatus"
+        RemapVBFunctionToGLFunction AddressOf glBlitNamedFramebuffer, "glBlitNamedFramebuffer"
+        RemapVBFunctionToGLFunction AddressOf glBindTextureUnit, "glBindTextureUnit"
+        RemapVBFunctionToGLFunction AddressOf glGetDebugMessageLogARB, "glGetDebugMessageLogARB"
+        RemapVBFunctionToGLFunction AddressOf glDebugMessageInsertARB, "glDebugMessageInsertARB"
+        RemapVBFunctionToGLFunction AddressOf glDebugMessageControlARB, "glDebugMessageControlARB"
+        RemapVBFunctionToGLFunction AddressOf glDebugMessageCallbackARB, "glDebugMessageCallbackARB"
+        RemapVBFunctionToGLFunction AddressOf glCopyImageSubData, "glCopyImageSubData"
+        RemapVBFunctionToGLFunction AddressOf glCopyBufferSubData, "glCopyBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glDispatchComputeGroupSizeARB, "glDispatchComputeGroupSizeARB"
+        RemapVBFunctionToGLFunction AddressOf glDispatchComputeIndirect, "glDispatchComputeIndirect"
+        RemapVBFunctionToGLFunction AddressOf glDispatchCompute, "glDispatchCompute"
+        RemapVBFunctionToGLFunction AddressOf glClampColorARB, "glClampColorARB"
+        RemapVBFunctionToGLFunction AddressOf glClipControl, "glClipControl"
+        RemapVBFunctionToGLFunction AddressOf glClearTexSubImage, "glClearTexSubImage"
+        RemapVBFunctionToGLFunction AddressOf glClearTexImage, "glClearTexImage"
+        RemapVBFunctionToGLFunction AddressOf glClearNamedBufferSubDataEXT, "glClearNamedBufferSubDataEXT"
+        RemapVBFunctionToGLFunction AddressOf glClearNamedBufferDataEXT, "glClearNamedBufferDataEXT"
+        RemapVBFunctionToGLFunction AddressOf glClearBufferSubData, "glClearBufferSubData"
+        RemapVBFunctionToGLFunction AddressOf glClearBufferData, "glClearBufferData"
+        RemapVBFunctionToGLFunction AddressOf glCreateSyncFromCLeventARB, "glCreateSyncFromCLeventARB"
+        RemapVBFunctionToGLFunction AddressOf glBufferStorage, "glBufferStorage"
+        RemapVBFunctionToGLFunction AddressOf glGetFragDataIndex, "glGetFragDataIndex"
+        RemapVBFunctionToGLFunction AddressOf glBindFragDataLocationIndexed, "glBindFragDataLocationIndexed"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL1ui64vARB, "glVertexAttribL1ui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribL1ui64ARB, "glVertexAttribL1ui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glUniformHandleui64vARB, "glUniformHandleui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glUniformHandleui64ARB, "glUniformHandleui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformHandleui64vARB, "glProgramUniformHandleui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glProgramUniformHandleui64ARB, "glProgramUniformHandleui64ARB"
+        RemapVBFunctionToGLFunction AddressOf glMakeTextureHandleResidentARB, "glMakeTextureHandleResidentARB"
+        RemapVBFunctionToGLFunction AddressOf glMakeTextureHandleNonResidentARB, "glMakeTextureHandleNonResidentARB"
+        RemapVBFunctionToGLFunction AddressOf glMakeImageHandleResidentARB, "glMakeImageHandleResidentARB"
+        RemapVBFunctionToGLFunction AddressOf glMakeImageHandleNonResidentARB, "glMakeImageHandleNonResidentARB"
+        RemapVBFunctionToGLFunction AddressOf glIsTextureHandleResidentARB, "glIsTextureHandleResidentARB"
+        RemapVBFunctionToGLFunction AddressOf glIsImageHandleResidentARB, "glIsImageHandleResidentARB"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribLui64vARB, "glGetVertexAttribLui64vARB"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureSamplerHandleARB, "glGetTextureSamplerHandleARB"
+        RemapVBFunctionToGLFunction AddressOf glGetTextureHandleARB, "glGetTextureHandleARB"
+        RemapVBFunctionToGLFunction AddressOf glGetImageHandleARB, "glGetImageHandleARB"
+        RemapVBFunctionToGLFunction AddressOf glDrawElementsInstancedBaseVertexBaseInstance, "glDrawElementsInstancedBaseVertexBaseInstance"
+        RemapVBFunctionToGLFunction AddressOf glDrawElementsInstancedBaseInstance, "glDrawElementsInstancedBaseInstance"
+        RemapVBFunctionToGLFunction AddressOf glDrawArraysInstancedBaseInstance, "glDrawArraysInstancedBaseInstance"
+        RemapVBFunctionToGLFunction AddressOf glPrimitiveBoundingBoxARB, "glPrimitiveBoundingBoxARB"
+        RemapVBFunctionToGLFunction AddressOf glMemoryBarrierByRegion, "glMemoryBarrierByRegion"
+        RemapVBFunctionToGLFunction AddressOf glShaderBinary, "glShaderBinary"
+        RemapVBFunctionToGLFunction AddressOf glReleaseShaderCompiler, "glReleaseShaderCompiler"
+        RemapVBFunctionToGLFunction AddressOf glGetShaderPrecisionFormat, "glGetShaderPrecisionFormat"
+        RemapVBFunctionToGLFunction AddressOf glDepthRangef, "glDepthRangef"
+        RemapVBFunctionToGLFunction AddressOf glClearDepthf, "glClearDepthf"
+    End If
 End Function

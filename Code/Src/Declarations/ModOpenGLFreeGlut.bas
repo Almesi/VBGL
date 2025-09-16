@@ -12,279 +12,279 @@ Option Explicit
 ' http://freeglut.sourceforge.net/docs/api.php
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
-Private Const PtrNull As LongPtr = 0
+    DefLngPtr A-Z
+    Private Const PtrNull As LongPtr = 0
 #Else
-DefLng A-Z
-Private Const PtrNull As Long = 0
+    DefLng A-Z
+    Private Const PtrNull As Long = 0
 #End If
 #If VBA7 Then
-Public Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As LongPtr
-Public Declare PtrSafe Function LoadLibrary Lib "kernel32" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As LongPtr
+    Public Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As LongPtr
+    Public Declare PtrSafe Function LoadLibrary Lib "kernel32" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As LongPtr
 #Else
-Public Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
-Public Declare Function LoadLibrary Lib "kernel32" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As Long
+    Public Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
+    Public Declare Function LoadLibrary Lib "kernel32" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As Long
 #End If
 '***************************************************************************************
-Public Const GLUT_API_VERSION = 4&
+Public Const GLUT_API_VERSION         = 4&
 Public Const GLUT_XLIB_IMPLEMENTATION = 13&
 ' GLUT API macro definitions -- the special key codes:
-Public Const GLUT_KEY_F1 = &H1&
-Public Const GLUT_KEY_F2 = &H2&
-Public Const GLUT_KEY_F3 = &H3&
-Public Const GLUT_KEY_F4 = &H4&
-Public Const GLUT_KEY_F5 = &H5&
-Public Const GLUT_KEY_F6 = &H6&
-Public Const GLUT_KEY_F7 = &H7&
-Public Const GLUT_KEY_F8 = &H8&
-Public Const GLUT_KEY_F9 = &H9&
-Public Const GLUT_KEY_F10 = &HA&
-Public Const GLUT_KEY_F11 = &HB&
-Public Const GLUT_KEY_F12 = &HC&
-Public Const GLUT_KEY_LEFT = &H64&
-Public Const GLUT_KEY_UP = &H65&
-Public Const GLUT_KEY_RIGHT = &H66&
-Public Const GLUT_KEY_DOWN = &H67&
-Public Const GLUT_KEY_PAGE_UP = &H68&
-Public Const GLUT_KEY_PAGE_DOWN = &H69&
-Public Const GLUT_KEY_HOME = &H6A&
-Public Const GLUT_KEY_END = &H6B&
-Public Const GLUT_KEY_INSERT = &H6C&
+Public Const GLUT_KEY_F1                            = &H1&
+Public Const GLUT_KEY_F2                            = &H2&
+Public Const GLUT_KEY_F3                            = &H3&
+Public Const GLUT_KEY_F4                            = &H4&
+Public Const GLUT_KEY_F5                            = &H5&
+Public Const GLUT_KEY_F6                            = &H6&
+Public Const GLUT_KEY_F7                            = &H7&
+Public Const GLUT_KEY_F8                            = &H8&
+Public Const GLUT_KEY_F9                            = &H9&
+Public Const GLUT_KEY_F10                           = &HA&
+Public Const GLUT_KEY_F11                           = &HB&
+Public Const GLUT_KEY_F12                           = &HC&
+Public Const GLUT_KEY_LEFT                          = &H64&
+Public Const GLUT_KEY_UP                            = &H65&
+Public Const GLUT_KEY_RIGHT                         = &H66&
+Public Const GLUT_KEY_DOWN                          = &H67&
+Public Const GLUT_KEY_PAGE_UP                       = &H68&
+Public Const GLUT_KEY_PAGE_DOWN                     = &H69&
+Public Const GLUT_KEY_HOME                          = &H6A&
+Public Const GLUT_KEY_END                           = &H6B&
+Public Const GLUT_KEY_INSERT                        = &H6C&
 ' GLUT API macro definitions -- mouse state definitions
-Public Const GLUT_LEFT_BUTTON = &H0&
-Public Const GLUT_MIDDLE_BUTTON = &H1&
-Public Const GLUT_RIGHT_BUTTON = &H2&
-Public Const GLUT_DOWN = &H0&
-Public Const GLUT_UP = &H1&
-Public Const GLUT_LEFT = &H0&
-Public Const GLUT_ENTERED = &H1&
+Public Const GLUT_LEFT_BUTTON                       = &H0&
+Public Const GLUT_MIDDLE_BUTTON                     = &H1&
+Public Const GLUT_RIGHT_BUTTON                      = &H2&
+Public Const GLUT_DOWN                              = &H0&
+Public Const GLUT_UP                                = &H1&
+Public Const GLUT_LEFT                              = &H0&
+Public Const GLUT_ENTERED                           = &H1&
 ' GLUT API macro definitions -- the display mode definitions
-Public Const GLUT_RGB = &H0&
-Public Const GLUT_RGBA = &H0&
-Public Const GLUT_INDEX = &H1&
-Public Const GLUT_SINGLE = &H0&
-Public Const GLUT_DOUBLE = &H2&
-Public Const GLUT_ACCUM = &H4&
-Public Const GLUT_ALPHA = &H8&
-Public Const GLUT_DEPTH = &H10&
-Public Const GLUT_STENCIL = &H20&
-Public Const GLUT_MULTISAMPLE = &H80&
-Public Const GLUT_STEREO = &H100&
-Public Const GLUT_LUMINANCE = &H200&
+Public Const GLUT_RGB                               = &H0&
+Public Const GLUT_RGBA                              = &H0&
+Public Const GLUT_INDEX                             = &H1&
+Public Const GLUT_SINGLE                            = &H0&
+Public Const GLUT_DOUBLE                            = &H2&
+Public Const GLUT_ACCUM                             = &H4&
+Public Const GLUT_ALPHA                             = &H8&
+Public Const GLUT_DEPTH                             = &H10&
+Public Const GLUT_STENCIL                           = &H20&
+Public Const GLUT_MULTISAMPLE                       = &H80&
+Public Const GLUT_STEREO                            = &H100&
+Public Const GLUT_LUMINANCE                         = &H200&
 ' GLUT API macro definitions -- windows and menu related definitions
-Public Const GLUT_MENU_NOT_IN_USE = &H0&
-Public Const GLUT_MENU_IN_USE = &H1&
-Public Const GLUT_NOT_VISIBLE = &H0&
-Public Const GLUT_VISIBLE = &H1&
-Public Const GLUT_HIDDEN = &H0&
-Public Const GLUT_FULLY_RETAINED = &H1&
-Public Const GLUT_PARTIALLY_RETAINED = &H2&
-Public Const GLUT_FULLY_COVERED = &H3&
+Public Const GLUT_MENU_NOT_IN_USE                   = &H0&
+Public Const GLUT_MENU_IN_USE                       = &H1&
+Public Const GLUT_NOT_VISIBLE                       = &H0&
+Public Const GLUT_VISIBLE                           = &H1&
+Public Const GLUT_HIDDEN                            = &H0&
+Public Const GLUT_FULLY_RETAINED                    = &H1&
+Public Const GLUT_PARTIALLY_RETAINED                = &H2&
+Public Const GLUT_FULLY_COVERED                     = &H3&
 ' GLUT API macro definitions -- fonts definitions
-Public Const GLUT_STROKE_ROMAN = 0
-Public Const GLUT_STROKE_MONO_ROMAN = 1
-Public Const GLUT_BITMAP_9_BY_15 = 2
-Public Const GLUT_BITMAP_8_BY_13 = 3
-Public Const GLUT_BITMAP_TIMES_ROMAN_10 = 4
-Public Const GLUT_BITMAP_TIMES_ROMAN_24 = 5
-Public Const GLUT_BITMAP_HELVETICA_10 = 6
-Public Const GLUT_BITMAP_HELVETICA_12 = 7
-Public Const GLUT_BITMAP_HELVETICA_18 = 8
+Public Const GLUT_STROKE_ROMAN                      = 0
+Public Const GLUT_STROKE_MONO_ROMAN                 = 1
+Public Const GLUT_BITMAP_9_BY_15                    = 2
+Public Const GLUT_BITMAP_8_BY_13                    = 3
+Public Const GLUT_BITMAP_TIMES_ROMAN_10             = 4
+Public Const GLUT_BITMAP_TIMES_ROMAN_24             = 5
+Public Const GLUT_BITMAP_HELVETICA_10               = 6
+Public Const GLUT_BITMAP_HELVETICA_12               = 7
+Public Const GLUT_BITMAP_HELVETICA_18               = 8
 ' GLUT API macro definitions -- the glutGet parameters
-Public Const GLUT_WINDOW_X = &H64&
-Public Const GLUT_WINDOW_Y = &H65&
-Public Const GLUT_WINDOW_WIDTH = &H66&
-Public Const GLUT_WINDOW_HEIGHT = &H67&
-Public Const GLUT_WINDOW_BUFFER_SIZE = &H68&
-Public Const GLUT_WINDOW_STENCIL_SIZE = &H69&
-Public Const GLUT_WINDOW_DEPTH_SIZE = &H6A&
-Public Const GLUT_WINDOW_RED_SIZE = &H6B&
-Public Const GLUT_WINDOW_GREEN_SIZE = &H6C&
-Public Const GLUT_WINDOW_BLUE_SIZE = &H6D&
-Public Const GLUT_WINDOW_ALPHA_SIZE = &H6E&
-Public Const GLUT_WINDOW_ACCUM_RED_SIZE = &H6F&
-Public Const GLUT_WINDOW_ACCUM_GREEN_SIZE = &H70&
-Public Const GLUT_WINDOW_ACCUM_BLUE_SIZE = &H71&
-Public Const GLUT_WINDOW_ACCUM_ALPHA_SIZE = &H72&
-Public Const GLUT_WINDOW_DOUBLEBUFFER = &H73&
-Public Const GLUT_WINDOW_RGBA = &H74&
-Public Const GLUT_WINDOW_PARENT = &H75&
-Public Const GLUT_WINDOW_NUM_CHILDREN = &H76&
-Public Const GLUT_WINDOW_COLORMAP_SIZE = &H77&
-Public Const GLUT_WINDOW_NUM_SAMPLES = &H78&
-Public Const GLUT_WINDOW_STEREO = &H79&
-Public Const GLUT_WINDOW_CURSOR = &H7A&
-Public Const GLUT_SCREEN_WIDTH = &HC8&
-Public Const GLUT_SCREEN_HEIGHT = &HC9&
-Public Const GLUT_SCREEN_WIDTH_MM = &HCA&
-Public Const GLUT_SCREEN_HEIGHT_MM = &HCB&
-Public Const GLUT_MENU_NUM_ITEMS = &H12C&
-Public Const GLUT_DISPLAY_MODE_POSSIBLE = &H190&
-Public Const GLUT_INIT_WINDOW_X = &H1F4&
-Public Const GLUT_INIT_WINDOW_Y = &H1F5&
-Public Const GLUT_INIT_WINDOW_WIDTH = &H1F6&
-Public Const GLUT_INIT_WINDOW_HEIGHT = &H1F7&
-Public Const GLUT_INIT_DISPLAY_MODE = &H1F8&
-Public Const GLUT_ELAPSED_TIME = &H2BC&
-Public Const GLUT_WINDOW_FORMAT_ID = &H7B&
+Public Const GLUT_WINDOW_X                          = &H64&
+Public Const GLUT_WINDOW_Y                          = &H65&
+Public Const GLUT_WINDOW_WIDTH                      = &H66&
+Public Const GLUT_WINDOW_HEIGHT                     = &H67&
+Public Const GLUT_WINDOW_BUFFER_SIZE                = &H68&
+Public Const GLUT_WINDOW_STENCIL_SIZE               = &H69&
+Public Const GLUT_WINDOW_DEPTH_SIZE                 = &H6A&
+Public Const GLUT_WINDOW_RED_SIZE                   = &H6B&
+Public Const GLUT_WINDOW_GREEN_SIZE                 = &H6C&
+Public Const GLUT_WINDOW_BLUE_SIZE                  = &H6D&
+Public Const GLUT_WINDOW_ALPHA_SIZE                 = &H6E&
+Public Const GLUT_WINDOW_ACCUM_RED_SIZE             = &H6F&
+Public Const GLUT_WINDOW_ACCUM_GREEN_SIZE           = &H70&
+Public Const GLUT_WINDOW_ACCUM_BLUE_SIZE            = &H71&
+Public Const GLUT_WINDOW_ACCUM_ALPHA_SIZE           = &H72&
+Public Const GLUT_WINDOW_DOUBLEBUFFER               = &H73&
+Public Const GLUT_WINDOW_RGBA                       = &H74&
+Public Const GLUT_WINDOW_PARENT                     = &H75&
+Public Const GLUT_WINDOW_NUM_CHILDREN               = &H76&
+Public Const GLUT_WINDOW_COLORMAP_SIZE              = &H77&
+Public Const GLUT_WINDOW_NUM_SAMPLES                = &H78&
+Public Const GLUT_WINDOW_STEREO                     = &H79&
+Public Const GLUT_WINDOW_CURSOR                     = &H7A&
+Public Const GLUT_SCREEN_WIDTH                      = &HC8&
+Public Const GLUT_SCREEN_HEIGHT                     = &HC9&
+Public Const GLUT_SCREEN_WIDTH_MM                   = &HCA&
+Public Const GLUT_SCREEN_HEIGHT_MM                  = &HCB&
+Public Const GLUT_MENU_NUM_ITEMS                    = &H12C&
+Public Const GLUT_DISPLAY_MODE_POSSIBLE             = &H190&
+Public Const GLUT_INIT_WINDOW_X                     = &H1F4&
+Public Const GLUT_INIT_WINDOW_Y                     = &H1F5&
+Public Const GLUT_INIT_WINDOW_WIDTH                 = &H1F6&
+Public Const GLUT_INIT_WINDOW_HEIGHT                = &H1F7&
+Public Const GLUT_INIT_DISPLAY_MODE                 = &H1F8&
+Public Const GLUT_ELAPSED_TIME                      = &H2BC&
+Public Const GLUT_WINDOW_FORMAT_ID                  = &H7B&
 ' GLUT API macro definitions -- the glutDeviceGet parameters
-Public Const GLUT_HAS_KEYBOARD = &H258&
-Public Const GLUT_HAS_MOUSE = &H259&
-Public Const GLUT_HAS_SPACEBALL = &H25A&
-Public Const GLUT_HAS_DIAL_AND_BUTTON_BOX = &H25B&
-Public Const GLUT_HAS_TABLET = &H25C&
-Public Const GLUT_NUM_MOUSE_BUTTONS = &H25D&
-Public Const GLUT_NUM_SPACEBALL_BUTTONS = &H25E&
-Public Const GLUT_NUM_BUTTON_BOX_BUTTONS = &H25F&
-Public Const GLUT_NUM_DIALS = &H260&
-Public Const GLUT_NUM_TABLET_BUTTONS = &H261&
-Public Const GLUT_DEVICE_IGNORE_KEY_REPEAT = &H262&
-Public Const GLUT_DEVICE_KEY_REPEAT = &H263&
-Public Const GLUT_HAS_JOYSTICK = &H264&
-Public Const GLUT_OWNS_JOYSTICK = &H265&
-Public Const GLUT_JOYSTICK_BUTTONS = &H266&
-Public Const GLUT_JOYSTICK_AXES = &H267&
-Public Const GLUT_JOYSTICK_POLL_RATE = &H268&
+Public Const GLUT_HAS_KEYBOARD                      = &H258&
+Public Const GLUT_HAS_MOUSE                         = &H259&
+Public Const GLUT_HAS_SPACEBALL                     = &H25A&
+Public Const GLUT_HAS_DIAL_AND_BUTTON_BOX           = &H25B&
+Public Const GLUT_HAS_TABLET                        = &H25C&
+Public Const GLUT_NUM_MOUSE_BUTTONS                 = &H25D&
+Public Const GLUT_NUM_SPACEBALL_BUTTONS             = &H25E&
+Public Const GLUT_NUM_BUTTON_BOX_BUTTONS            = &H25F&
+Public Const GLUT_NUM_DIALS                         = &H260&
+Public Const GLUT_NUM_TABLET_BUTTONS                = &H261&
+Public Const GLUT_DEVICE_IGNORE_KEY_REPEAT          = &H262&
+Public Const GLUT_DEVICE_KEY_REPEAT                 = &H263&
+Public Const GLUT_HAS_JOYSTICK                      = &H264&
+Public Const GLUT_OWNS_JOYSTICK                     = &H265&
+Public Const GLUT_JOYSTICK_BUTTONS                  = &H266&
+Public Const GLUT_JOYSTICK_AXES                     = &H267&
+Public Const GLUT_JOYSTICK_POLL_RATE                = &H268&
 ' GLUT API macro definitions -- the glutLayerGet parameters
-Public Const GLUT_OVERLAY_POSSIBLE = &H320&
-Public Const GLUT_LAYER_IN_USE = &H321&
-Public Const GLUT_HAS_OVERLAY = &H322&
-Public Const GLUT_TRANSPARENT_INDEX = &H323&
-Public Const GLUT_NORMAL_DAMAGED = &H324&
-Public Const GLUT_OVERLAY_DAMAGED = &H325&
+Public Const GLUT_OVERLAY_POSSIBLE                  = &H320&
+Public Const GLUT_LAYER_IN_USE                      = &H321&
+Public Const GLUT_HAS_OVERLAY                       = &H322&
+Public Const GLUT_TRANSPARENT_INDEX                 = &H323&
+Public Const GLUT_NORMAL_DAMAGED                    = &H324&
+Public Const GLUT_OVERLAY_DAMAGED                   = &H325&
 ' GLUT API macro definitions -- the glutVideoResizeGet parameters
-Public Const GLUT_VIDEO_RESIZE_POSSIBLE = &H384&
-Public Const GLUT_VIDEO_RESIZE_IN_USE = &H385&
-Public Const GLUT_VIDEO_RESIZE_X_DELTA = &H386&
-Public Const GLUT_VIDEO_RESIZE_Y_DELTA = &H387&
-Public Const GLUT_VIDEO_RESIZE_WIDTH_DELTA = &H388&
-Public Const GLUT_VIDEO_RESIZE_HEIGHT_DELTA = &H389&
-Public Const GLUT_VIDEO_RESIZE_X = &H38A&
-Public Const GLUT_VIDEO_RESIZE_Y = &H38B&
-Public Const GLUT_VIDEO_RESIZE_WIDTH = &H38C&
-Public Const GLUT_VIDEO_RESIZE_HEIGHT = &H38D&
+Public Const GLUT_VIDEO_RESIZE_POSSIBLE             = &H384&
+Public Const GLUT_VIDEO_RESIZE_IN_USE               = &H385&
+Public Const GLUT_VIDEO_RESIZE_X_DELTA              = &H386&
+Public Const GLUT_VIDEO_RESIZE_Y_DELTA              = &H387&
+Public Const GLUT_VIDEO_RESIZE_WIDTH_DELTA          = &H388&
+Public Const GLUT_VIDEO_RESIZE_HEIGHT_DELTA         = &H389&
+Public Const GLUT_VIDEO_RESIZE_X                    = &H38A&
+Public Const GLUT_VIDEO_RESIZE_Y                    = &H38B&
+Public Const GLUT_VIDEO_RESIZE_WIDTH                = &H38C&
+Public Const GLUT_VIDEO_RESIZE_HEIGHT               = &H38D&
 ' GLUT API macro definitions -- the glutUseLayer parameters
-Public Const GLUT_NORMAL = &H0&
-Public Const GLUT_OVERLAY = &H1&
+Public Const GLUT_NORMAL                            = &H0&
+Public Const GLUT_OVERLAY                           = &H1&
 ' GLUT API macro definitions -- the glutGetModifiers parameters
-Public Const GLUT_ACTIVE_SHIFT = &H1&
-Public Const GLUT_ACTIVE_CTRL = &H2&
-Public Const GLUT_ACTIVE_ALT = &H4&
+Public Const GLUT_ACTIVE_SHIFT                      = &H1&
+Public Const GLUT_ACTIVE_CTRL                       = &H2&
+Public Const GLUT_ACTIVE_ALT                        = &H4&
 ' GLUT API macro definitions -- the glutSetCursor parameters
-Public Const GLUT_CURSOR_RIGHT_ARROW = &H0&
-Public Const GLUT_CURSOR_LEFT_ARROW = &H1&
-Public Const GLUT_CURSOR_INFO = &H2&
-Public Const GLUT_CURSOR_DESTROY = &H3&
-Public Const GLUT_CURSOR_HELP = &H4&
-Public Const GLUT_CURSOR_CYCLE = &H5&
-Public Const GLUT_CURSOR_SPRAY = &H6&
-Public Const GLUT_CURSOR_WAIT = &H7&
-Public Const GLUT_CURSOR_TEXT = &H8&
-Public Const GLUT_CURSOR_CROSSHAIR = &H9&
-Public Const GLUT_CURSOR_UP_DOWN = &HA&
-Public Const GLUT_CURSOR_LEFT_RIGHT = &HB&
-Public Const GLUT_CURSOR_TOP_SIDE = &HC&
-Public Const GLUT_CURSOR_BOTTOM_SIDE = &HD&
-Public Const GLUT_CURSOR_LEFT_SIDE = &HE&
-Public Const GLUT_CURSOR_RIGHT_SIDE = &HF&
-Public Const GLUT_CURSOR_TOP_LEFT_CORNER = &H10&
-Public Const GLUT_CURSOR_TOP_RIGHT_CORNER = &H11&
-Public Const GLUT_CURSOR_BOTTOM_RIGHT_CORNER = &H12&
-Public Const GLUT_CURSOR_BOTTOM_LEFT_CORNER = &H13&
-Public Const GLUT_CURSOR_INHERIT = &H64&
-Public Const GLUT_CURSOR_NONE = &H65&
-Public Const GLUT_CURSOR_FULL_CROSSHAIR = &H66&
+Public Const GLUT_CURSOR_RIGHT_ARROW                = &H0&
+Public Const GLUT_CURSOR_LEFT_ARROW                 = &H1&
+Public Const GLUT_CURSOR_INFO                       = &H2&
+Public Const GLUT_CURSOR_DESTROY                    = &H3&
+Public Const GLUT_CURSOR_HELP                       = &H4&
+Public Const GLUT_CURSOR_CYCLE                      = &H5&
+Public Const GLUT_CURSOR_SPRAY                      = &H6&
+Public Const GLUT_CURSOR_WAIT                       = &H7&
+Public Const GLUT_CURSOR_TEXT                       = &H8&
+Public Const GLUT_CURSOR_CROSSHAIR                  = &H9&
+Public Const GLUT_CURSOR_UP_DOWN                    = &HA&
+Public Const GLUT_CURSOR_LEFT_RIGHT                 = &HB&
+Public Const GLUT_CURSOR_TOP_SIDE                   = &HC&
+Public Const GLUT_CURSOR_BOTTOM_SIDE                = &HD&
+Public Const GLUT_CURSOR_LEFT_SIDE                  = &HE&
+Public Const GLUT_CURSOR_RIGHT_SIDE                 = &HF&
+Public Const GLUT_CURSOR_TOP_LEFT_CORNER            = &H10&
+Public Const GLUT_CURSOR_TOP_RIGHT_CORNER           = &H11&
+Public Const GLUT_CURSOR_BOTTOM_RIGHT_CORNER        = &H12&
+Public Const GLUT_CURSOR_BOTTOM_LEFT_CORNER         = &H13&
+Public Const GLUT_CURSOR_INHERIT                    = &H64&
+Public Const GLUT_CURSOR_NONE                       = &H65&
+Public Const GLUT_CURSOR_FULL_CROSSHAIR             = &H66&
 ' GLUT API macro definitions -- RGB color component specification definitions
-Public Const GLUT_RED = &H0&
-Public Const GLUT_GREEN = &H1&
-Public Const GLUT_BLUE = &H2&
+Public Const GLUT_RED                               = &H0&
+Public Const GLUT_GREEN                             = &H1&
+Public Const GLUT_BLUE                              = &H2&
 ' GLUT API macro definitions -- additional keyboard and joystick definitions
-Public Const GLUT_KEY_REPEAT_OFF = &H0&
-Public Const GLUT_KEY_REPEAT_ON = &H1&
-Public Const GLUT_KEY_REPEAT_DEFAULT = &H2&
-Public Const GLUT_JOYSTICK_BUTTON_A = &H1&
-Public Const GLUT_JOYSTICK_BUTTON_B = &H2&
-Public Const GLUT_JOYSTICK_BUTTON_C = &H4&
-Public Const GLUT_JOYSTICK_BUTTON_D = &H8&
+Public Const GLUT_KEY_REPEAT_OFF                    = &H0&
+Public Const GLUT_KEY_REPEAT_ON                     = &H1&
+Public Const GLUT_KEY_REPEAT_DEFAULT                = &H2&
+Public Const GLUT_JOYSTICK_BUTTON_A                 = &H1&
+Public Const GLUT_JOYSTICK_BUTTON_B                 = &H2&
+Public Const GLUT_JOYSTICK_BUTTON_C                 = &H4&
+Public Const GLUT_JOYSTICK_BUTTON_D                 = &H8&
 ' GLUT API macro definitions -- game mode definitions
-Public Const GLUT_GAME_MODE_ACTIVE = &H0&
-Public Const GLUT_GAME_MODE_POSSIBLE = &H1&
-Public Const GLUT_GAME_MODE_WIDTH = &H2&
-Public Const GLUT_GAME_MODE_HEIGHT = &H3&
-Public Const GLUT_GAME_MODE_PIXEL_DEPTH = &H4&
-Public Const GLUT_GAME_MODE_REFRESH_RATE = &H5&
-Public Const GLUT_GAME_MODE_DISPLAY_CHANGED = &H6&
+Public Const GLUT_GAME_MODE_ACTIVE                  = &H0&
+Public Const GLUT_GAME_MODE_POSSIBLE                = &H1&
+Public Const GLUT_GAME_MODE_WIDTH                   = &H2&
+Public Const GLUT_GAME_MODE_HEIGHT                  = &H3&
+Public Const GLUT_GAME_MODE_PIXEL_DEPTH             = &H4&
+Public Const GLUT_GAME_MODE_REFRESH_RATE            = &H5&
+Public Const GLUT_GAME_MODE_DISPLAY_CHANGED         = &H6&
 ' Additional GLUT Key definitions for the Special key function
-Public Const GLUT_KEY_NUM_LOCK = &H6D&
-Public Const GLUT_KEY_BEGIN = &H6E&
-Public Const GLUT_KEY_DELETE = &H6F&
-Public Const GLUT_KEY_SHIFT_L = &H70&
-Public Const GLUT_KEY_SHIFT_R = &H71&
-Public Const GLUT_KEY_CTRL_L = &H72&
-Public Const GLUT_KEY_CTRL_R = &H73&
-Public Const GLUT_KEY_ALT_L = &H74&
-Public Const GLUT_KEY_ALT_R = &H75&
+Public Const GLUT_KEY_NUM_LOCK                      = &H6D&
+Public Const GLUT_KEY_BEGIN                         = &H6E&
+Public Const GLUT_KEY_DELETE                        = &H6F&
+Public Const GLUT_KEY_SHIFT_L                       = &H70&
+Public Const GLUT_KEY_SHIFT_R                       = &H71&
+Public Const GLUT_KEY_CTRL_L                        = &H72&
+Public Const GLUT_KEY_CTRL_R                        = &H73&
+Public Const GLUT_KEY_ALT_L                         = &H74&
+Public Const GLUT_KEY_ALT_R                         = &H75&
 ' GLUT API Extension macro definitions -- behaviour when the user clicks on an "x" to close a window
-Public Const GLUT_ACTION_EXIT = 0&
-Public Const GLUT_ACTION_GLUTMAINLOOP_RETURNS = 1&
-Public Const GLUT_ACTION_CONTINUE_EXECUTION = 2&
+Public Const GLUT_ACTION_EXIT                       = 0&
+Public Const GLUT_ACTION_GLUTMAINLOOP_RETURNS       = 1&
+Public Const GLUT_ACTION_CONTINUE_EXECUTION         = 2&
 ' Create a new rendering context when the user opens a new window?
-Public Const GLUT_CREATE_NEW_CONTEXT = 0&
-Public Const GLUT_USE_CURRENT_CONTEXT = 1&
+Public Const GLUT_CREATE_NEW_CONTEXT                = 0&
+Public Const GLUT_USE_CURRENT_CONTEXT               = 1&
 ' Direct/Indirect rendering context options (has meaning only in Unix/X11)
-Public Const GLUT_FORCE_INDIRECT_CONTEXT = 0&
-Public Const GLUT_ALLOW_DIRECT_CONTEXT = 1&
-Public Const GLUT_TRY_DIRECT_CONTEXT = 2&
-Public Const GLUT_FORCE_DIRECT_CONTEXT = 3&
+Public Const GLUT_FORCE_INDIRECT_CONTEXT            = 0&
+Public Const GLUT_ALLOW_DIRECT_CONTEXT              = 1&
+Public Const GLUT_TRY_DIRECT_CONTEXT                = 2&
+Public Const GLUT_FORCE_DIRECT_CONTEXT              = 3&
 ' GLUT API Extension macro definitions -- the glutGet parameters
-Public Const GLUT_INIT_STATE = &H7C&
-Public Const GLUT_ACTION_ON_WINDOW_CLOSE = &H1F9&
-Public Const GLUT_WINDOW_BORDER_WIDTH = &H1FA&
-Public Const GLUT_WINDOW_BORDER_HEIGHT = &H1FB&
-Public Const GLUT_WINDOW_HEADER_HEIGHT = &H1FB&
-Public Const GLUT_VERSION = &H1FC&
-Public Const GLUT_RENDERING_CONTEXT = &H1FD&
-Public Const GLUT_DIRECT_RENDERING = &H1FE&
-Public Const GLUT_FULL_SCREEN = &H1FF&
-Public Const GLUT_SKIP_STALE_MOTION_EVENTS = &H204&
-Public Const GLUT_GEOMETRY_VISUALIZE_NORMALS = &H205&
-Public Const GLUT_STROKE_FONT_DRAW_JOIN_DOTS = &H206&
-Public Const GLUT_ALLOW_NEGATIVE_WINDOW_POSITION = &H207&
-Public Const GLUT_WINDOW_SRGB = &H7D&
+Public Const GLUT_INIT_STATE                        = &H7C&
+Public Const GLUT_ACTION_ON_WINDOW_CLOSE            = &H1F9&
+Public Const GLUT_WINDOW_BORDER_WIDTH               = &H1FA&
+Public Const GLUT_WINDOW_BORDER_HEIGHT              = &H1FB&
+Public Const GLUT_WINDOW_HEADER_HEIGHT              = &H1FB&
+Public Const GLUT_VERSION                           = &H1FC&
+Public Const GLUT_RENDERING_CONTEXT                 = &H1FD&
+Public Const GLUT_DIRECT_RENDERING                  = &H1FE&
+Public Const GLUT_FULL_SCREEN                       = &H1FF&
+Public Const GLUT_SKIP_STALE_MOTION_EVENTS          = &H204&
+Public Const GLUT_GEOMETRY_VISUALIZE_NORMALS        = &H205&
+Public Const GLUT_STROKE_FONT_DRAW_JOIN_DOTS        = &H206&
+Public Const GLUT_ALLOW_NEGATIVE_WINDOW_POSITION    = &H207&
+Public Const GLUT_WINDOW_SRGB                       = &H7D&
 ' New tokens for glutInitDisplayMode.
 ' Only one GLUT_AUXn bit may be used at a time.
 ' Value 0x0400 is defined in OpenGLUT.
-Public Const GLUT_AUX = &H1000&
-Public Const GLUT_AUX1 = &H1000&
-Public Const GLUT_AUX2 = &H2000&
-Public Const GLUT_AUX3 = &H4000&
-Public Const GLUT_AUX4 = &H8000&
+Public Const GLUT_AUX                               = &H1000&
+Public Const GLUT_AUX1                              = &H1000&
+Public Const GLUT_AUX2                              = &H2000&
+Public Const GLUT_AUX3                              = &H4000&
+Public Const GLUT_AUX4                              = &H8000&
 ' Context-related flags, see freeglut_state.c
-Public Const GLUT_INIT_MAJOR_VERSION = &H200&
-Public Const GLUT_INIT_MINOR_VERSION = &H201&
-Public Const GLUT_INIT_FLAGS = &H202&
-Public Const GLUT_INIT_PROFILE = &H203&
+Public Const GLUT_INIT_MAJOR_VERSION                = &H200&
+Public Const GLUT_INIT_MINOR_VERSION                = &H201&
+Public Const GLUT_INIT_FLAGS                        = &H202&
+Public Const GLUT_INIT_PROFILE                      = &H203&
 ' Flags for glutInitContextFlags, see freeglut_init.c
-Public Const GLUT_DEBUG = &H1&
-Public Const GLUT_FORWARD_COMPATIBLE = &H2&
+Public Const GLUT_DEBUG                             = &H1&
+Public Const GLUT_FORWARD_COMPATIBLE                = &H2&
 ' Flags for glutInitContextProfile, see freeglut_init.c
-Public Const GLUT_CORE_PROFILE = &H1&
-Public Const GLUT_COMPATIBILITY_PROFILE = &H2&
+Public Const GLUT_CORE_PROFILE                      = &H1&
+Public Const GLUT_COMPATIBILITY_PROFILE             = &H2&
 ' GLUT API Extension macro definitions -- Spaceball button definitions
-Public Const GLUT_SPACEBALL_BUTTON_A = &H1&
-Public Const GLUT_SPACEBALL_BUTTON_B = &H2&
-Public Const GLUT_SPACEBALL_BUTTON_C = &H4&
-Public Const GLUT_SPACEBALL_BUTTON_D = &H8&
-Public Const GLUT_SPACEBALL_BUTTON_E = &H10&
+Public Const GLUT_SPACEBALL_BUTTON_A                = &H1&
+Public Const GLUT_SPACEBALL_BUTTON_B                = &H2&
+Public Const GLUT_SPACEBALL_BUTTON_C                = &H4&
+Public Const GLUT_SPACEBALL_BUTTON_D                = &H8&
+Public Const GLUT_SPACEBALL_BUTTON_E                = &H10&
 ' Multi-touch/multi-pointer extensions
-Public Const GLUT_HAS_MULTI = 1&
+Public Const GLUT_HAS_MULTI                         = 1&
 ' state flags that can be passed to callback set by glutAppStatusFunc */
-Public Const GLUT_APPSTATUS_PAUSE = 1&
-Public Const GLUT_APPSTATUS_RESUME = 2&
+Public Const GLUT_APPSTATUS_PAUSE                   = 1&
+Public Const GLUT_APPSTATUS_RESUME                  = 2&
 ' GLUT API macro definitions -- the display mode definitions
-Public Const GLUT_CAPTIONLESS = &H400&
-Public Const GLUT_BORDERLESS = &H800&
-Public Const GLUT_SRGB = &H1000&
+Public Const GLUT_CAPTIONLESS                       = &H400&
+Public Const GLUT_BORDERLESS                        = &H800&
+Public Const GLUT_SRGB                              = &H1000&
 #If Win64 Then
     ' Initialization functions, see fglut_init.c
     Public Declare PtrSafe Sub glutInit Lib "freeglut64" (pargc As LongPtr, argv As String)

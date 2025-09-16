@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -47,17 +47,17 @@ Public Sub glMinSampleShading(ByVal value As Single)                            
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL4_0()
-If IsDEPEnabled Then
-    glMinSampleShadingPtr = OpenGLExtProcAddress("glMinSampleShading")
-    glBlendFunciPtr = OpenGLExtProcAddress("glBlendFunci")
-    glBlendFuncSeparateiPtr = OpenGLExtProcAddress("glBlendFuncSeparatei")
-    glBlendEquationiPtr = OpenGLExtProcAddress("glBlendEquationi")
-    glBlendEquationSeparateiPtr = OpenGLExtProcAddress("glBlendEquationSeparatei")
-Else
-    RemapVBFunctionToGLFunction AddressOf glMinSampleShading, "glMinSampleShading"
-    RemapVBFunctionToGLFunction AddressOf glBlendFunci, "glBlendFunci"
-    RemapVBFunctionToGLFunction AddressOf glBlendFuncSeparatei, "glBlendFuncSeparatei"
-    RemapVBFunctionToGLFunction AddressOf glBlendEquationi, "glBlendEquationi"
-    RemapVBFunctionToGLFunction AddressOf glBlendEquationSeparatei, "glBlendEquationSeparatei"
-End If
+    If IsDEPEnabled Then
+        glMinSampleShadingPtr = OpenGLExtProcAddress("glMinSampleShading")
+        glBlendFunciPtr = OpenGLExtProcAddress("glBlendFunci")
+        glBlendFuncSeparateiPtr = OpenGLExtProcAddress("glBlendFuncSeparatei")
+        glBlendEquationiPtr = OpenGLExtProcAddress("glBlendEquationi")
+        glBlendEquationSeparateiPtr = OpenGLExtProcAddress("glBlendEquationSeparatei")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glMinSampleShading, "glMinSampleShading"
+        RemapVBFunctionToGLFunction AddressOf glBlendFunci, "glBlendFunci"
+        RemapVBFunctionToGLFunction AddressOf glBlendFuncSeparatei, "glBlendFuncSeparatei"
+        RemapVBFunctionToGLFunction AddressOf glBlendEquationi, "glBlendEquationi"
+        RemapVBFunctionToGLFunction AddressOf glBlendEquationSeparatei, "glBlendEquationSeparatei"
+    End If
 End Function

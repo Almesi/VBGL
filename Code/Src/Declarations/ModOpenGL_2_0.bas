@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -215,193 +215,193 @@ Public Sub glVertexAttribPointer(ByVal index As Long, ByVal size As Long, ByVal 
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL2_0()
-If IsDEPEnabled Then
-    glVertexAttribPointerPtr = OpenGLExtProcAddress("glVertexAttribPointer")
-    glVertexAttrib4usvPtr = OpenGLExtProcAddress("glVertexAttrib4usv")
-    glVertexAttrib4uivPtr = OpenGLExtProcAddress("glVertexAttrib4uiv")
-    glVertexAttrib4ubvPtr = OpenGLExtProcAddress("glVertexAttrib4ubv")
-    glVertexAttrib4svPtr = OpenGLExtProcAddress("glVertexAttrib4sv")
-    glVertexAttrib4sPtr = OpenGLExtProcAddress("glVertexAttrib4s")
-    glVertexAttrib4ivPtr = OpenGLExtProcAddress("glVertexAttrib4iv")
-    glVertexAttrib4fvPtr = OpenGLExtProcAddress("glVertexAttrib4fv")
-    glVertexAttrib4fPtr = OpenGLExtProcAddress("glVertexAttrib4f")
-    glVertexAttrib4dvPtr = OpenGLExtProcAddress("glVertexAttrib4dv")
-    glVertexAttrib4dPtr = OpenGLExtProcAddress("glVertexAttrib4d")
-    glVertexAttrib4bvPtr = OpenGLExtProcAddress("glVertexAttrib4bv")
-    glVertexAttrib4NusvPtr = OpenGLExtProcAddress("glVertexAttrib4Nusv")
-    glVertexAttrib4NuivPtr = OpenGLExtProcAddress("glVertexAttrib4Nuiv")
-    glVertexAttrib4NubvPtr = OpenGLExtProcAddress("glVertexAttrib4Nubv")
-    glVertexAttrib4NubPtr = OpenGLExtProcAddress("glVertexAttrib4Nub")
-    glVertexAttrib4NsvPtr = OpenGLExtProcAddress("glVertexAttrib4Nsv")
-    glVertexAttrib4NivPtr = OpenGLExtProcAddress("glVertexAttrib4Niv")
-    glVertexAttrib4NbvPtr = OpenGLExtProcAddress("glVertexAttrib4Nbv")
-    glVertexAttrib3svPtr = OpenGLExtProcAddress("glVertexAttrib3sv")
-    glVertexAttrib3sPtr = OpenGLExtProcAddress("glVertexAttrib3s")
-    glVertexAttrib3fvPtr = OpenGLExtProcAddress("glVertexAttrib3fv")
-    glVertexAttrib3fPtr = OpenGLExtProcAddress("glVertexAttrib3f")
-    glVertexAttrib3dvPtr = OpenGLExtProcAddress("glVertexAttrib3dv")
-    glVertexAttrib3dPtr = OpenGLExtProcAddress("glVertexAttrib3d")
-    glVertexAttrib2svPtr = OpenGLExtProcAddress("glVertexAttrib2sv")
-    glVertexAttrib2sPtr = OpenGLExtProcAddress("glVertexAttrib2s")
-    glVertexAttrib2fvPtr = OpenGLExtProcAddress("glVertexAttrib2fv")
-    glVertexAttrib2fPtr = OpenGLExtProcAddress("glVertexAttrib2f")
-    glVertexAttrib2dvPtr = OpenGLExtProcAddress("glVertexAttrib2dv")
-    glVertexAttrib2dPtr = OpenGLExtProcAddress("glVertexAttrib2d")
-    glVertexAttrib1svPtr = OpenGLExtProcAddress("glVertexAttrib1sv")
-    glVertexAttrib1sPtr = OpenGLExtProcAddress("glVertexAttrib1s")
-    glVertexAttrib1fvPtr = OpenGLExtProcAddress("glVertexAttrib1fv")
-    glVertexAttrib1fPtr = OpenGLExtProcAddress("glVertexAttrib1f")
-    glVertexAttrib1dvPtr = OpenGLExtProcAddress("glVertexAttrib1dv")
-    glVertexAttrib1dPtr = OpenGLExtProcAddress("glVertexAttrib1d")
-    glValidateProgramPtr = OpenGLExtProcAddress("glValidateProgram")
-    glUseProgramPtr = OpenGLExtProcAddress("glUseProgram")
-    glUniformMatrix4fvPtr = OpenGLExtProcAddress("glUniformMatrix4fv")
-    glUniformMatrix3fvPtr = OpenGLExtProcAddress("glUniformMatrix3fv")
-    glUniformMatrix2fvPtr = OpenGLExtProcAddress("glUniformMatrix2fv")
-    glUniform4ivPtr = OpenGLExtProcAddress("glUniform4iv")
-    glUniform4iPtr = OpenGLExtProcAddress("glUniform4i")
-    glUniform4fvPtr = OpenGLExtProcAddress("glUniform4fv")
-    glUniform4fPtr = OpenGLExtProcAddress("glUniform4f")
-    glUniform3ivPtr = OpenGLExtProcAddress("glUniform3iv")
-    glUniform3iPtr = OpenGLExtProcAddress("glUniform3i")
-    glUniform3fvPtr = OpenGLExtProcAddress("glUniform3fv")
-    glUniform3fPtr = OpenGLExtProcAddress("glUniform3f")
-    glUniform2ivPtr = OpenGLExtProcAddress("glUniform2iv")
-    glUniform2iPtr = OpenGLExtProcAddress("glUniform2i")
-    glUniform2fvPtr = OpenGLExtProcAddress("glUniform2fv")
-    glUniform2fPtr = OpenGLExtProcAddress("glUniform2f")
-    glUniform1ivPtr = OpenGLExtProcAddress("glUniform1iv")
-    glUniform1iPtr = OpenGLExtProcAddress("glUniform1i")
-    glUniform1fvPtr = OpenGLExtProcAddress("glUniform1fv")
-    glUniform1fPtr = OpenGLExtProcAddress("glUniform1f")
-    glStencilOpSeparatePtr = OpenGLExtProcAddress("glStencilOpSeparate")
-    glStencilMaskSeparatePtr = OpenGLExtProcAddress("glStencilMaskSeparate")
-    glStencilFuncSeparatePtr = OpenGLExtProcAddress("glStencilFuncSeparate")
-    glShaderSourcePtr = OpenGLExtProcAddress("glShaderSource")
-    glLinkProgramPtr = OpenGLExtProcAddress("glLinkProgram")
-    glIsShaderPtr = OpenGLExtProcAddress("glIsShader")
-    glIsProgramPtr = OpenGLExtProcAddress("glIsProgram")
-    glGetVertexAttribivPtr = OpenGLExtProcAddress("glGetVertexAttribiv")
-    glGetVertexAttribfvPtr = OpenGLExtProcAddress("glGetVertexAttribfv")
-    glGetVertexAttribdvPtr = OpenGLExtProcAddress("glGetVertexAttribdv")
-    glGetVertexAttribPointervPtr = OpenGLExtProcAddress("glGetVertexAttribPointerv")
-    glGetUniformivPtr = OpenGLExtProcAddress("glGetUniformiv")
-    glGetUniformfvPtr = OpenGLExtProcAddress("glGetUniformfv")
-    glGetUniformLocationPtr = OpenGLExtProcAddress("glGetUniformLocation")
-    glGetShaderivPtr = OpenGLExtProcAddress("glGetShaderiv")
-    glGetShaderSourcePtr = OpenGLExtProcAddress("glGetShaderSource")
-    glGetShaderInfoLogPtr = OpenGLExtProcAddress("glGetShaderInfoLog")
-    glGetProgramivPtr = OpenGLExtProcAddress("glGetProgramiv")
-    glGetProgramInfoLogPtr = OpenGLExtProcAddress("glGetProgramInfoLog")
-    glGetAttribLocationPtr = OpenGLExtProcAddress("glGetAttribLocation")
-    glGetAttachedShadersPtr = OpenGLExtProcAddress("glGetAttachedShaders")
-    glGetActiveUniformPtr = OpenGLExtProcAddress("glGetActiveUniform")
-    glGetActiveAttribPtr = OpenGLExtProcAddress("glGetActiveAttrib")
-    glEnableVertexAttribArrayPtr = OpenGLExtProcAddress("glEnableVertexAttribArray")
-    glDrawBuffersPtr = OpenGLExtProcAddress("glDrawBuffers")
-    glDisableVertexAttribArrayPtr = OpenGLExtProcAddress("glDisableVertexAttribArray")
-    glDetachShaderPtr = OpenGLExtProcAddress("glDetachShader")
-    glDeleteShaderPtr = OpenGLExtProcAddress("glDeleteShader")
-    glDeleteProgramPtr = OpenGLExtProcAddress("glDeleteProgram")
-    glCreateShaderPtr = OpenGLExtProcAddress("glCreateShader")
-    glCreateProgramPtr = OpenGLExtProcAddress("glCreateProgram")
-    glCompileShaderPtr = OpenGLExtProcAddress("glCompileShader")
-    glBlendEquationSeparatePtr = OpenGLExtProcAddress("glBlendEquationSeparate")
-    glBindAttribLocationPtr = OpenGLExtProcAddress("glBindAttribLocation")
-    glAttachShaderPtr = OpenGLExtProcAddress("glAttachShader")
-Else
-    RemapVBFunctionToGLFunction AddressOf glVertexAttribPointer, "glVertexAttribPointer"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4usv, "glVertexAttrib4usv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4uiv, "glVertexAttrib4uiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4ubv, "glVertexAttrib4ubv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4sv, "glVertexAttrib4sv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4s, "glVertexAttrib4s"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4iv, "glVertexAttrib4iv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4fv, "glVertexAttrib4fv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4f, "glVertexAttrib4f"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4dv, "glVertexAttrib4dv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4d, "glVertexAttrib4d"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4bv, "glVertexAttrib4bv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nusv, "glVertexAttrib4Nusv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nuiv, "glVertexAttrib4Nuiv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nubv, "glVertexAttrib4Nubv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nub, "glVertexAttrib4Nub"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nsv, "glVertexAttrib4Nsv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Niv, "glVertexAttrib4Niv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nbv, "glVertexAttrib4Nbv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3sv, "glVertexAttrib3sv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3s, "glVertexAttrib3s"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3fv, "glVertexAttrib3fv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3f, "glVertexAttrib3f"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3dv, "glVertexAttrib3dv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib3d, "glVertexAttrib3d"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2sv, "glVertexAttrib2sv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2s, "glVertexAttrib2s"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2fv, "glVertexAttrib2fv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2f, "glVertexAttrib2f"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2dv, "glVertexAttrib2dv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib2d, "glVertexAttrib2d"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1sv, "glVertexAttrib1sv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1s, "glVertexAttrib1s"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1fv, "glVertexAttrib1fv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1f, "glVertexAttrib1f"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1dv, "glVertexAttrib1dv"
-    RemapVBFunctionToGLFunction AddressOf glVertexAttrib1d, "glVertexAttrib1d"
-    RemapVBFunctionToGLFunction AddressOf glValidateProgram, "glValidateProgram"
-    RemapVBFunctionToGLFunction AddressOf glUseProgram, "glUseProgram"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix4fv, "glUniformMatrix4fv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix3fv, "glUniformMatrix3fv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix2fv, "glUniformMatrix2fv"
-    RemapVBFunctionToGLFunction AddressOf glUniform4iv, "glUniform4iv"
-    RemapVBFunctionToGLFunction AddressOf glUniform4i, "glUniform4i"
-    RemapVBFunctionToGLFunction AddressOf glUniform4fv, "glUniform4fv"
-    RemapVBFunctionToGLFunction AddressOf glUniform4f, "glUniform4f"
-    RemapVBFunctionToGLFunction AddressOf glUniform3iv, "glUniform3iv"
-    RemapVBFunctionToGLFunction AddressOf glUniform3i, "glUniform3i"
-    RemapVBFunctionToGLFunction AddressOf glUniform3fv, "glUniform3fv"
-    RemapVBFunctionToGLFunction AddressOf glUniform3f, "glUniform3f"
-    RemapVBFunctionToGLFunction AddressOf glUniform2iv, "glUniform2iv"
-    RemapVBFunctionToGLFunction AddressOf glUniform2i, "glUniform2i"
-    RemapVBFunctionToGLFunction AddressOf glUniform2fv, "glUniform2fv"
-    RemapVBFunctionToGLFunction AddressOf glUniform2f, "glUniform2f"
-    RemapVBFunctionToGLFunction AddressOf glUniform1iv, "glUniform1iv"
-    RemapVBFunctionToGLFunction AddressOf glUniform1i, "glUniform1i"
-    RemapVBFunctionToGLFunction AddressOf glUniform1fv, "glUniform1fv"
-    RemapVBFunctionToGLFunction AddressOf glUniform1f, "glUniform1f"
-    RemapVBFunctionToGLFunction AddressOf glStencilOpSeparate, "glStencilOpSeparate"
-    RemapVBFunctionToGLFunction AddressOf glStencilMaskSeparate, "glStencilMaskSeparate"
-    RemapVBFunctionToGLFunction AddressOf glStencilFuncSeparate, "glStencilFuncSeparate"
-    RemapVBFunctionToGLFunction AddressOf glShaderSource, "glShaderSource"
-    RemapVBFunctionToGLFunction AddressOf glLinkProgram, "glLinkProgram"
-    RemapVBFunctionToGLFunction AddressOf glIsShader, "glIsShader"
-    RemapVBFunctionToGLFunction AddressOf glIsProgram, "glIsProgram"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribiv, "glGetVertexAttribiv"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribfv, "glGetVertexAttribfv"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribdv, "glGetVertexAttribdv"
-    RemapVBFunctionToGLFunction AddressOf glGetVertexAttribPointerv, "glGetVertexAttribPointerv"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformiv, "glGetUniformiv"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformfv, "glGetUniformfv"
-    RemapVBFunctionToGLFunction AddressOf glGetUniformLocation, "glGetUniformLocation"
-    RemapVBFunctionToGLFunction AddressOf glGetShaderiv, "glGetShaderiv"
-    RemapVBFunctionToGLFunction AddressOf glGetShaderSource, "glGetShaderSource"
-    RemapVBFunctionToGLFunction AddressOf glGetShaderInfoLog, "glGetShaderInfoLog"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramiv, "glGetProgramiv"
-    RemapVBFunctionToGLFunction AddressOf glGetProgramInfoLog, "glGetProgramInfoLog"
-    RemapVBFunctionToGLFunction AddressOf glGetAttribLocation, "glGetAttribLocation"
-    RemapVBFunctionToGLFunction AddressOf glGetAttachedShaders, "glGetAttachedShaders"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveUniform, "glGetActiveUniform"
-    RemapVBFunctionToGLFunction AddressOf glGetActiveAttrib, "glGetActiveAttrib"
-    RemapVBFunctionToGLFunction AddressOf glEnableVertexAttribArray, "glEnableVertexAttribArray"
-    RemapVBFunctionToGLFunction AddressOf glDrawBuffers, "glDrawBuffers"
-    RemapVBFunctionToGLFunction AddressOf glDisableVertexAttribArray, "glDisableVertexAttribArray"
-    RemapVBFunctionToGLFunction AddressOf glDetachShader, "glDetachShader"
-    RemapVBFunctionToGLFunction AddressOf glDeleteShader, "glDeleteShader"
-    RemapVBFunctionToGLFunction AddressOf glDeleteProgram, "glDeleteProgram"
-    RemapVBFunctionToGLFunction AddressOf glCreateShader, "glCreateShader"
-    RemapVBFunctionToGLFunction AddressOf glCreateProgram, "glCreateProgram"
-    RemapVBFunctionToGLFunction AddressOf glCompileShader, "glCompileShader"
-    RemapVBFunctionToGLFunction AddressOf glBlendEquationSeparate, "glBlendEquationSeparate"
-    RemapVBFunctionToGLFunction AddressOf glBindAttribLocation, "glBindAttribLocation"
-    RemapVBFunctionToGLFunction AddressOf glAttachShader, "glAttachShader"
-End If
+    If IsDEPEnabled Then
+        glVertexAttribPointerPtr = OpenGLExtProcAddress("glVertexAttribPointer")
+        glVertexAttrib4usvPtr = OpenGLExtProcAddress("glVertexAttrib4usv")
+        glVertexAttrib4uivPtr = OpenGLExtProcAddress("glVertexAttrib4uiv")
+        glVertexAttrib4ubvPtr = OpenGLExtProcAddress("glVertexAttrib4ubv")
+        glVertexAttrib4svPtr = OpenGLExtProcAddress("glVertexAttrib4sv")
+        glVertexAttrib4sPtr = OpenGLExtProcAddress("glVertexAttrib4s")
+        glVertexAttrib4ivPtr = OpenGLExtProcAddress("glVertexAttrib4iv")
+        glVertexAttrib4fvPtr = OpenGLExtProcAddress("glVertexAttrib4fv")
+        glVertexAttrib4fPtr = OpenGLExtProcAddress("glVertexAttrib4f")
+        glVertexAttrib4dvPtr = OpenGLExtProcAddress("glVertexAttrib4dv")
+        glVertexAttrib4dPtr = OpenGLExtProcAddress("glVertexAttrib4d")
+        glVertexAttrib4bvPtr = OpenGLExtProcAddress("glVertexAttrib4bv")
+        glVertexAttrib4NusvPtr = OpenGLExtProcAddress("glVertexAttrib4Nusv")
+        glVertexAttrib4NuivPtr = OpenGLExtProcAddress("glVertexAttrib4Nuiv")
+        glVertexAttrib4NubvPtr = OpenGLExtProcAddress("glVertexAttrib4Nubv")
+        glVertexAttrib4NubPtr = OpenGLExtProcAddress("glVertexAttrib4Nub")
+        glVertexAttrib4NsvPtr = OpenGLExtProcAddress("glVertexAttrib4Nsv")
+        glVertexAttrib4NivPtr = OpenGLExtProcAddress("glVertexAttrib4Niv")
+        glVertexAttrib4NbvPtr = OpenGLExtProcAddress("glVertexAttrib4Nbv")
+        glVertexAttrib3svPtr = OpenGLExtProcAddress("glVertexAttrib3sv")
+        glVertexAttrib3sPtr = OpenGLExtProcAddress("glVertexAttrib3s")
+        glVertexAttrib3fvPtr = OpenGLExtProcAddress("glVertexAttrib3fv")
+        glVertexAttrib3fPtr = OpenGLExtProcAddress("glVertexAttrib3f")
+        glVertexAttrib3dvPtr = OpenGLExtProcAddress("glVertexAttrib3dv")
+        glVertexAttrib3dPtr = OpenGLExtProcAddress("glVertexAttrib3d")
+        glVertexAttrib2svPtr = OpenGLExtProcAddress("glVertexAttrib2sv")
+        glVertexAttrib2sPtr = OpenGLExtProcAddress("glVertexAttrib2s")
+        glVertexAttrib2fvPtr = OpenGLExtProcAddress("glVertexAttrib2fv")
+        glVertexAttrib2fPtr = OpenGLExtProcAddress("glVertexAttrib2f")
+        glVertexAttrib2dvPtr = OpenGLExtProcAddress("glVertexAttrib2dv")
+        glVertexAttrib2dPtr = OpenGLExtProcAddress("glVertexAttrib2d")
+        glVertexAttrib1svPtr = OpenGLExtProcAddress("glVertexAttrib1sv")
+        glVertexAttrib1sPtr = OpenGLExtProcAddress("glVertexAttrib1s")
+        glVertexAttrib1fvPtr = OpenGLExtProcAddress("glVertexAttrib1fv")
+        glVertexAttrib1fPtr = OpenGLExtProcAddress("glVertexAttrib1f")
+        glVertexAttrib1dvPtr = OpenGLExtProcAddress("glVertexAttrib1dv")
+        glVertexAttrib1dPtr = OpenGLExtProcAddress("glVertexAttrib1d")
+        glValidateProgramPtr = OpenGLExtProcAddress("glValidateProgram")
+        glUseProgramPtr = OpenGLExtProcAddress("glUseProgram")
+        glUniformMatrix4fvPtr = OpenGLExtProcAddress("glUniformMatrix4fv")
+        glUniformMatrix3fvPtr = OpenGLExtProcAddress("glUniformMatrix3fv")
+        glUniformMatrix2fvPtr = OpenGLExtProcAddress("glUniformMatrix2fv")
+        glUniform4ivPtr = OpenGLExtProcAddress("glUniform4iv")
+        glUniform4iPtr = OpenGLExtProcAddress("glUniform4i")
+        glUniform4fvPtr = OpenGLExtProcAddress("glUniform4fv")
+        glUniform4fPtr = OpenGLExtProcAddress("glUniform4f")
+        glUniform3ivPtr = OpenGLExtProcAddress("glUniform3iv")
+        glUniform3iPtr = OpenGLExtProcAddress("glUniform3i")
+        glUniform3fvPtr = OpenGLExtProcAddress("glUniform3fv")
+        glUniform3fPtr = OpenGLExtProcAddress("glUniform3f")
+        glUniform2ivPtr = OpenGLExtProcAddress("glUniform2iv")
+        glUniform2iPtr = OpenGLExtProcAddress("glUniform2i")
+        glUniform2fvPtr = OpenGLExtProcAddress("glUniform2fv")
+        glUniform2fPtr = OpenGLExtProcAddress("glUniform2f")
+        glUniform1ivPtr = OpenGLExtProcAddress("glUniform1iv")
+        glUniform1iPtr = OpenGLExtProcAddress("glUniform1i")
+        glUniform1fvPtr = OpenGLExtProcAddress("glUniform1fv")
+        glUniform1fPtr = OpenGLExtProcAddress("glUniform1f")
+        glStencilOpSeparatePtr = OpenGLExtProcAddress("glStencilOpSeparate")
+        glStencilMaskSeparatePtr = OpenGLExtProcAddress("glStencilMaskSeparate")
+        glStencilFuncSeparatePtr = OpenGLExtProcAddress("glStencilFuncSeparate")
+        glShaderSourcePtr = OpenGLExtProcAddress("glShaderSource")
+        glLinkProgramPtr = OpenGLExtProcAddress("glLinkProgram")
+        glIsShaderPtr = OpenGLExtProcAddress("glIsShader")
+        glIsProgramPtr = OpenGLExtProcAddress("glIsProgram")
+        glGetVertexAttribivPtr = OpenGLExtProcAddress("glGetVertexAttribiv")
+        glGetVertexAttribfvPtr = OpenGLExtProcAddress("glGetVertexAttribfv")
+        glGetVertexAttribdvPtr = OpenGLExtProcAddress("glGetVertexAttribdv")
+        glGetVertexAttribPointervPtr = OpenGLExtProcAddress("glGetVertexAttribPointerv")
+        glGetUniformivPtr = OpenGLExtProcAddress("glGetUniformiv")
+        glGetUniformfvPtr = OpenGLExtProcAddress("glGetUniformfv")
+        glGetUniformLocationPtr = OpenGLExtProcAddress("glGetUniformLocation")
+        glGetShaderivPtr = OpenGLExtProcAddress("glGetShaderiv")
+        glGetShaderSourcePtr = OpenGLExtProcAddress("glGetShaderSource")
+        glGetShaderInfoLogPtr = OpenGLExtProcAddress("glGetShaderInfoLog")
+        glGetProgramivPtr = OpenGLExtProcAddress("glGetProgramiv")
+        glGetProgramInfoLogPtr = OpenGLExtProcAddress("glGetProgramInfoLog")
+        glGetAttribLocationPtr = OpenGLExtProcAddress("glGetAttribLocation")
+        glGetAttachedShadersPtr = OpenGLExtProcAddress("glGetAttachedShaders")
+        glGetActiveUniformPtr = OpenGLExtProcAddress("glGetActiveUniform")
+        glGetActiveAttribPtr = OpenGLExtProcAddress("glGetActiveAttrib")
+        glEnableVertexAttribArrayPtr = OpenGLExtProcAddress("glEnableVertexAttribArray")
+        glDrawBuffersPtr = OpenGLExtProcAddress("glDrawBuffers")
+        glDisableVertexAttribArrayPtr = OpenGLExtProcAddress("glDisableVertexAttribArray")
+        glDetachShaderPtr = OpenGLExtProcAddress("glDetachShader")
+        glDeleteShaderPtr = OpenGLExtProcAddress("glDeleteShader")
+        glDeleteProgramPtr = OpenGLExtProcAddress("glDeleteProgram")
+        glCreateShaderPtr = OpenGLExtProcAddress("glCreateShader")
+        glCreateProgramPtr = OpenGLExtProcAddress("glCreateProgram")
+        glCompileShaderPtr = OpenGLExtProcAddress("glCompileShader")
+        glBlendEquationSeparatePtr = OpenGLExtProcAddress("glBlendEquationSeparate")
+        glBindAttribLocationPtr = OpenGLExtProcAddress("glBindAttribLocation")
+        glAttachShaderPtr = OpenGLExtProcAddress("glAttachShader")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glVertexAttribPointer, "glVertexAttribPointer"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4usv, "glVertexAttrib4usv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4uiv, "glVertexAttrib4uiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4ubv, "glVertexAttrib4ubv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4sv, "glVertexAttrib4sv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4s, "glVertexAttrib4s"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4iv, "glVertexAttrib4iv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4fv, "glVertexAttrib4fv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4f, "glVertexAttrib4f"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4dv, "glVertexAttrib4dv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4d, "glVertexAttrib4d"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4bv, "glVertexAttrib4bv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nusv, "glVertexAttrib4Nusv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nuiv, "glVertexAttrib4Nuiv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nubv, "glVertexAttrib4Nubv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nub, "glVertexAttrib4Nub"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nsv, "glVertexAttrib4Nsv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Niv, "glVertexAttrib4Niv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib4Nbv, "glVertexAttrib4Nbv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3sv, "glVertexAttrib3sv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3s, "glVertexAttrib3s"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3fv, "glVertexAttrib3fv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3f, "glVertexAttrib3f"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3dv, "glVertexAttrib3dv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib3d, "glVertexAttrib3d"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2sv, "glVertexAttrib2sv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2s, "glVertexAttrib2s"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2fv, "glVertexAttrib2fv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2f, "glVertexAttrib2f"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2dv, "glVertexAttrib2dv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib2d, "glVertexAttrib2d"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1sv, "glVertexAttrib1sv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1s, "glVertexAttrib1s"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1fv, "glVertexAttrib1fv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1f, "glVertexAttrib1f"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1dv, "glVertexAttrib1dv"
+        RemapVBFunctionToGLFunction AddressOf glVertexAttrib1d, "glVertexAttrib1d"
+        RemapVBFunctionToGLFunction AddressOf glValidateProgram, "glValidateProgram"
+        RemapVBFunctionToGLFunction AddressOf glUseProgram, "glUseProgram"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix4fv, "glUniformMatrix4fv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix3fv, "glUniformMatrix3fv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix2fv, "glUniformMatrix2fv"
+        RemapVBFunctionToGLFunction AddressOf glUniform4iv, "glUniform4iv"
+        RemapVBFunctionToGLFunction AddressOf glUniform4i, "glUniform4i"
+        RemapVBFunctionToGLFunction AddressOf glUniform4fv, "glUniform4fv"
+        RemapVBFunctionToGLFunction AddressOf glUniform4f, "glUniform4f"
+        RemapVBFunctionToGLFunction AddressOf glUniform3iv, "glUniform3iv"
+        RemapVBFunctionToGLFunction AddressOf glUniform3i, "glUniform3i"
+        RemapVBFunctionToGLFunction AddressOf glUniform3fv, "glUniform3fv"
+        RemapVBFunctionToGLFunction AddressOf glUniform3f, "glUniform3f"
+        RemapVBFunctionToGLFunction AddressOf glUniform2iv, "glUniform2iv"
+        RemapVBFunctionToGLFunction AddressOf glUniform2i, "glUniform2i"
+        RemapVBFunctionToGLFunction AddressOf glUniform2fv, "glUniform2fv"
+        RemapVBFunctionToGLFunction AddressOf glUniform2f, "glUniform2f"
+        RemapVBFunctionToGLFunction AddressOf glUniform1iv, "glUniform1iv"
+        RemapVBFunctionToGLFunction AddressOf glUniform1i, "glUniform1i"
+        RemapVBFunctionToGLFunction AddressOf glUniform1fv, "glUniform1fv"
+        RemapVBFunctionToGLFunction AddressOf glUniform1f, "glUniform1f"
+        RemapVBFunctionToGLFunction AddressOf glStencilOpSeparate, "glStencilOpSeparate"
+        RemapVBFunctionToGLFunction AddressOf glStencilMaskSeparate, "glStencilMaskSeparate"
+        RemapVBFunctionToGLFunction AddressOf glStencilFuncSeparate, "glStencilFuncSeparate"
+        RemapVBFunctionToGLFunction AddressOf glShaderSource, "glShaderSource"
+        RemapVBFunctionToGLFunction AddressOf glLinkProgram, "glLinkProgram"
+        RemapVBFunctionToGLFunction AddressOf glIsShader, "glIsShader"
+        RemapVBFunctionToGLFunction AddressOf glIsProgram, "glIsProgram"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribiv, "glGetVertexAttribiv"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribfv, "glGetVertexAttribfv"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribdv, "glGetVertexAttribdv"
+        RemapVBFunctionToGLFunction AddressOf glGetVertexAttribPointerv, "glGetVertexAttribPointerv"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformiv, "glGetUniformiv"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformfv, "glGetUniformfv"
+        RemapVBFunctionToGLFunction AddressOf glGetUniformLocation, "glGetUniformLocation"
+        RemapVBFunctionToGLFunction AddressOf glGetShaderiv, "glGetShaderiv"
+        RemapVBFunctionToGLFunction AddressOf glGetShaderSource, "glGetShaderSource"
+        RemapVBFunctionToGLFunction AddressOf glGetShaderInfoLog, "glGetShaderInfoLog"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramiv, "glGetProgramiv"
+        RemapVBFunctionToGLFunction AddressOf glGetProgramInfoLog, "glGetProgramInfoLog"
+        RemapVBFunctionToGLFunction AddressOf glGetAttribLocation, "glGetAttribLocation"
+        RemapVBFunctionToGLFunction AddressOf glGetAttachedShaders, "glGetAttachedShaders"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveUniform, "glGetActiveUniform"
+        RemapVBFunctionToGLFunction AddressOf glGetActiveAttrib, "glGetActiveAttrib"
+        RemapVBFunctionToGLFunction AddressOf glEnableVertexAttribArray, "glEnableVertexAttribArray"
+        RemapVBFunctionToGLFunction AddressOf glDrawBuffers, "glDrawBuffers"
+        RemapVBFunctionToGLFunction AddressOf glDisableVertexAttribArray, "glDisableVertexAttribArray"
+        RemapVBFunctionToGLFunction AddressOf glDetachShader, "glDetachShader"
+        RemapVBFunctionToGLFunction AddressOf glDeleteShader, "glDeleteShader"
+        RemapVBFunctionToGLFunction AddressOf glDeleteProgram, "glDeleteProgram"
+        RemapVBFunctionToGLFunction AddressOf glCreateShader, "glCreateShader"
+        RemapVBFunctionToGLFunction AddressOf glCreateProgram, "glCreateProgram"
+        RemapVBFunctionToGLFunction AddressOf glCompileShader, "glCompileShader"
+        RemapVBFunctionToGLFunction AddressOf glBlendEquationSeparate, "glBlendEquationSeparate"
+        RemapVBFunctionToGLFunction AddressOf glBindAttribLocation, "glBindAttribLocation"
+        RemapVBFunctionToGLFunction AddressOf glAttachShader, "glAttachShader"
+    End If
 End Function

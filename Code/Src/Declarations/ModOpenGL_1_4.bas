@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -120,101 +120,101 @@ Public Sub glWindowPos3sv(p As Integer)                                         
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL1_4()
-If IsDEPEnabled Then
-    glWindowPos3svPtr = OpenGLExtProcAddress("glWindowPos3sv")
-    glWindowPos3sPtr = OpenGLExtProcAddress("glWindowPos3s")
-    glWindowPos3ivPtr = OpenGLExtProcAddress("glWindowPos3iv")
-    glWindowPos3iPtr = OpenGLExtProcAddress("glWindowPos3i")
-    glWindowPos3fvPtr = OpenGLExtProcAddress("glWindowPos3fv")
-    glWindowPos3fPtr = OpenGLExtProcAddress("glWindowPos3f")
-    glWindowPos3dvPtr = OpenGLExtProcAddress("glWindowPos3dv")
-    glWindowPos3dPtr = OpenGLExtProcAddress("glWindowPos3d")
-    glWindowPos2svPtr = OpenGLExtProcAddress("glWindowPos2sv")
-    glWindowPos2sPtr = OpenGLExtProcAddress("glWindowPos2s")
-    glWindowPos2ivPtr = OpenGLExtProcAddress("glWindowPos2iv")
-    glWindowPos2iPtr = OpenGLExtProcAddress("glWindowPos2i")
-    glWindowPos2fvPtr = OpenGLExtProcAddress("glWindowPos2fv")
-    glWindowPos2fPtr = OpenGLExtProcAddress("glWindowPos2f")
-    glWindowPos2dvPtr = OpenGLExtProcAddress("glWindowPos2dv")
-    glWindowPos2dPtr = OpenGLExtProcAddress("glWindowPos2d")
-    glSecondaryColorPointerPtr = OpenGLExtProcAddress("glSecondaryColorPointer")
-    glSecondaryColor3usvPtr = OpenGLExtProcAddress("glSecondaryColor3usv")
-    glSecondaryColor3usPtr = OpenGLExtProcAddress("glSecondaryColor3us")
-    glSecondaryColor3uivPtr = OpenGLExtProcAddress("glSecondaryColor3uiv")
-    glSecondaryColor3uiPtr = OpenGLExtProcAddress("glSecondaryColor3ui")
-    glSecondaryColor3ubvPtr = OpenGLExtProcAddress("glSecondaryColor3ubv")
-    glSecondaryColor3ubPtr = OpenGLExtProcAddress("glSecondaryColor3ub")
-    glSecondaryColor3svPtr = OpenGLExtProcAddress("glSecondaryColor3sv")
-    glSecondaryColor3sPtr = OpenGLExtProcAddress("glSecondaryColor3s")
-    glSecondaryColor3ivPtr = OpenGLExtProcAddress("glSecondaryColor3iv")
-    glSecondaryColor3iPtr = OpenGLExtProcAddress("glSecondaryColor3i")
-    glSecondaryColor3fvPtr = OpenGLExtProcAddress("glSecondaryColor3fv")
-    glSecondaryColor3fPtr = OpenGLExtProcAddress("glSecondaryColor3f")
-    glSecondaryColor3dvPtr = OpenGLExtProcAddress("glSecondaryColor3dv")
-    glSecondaryColor3dPtr = OpenGLExtProcAddress("glSecondaryColor3d")
-    glSecondaryColor3bvPtr = OpenGLExtProcAddress("glSecondaryColor3bv")
-    glSecondaryColor3bPtr = OpenGLExtProcAddress("glSecondaryColor3b")
-    glPointParameterivPtr = OpenGLExtProcAddress("glPointParameteriv")
-    glPointParameteriPtr = OpenGLExtProcAddress("glPointParameteri")
-    glPointParameterfvPtr = OpenGLExtProcAddress("glPointParameterfv")
-    glPointParameterfPtr = OpenGLExtProcAddress("glPointParameterf")
-    glMultiDrawElementsPtr = OpenGLExtProcAddress("glMultiDrawElements")
-    glMultiDrawArraysPtr = OpenGLExtProcAddress("glMultiDrawArrays")
-    glFogCoordfvPtr = OpenGLExtProcAddress("glFogCoordfv")
-    glFogCoordfPtr = OpenGLExtProcAddress("glFogCoordf")
-    glFogCoorddvPtr = OpenGLExtProcAddress("glFogCoorddv")
-    glFogCoorddPtr = OpenGLExtProcAddress("glFogCoordd")
-    glFogCoordPointerPtr = OpenGLExtProcAddress("glFogCoordPointer")
-    glBlendFuncSeparatePtr = OpenGLExtProcAddress("glBlendFuncSeparate")
-    glBlendEquationPtr = OpenGLExtProcAddress("glBlendEquation")
-    glBlendColorPtr = OpenGLExtProcAddress("glBlendColor")
-Else
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3sv, "glWindowPos3sv"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3s, "glWindowPos3s"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3iv, "glWindowPos3iv"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3i, "glWindowPos3i"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3fv, "glWindowPos3fv"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3f, "glWindowPos3f"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3dv, "glWindowPos3dv"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos3d, "glWindowPos3d"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2sv, "glWindowPos2sv"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2s, "glWindowPos2s"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2iv, "glWindowPos2iv"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2i, "glWindowPos2i"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2fv, "glWindowPos2fv"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2f, "glWindowPos2f"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2dv, "glWindowPos2dv"
-    RemapVBFunctionToGLFunction AddressOf glWindowPos2d, "glWindowPos2d"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColorPointer, "glSecondaryColorPointer"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3usv, "glSecondaryColor3usv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3us, "glSecondaryColor3us"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3uiv, "glSecondaryColor3uiv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3ui, "glSecondaryColor3ui"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3ubv, "glSecondaryColor3ubv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3ub, "glSecondaryColor3ub"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3sv, "glSecondaryColor3sv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3s, "glSecondaryColor3s"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3iv, "glSecondaryColor3iv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3i, "glSecondaryColor3i"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3fv, "glSecondaryColor3fv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3f, "glSecondaryColor3f"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3dv, "glSecondaryColor3dv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3d, "glSecondaryColor3d"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3bv, "glSecondaryColor3bv"
-    RemapVBFunctionToGLFunction AddressOf glSecondaryColor3b, "glSecondaryColor3b"
-    RemapVBFunctionToGLFunction AddressOf glPointParameteriv, "glPointParameteriv"
-    RemapVBFunctionToGLFunction AddressOf glPointParameteri, "glPointParameteri"
-    RemapVBFunctionToGLFunction AddressOf glPointParameterfv, "glPointParameterfv"
-    RemapVBFunctionToGLFunction AddressOf glPointParameterf, "glPointParameterf"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawElements, "glMultiDrawElements"
-    RemapVBFunctionToGLFunction AddressOf glMultiDrawArrays, "glMultiDrawArrays"
-    RemapVBFunctionToGLFunction AddressOf glFogCoordfv, "glFogCoordfv"
-    RemapVBFunctionToGLFunction AddressOf glFogCoordf, "glFogCoordf"
-    RemapVBFunctionToGLFunction AddressOf glFogCoorddv, "glFogCoorddv"
-    RemapVBFunctionToGLFunction AddressOf glFogCoordd, "glFogCoordd"
-    RemapVBFunctionToGLFunction AddressOf glFogCoordPointer, "glFogCoordPointer"
-    RemapVBFunctionToGLFunction AddressOf glBlendFuncSeparate, "glBlendFuncSeparate"
-    RemapVBFunctionToGLFunction AddressOf glBlendEquation, "glBlendEquation"
-    RemapVBFunctionToGLFunction AddressOf glBlendColor, "glBlendColor"
-End If
+    If IsDEPEnabled Then
+        glWindowPos3svPtr = OpenGLExtProcAddress("glWindowPos3sv")
+        glWindowPos3sPtr = OpenGLExtProcAddress("glWindowPos3s")
+        glWindowPos3ivPtr = OpenGLExtProcAddress("glWindowPos3iv")
+        glWindowPos3iPtr = OpenGLExtProcAddress("glWindowPos3i")
+        glWindowPos3fvPtr = OpenGLExtProcAddress("glWindowPos3fv")
+        glWindowPos3fPtr = OpenGLExtProcAddress("glWindowPos3f")
+        glWindowPos3dvPtr = OpenGLExtProcAddress("glWindowPos3dv")
+        glWindowPos3dPtr = OpenGLExtProcAddress("glWindowPos3d")
+        glWindowPos2svPtr = OpenGLExtProcAddress("glWindowPos2sv")
+        glWindowPos2sPtr = OpenGLExtProcAddress("glWindowPos2s")
+        glWindowPos2ivPtr = OpenGLExtProcAddress("glWindowPos2iv")
+        glWindowPos2iPtr = OpenGLExtProcAddress("glWindowPos2i")
+        glWindowPos2fvPtr = OpenGLExtProcAddress("glWindowPos2fv")
+        glWindowPos2fPtr = OpenGLExtProcAddress("glWindowPos2f")
+        glWindowPos2dvPtr = OpenGLExtProcAddress("glWindowPos2dv")
+        glWindowPos2dPtr = OpenGLExtProcAddress("glWindowPos2d")
+        glSecondaryColorPointerPtr = OpenGLExtProcAddress("glSecondaryColorPointer")
+        glSecondaryColor3usvPtr = OpenGLExtProcAddress("glSecondaryColor3usv")
+        glSecondaryColor3usPtr = OpenGLExtProcAddress("glSecondaryColor3us")
+        glSecondaryColor3uivPtr = OpenGLExtProcAddress("glSecondaryColor3uiv")
+        glSecondaryColor3uiPtr = OpenGLExtProcAddress("glSecondaryColor3ui")
+        glSecondaryColor3ubvPtr = OpenGLExtProcAddress("glSecondaryColor3ubv")
+        glSecondaryColor3ubPtr = OpenGLExtProcAddress("glSecondaryColor3ub")
+        glSecondaryColor3svPtr = OpenGLExtProcAddress("glSecondaryColor3sv")
+        glSecondaryColor3sPtr = OpenGLExtProcAddress("glSecondaryColor3s")
+        glSecondaryColor3ivPtr = OpenGLExtProcAddress("glSecondaryColor3iv")
+        glSecondaryColor3iPtr = OpenGLExtProcAddress("glSecondaryColor3i")
+        glSecondaryColor3fvPtr = OpenGLExtProcAddress("glSecondaryColor3fv")
+        glSecondaryColor3fPtr = OpenGLExtProcAddress("glSecondaryColor3f")
+        glSecondaryColor3dvPtr = OpenGLExtProcAddress("glSecondaryColor3dv")
+        glSecondaryColor3dPtr = OpenGLExtProcAddress("glSecondaryColor3d")
+        glSecondaryColor3bvPtr = OpenGLExtProcAddress("glSecondaryColor3bv")
+        glSecondaryColor3bPtr = OpenGLExtProcAddress("glSecondaryColor3b")
+        glPointParameterivPtr = OpenGLExtProcAddress("glPointParameteriv")
+        glPointParameteriPtr = OpenGLExtProcAddress("glPointParameteri")
+        glPointParameterfvPtr = OpenGLExtProcAddress("glPointParameterfv")
+        glPointParameterfPtr = OpenGLExtProcAddress("glPointParameterf")
+        glMultiDrawElementsPtr = OpenGLExtProcAddress("glMultiDrawElements")
+        glMultiDrawArraysPtr = OpenGLExtProcAddress("glMultiDrawArrays")
+        glFogCoordfvPtr = OpenGLExtProcAddress("glFogCoordfv")
+        glFogCoordfPtr = OpenGLExtProcAddress("glFogCoordf")
+        glFogCoorddvPtr = OpenGLExtProcAddress("glFogCoorddv")
+        glFogCoorddPtr = OpenGLExtProcAddress("glFogCoordd")
+        glFogCoordPointerPtr = OpenGLExtProcAddress("glFogCoordPointer")
+        glBlendFuncSeparatePtr = OpenGLExtProcAddress("glBlendFuncSeparate")
+        glBlendEquationPtr = OpenGLExtProcAddress("glBlendEquation")
+        glBlendColorPtr = OpenGLExtProcAddress("glBlendColor")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3sv, "glWindowPos3sv"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3s, "glWindowPos3s"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3iv, "glWindowPos3iv"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3i, "glWindowPos3i"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3fv, "glWindowPos3fv"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3f, "glWindowPos3f"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3dv, "glWindowPos3dv"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos3d, "glWindowPos3d"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2sv, "glWindowPos2sv"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2s, "glWindowPos2s"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2iv, "glWindowPos2iv"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2i, "glWindowPos2i"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2fv, "glWindowPos2fv"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2f, "glWindowPos2f"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2dv, "glWindowPos2dv"
+        RemapVBFunctionToGLFunction AddressOf glWindowPos2d, "glWindowPos2d"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColorPointer, "glSecondaryColorPointer"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3usv, "glSecondaryColor3usv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3us, "glSecondaryColor3us"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3uiv, "glSecondaryColor3uiv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3ui, "glSecondaryColor3ui"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3ubv, "glSecondaryColor3ubv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3ub, "glSecondaryColor3ub"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3sv, "glSecondaryColor3sv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3s, "glSecondaryColor3s"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3iv, "glSecondaryColor3iv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3i, "glSecondaryColor3i"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3fv, "glSecondaryColor3fv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3f, "glSecondaryColor3f"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3dv, "glSecondaryColor3dv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3d, "glSecondaryColor3d"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3bv, "glSecondaryColor3bv"
+        RemapVBFunctionToGLFunction AddressOf glSecondaryColor3b, "glSecondaryColor3b"
+        RemapVBFunctionToGLFunction AddressOf glPointParameteriv, "glPointParameteriv"
+        RemapVBFunctionToGLFunction AddressOf glPointParameteri, "glPointParameteri"
+        RemapVBFunctionToGLFunction AddressOf glPointParameterfv, "glPointParameterfv"
+        RemapVBFunctionToGLFunction AddressOf glPointParameterf, "glPointParameterf"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawElements, "glMultiDrawElements"
+        RemapVBFunctionToGLFunction AddressOf glMultiDrawArrays, "glMultiDrawArrays"
+        RemapVBFunctionToGLFunction AddressOf glFogCoordfv, "glFogCoordfv"
+        RemapVBFunctionToGLFunction AddressOf glFogCoordf, "glFogCoordf"
+        RemapVBFunctionToGLFunction AddressOf glFogCoorddv, "glFogCoorddv"
+        RemapVBFunctionToGLFunction AddressOf glFogCoordd, "glFogCoordd"
+        RemapVBFunctionToGLFunction AddressOf glFogCoordPointer, "glFogCoordPointer"
+        RemapVBFunctionToGLFunction AddressOf glBlendFuncSeparate, "glBlendFuncSeparate"
+        RemapVBFunctionToGLFunction AddressOf glBlendEquation, "glBlendEquation"
+        RemapVBFunctionToGLFunction AddressOf glBlendColor, "glBlendColor"
+    End If
 End Function

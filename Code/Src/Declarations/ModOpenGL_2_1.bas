@@ -8,14 +8,14 @@ Option Explicit
 ' G�n�r� le 23/05/2018 � partir de glew-2.1.0.h
 '***************************************************************************************
 #If VBA7 Then
-DefLngPtr A-Z
+    DefLngPtr A-Z
 #Else
-DefLng A-Z
+    DefLng A-Z
 #End If
 #If Win64 Then
-Const vbLongPtr As Long = vbLongLong
+    Const vbLongPtr As Long = vbLongLong
 #Else
-Const vbLongPtr As Long = vbLong
+    Const vbLongPtr As Long = vbLong
 #End If
 '***************************************************************************************
 '*                                    Constantes                                       *
@@ -59,19 +59,19 @@ Public Sub glUniformMatrix4x3fv(ByVal location As Long, ByVal count As Long, ByV
 '*                                      Remap                                          *
 '***************************************************************************************
 Public Function RemapVBToGL2_1()
-If IsDEPEnabled Then
-    glUniformMatrix4x3fvPtr = OpenGLExtProcAddress("glUniformMatrix4x3fv")
-    glUniformMatrix4x2fvPtr = OpenGLExtProcAddress("glUniformMatrix4x2fv")
-    glUniformMatrix3x4fvPtr = OpenGLExtProcAddress("glUniformMatrix3x4fv")
-    glUniformMatrix3x2fvPtr = OpenGLExtProcAddress("glUniformMatrix3x2fv")
-    glUniformMatrix2x4fvPtr = OpenGLExtProcAddress("glUniformMatrix2x4fv")
-    glUniformMatrix2x3fvPtr = OpenGLExtProcAddress("glUniformMatrix2x3fv")
-Else
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix4x3fv, "glUniformMatrix4x3fv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix4x2fv, "glUniformMatrix4x2fv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix3x4fv, "glUniformMatrix3x4fv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix3x2fv, "glUniformMatrix3x2fv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix2x4fv, "glUniformMatrix2x4fv"
-    RemapVBFunctionToGLFunction AddressOf glUniformMatrix2x3fv, "glUniformMatrix2x3fv"
-End If
+    If IsDEPEnabled Then
+        glUniformMatrix4x3fvPtr = OpenGLExtProcAddress("glUniformMatrix4x3fv")
+        glUniformMatrix4x2fvPtr = OpenGLExtProcAddress("glUniformMatrix4x2fv")
+        glUniformMatrix3x4fvPtr = OpenGLExtProcAddress("glUniformMatrix3x4fv")
+        glUniformMatrix3x2fvPtr = OpenGLExtProcAddress("glUniformMatrix3x2fv")
+        glUniformMatrix2x4fvPtr = OpenGLExtProcAddress("glUniformMatrix2x4fv")
+        glUniformMatrix2x3fvPtr = OpenGLExtProcAddress("glUniformMatrix2x3fv")
+    Else
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix4x3fv, "glUniformMatrix4x3fv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix4x2fv, "glUniformMatrix4x2fv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix3x4fv, "glUniformMatrix3x4fv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix3x2fv, "glUniformMatrix3x2fv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix2x4fv, "glUniformMatrix2x4fv"
+        RemapVBFunctionToGLFunction AddressOf glUniformMatrix2x3fv, "glUniformMatrix2x3fv"
+    End If
 End Function

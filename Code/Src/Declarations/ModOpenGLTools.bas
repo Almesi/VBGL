@@ -184,198 +184,198 @@ Private Const PAGE_EXECUTE_READWRITE = &H40&
 Public Const WGL_FONT_LINES = 0
 Public Const WGL_FONT_POLYGONS = 1
 ' Glu32
-Public Const GLU_INVALID_ENUM = 100900
-Public Const GLU_INVALID_VALUE = 100901
-Public Const GLU_OUT_OF_MEMORY = 100902
-Public Const GLU_INCOMPATIBLE_GL_VERSION = 100903
-Public Const GLU_VERSION = 100800
-Public Const GLU_EXTENSIONS = 100801
-Public Const GLU_TRUE = 1
-Public Const GLU_FALSE = 0
-Public Const GLU_SMOOTH = 100000
-Public Const GLU_FLAT = 100001
-Public Const GLU_NONE = 100002
-Public Const GLU_POINT = 100010
-Public Const GLU_LINE = 100011
-Public Const GLU_FILL = 100012
-Public Const GLU_SILHOUETTE = 100013
-Public Const GLU_OUTSIDE = 100020
-Public Const GLU_INSIDE = 100021
-Public Const GLU_ERROR = 100103
-Public Const GLU_TESS_MAX_COORD = 1E+150
-Public Const GLU_TESS_WINDING_RULE = 100140
-Public Const GLU_TESS_BOUNDARY_ONLY = 100141
-Public Const GLU_TESS_TOLERANCE = 100142
-Public Const GLU_TESS_WINDING_ODD = 100130
-Public Const GLU_TESS_WINDING_NONZERO = 100131
-Public Const GLU_TESS_WINDING_POSITIVE = 100132
-Public Const GLU_TESS_WINDING_NEGATIVE = 100133
-Public Const GLU_TESS_WINDING_ABS_GEQ_TWO = 100134
-Public Const GLU_TESS_BEGIN = 100100
-Public Const GLU_TESS_VERTEX = 100101
-Public Const GLU_TESS_END = 100102
-Public Const GLU_TESS_ERROR = 100103
-Public Const GLU_TESS_EDGE_FLAG = 100104
-Public Const GLU_TESS_COMBINE = 100105
-Public Const GLU_TESS_BEGIN_DATA = 100106
-Public Const GLU_TESS_VERTEX_DATA = 100107
-Public Const GLU_TESS_END_DATA = 100108
-Public Const GLU_TESS_ERROR_DATA = 100109
-Public Const GLU_TESS_EDGE_FLAG_DATA = 100110
-Public Const GLU_TESS_COMBINE_DATA = 100111
-Public Const GLU_TESS_ERROR1 = 100151
-Public Const GLU_TESS_ERROR2 = 100152
-Public Const GLU_TESS_ERROR3 = 100153
-Public Const GLU_TESS_ERROR4 = 100154
-Public Const GLU_TESS_ERROR5 = 100155
-Public Const GLU_TESS_ERROR6 = 100156
-Public Const GLU_TESS_ERROR7 = 100157
-Public Const GLU_TESS_ERROR8 = 100158
-Public Const GLU_TESS_MISSING_BEGIN_POLYGON = GLU_TESS_ERROR1
-Public Const GLU_TESS_MISSING_BEGIN_CONTOUR = GLU_TESS_ERROR2
-Public Const GLU_TESS_MISSING_END_POLYGON = GLU_TESS_ERROR3
-Public Const GLU_TESS_MISSING_END_CONTOUR = GLU_TESS_ERROR4
-Public Const GLU_TESS_COORD_TOO_LARGE = GLU_TESS_ERROR5
-Public Const GLU_TESS_NEED_COMBINE_CALLBACK = GLU_TESS_ERROR6
-Public Const GLU_AUTO_LOAD_MATRIX = 100200
-Public Const GLU_CULLING = 100201
-Public Const GLU_SAMPLING_TOLERANCE = 100203
-Public Const GLU_DISPLAY_MODE = 100204
-Public Const GLU_PARAMETRIC_TOLERANCE = 100202
-Public Const GLU_SAMPLING_METHOD = 100205
-Public Const GLU_U_STEP = 100206
-Public Const GLU_V_STEP = 100207
-Public Const GLU_PATH_LENGTH = 100215
-Public Const GLU_PARAMETRIC_ERROR = 100216
-Public Const GLU_DOMAIN_DISTANCE = 100217
-Public Const GLU_MAP1_TRIM_2 = 100210
-Public Const GLU_MAP1_TRIM_3 = 100211
-Public Const GLU_OUTLINE_POLYGON = 100240
-Public Const GLU_OUTLINE_PATCH = 100241
-Public Const GLU_NURBS_ERROR1 = 100251
-Public Const GLU_NURBS_ERROR2 = 100252
-Public Const GLU_NURBS_ERROR3 = 100253
-Public Const GLU_NURBS_ERROR4 = 100254
-Public Const GLU_NURBS_ERROR5 = 100255
-Public Const GLU_NURBS_ERROR6 = 100256
-Public Const GLU_NURBS_ERROR7 = 100257
-Public Const GLU_NURBS_ERROR8 = 100258
-Public Const GLU_NURBS_ERROR9 = 100259
-Public Const GLU_NURBS_ERROR10 = 100260
-Public Const GLU_NURBS_ERROR11 = 100261
-Public Const GLU_NURBS_ERROR12 = 100262
-Public Const GLU_NURBS_ERROR13 = 100263
-Public Const GLU_NURBS_ERROR14 = 100264
-Public Const GLU_NURBS_ERROR15 = 100265
-Public Const GLU_NURBS_ERROR16 = 100266
-Public Const GLU_NURBS_ERROR17 = 100267
-Public Const GLU_NURBS_ERROR18 = 100268
-Public Const GLU_NURBS_ERROR19 = 100269
-Public Const GLU_NURBS_ERROR20 = 100270
-Public Const GLU_NURBS_ERROR21 = 100271
-Public Const GLU_NURBS_ERROR22 = 100272
-Public Const GLU_NURBS_ERROR23 = 100273
-Public Const GLU_NURBS_ERROR24 = 100274
-Public Const GLU_NURBS_ERROR25 = 100275
-Public Const GLU_NURBS_ERROR26 = 100276
-Public Const GLU_NURBS_ERROR27 = 100277
-Public Const GLU_NURBS_ERROR28 = 100278
-Public Const GLU_NURBS_ERROR29 = 100279
-Public Const GLU_NURBS_ERROR30 = 100280
-Public Const GLU_NURBS_ERROR31 = 100281
-Public Const GLU_NURBS_ERROR32 = 100282
-Public Const GLU_NURBS_ERROR33 = 100283
-Public Const GLU_NURBS_ERROR34 = 100284
-Public Const GLU_NURBS_ERROR35 = 100285
-Public Const GLU_NURBS_ERROR36 = 100286
-Public Const GLU_NURBS_ERROR37 = 100287
-Public Const GLU_CW = 100120
-Public Const GLU_CCW = 100121
-Public Const GLU_INTERIOR = 100122
-Public Const GLU_EXTERIOR = 100123
-Public Const GLU_UNKNOWN = 100124
-Public Const GLU_BEGIN = GLU_TESS_BEGIN
-Public Const GLU_VERTEX = GLU_TESS_VERTEX
-Public Const GLU_END = GLU_TESS_END
-Public Const GLU_EDGE_FLAG = GLU_TESS_EDGE_FLAG
+Public Const GLU_INVALID_ENUM                   = 100900
+Public Const GLU_INVALID_VALUE                  = 100901
+Public Const GLU_OUT_OF_MEMORY                  = 100902
+Public Const GLU_INCOMPATIBLE_GL_VERSION        = 100903
+Public Const GLU_VERSION                        = 100800
+Public Const GLU_EXTENSIONS                     = 100801
+Public Const GLU_TRUE                           = 1
+Public Const GLU_FALSE                          = 0
+Public Const GLU_SMOOTH                         = 100000
+Public Const GLU_FLAT                           = 100001
+Public Const GLU_NONE                           = 100002
+Public Const GLU_POINT                          = 100010
+Public Const GLU_LINE                           = 100011
+Public Const GLU_FILL                           = 100012
+Public Const GLU_SILHOUETTE                     = 100013
+Public Const GLU_OUTSIDE                        = 100020
+Public Const GLU_INSIDE                         = 100021
+Public Const GLU_ERROR                          = 100103
+Public Const GLU_TESS_MAX_COORD                 = 1E+150
+Public Const GLU_TESS_WINDING_RULE              = 100140
+Public Const GLU_TESS_BOUNDARY_ONLY             = 100141
+Public Const GLU_TESS_TOLERANCE                 = 100142
+Public Const GLU_TESS_WINDING_ODD               = 100130
+Public Const GLU_TESS_WINDING_NONZERO           = 100131
+Public Const GLU_TESS_WINDING_POSITIVE          = 100132
+Public Const GLU_TESS_WINDING_NEGATIVE          = 100133
+Public Const GLU_TESS_WINDING_ABS_GEQ_TWO       = 100134
+Public Const GLU_TESS_BEGIN                     = 100100
+Public Const GLU_TESS_VERTEX                    = 100101
+Public Const GLU_TESS_END                       = 100102
+Public Const GLU_TESS_ERROR                     = 100103
+Public Const GLU_TESS_EDGE_FLAG                 = 100104
+Public Const GLU_TESS_COMBINE                   = 100105
+Public Const GLU_TESS_BEGIN_DATA                = 100106
+Public Const GLU_TESS_VERTEX_DATA               = 100107
+Public Const GLU_TESS_END_DATA                  = 100108
+Public Const GLU_TESS_ERROR_DATA                = 100109
+Public Const GLU_TESS_EDGE_FLAG_DATA            = 100110
+Public Const GLU_TESS_COMBINE_DATA              = 100111
+Public Const GLU_TESS_ERROR1                    = 100151
+Public Const GLU_TESS_ERROR2                    = 100152
+Public Const GLU_TESS_ERROR3                    = 100153
+Public Const GLU_TESS_ERROR4                    = 100154
+Public Const GLU_TESS_ERROR5                    = 100155
+Public Const GLU_TESS_ERROR6                    = 100156
+Public Const GLU_TESS_ERROR7                    = 100157
+Public Const GLU_TESS_ERROR8                    = 100158
+Public Const GLU_TESS_MISSING_BEGIN_POLYGON     = GLU_TESS_ERROR1
+Public Const GLU_TESS_MISSING_BEGIN_CONTOUR     = GLU_TESS_ERROR2
+Public Const GLU_TESS_MISSING_END_POLYGON       = GLU_TESS_ERROR3
+Public Const GLU_TESS_MISSING_END_CONTOUR       = GLU_TESS_ERROR4
+Public Const GLU_TESS_COORD_TOO_LARGE           = GLU_TESS_ERROR5
+Public Const GLU_TESS_NEED_COMBINE_CALLBACK     = GLU_TESS_ERROR6
+Public Const GLU_AUTO_LOAD_MATRIX               = 100200
+Public Const GLU_CULLING                        = 100201
+Public Const GLU_SAMPLING_TOLERANCE             = 100203
+Public Const GLU_DISPLAY_MODE                   = 100204
+Public Const GLU_PARAMETRIC_TOLERANCE           = 100202
+Public Const GLU_SAMPLING_METHOD                = 100205
+Public Const GLU_U_STEP                         = 100206
+Public Const GLU_V_STEP                         = 100207
+Public Const GLU_PATH_LENGTH                    = 100215
+Public Const GLU_PARAMETRIC_ERROR               = 100216
+Public Const GLU_DOMAIN_DISTANCE                = 100217
+Public Const GLU_MAP1_TRIM_2                    = 100210
+Public Const GLU_MAP1_TRIM_3                    = 100211
+Public Const GLU_OUTLINE_POLYGON                = 100240
+Public Const GLU_OUTLINE_PATCH                  = 100241
+Public Const GLU_NURBS_ERROR1                   = 100251
+Public Const GLU_NURBS_ERROR2                   = 100252
+Public Const GLU_NURBS_ERROR3                   = 100253
+Public Const GLU_NURBS_ERROR4                   = 100254
+Public Const GLU_NURBS_ERROR5                   = 100255
+Public Const GLU_NURBS_ERROR6                   = 100256
+Public Const GLU_NURBS_ERROR7                   = 100257
+Public Const GLU_NURBS_ERROR8                   = 100258
+Public Const GLU_NURBS_ERROR9                   = 100259
+Public Const GLU_NURBS_ERROR10                  = 100260
+Public Const GLU_NURBS_ERROR11                  = 100261
+Public Const GLU_NURBS_ERROR12                  = 100262
+Public Const GLU_NURBS_ERROR13                  = 100263
+Public Const GLU_NURBS_ERROR14                  = 100264
+Public Const GLU_NURBS_ERROR15                  = 100265
+Public Const GLU_NURBS_ERROR16                  = 100266
+Public Const GLU_NURBS_ERROR17                  = 100267
+Public Const GLU_NURBS_ERROR18                  = 100268
+Public Const GLU_NURBS_ERROR19                  = 100269
+Public Const GLU_NURBS_ERROR20                  = 100270
+Public Const GLU_NURBS_ERROR21                  = 100271
+Public Const GLU_NURBS_ERROR22                  = 100272
+Public Const GLU_NURBS_ERROR23                  = 100273
+Public Const GLU_NURBS_ERROR24                  = 100274
+Public Const GLU_NURBS_ERROR25                  = 100275
+Public Const GLU_NURBS_ERROR26                  = 100276
+Public Const GLU_NURBS_ERROR27                  = 100277
+Public Const GLU_NURBS_ERROR28                  = 100278
+Public Const GLU_NURBS_ERROR29                  = 100279
+Public Const GLU_NURBS_ERROR30                  = 100280
+Public Const GLU_NURBS_ERROR31                  = 100281
+Public Const GLU_NURBS_ERROR32                  = 100282
+Public Const GLU_NURBS_ERROR33                  = 100283
+Public Const GLU_NURBS_ERROR34                  = 100284
+Public Const GLU_NURBS_ERROR35                  = 100285
+Public Const GLU_NURBS_ERROR36                  = 100286
+Public Const GLU_NURBS_ERROR37                  = 100287
+Public Const GLU_CW                             = 100120
+Public Const GLU_CCW                            = 100121
+Public Const GLU_INTERIOR                       = 100122
+Public Const GLU_EXTERIOR                       = 100123
+Public Const GLU_UNKNOWN                        = 100124
+Public Const GLU_BEGIN                          = GLU_TESS_BEGIN
+Public Const GLU_VERTEX                         = GLU_TESS_VERTEX
+Public Const GLU_END                            = GLU_TESS_END
+Public Const GLU_EDGE_FLAG                      = GLU_TESS_EDGE_FLAG
 ' Gdi32
-Public Const PFD_DRAW_TO_WINDOW = &H4&
-Public Const PFD_DRAW_TO_BITMAP = &H8&
-Public Const PFD_SUPPORT_GDI = &H10&
-Public Const PFD_SUPPORT_OPENGL = &H20&
-Public Const PFD_GENERIC_ACCELERATED = &H1000&
-Public Const PFD_GENERIC_FORMAT = &H40&
-Public Const PFD_NEED_PALETTE = &H80&
-Public Const PFD_NEED_SYSTEM_PALETTE = &H100&
-Public Const PFD_DOUBLEBUFFER = &H1&
-Public Const PFD_STEREO = &H2&
-Public Const PFD_SWAP_LAYER_BUFFERS = &H800&
-Public Const PFD_DEPTH_DONTCARE = &H20000000
-Public Const PFD_DOUBLEBUFFER_DONTCARE = &H40000000
-Public Const PFD_STEREO_DONTCARE = &H80000000
-Public Const PFD_SWAP_COPY = &H400
-Public Const PFD_SWAP_EXCHANGE = &H200
-Public Const PFD_TYPE_RGBA = 0
-Public Const PFD_TYPE_COLORINDEX = 1
-Public Const PFD_MAIN_PLANE = 0
-Public Const PFD_OVERLAY_PLANE = 1
-Public Const PFD_UNDERLAY_PLANE = (-1)
+Public Const PFD_DRAW_TO_WINDOW         = &H4&
+Public Const PFD_DRAW_TO_BITMAP         = &H8&
+Public Const PFD_SUPPORT_GDI            = &H10&
+Public Const PFD_SUPPORT_OPENGL         = &H20&
+Public Const PFD_GENERIC_ACCELERATED    = &H1000&
+Public Const PFD_GENERIC_FORMAT         = &H40&
+Public Const PFD_NEED_PALETTE           = &H80&
+Public Const PFD_NEED_SYSTEM_PALETTE    = &H100&
+Public Const PFD_DOUBLEBUFFER           = &H1&
+Public Const PFD_STEREO                 = &H2&
+Public Const PFD_SWAP_LAYER_BUFFERS     = &H800&
+Public Const PFD_DEPTH_DONTCARE         = &H20000000
+Public Const PFD_DOUBLEBUFFER_DONTCARE  = &H40000000
+Public Const PFD_STEREO_DONTCARE        = &H80000000
+Public Const PFD_SWAP_COPY              = &H400
+Public Const PFD_SWAP_EXCHANGE          = &H200
+Public Const PFD_TYPE_RGBA              = 0
+Public Const PFD_TYPE_COLORINDEX        = 1
+Public Const PFD_MAIN_PLANE             = 0
+Public Const PFD_OVERLAY_PLANE          = 1
+Public Const PFD_UNDERLAY_PLANE         = (-1)
 
 '***************************************************************************************
 '*                                       Types                                         *
 '***************************************************************************************
 ' Gdi32
 Public Type PIXELFORMATDESCRIPTOR
-    nSize As Integer
-    nVersion As Integer
-    dwFlags As Long
-    iPixelType As Byte
-    cColorBits As Byte
-    cRedBits As Byte
-    cRedShift  As Byte
-    cGreenBits As Byte
-    cGreenShift As Byte
-    cBlueBits As Byte
-    cBlueShift As Byte
-    cAlphaBits As Byte
-    cAlphaShift As Byte
-    cAccumBits As Byte
-    cAccumRedBits As Byte
+    nSize           As Integer
+    nVersion        As Integer
+    dwFlags         As Long
+    iPixelType      As Byte
+    cColorBits      As Byte
+    cRedBits        As Byte
+    cRedShift       As Byte
+    cGreenBits      As Byte
+    cGreenShift     As Byte
+    cBlueBits       As Byte
+    cBlueShift      As Byte
+    cAlphaBits      As Byte
+    cAlphaShift     As Byte
+    cAccumBits      As Byte
+    cAccumRedBits   As Byte
     cAccumGreenBits As Byte
-    cAccumBlueBits As Byte
+    cAccumBlueBits  As Byte
     cAccumAlphaBits As Byte
-    cDepthBits As Byte
-    cStencilBits As Byte
-    cAuxBuffers As Byte
-    iLayerType As Byte
-    bReserved As Byte
-    dwLayerMask As Long
-    dwVisibleMask As Long
-    dwDamageMask As Long
+    cDepthBits      As Byte
+    cStencilBits    As Byte
+    cAuxBuffers     As Byte
+    iLayerType      As Byte
+    bReserved       As Byte
+    dwLayerMask     As Long
+    dwVisibleMask   As Long
+    dwDamageMask    As Long
 End Type
 Public Type POINTFLOAT
     X As Single
     y As Single
 End Type
 Public Type GLYPHMETRICSFLOAT
-    gmfBlackBoxX As Single
-    gmfBlackBoxY As Single
+    gmfBlackBoxX     As Single
+    gmfBlackBoxY     As Single
     gmfptGlyphOrigin As POINTFLOAT
-    gmfCellIncX As Single
-    gmfCellIncY As Single
+    gmfCellIncX      As Single
+    gmfCellIncY      As Single
 End Type
 ' Autre
 Public Type TColorub
-    ColorRed As Byte
-    ColorGreen As Byte
-    ColorBlue As Byte
-    ColorAlpha As Byte
+    ColorRed         As Byte
+    ColorGreen       As Byte
+    ColorBlue        As Byte
+    ColorAlpha       As Byte
 End Type
 Public Type TColorf
-    ColorRed As Single
-    ColorGreen As Single
-    ColorBlue As Single
-    ColorAlpha As Single
+    ColorRed         As Single
+    ColorGreen       As Single
+    ColorBlue        As Single
+    ColorAlpha       As Single
 End Type
 '***************************************************************************************
 '*                            FONCTIONS SUPPLEMENTAIRES VB
@@ -385,24 +385,6 @@ Private Const MaxArgs& = 32
 Private vType(1 To MaxArgs) As Integer, vPtr(1 To MaxArgs), lReturn As Variant, vValue(1 To MaxArgs) As Variant
 Private vValue1 As Variant, vValue2 As Variant
 
-' Recherche une cha�ne de caract�res d'apr�s son pointeur
-Public Function LongToString(pLong) As String
-    Dim lByte As Byte
-    Dim lStr As String
-    Dim lCpt
-    On Error GoTo Gestion_Erreurs
-    If pLong = 0 Then LongToString = "": Exit Function
-    Do
-        RtlMoveMemory lByte, ByVal pLong + lCpt, 1
-        If lByte = 0 Then Exit Do
-        lStr = lStr & Chr(lByte)
-        lCpt = lCpt + 1
-    Loop
-    LongToString = lStr
-    Exit Function
-    Gestion_Erreurs:
-    LongToString = ""
-End Function
 ' Conversion de couleur VB en ub (byte)
 Function ubColor(pColor As Long, Optional pAlpha As Byte = 255) As TColorub
     Dim lbytes(1 To 4) As Byte
@@ -413,7 +395,7 @@ Function ubColor(pColor As Long, Optional pAlpha As Byte = 255) As TColorub
     ubColor.ColorGreen = lbytes(2)
     ubColor.ColorBlue = lbytes(3)
 End Function
-    ' Conversion de couleur VB en f (single)
+' Conversion de couleur VB en f (single)
 Function ufColor(pColor As Long, Optional pAlpha As Single = 1) As TColorf
     Dim lbytes(1 To 4) As Byte
     RtlMoveMemory lbytes(1), pColor, 4
@@ -423,7 +405,7 @@ Function ufColor(pColor As Long, Optional pAlpha As Single = 1) As TColorf
     ufColor.ColorGreen = lbytes(2) / 255
     ufColor.ColorBlue = lbytes(3) / 255
 End Function
-    ' glColor adapt� pour couleur VB
+' glColor adapt� pour couleur VB
 Public Function glColor3VB(pColor As Long)
     Dim lbytes(1 To 3) As Byte
     RtlMoveMemory lbytes(1), pColor, 4
@@ -476,10 +458,10 @@ Public Sub RemapVBFunctionToGLFunction(ByVal pVBFuncAddr, ByVal pGLFunction As S
 End Sub
 ' http://www.activevb.de/tipps/vb6tipps/tipp0347.html
 Private Function IsRunningInIDE_DirtyTrick() As Boolean
-  On Error GoTo NotCompiled
+    On Error GoTo NotCompiled
     Debug.Print 1 / 0
     Exit Function
-NotCompiled:
+    NotCompiled:
     IsRunningInIDE_DirtyTrick = True
     Exit Function
 End Function
