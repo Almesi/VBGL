@@ -98,6 +98,16 @@ Public Property Get Size() As Long
     Size = p_Size
 End Property
 
+Public Function ByteSize() As Long
+    On Error GoTo Error
+    Dim BytesPerElement As Long
+    BytesPerElement = Data()(0)
+    ByteSize = (USize(Data) + 1) * BytesPerElement
+    Exit Function
+    Error:
+    ByteSize = 0
+End Property
+
 Public Property Let Typee(ByVal n_Type As VbVarType)
     p_Typee = n_Type
 End Property

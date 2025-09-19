@@ -60,18 +60,6 @@ Public Sub AddType(ByVal DataType As vbVarType, ByVal Typee As VBGLLayoutType)
     End Select
 End Sub
 
-Public Sub AddDouble(ByVal LayoutType       As VBGLLayoutType) : Call Push(GL_DOUBLE       , LayoutType, GL_FALSE) : End Sub
-Public Sub AddFloat(ByVal LayoutType        As VBGLLayoutType) : Call Push(GL_FLOAT        , LayoutType, GL_FALSE) : End Sub
-Public Sub AddUnsignedInt(ByVal LayoutType  As VBGLLayoutType) : Call Push(GL_UNSIGNED_INT , LayoutType, GL_FALSE) : End Sub
-Public Sub AddUnsignedByte(ByVal LayoutType As VBGLLayoutType) : Call Push(GL_UNSIGNED_BYTE, LayoutType, GL_TRUE)  : End Sub
-
-Public Sub Push(ByVal Typee As Long, ByVal LayoutType As VBGLLayoutType, ByVal Normalized As Byte)
-    Size = Size + 1
-    ReDim Preserve p_Elements(Size)
-    Element(Size) = VBGLElement.Create(LayoutType, Typee, Normalized)
-    ByteSize = ByteSize + Element(Size).ByteSize
-End Sub
-
 Public Function GetEnum(ByVal What As String, ByVal Size As Long)
     Select Case What
         Case "Position"
@@ -103,6 +91,18 @@ Public Function GetEnum(ByVal What As String, ByVal Size As Long)
             End Select
     End Select
 End Function
+
+Public Sub AddDouble(ByVal LayoutType       As VBGLLayoutType) : Call Push(GL_DOUBLE       , LayoutType, GL_FALSE) : End Sub
+Public Sub AddFloat(ByVal LayoutType        As VBGLLayoutType) : Call Push(GL_FLOAT        , LayoutType, GL_FALSE) : End Sub
+Public Sub AddUnsignedInt(ByVal LayoutType  As VBGLLayoutType) : Call Push(GL_UNSIGNED_INT , LayoutType, GL_FALSE) : End Sub
+Public Sub AddUnsignedByte(ByVal LayoutType As VBGLLayoutType) : Call Push(GL_UNSIGNED_BYTE, LayoutType, GL_TRUE)  : End Sub
+
+Private Sub Push(ByVal Typee As Long, ByVal LayoutType As VBGLLayoutType, ByVal Normalized As Byte)
+    Size = Size + 1
+    ReDim Preserve p_Elements(Size)
+    Element(Size) = VBGLElement.Create(LayoutType, Typee, Normalized)
+    ByteSize = ByteSize + Element(Size).ByteSize
+End Sub
 
 Private Sub Class_Initialize()
     Size = -1

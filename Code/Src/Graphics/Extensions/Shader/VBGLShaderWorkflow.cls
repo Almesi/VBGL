@@ -31,6 +31,7 @@ Public Enum VBGLShaderOperation
     VBGLShaderCondition    = 11 '
     VBGLShaderCompare      = 12 '
     VBGLShaderIncrement    = 13 ' The first Variable is also the second variable, as it will increment itself with its operator and the second variable
+    VBGLShaderDiscard      = 14 ' Only works for Fragment shaders
 End Enum
 
 Private p_WFType   As VBGLShaderOperation
@@ -134,6 +135,7 @@ Public Function GetString(ByVal Text As String, ByVal Level As Long) As String
             Text = AddNewLine(Text, NewLine, Level)
         Case VBGLShaderCompare      : Text = AddNewLine(Text, NewLine, Level)
         Case VBGLShaderIncrement    : Text = AddNewLine(Text, NewLine, Level)
+        Case VBGLShaderDiscard      : Text = AddNewLine(Text, NewLine, Level)
     End Select
     GetString = Text
 End Function
@@ -204,6 +206,7 @@ Private Function StdTemplate(ByVal n_WFType As VBGLShaderOperation, ByVal n_Temp
             Case VBGLShaderCondition    : StartIndex = 2: Result = TemplateCondition
             Case VBGLShaderCompare      : StartIndex = 2: Result = "VAR0 == VAR1REST"
             Case VBGLShaderIncrement    : StartIndex = 2: Result = "VAR0 = VAR0 OVAR0 VAR1REST"
+            Case VBGLShaderDiscard      : StartIndex = 2: Result = "if(VAR0.a = 0.0) discardREST"
         End Select
     End If
     StdTemplate = Replace(Result, "REST", StdTemplateRest(n_WFType, StartIndex, Variables))
@@ -228,6 +231,7 @@ Private Function StdTemplateRest(ByVal n_WFType As VBGLShaderOperation, ByVal St
             Case VBGLShaderCondition    : Result = Result & ""  & TemplateConditionRest(i, Variables)
             Case VBGLShaderCompare      : Result = Result & " " & " && " & "VAR" & i & " == " & "VAR" & i + 1
             Case VBGLShaderIncrement    : Result = Result & " " & "OVAR0" & " VAR" & i
+            Case VBGLShaderDiscard      : Result = Result & " " & "OVAR0" & " VAR" & i
         End Select
     Next i
     StdTemplateRest = Result

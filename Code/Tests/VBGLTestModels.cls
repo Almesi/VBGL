@@ -32,8 +32,6 @@ Public Function VBGLTestModels1() As Long
     CurrentContext.CullFace = True
     Call CurrentContext.RenderValue(GL_BLEND, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
     Call CurrentContext.RenderValue(GL_CULL_FACE, GL_BACK)
-    Call glFrontFace(GL_CCW)
-
 
     Dim NewLoader As VBGLFileLoader
     Dim MtlLoader As IMtlLoader
@@ -171,6 +169,7 @@ Private Sub UpdateShader(ByVal CurrentShader As VBGLShader, ByVal Translate As I
 End Sub
 
 Private Function CreateGeneralInput() As VBGLIInput
+    Debug.Assert False
     On Error GoTo Error
     Dim Temp As VBGLGeneralInput
     Set Temp = New VBGLGeneralInput

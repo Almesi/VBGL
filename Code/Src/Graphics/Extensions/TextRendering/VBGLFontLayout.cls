@@ -73,15 +73,15 @@ Public Function Create(ByVal LoadFilePath As String, ByVal FontFilePath As Strin
 End Function
 
 
-Public Function GetData(ByVal Text As String, ByRef FontColor() As Single, ByVal Scalee As Single, ByVal xStart As Single, ByVal yStart As Single) As Single()
+Public Function GetData(ByVal Text As String, ByRef FontColor() As Single, ByRef BackgroundColor() As Single, ByVal Scalee As Single, ByVal xStart As Single, ByVal yStart As Single) As Single()
     Dim i As Long
     Dim TextSize As Long
     TextSize = Len(Text)
 
     Dim ReturnArr() As Single
-    Dim ColorSize As Long
-    ColorSize = USize(FontColor) + 1
-    ReDim ReturnArr(TextSize * CharacterByteSize(ColorSize) - 1)
+    Dim ColorSize     As Long : ColorSize = USize(FontColor) + 1
+    Dim BackColorSize As Long : BackColorSize = USize(BackgroundColor) + 1
+    ReDim ReturnArr(TextSize * CharacterByteSize(ColorSize + BackColorSize) - 1)
 
     Dim Index As Long
 
@@ -105,12 +105,12 @@ Public Function GetData(ByVal Text As String, ByRef FontColor() As Single, ByVal
         Char = GetChar(Text, i)
         CharIndex = AscW(Mid(Text, i, 1)) - FirstChar
         If CharIndex < 0 Then
-            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, Index)
-            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, Index)
-            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, Index)
-            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, Index)
-            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, Index)
-            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, Index)
+            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, 0 , 0 , xpos, ypos , FontColor, BackgroundColor, Index)
             GoTo Skip:
         End If
 
@@ -122,12 +122,12 @@ Public Function GetData(ByVal Text As String, ByRef FontColor() As Single, ByVal
         yoff   = ypos   - (Char.Rows * Scalee * Normaly)
         'x, y, z, r, g, b, tx, ty
         With Texture.SubTexture(CharIndex)
-            Call AddVertex(ReturnArr, .GetX("TopLeft")     , .GetY("TopLeft")     , xpos  , ypos , FontColor, Index)
-            Call AddVertex(ReturnArr, .GetX("TopRight")    , .GetY("TopRight")    , xoff  , ypos , FontColor, Index)
-            Call AddVertex(ReturnArr, .GetX("BottomLeft")  , .GetY("BottomLeft")  , xpos  , yoff , FontColor, Index)
-            Call AddVertex(ReturnArr, .GetX("TopRight")    , .GetY("TopRight")    , xoff  , ypos , FontColor, Index)
-            Call AddVertex(ReturnArr, .GetX("BottomRight") , .GetY("BottomRight") , xoff  , yoff , FontColor, Index)
-            Call AddVertex(ReturnArr, .GetX("BottomLeft")  , .GetY("BottomLeft")  , xpos  , yoff , FontColor, Index)
+            Call AddVertex(ReturnArr, .GetX("TopLeft")     , .GetY("TopLeft")     , xpos  , ypos , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, .GetX("TopRight")    , .GetY("TopRight")    , xoff  , ypos , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, .GetX("BottomLeft")  , .GetY("BottomLeft")  , xpos  , yoff , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, .GetX("TopRight")    , .GetY("TopRight")    , xoff  , ypos , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, .GetX("BottomRight") , .GetY("BottomRight") , xoff  , yoff , FontColor, BackgroundColor, Index)
+            Call AddVertex(ReturnArr, .GetX("BottomLeft")  , .GetY("BottomLeft")  , xpos  , yoff , FontColor, BackgroundColor, Index)
         End With
         xpos = xpos + (Char.Advance * Scalee * Normalx)
         Skip:
@@ -355,11 +355,12 @@ Private Sub Add(ByRef Arr() As Single, ByVal Value As Variant, ByRef Index As Lo
     End If
 End Sub
 
-Private Sub AddVertex(ByRef Arr() As Single, ByVal Tx As Single, ByVal Ty As Single, ByVal xPos As Single, ByVal yPos As Single, ByRef FontColor() As Single, ByRef Index As Long)
+Private Sub AddVertex(ByRef Arr() As Single, ByVal Tx As Single, ByVal Ty As Single, ByVal xPos As Single, ByVal yPos As Single, ByRef FontColor() As Single, ByRef BackgroundColor() As Single, ByRef Index As Long)
     Call Add(Arr, xPos, Index)
     Call Add(Arr, yPos, Index)
     Call Add(Arr, 0.0!, Index)
     Call Add(Arr, FontColor, Index)
+    Call Add(Arr, BackgroundColor, Index)
     Call Add(Arr, Tx, Index)
     Call Add(Arr, Ty, Index)
 End Sub

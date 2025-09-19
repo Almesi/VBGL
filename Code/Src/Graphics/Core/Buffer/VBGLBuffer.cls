@@ -86,6 +86,10 @@ End Sub
             Else
                 Call glBufferData(GL_ARRAY_BUFFER, NewSize, 0, GL_STATIC_DRAW)
             End If
+        Else
+            If IsNothing(OldData) Then
+                Call glBufferData(GL_ARRAY_BUFFER, n_Data.ByteSize, 0, GL_STATIC_DRAW)
+            End If
         End If
         Dim TempData() As Byte
         TempData = n_Data.ByteData()
@@ -129,6 +133,10 @@ End Sub
                 End If
             Else
                 Call glBufferData(GL_ELEMENT_ARRAY_BUFFER, NewSize, 0, GL_STATIC_DRAW)
+            End If
+        Else
+            If IsNothing(OldData) Then
+                Call glBufferData(GL_ARRAY_BUFFER, n_Data.ByteSize, 0, GL_STATIC_DRAW)
             End If
         End If
         Dim TempData() As Byte

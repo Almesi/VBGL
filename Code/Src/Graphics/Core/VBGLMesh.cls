@@ -81,7 +81,11 @@ Public Sub Draw()
     End If
 End Sub
 
-Public Function GetOrientation(FirstTriangle() As Single) As Long
+Public Sub AddTexture(n_Texture As VBGLTexture)
+    Call VBGLAdd(p_Textures, n_Texture)
+End Sub
+
+Private Function GetOrientation(FirstTriangle() As Single) As Long
     Dim VertexOffset As Long
     Dim PointsPerTriangle As Long
     PointsPerTriangle = 3

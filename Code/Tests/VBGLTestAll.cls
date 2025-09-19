@@ -21,7 +21,6 @@ Public Function TestAll1(ByVal Path As String, ByVal Logger As IDestination, ByV
     Call CurrentContext.RenderSettings(GL_BLEND, True)
     Call CurrentContext.RenderValue(GL_BLEND, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
     Call CurrentContext.RenderValue(GL_CULL_FACE, GL_BACK)
-    Call glFrontFace(GL_CCW)
 
     Set TestFramework = VBGLTestFramework.CreateFromProject(ThisWorkbook.VBProject, "Public Function VBGLTest")
     Set TextBox          = CreateTextBox(Path & "\Src\Externals", Path & "\Res\Fonts")
@@ -102,7 +101,7 @@ Private Function CreateTextBox(ByVal LoadFilePath As String, ByVal FilePath As S
     Dim TopRight()    As Single : ReDim TopRight(2)    : TopRight(0)    = +1: TopRight(1)    = +0: TopRight(2)    = 0
     Dim BottomLeft()  As Single : ReDim BottomLeft(2)  : BottomLeft(0)  = -1: BottomLeft(1)  = -1: BottomLeft(2)  = 0
     Dim BottomRight() As Single : ReDim BottomRight(2) : BottomRight(0) = +1: BottomRight(1) = -1: BottomRight(2) = 0
-    Dim Color()       As Single : ReDim Color(3)       : Color(0)       = +1: Color(1)       = +1: Color(2)       = 1:Color(3)       = 0
+    Dim Color()       As Single : ReDim Color(2)       : Color(0)       = +1: Color(1)       = +1: Color(2)       = 1
     Dim FontColor()   As Single : ReDim FontColor(2)   : FontColor(0)   = +0: FontColor(1)   = +0: FontColor(2)   = 0
 
     Dim FontLayout As VBGLFontLayout
@@ -111,10 +110,8 @@ Private Function CreateTextBox(ByVal LoadFilePath As String, ByVal FilePath As S
     ReDim Fonts(USize(TestFramework.AllTests))
     Dim i As Long
     For i = 0 To USize(TestFramework.AllTests)
-        Set Fonts(i) = New VBGLFont
-        Fonts(i).FontLayout = FontLayout
-        Fonts(i).Text = TestFramework.GetTest(i).Name & vbcrLf
-        Fonts(i).FontColor = FontColor
+        Set Fonts(i) = VBGLFont.Create(TestFramework.GetTest(i).Name & vbcrLf, FontLayout)
+        Fonts(i).BackgroundColor = Color
     Next i
 
     VBGLTextBox.TopLeft        = TopLeft
@@ -139,21 +136,17 @@ Private Function CreateExplainBox() As VBGLTextBox
     Dim TopRight()    As Single : ReDim TopRight(2)    : TopRight(0)    = +1: TopRight(1)    = +1: TopRight(2)    = 0
     Dim BottomLeft()  As Single : ReDim BottomLeft(2)  : BottomLeft(0)  = -1: BottomLeft(1)  = +0: BottomLeft(2)  = 0
     Dim BottomRight() As Single : ReDim BottomRight(2) : BottomRight(0) = +1: BottomRight(1) = +0: BottomRight(2) = 0
-    Dim Color()       As Single : ReDim Color(3)       : Color(0)       = +1: Color(1)       = +1: Color(2)       = 1:Color(3)       = 0
+    Dim Color()       As Single : ReDim Color(2)       : Color(0)       = +1: Color(1)       = +0: Color(2)       = 0
     Dim FontColor()   As Single : ReDim FontColor(2)   : FontColor(0)   = +0: FontColor(1)   = +0: FontColor(2)   = 0
 
-    Dim Fonts() As VBGLFont
-    ReDim Fonts(0)
-    Set Fonts(0) = New VBGLFont
-    Fonts(0).FontLayout = TextBox.Font(0).FontLayout
-    Fonts(0).Text = "Black   is not selected and not run"                 & vbcrLf & _
-                    "White   is     selected and not run"                 & vbcrLf & _
-                    "Green   is not selected and run sucessfully"         & vbcrLf & _
-                    "Blue    is     selected and run succesfully"         & vbcrLf & _
-                    "Red     is not selected and run failed"              & vbcrLf & _
-                    "yellow  is     selected and run failed"              & vbcrLf & _
-                    "w=up, s=down, whitespace=select, t=run selected"     & vbcrLf
-    Fonts(0).FontColor = FontColor
+    Dim Text As String
+    Text = "Black   is not selected and not run"                 & vbcrLf & _
+           "White   is     selected and not run"                 & vbcrLf & _
+           "Green   is not selected and run sucessfully"         & vbcrLf & _
+           "Blue    is     selected and run succesfully"         & vbcrLf & _
+           "Red     is not selected and run failed"              & vbcrLf & _
+           "yellow  is     selected and run failed"              & vbcrLf & _
+           "w=up, s=down, whitespace=select, t=run selected"     & vbcrLf
 
     VBGLTextBox.TopLeft        = TopLeft
     VBGLTextBox.TopRight       = TopRight
@@ -164,7 +157,7 @@ Private Function CreateExplainBox() As VBGLTextBox
     VBGLTextBox.LinesPerPage   = 128
     VBGLTextBox.Pages          = 1
     VBGLTextBox.LineOffset     = 0.1!
-    Set CreateExplainBox = VBGLTextBox.Create(Fonts)
+    Set CreateExplainBox = VBGLTextBox.CreateFromText(Text, TextBox.Font(0).FontLayout)
     Exit Function
 
     Error:
@@ -175,44 +168,42 @@ Private Sub UpdateTextBox()
     On Error GoTo Error
     Dim i As Long
     Dim FoundTest As VBGLTest
-    Dim FontColor() As Single
-    ReDim FontColor(2)
+    Dim BackgroundColor() As Single
+    ReDim BackgroundColor(2)
     For i = 0 To USize(TestFramework.AllTests)
         Set FoundTest = TestFramework.GetTest(i)
         If FoundTest.HasRun Then
             If FoundTest.Passed Then
                 If TestFramework.IsSelected(i) Then
-                    FontColor(0) = 0
-                    FontColor(1) = 0
-                    FontColor(2) = 1
+                    BackgroundColor(0) = 0
+                    BackgroundColor(1) = 0
+                    BackgroundColor(2) = 1
                 Else
-                    FontColor(0) = 0
-                    FontColor(1) = 1
-                    FontColor(2) = 0
+                    BackgroundColor(0) = 0
+                    BackgroundColor(1) = 1
+                    BackgroundColor(2) = 0
                 End If
             Else
                 If TestFramework.IsSelected(i) Then
-                    FontColor(0) = 1
-                    FontColor(1) = 1
-                    FontColor(2) = 0
+                    BackgroundColor(0) = 1
+                    BackgroundColor(1) = 1
+                    BackgroundColor(2) = 0
                 Else
-                    FontColor(0) = 1
-                    FontColor(1) = 0
-                    FontColor(2) = 0
+                    BackgroundColor(0) = 1
+                    BackgroundColor(1) = 0
+                    BackgroundColor(2) = 0
                 End If
             End If
         Else
             If TestFramework.IsSelected(i) Then
-                FontColor(0) = 1
-                FontColor(1) = 1
-                FontColor(2) = 1
+                BackgroundColor(0) = 0
+                BackgroundColor(1) = 1
+                BackgroundColor(2) = 1
             Else
-                FontColor(0) = 0
-                FontColor(1) = 0
-                FontColor(2) = 0
+                BackgroundColor = TextBox.Color
             End If
         End If
-        TextBox.Font(i).FontColor = FontColor
+        TextBox.Font(i).BackgroundColor = BackgroundColor
     Next i
     Call TextBox.UpdateData()
     Exit Sub

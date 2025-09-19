@@ -13,10 +13,20 @@ Option Explicit
 Implements VBGLIInput
 
 Public Enum VBGLButtonType
+    Nott  = -1
     Key   = 0
     Mouse = 1
     Wheel = 2
 End Enum
+
+Private Type KeyHandler
+    Button      As VBGLButtonType
+    Value       As Long
+    Callables() As VBGLCallable
+End Type
+
+Private Keys() As KeyHandler
+Private Size As Long
 
 Private Buttons()   As Long
 Private Values()    As Long
@@ -45,18 +55,18 @@ Public Sub AddWheel(ByVal Value As Long, ByVal Obj As Object, ByVal Method As St
 End Sub
 
 Private Sub Add(ByVal Button As VBGLButtonType, ByVal Value As Long, ByVal Obj As Object, ByVal Method As String, ByVal n_CallType As VBCallType, ByVal n_ArgCount As Long, BoundArgs() As Variant)
-    Dim Found As VBGLCallable
-    Set Found = GetCallable(Button, Value)
-    If IsNothing(Found) Then
-        Call VBGLAdd(Buttons  , Button)
-        Call VBGLAdd(Values   , Value)
-        Call VBGLAdd(Callables, VBGLCallable.CreateArr(Obj, Method, n_CallType, n_ArgCount, BoundArgs))
-    Else
-        Found.Obj       = Obj
-        Found.Method    = Method
-        Found.CallType  = n_CallType
-        Found.ArgCount  = n_ArgCount
-        Found.BoundArgs = BoundArgs
+    Dim Found As KeyHandler
+    Found = GetKeys(Button, Value)
+    If Found.Button = VBGLButtonType.Nott Then
+        Size = Size + 1
+        ReDim Preserve Keys(Size)
+        Keys(Size).Button = Button
+        Keys(Size).Value  = Value
+        
+        Dim Temp() As VBGLCallable
+        Temp = Keys(Size).Callables
+        Call VBGLAdd(Temp, VBGLCallable.CreateArr(Obj, Method, n_CallType, n_ArgCount, BoundArgs))
+        Keys(Size).Callables = Temp
     End If
 End Sub
 
@@ -104,27 +114,36 @@ Private Function VBGLIInput_MouseWheel(ByVal Value As Long, ParamArray Args() As
 End Function
 
 Private Function HandleArr(ByVal Button As Long, ByVal Value As Long, Args() As Variant) As Variant
-    Dim Cal As VBGLCallable
-    Set Cal = GetCallable(Button, Value)
-    If IsNothing(Cal) Then
+    Dim Cal As KeyHandler
+    Cal = GetKeys(Button, Value)
+    If Cal.Button = VBGLButtonType.Nott Then
         If IsSomething(ElseCallable) Then
-            Set Cal = ElseCallable
+            HandleArr = ElseCallable.HandleArr(Args)
         Else
             HandleArr = Empty
 	        Exit Function
         End If
+    Else
+        Dim i As Long
+        For i = 0 To USize(Cal.Callables)
+            HandleArr = Cal.Callables(i).HandleArr(Args)
+        Next i
     End If
 
-    HandleArr = Cal.HandleArr(Args)
 End Function
 
-Private Function GetCallable(ByVal Button As VBGLButtonType, ByVal Value As Long) As VBGLCallable
+Private Function GetKeys(ByVal Button As VBGLButtonType, ByVal Value As Long) As KeyHandler
     Dim i As Long
     i = -1
-    For i = 0 To USize(Callables)
-        If Values(i) = Value And Buttons(i) = Button Then
-            Set GetCallable = Callables(i)
+    For i = 0 To Size
+        If Keys(i).Value = Value And Keys(i).Button = Button Then
+            GetKeys = Keys(i)
             Exit Function
         End If
     Next i
+    GetKeys.Button = VBGLButtonType.Nott
 End Function
+
+Private Sub Class_Initialize()
+    Size = -1
+End Sub

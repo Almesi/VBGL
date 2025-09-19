@@ -22,6 +22,7 @@ Private p_Pages         As Long      ' Count of Pages. 0 = no pages = no printin
 Private p_LineOffset    As Single    ' Offset in 0 to 1 to start the next line
 Private p_Fonts()       As VBGLFont  ' Fonts that will be intepreted
 Private p_Mesh          As VBGLMesh  ' Handle for Rendering
+Private p_BoxMesh       As VBGLMesh  ' Handle for Rendering
 
 Public Property Let TopLeft(ByVal n_TopLeft                 As Variant)  : Let p_TopLeft      = n_TopLeft      : End Property
 Public Property Let TopRight(ByVal n_TopRight               As Variant)  : Let p_TopRight     = n_TopRight     : End Property
@@ -34,6 +35,7 @@ Public Property Let Pages(ByVal n_Pages                     As Long)     : Let p
 Public Property Let LineOffset(ByVal n_LineOffset           As Single)   : Let p_LineOffset   = n_LineOffset   : End Property
 Public Property Let Fonts(ByVal n_Fonts                     As Variant)  : Let p_Fonts        = n_Fonts        : End Property
 Public Property Let Mesh(ByVal n_Mesh                       As VBGLMesh) : Set p_Mesh         = n_Mesh         : End Property
+Public Property Let BoxMesh(ByVal n_BoxMesh                 As VBGLMesh) : Set p_BoxMesh      = n_BoxMesh      : End Property
 Public Property Let Font(ByVal Index As Long, ByVal n_Font  As VBGLFont) : Set p_Fonts(Index) = n_Font         : End Property
 
 Public Property Get TopLeft()                               As Variant   : Let TopLeft        = p_TopLeft      : End Property
@@ -47,6 +49,7 @@ Public Property Get Pages()                                 As Long      : Let P
 Public Property Get LineOffset()                            As Single    : Let LineOffset     = p_LineOffset   : End Property
 Public Property Get Fonts()                                 As Variant   : Let Fonts          = p_Fonts        : End Property
 Public Property Get Mesh()                                  As VBGLMesh  : Set Mesh           = p_Mesh         : End Property
+Public Property Get BoxMesh()                               As VBGLMesh  : Set BoxMesh        = p_BoxMesh      : End Property
 Public Property Get Font(ByVal Index As Long)               As VBGLFont  : Set Font           = p_Fonts(Index) : End Property
 
 
@@ -68,40 +71,42 @@ End Function
 Public Function Create(ByRef n_Fonts() As VBGLFont) As VBGLTextBox
     Set Create = Factory()
     With Create
-        .Fonts = n_Fonts
-        Call .CreateMesh()
+        .Fonts   = n_Fonts
+        .Mesh    = .CreateMesh()
+        .BoxMesh = .CreateBoxMesh()
     End With
 End Function
 
 Public Function CreateFromText(ByVal Text As String, ByVal FontLayout As VBGLFontLayout) As VBGLTextBox
     Dim n_Font() As VBGLFont
     ReDim n_Font(0)
-    Set n_Font(0) = New VBGLFont
-    n_Font(0).FontLayout = FontLayout
-    n_Font(0).Text = Text
+    Set n_Font(0) = VBGLFont.Create(Text, FontLayout)
+    n_Font(0).BackgroundColor = Color
     Set CreateFromText = Create(n_Font)
 End Function
 
-Public Sub CreateMesh()
-    Dim PositionDimensions As Long: PositionDimensions = 3
-    Dim TextureDimensions  As Long: TextureDimensions  = 2
-    Dim ColorDimensions    As Long: ColorDimensions    = USize(Font(0).FontColor) + 1
+Public Function CreateMesh() As VBGLMesh
+    Dim PositionDimensions  As Long: PositionDimensions     = 3
+    Dim TextureDimensions   As Long: TextureDimensions      = 2
+    Dim FontColorDimensions As Long: FontColorDimensions    = USize(Font(0).FontColor) + 1
+    Dim BackColorDimensions As Long: BackColorDimensions    = USize(Font(0).BackgroundColor) + 1
 
     Dim LayoutTypes() As VBGLLayoutType
-    ReDim LayoutTypes(2)
+    ReDim LayoutTypes(3)
     LayoutTypes(0) = VBGLLayout.GetEnum("Position", PositionDimensions)
-    LayoutTypes(1) = VBGLLayout.GetEnum("Color"   , ColorDimensions)
-    LayoutTypes(2) = VBGLLayout.GetEnum("Texture" , TextureDimensions)
+    LayoutTypes(1) = VBGLLayout.GetEnum("Color"   , FontColorDimensions)
+    LayoutTypes(2) = VBGLLayout.GetEnum("Color"   , BackColorDimensions)
+    LayoutTypes(3) = VBGLLayout.GetEnum("Texture" , TextureDimensions)
     Dim Layout As VBGLLayout
     Set Layout = VBGLLayout.Create(vbSingle, LayoutTypes)
 
     Dim ShaderTemplate As VBGLShaderTemplate
     Dim Uniforms As New VBGLShaderElementCollection
     Call Uniforms.Add(VBGLShaderVariable.Create("inVertexTexture0:inTextboxPosition", "vec" & USize(Color) + 1, "TextboxPosition", "*"))
-    Call Uniforms.Add(VBGLShaderVariable.Create("inVertexColor0:inFontColor"  , "vec" & USize(Color) + 1, "FontColor"      , "*"))
+    Call Uniforms.Add(VBGLShaderVariable.Create("inVertexColor0:inFontColor"        , "vec" & USize(Color) + 1, "FontColor"      , "*"))
+    Call Uniforms.Add(VBGLShaderVariable.Create("inVertexColor1:inBackgroundColor"  , "vec" & USize(Color) + 1, "BackgroundColor", "*"))
     Call Uniforms.Add(Nothing)
-    Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniform       , "sampler2D"             , "TextboxTexture" , "*"))
-    Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniform       , "vec" & USize(Color) + 1, "BackgroundColor", "*"))
+    Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniformOut       , "sampler2D"             , "TextboxTexture" , "*"))
     Set ShaderTemplate = VBGLShaderTemplate.Create("Vertex-Fragment", "460 core")
     Call ShaderTemplate.SetUp(Layout, Uniforms)
     Dim Code As String: Code = ShaderTemplate.GetShader
@@ -110,24 +115,60 @@ Public Sub CreateMesh()
     Dim Shader As VBGLShader
     Set Shader = VBGLShader.CreateFromText(Code)
 
-    Mesh = VBGLMesh.Create(Shader, Layout, GetData(), Nothing, False)
+    Set CreateMesh = VBGLMesh.Create(Shader, Layout, GetData(), Nothing, False)
 
     Dim i As Long
-    Dim Textures() As VBGLTexture
+    Dim Texture As VBGLTexture
     ' Currently only 1 texture, as i will not work with more
-    ReDim Textures(0)
     For i = 0 To 0
-        Set Textures(i) = Font(i).FontLayout.Texture
-        Textures(i).Name = "TextboxTexture"
+        Set Texture = Font(i).FontLayout.Texture
+        Texture.Name = "TextboxTexture"
+        Call CreateMesh.AddTexture(Texture)
     Next i
-    Mesh.Textures = Textures
-End Sub
+End Function
+
+Public Function CreateBoxMesh(ByVal Optional BoxTexture As VBGLTexture = Nothing) As VBGLMesh
+    Dim PositionDimensions As Long: PositionDimensions = 3
+    Dim TextureDimensions  As Long: TextureDimensions  = 2
+    Dim ColorDimensions    As Long: ColorDimensions    = USize(Color) + 1
+
+    Dim LayoutTypes() As VBGLLayoutType
+    If IsSomething(BoxTexture) Then
+        ReDim LayoutTypes(2)
+        LayoutTypes(0) = VBGLLayout.GetEnum("Position", PositionDimensions)
+        LayoutTypes(1) = VBGLLayout.GetEnum("Color"   , ColorDimensions)
+        LayoutTypes(2) = VBGLLayout.GetEnum("Texture" , TextureDimensions)
+    Else
+        ReDim LayoutTypes(1)
+        LayoutTypes(0) = VBGLLayout.GetEnum("Position", PositionDimensions)
+        LayoutTypes(1) = VBGLLayout.GetEnum("Color"   , ColorDimensions)
+    End If
+    Dim Layout As VBGLLayout
+    Set Layout = VBGLLayout.Create(vbSingle, LayoutTypes)
+
+    Dim ShaderTemplate As VBGLShaderTemplate
+    Dim Uniforms As New VBGLShaderElementCollection
+    Call Uniforms.Add(Nothing)
+    Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniformOut, "sampler2D", "TextboxTexture" , "*"))
+    Set ShaderTemplate = VBGLShaderTemplate.Create("Vertex-Fragment", "460 core")
+    Call ShaderTemplate.SetUp(Layout, Uniforms)
+    Dim Code As String: Code = ShaderTemplate.GetShader
+    Debug.Print Code
+
+    Dim Shader As VBGLShader
+    Set Shader = VBGLShader.CreateFromText(Code)
+
+    Set CreateBoxMesh = VBGLMesh.Create(Shader, Layout, GetBoxData(), Nothing, False)
+
+    If IsSomething(BoxTexture) Then
+        Call CreateBoxMesh.AddTexture(BoxTexture)
+    End If
+End Function
 
 Public Sub Draw()
     If IsSomething(Mesh) Then   
-        Call glFrontFace(GL_CW)
-        Mesh.Shader.Uniforms.Data("BackgroundColor") = Color
         Call Mesh.Draw()
+        Call BoxMesh.Draw()
     End If
 End Sub
 
@@ -175,6 +216,36 @@ Private Function GetData() As VBGLData
     ReDim Temp(NewSize - 1)
     Call CopyMemory(Temp(0), VarPtr(ReturnArr(0)), NewSize)
     Set GetData = VBGLData.CreateByte(Temp)
+End Function
+
+Private Function GetBoxData(Optional ByVal Texture As VBGLTexture) As VBGLData
+    Dim ReturnArr() As Single
+    Call VBGLMerge(ReturnArr, TopLeft)
+    Call VBGLMerge(ReturnArr, Color)
+    If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(0, 1))
+    Call VBGLMerge(ReturnArr, TopRight)
+    Call VBGLMerge(ReturnArr, Color)
+    If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(1, 1))
+    Call VBGLMerge(ReturnArr, BottomLeft)
+    Call VBGLMerge(ReturnArr, Color)
+    If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(0, 0))
+
+    Call VBGLMerge(ReturnArr, TopRight)
+    Call VBGLMerge(ReturnArr, Color)
+    If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(1, 1))
+    Call VBGLMerge(ReturnArr, BottomRight)
+    Call VBGLMerge(ReturnArr, Color)
+    If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(1, 0))
+    Call VBGLMerge(ReturnArr, BottomLeft)
+    Call VBGLMerge(ReturnArr, Color)
+    If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(0, 0))
+
+    Dim Temp() As Byte
+    Dim NewSize As Long
+    NewSize = (USize(ReturnArr) + 1) * LenB(ReturnArr(0))
+    ReDim Temp(NewSize - 1)
+    Call CopyMemory(Temp(0), VarPtr(ReturnArr(0)), NewSize)
+    Set GetBoxData = VBGLData.CreateByte(Temp)
 End Function
 
 Private Function ProcessLine(ByVal Line As String, ByRef CharCount As Long, ByRef FontSwitch() As Long, ByRef FontIndex As Long, ByVal xStart As Single, ByRef yStart As Single) As Single()
