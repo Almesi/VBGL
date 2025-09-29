@@ -6,7 +6,7 @@ Attribute VB_Name = "VBGLTexture"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
+Attribute VB_Exposed = True
 
 
 Option Explicit
@@ -15,6 +15,7 @@ Private p_Context        As VBGLContext
 Private p_ID             As Long
 Private p_Data           As VBGLData
 Private p_Name           As String
+Private p_UniformName    As String
 Private p_SubTextures()  As VBGLSubTexture
 
 Private p_Width          As Long
@@ -29,16 +30,18 @@ Private p_Format         As Long
 
 
 ' Instance
-Public Property Let Context(ByVal n_Context         As VBGLContext) :    Set p_Context     = n_Context     : End Property
-Public Property Let ID(ByVal n_ID                   As Long)        :    Let p_ID          = n_ID          : End Property
-Public Property Let Data(ByVal n_Data               As VBGLData)    :    Set p_Data        = n_Data        : End Property
-Public Property Let Name(ByVal n_Name               As String)      :    Let p_Name        = n_Name        : End Property
-Public Property Let SubTextures(ByVal n_SubTextures As Variant)     :    Let p_SubTextures = n_SubTextures : End Property
+Public Property Let Context(ByVal n_Context         As VBGLContext)   :    Set p_Context     = n_Context     : End Property
+Public Property Let ID(ByVal n_ID                   As Long)          :    Let p_ID          = n_ID          : End Property
+Public Property Let Data(ByVal n_Data               As VBGLData)      :    Set p_Data        = n_Data        : End Property
+Public Property Let Name(ByVal n_Name               As String)        :    Let p_Name        = n_Name        : End Property
+Public Property Let UniformName(ByVal n_UniformName As String)        :    Let p_UniformName = n_UniformName : End Property
+Public Property Let SubTextures(ByVal n_SubTextures As Variant)       :    Let p_SubTextures = n_SubTextures : End Property
 
 Public Property Get Context()                       As VBGLContext    :    Set Context       = p_Context     : End Property
 Public Property Get ID()                            As Long           :    Let ID            = p_ID          : End Property
 Public Property Get Data()                          As VBGLData       :    Set Data          = p_Data        : End Property
 Public Property Get Name()                          As String         :    Let Name          = p_Name        : End Property
+Public Property Get UniformName()                          As String         :    Let UniformName   = p_UniformName : End Property
 Public Property Get SubTextures()                   As Variant        :    Let SubTextures   = p_SubTextures : End Property
 
 Public Property Get SubTexture(ByVal Index As Long) As VBGLSubTexture
@@ -78,7 +81,7 @@ Public Property Get InternalFormat()                      As Long  : Let Interna
 Public Property Get Format()                              As Long  : Let Format           = p_Format         : End Property
 
 
-Public Function Create(ByVal Path As String, Optional ByVal n_Name As String = Empty) As VBGLTexture
+Public Function Create(ByVal Path As String, Optional ByVal n_Name As String = Empty, Optional ByVal n_UniformName As String = Empty) As VBGLTexture
     Dim Image       As stdImage
     Dim ColorData() As Long
     Set Image = stdImage.CreateFromFile(Path)
@@ -91,10 +94,10 @@ Public Function Create(ByVal Path As String, Optional ByVal n_Name As String = E
     Height = Image.Height
     Width  = Image.Width
     BPP    = Image.BitsPixel / 8
-    Set Create = CreateFromData(n_NewData, n_Name)
+    Set Create = CreateFromData(n_NewData, n_Name, n_UniformName)
 End Function
 
-Public Function CreateFromData(ByVal n_Data As VBGLData, Optional ByVal n_Name As String = Empty) As VBGLTexture
+Public Function CreateFromData(ByVal n_Data As VBGLData, Optional ByVal n_Name As String = Empty, Optional ByVal n_UniformName As String = Empty) As VBGLTexture
     Dim Found As VBGLTexture
     Set Found = Find(n_Data)
     If IsSomething(Found) Then
@@ -104,8 +107,9 @@ Public Function CreateFromData(ByVal n_Data As VBGLData, Optional ByVal n_Name A
 
     Set CreateFromData = Factory()
     With CreateFromData
-        .Data     = n_Data
-        .Name     = n_Name
+        .Data        = n_Data
+        .Name        = n_Name
+        .UniformName = n_UniformName
 
         Dim TempID As Long
         Call glGenTextures(1, TempID)

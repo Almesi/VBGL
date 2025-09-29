@@ -6,7 +6,7 @@ Attribute VB_Name = "VBGLData"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
+Attribute VB_Exposed = True
 
 
 Option Explicit
@@ -100,13 +100,11 @@ End Property
 
 Public Function ByteSize() As Long
     On Error GoTo Error
-    Dim BytesPerElement As Long
-    BytesPerElement = Data()(0)
-    ByteSize = (USize(Data) + 1) * BytesPerElement
+    ByteSize = (USize(Data) + 1) * Size
     Exit Function
     Error:
     ByteSize = 0
-End Property
+End Function
 
 Public Property Let Typee(ByVal n_Type As VbVarType)
     p_Typee = n_Type

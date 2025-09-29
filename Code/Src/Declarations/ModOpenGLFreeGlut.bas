@@ -21,9 +21,11 @@ Option Explicit
 #If VBA7 Then
     Public Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As LongPtr
     Public Declare PtrSafe Function LoadLibrary Lib "kernel32" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As LongPtr
+    Public Declare PtrSafe Function SetForegroundWindow Lib "user32"  (ByVal hwnd As LongPtr) As Long
 #Else
     Public Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
     Public Declare Function LoadLibrary Lib "kernel32" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As Long
+    Public Declare Function SetForegroundWindow Lib "user32"  (ByVal hwnd As LongPtr) As Long
 #End If
 '***************************************************************************************
 Public Const GLUT_API_VERSION         = 4&

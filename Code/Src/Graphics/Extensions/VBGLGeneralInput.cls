@@ -6,7 +6,7 @@ Attribute VB_Name = "VBGLGeneralInput"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
+Attribute VB_Exposed = True
 
 Option Explicit
 
@@ -55,19 +55,20 @@ Public Sub AddWheel(ByVal Value As Long, ByVal Obj As Object, ByVal Method As St
 End Sub
 
 Private Sub Add(ByVal Button As VBGLButtonType, ByVal Value As Long, ByVal Obj As Object, ByVal Method As String, ByVal n_CallType As VBCallType, ByVal n_ArgCount As Long, BoundArgs() As Variant)
-    Dim Found As KeyHandler
-    Found = GetKeys(Button, Value)
-    If Found.Button = VBGLButtonType.Nott Then
+    Dim Index As Long
+    Index = GetKeysIndex(Button, Value)
+    If Index = -1 Then
         Size = Size + 1
         ReDim Preserve Keys(Size)
         Keys(Size).Button = Button
         Keys(Size).Value  = Value
-        
-        Dim Temp() As VBGLCallable
-        Temp = Keys(Size).Callables
-        Call VBGLAdd(Temp, VBGLCallable.CreateArr(Obj, Method, n_CallType, n_ArgCount, BoundArgs))
-        Keys(Size).Callables = Temp
+        Index = Size
     End If
+        
+    Dim Temp() As VBGLCallable
+    Temp = Keys(Index).Callables
+    Call VBGLAdd(Temp, VBGLCallable.CreateArr(Obj, Method, n_CallType, n_ArgCount, BoundArgs))
+    Keys(Index).Callables = Temp
 End Sub
 
 ' Used for not further defined calling of any button with any Value.
@@ -133,15 +134,24 @@ Private Function HandleArr(ByVal Button As Long, ByVal Value As Long, Args() As 
 End Function
 
 Private Function GetKeys(ByVal Button As VBGLButtonType, ByVal Value As Long) As KeyHandler
+    Dim Found As Long
+    Found = GetKeysIndex(Button, Value)
+    If Found <> -1 Then
+        GetKeys = Keys(Found)
+    Else
+        GetKeys.Button = VBGLButtonType.Nott
+    End If
+End Function
+
+Private Function GetKeysIndex(ByVal Button As VBGLButtonType, ByVal Value As Long) As Long
     Dim i As Long
-    i = -1
+    GetKeysIndex = -1
     For i = 0 To Size
         If Keys(i).Value = Value And Keys(i).Button = Button Then
-            GetKeys = Keys(i)
+            GetKeysIndex = i
             Exit Function
         End If
     Next i
-    GetKeys.Button = VBGLButtonType.Nott
 End Function
 
 Private Sub Class_Initialize()

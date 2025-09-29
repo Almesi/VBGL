@@ -169,7 +169,6 @@ Private Sub UpdateShader(ByVal CurrentShader As VBGLShader, ByVal Translate As I
 End Sub
 
 Private Function CreateGeneralInput() As VBGLIInput
-    Debug.Assert False
     On Error GoTo Error
     Dim Temp As VBGLGeneralInput
     Set Temp = New VBGLGeneralInput

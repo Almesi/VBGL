@@ -6,7 +6,7 @@ Attribute VB_Name = "VBGLSubTexture"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
+Attribute VB_Exposed = True
 
 
 Option Explicit
@@ -58,6 +58,7 @@ Public Function CreateFromPoint(ByVal n_Identifier As String, ByVal X1 As Long, 
         .Identifier = n_Identifier
         .Width = Width
         .height = Height
+        .Flip = Flip
         Call .SetUp(X1, Y1, X2, Y2)
     End With
 End Function

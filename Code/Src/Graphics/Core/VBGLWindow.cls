@@ -6,7 +6,7 @@ Attribute VB_Name = "VBGLWindow"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
+Attribute VB_Exposed = True
 
 
 Option Explicit
@@ -123,6 +123,7 @@ Public Function LimitFPS() As Single
         End If
         LimitFPS = 1000 / (ElapsedTime + WaitTime)
     Else
+        If ElapsedTime = 0 Then ElapsedTime = 1
         LimitFPS = 1000 / ElapsedTime
     End If
 End Function

@@ -6,7 +6,7 @@ Attribute VB_Name = "VBGLTextBox"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
-Attribute VB_ExPosed = False
+Attribute VB_Exposed = True
 
 
 Option Explicit
@@ -106,11 +106,10 @@ Public Function CreateMesh() As VBGLMesh
     Call Uniforms.Add(VBGLShaderVariable.Create("inVertexColor0:inFontColor"        , "vec" & USize(Color) + 1, "FontColor"      , "*"))
     Call Uniforms.Add(VBGLShaderVariable.Create("inVertexColor1:inBackgroundColor"  , "vec" & USize(Color) + 1, "BackgroundColor", "*"))
     Call Uniforms.Add(Nothing)
-    Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniformOut       , "sampler2D"             , "TextboxTexture" , "*"))
+    Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniformOut       , "sampler2D", "TextboxTexture" , "*"))
     Set ShaderTemplate = VBGLShaderTemplate.Create("Vertex-Fragment", "460 core")
     Call ShaderTemplate.SetUp(Layout, Uniforms)
     Dim Code As String: Code = ShaderTemplate.GetShader
-    Debug.Print Code
 
     Dim Shader As VBGLShader
     Set Shader = VBGLShader.CreateFromText(Code)
@@ -153,7 +152,6 @@ Public Function CreateBoxMesh(ByVal Optional BoxTexture As VBGLTexture = Nothing
     Set ShaderTemplate = VBGLShaderTemplate.Create("Vertex-Fragment", "460 core")
     Call ShaderTemplate.SetUp(Layout, Uniforms)
     Dim Code As String: Code = ShaderTemplate.GetShader
-    Debug.Print Code
 
     Dim Shader As VBGLShader
     Set Shader = VBGLShader.CreateFromText(Code)

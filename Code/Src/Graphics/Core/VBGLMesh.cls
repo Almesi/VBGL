@@ -6,7 +6,7 @@ Attribute VB_Name = "VBGLMesh"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
+Attribute VB_Exposed = True
 
 
 Option Explicit
@@ -63,10 +63,10 @@ Public Sub Draw()
     End If
     For i = 0 To USize(Textures)
         Call Texture(i).Activate(i)
-        If Texture(i).Name = Empty Then
+        If Texture(i).UniformName = Empty Then
             Shader.Uniforms.Data("TextureDiffuse" & i) = i
         Else
-            Shader.Uniforms.Data(Texture(i).Name) = i
+            Shader.Uniforms.Data(Texture(i).UniformName) = i
         End If
         Call Texture(i).Bind()
     Next i
@@ -77,7 +77,7 @@ Public Sub Draw()
         Call EBO.Bind()
         Call glDrawElements(GL_TRIANGLES, EBO.Data.Count, GL_UNSIGNED_INT, 0)
     Else
-        Call glDrawArrays(GL_TRIANGLES, 0, VAO.Buffer.Data.Count / VAO.Layout.ByteSize)
+        Call glDrawArrays(GL_TRIANGLES, 0, VAO.Buffer.Data.ByteSize / VAO.Layout.ByteSize)
     End If
 End Sub
 
@@ -107,15 +107,16 @@ Private Function GetOrientation(FirstTriangle() As Single) As Long
     Dim Sum As Single
     
     For i = 0 To USize(X) - 1
-        Sum = Sum + (X(i + 1) - X(i)) * (Y(i + 1) + Y(i))
+        Sum = Sum + ((X(i)* Y(i + 1)) - (X(i + 1) * Y(i + 1)))
     Next i
     ' Close polygon (last point with first point)
-    Sum = Sum + (X(0) - X(USize(X))) * (Y(0) + Y(USize(Y)))
+        
+    Sum = Sum + ((X(i)* Y(0)) - (X(0) * Y(i)))
     
     If Sum > 0 Then
-        GetOrientation = GL_CW
-    Else
         GetOrientation = GL_CCW
+    Else
+        GetOrientation = GL_CW
     End If
 End Function
 
@@ -130,7 +131,7 @@ Private Function GetFirstTriangle(ByVal Layout As VBGLLayout, ByVal Data As VBGL
     Dim SizeSingle  As Long   : SizeSingle = 4
     Dim NewSize     As Long   : NewSize = (Layout.ByteSize / SizeSingle) * 3
     Dim ReturnArr() As Single : ReDim ReturnArr(NewSize - 1)
-    Dim ByteData()  As Byte   : ByteData = Data.Data
+    Dim ByteData()  As Byte   : ByteData = Data.ByteData
     Dim i As Long
     For i = 0 To NewSize - 1
         Call CopyMemory(ReturnArr(i), VarPtr(ByteData(i * SizeSingle)), SizeSingle)

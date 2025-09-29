@@ -6,7 +6,7 @@ Attribute VB_Name = "VBGLFontLayout"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = False
+Attribute VB_Exposed = True
 
 
 Option Explicit
@@ -276,6 +276,7 @@ Private Sub GetCharacters(ByVal Face As LongPtr, Optional ByVal n_Name As String
             Ty(i)          = 0
             Ty2(i)         = 0
         End If
+
         Tx2(i) = xOffset
         Characters(i)  = Char
         Identifiers(i) = ChrW(CharCode)
@@ -286,7 +287,7 @@ Private Sub GetCharacters(ByVal Face As LongPtr, Optional ByVal n_Name As String
     Set n_Data = VBGLData.CreateByte(atlas)
 
     Dim SubTextureFactory As VBGLSubTexture
-    Set SubTextureFactory = VBGLSubTexture.CreateFactory(Byte4Size, MaxHeight)
+    Set SubTextureFactory = VBGLSubTexture.CreateFactory(Byte4Size, MaxHeight, False)
     
     Dim n_Texture As VBGLTexture
     Dim TextureFactory As VBGLTexture
@@ -302,7 +303,7 @@ Private Sub GetCharacters(ByVal Face As LongPtr, Optional ByVal n_Name As String
         .GLTextureWrapS  = GL_CLAMP_TO_EDGE
         .GLTextureWrapT  = GL_CLAMP_TO_EDGE
     End With
-    Set n_Texture = TextureFactory.CreateFromData(n_Data, n_Name)
+    Set n_Texture = TextureFactory.CreateFromData(n_Data, n_Name, "TextboxTexture")
     n_Texture.Width = Byte4Size
 
     Dim n_SubTextures() As VBGLSubTexture
