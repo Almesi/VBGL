@@ -267,8 +267,10 @@ End Function
 
 Private Sub GetOutputs()
     Dim i As Long
+    Dim Typee As VBGLShaderOperation
     For i = 0 To Workflows.Size
-        If Workflows.Element(i).Element.WFType = VBGLShaderPass Then
+        Typee = Workflows.Element(i).Element.WFType
+        If Typee = VBGLShaderPass Then
             Call Outputs.Add(Workflows.Element(i).Element.Vars.Element(0))
         End If
     Next i

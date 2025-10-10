@@ -28,7 +28,7 @@ Public Function CreateVertexBuffer(ByVal n_Data As VBGLData) As IBufferVertex
     With CreateVertexBuffer
         Dim TempID As Long: Call glGenBuffers(1, TempID)
         .ID   = TempID
-        Call .Update(n_Data, Ubound(n_Data.ByteData) + 1)
+        Call .Update(n_Data)
     End With
 End Function
 Public Function CreateIndexBuffer(ByVal n_Data As VBGLData) As IBufferIndex
@@ -36,7 +36,7 @@ Public Function CreateIndexBuffer(ByVal n_Data As VBGLData) As IBufferIndex
     With CreateIndexBuffer
         Dim TempID As Long: Call glGenBuffers(1, TempID)
         .ID   = TempID
-        Call .Update(n_Data, Ubound(n_Data.ByteData) + 1)
+        Call .Update(n_Data)
     End With
 End Function
 
@@ -72,24 +72,18 @@ End Sub
         Context.CurrentVBO = Nothing
     End Sub
 
-    Private Sub IBufferVertex_Update(ByVal n_Data As VBGLData, Optional ByVal NewSize As Variant)
+    Private Sub IBufferVertex_Update(ByVal n_Data As VBGLData)
         Dim OldData As VBGLData
         Set OldData = IBufferVertex_Data
         If IsNothing(n_Data) Then Exit Sub
         IBufferVertex_Data = n_Data
         Call IBufferVertex_Bind()
-        If IsMissing(NewSize) = False Then
-            If IsSomething(OldData) Then
-                If OldData.Count <> NewSize Then
-                    Call glBufferData(GL_ARRAY_BUFFER, NewSize, 0, GL_STATIC_DRAW)
-                End If
-            Else
-                Call glBufferData(GL_ARRAY_BUFFER, NewSize, 0, GL_STATIC_DRAW)
-            End If
-        Else
-            If IsNothing(OldData) Then
+        If IsSomething(OldData) Then
+            If OldData.ByteSize <> n_Data.ByteSize Then
                 Call glBufferData(GL_ARRAY_BUFFER, n_Data.ByteSize, 0, GL_STATIC_DRAW)
             End If
+        Else
+            Call glBufferData(GL_ARRAY_BUFFER, n_Data.ByteSize, 0, GL_STATIC_DRAW)
         End If
         Dim TempData() As Byte
         TempData = n_Data.ByteData()
@@ -120,24 +114,18 @@ End Sub
         Context.CurrentEBO = Nothing
     End Sub
 
-    Private Sub IBufferIndex_Update(ByVal n_Data As VBGLData, Optional ByVal NewSize As Variant)
+    Private Sub IBufferIndex_Update(ByVal n_Data As VBGLData)
         Dim OldData As VBGLData
         Set OldData = IBufferIndex_Data
         If IsNothing(n_Data) Then Exit Sub
         IBufferIndex_Data = n_Data
         Call IBufferIndex_Bind()
-        If IsMissing(NewSize) = False Then
-            If IsSomething(OldData) Then
-                If OldData.Count <> NewSize Then
-                    Call glBufferData(GL_ELEMENT_ARRAY_BUFFER, NewSize, 0, GL_STATIC_DRAW)
-                End If
-            Else
-                Call glBufferData(GL_ELEMENT_ARRAY_BUFFER, NewSize, 0, GL_STATIC_DRAW)
-            End If
-        Else
-            If IsNothing(OldData) Then
+        If IsSomething(OldData) Then
+            If OldData.ByteSize <> n_Data.ByteSize Then
                 Call glBufferData(GL_ARRAY_BUFFER, n_Data.ByteSize, 0, GL_STATIC_DRAW)
             End If
+        Else
+            Call glBufferData(GL_ARRAY_BUFFER, n_Data.ByteSize, 0, GL_STATIC_DRAW)
         End If
         Dim TempData() As Byte
         TempData = n_Data.ByteData()

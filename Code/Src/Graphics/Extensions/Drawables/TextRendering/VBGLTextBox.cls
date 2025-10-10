@@ -11,56 +11,40 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
-Private p_TopLeft()     As Single    ' vec3
-Private p_TopRight()    As Single    ' vec3
-Private p_BottomLeft()  As Single    ' vec3
-Private p_BottomRight() As Single    ' vec3
-Private p_Color()       As Single    ' vec1 to vec4
-Private p_CharsPerLine  As Long      ' Whole Number example: 1 to 16 is one line, so character 17 will be on line 2
-Private p_LinesPerPage  As Long      ' Lines that will be printed to the textbox under current line. 0 = no lines = no printing
-Private p_Pages         As Long      ' Count of Pages. 0 = no pages = no printing
-Private p_LineOffset    As Single    ' Offset in 0 to 1 to start the next line
-Private p_Fonts()       As VBGLFont  ' Fonts that will be intepreted
-Private p_Mesh          As VBGLMesh  ' Handle for Rendering
-Private p_BoxMesh       As VBGLMesh  ' Handle for Rendering
+Private p_Properties    As VBGLProperties
+Private p_CharsPerLine  As Long            ' Whole Number example: 1 to 16 is one line, so character 17 will be on line 2
+Private p_LinesPerPage  As Long            ' Lines that will be printed to the textbox under current line. 0 = no lines = no printing
+Private p_Pages         As Long            ' Count of Pages. 0 = no pages = no printing
+Private p_LineOffset    As Single          ' Offset in 0 to 1 to start the next line
+Private p_Fonts()       As VBGLFont        ' Fonts that will be intepreted
+Private p_Mesh          As VBGLMesh        ' Handle for Rendering
+Private p_BoxMesh       As VBGLMesh        ' Handle for Rendering
 
-Public Property Let TopLeft(ByVal n_TopLeft                 As Variant)  : Let p_TopLeft      = n_TopLeft      : End Property
-Public Property Let TopRight(ByVal n_TopRight               As Variant)  : Let p_TopRight     = n_TopRight     : End Property
-Public Property Let BottomLeft(ByVal n_BottomLeft           As Variant)  : Let p_BottomLeft   = n_BottomLeft   : End Property
-Public Property Let BottomRight(ByVal n_BottomRight         As Variant)  : Let p_BottomRight  = n_BottomRight  : End Property
-Public Property Let Color(ByVal n_Color                     As Variant)  : Let p_Color        = n_Color        : End Property
-Public Property Let CharsPerLine(ByVal n_CharsPerLine       As Long)     : Let p_CharsPerLine = n_CharsPerLine : End Property
-Public Property Let LinesPerPage(ByVal n_LinesPerPage       As Long)     : Let p_LinesPerPage = n_LinesPerPage : End Property
-Public Property Let Pages(ByVal n_Pages                     As Long)     : Let p_Pages        = n_Pages        : End Property
-Public Property Let LineOffset(ByVal n_LineOffset           As Single)   : Let p_LineOffset   = n_LineOffset   : End Property
-Public Property Let Fonts(ByVal n_Fonts                     As Variant)  : Let p_Fonts        = n_Fonts        : End Property
-Public Property Let Mesh(ByVal n_Mesh                       As VBGLMesh) : Set p_Mesh         = n_Mesh         : End Property
-Public Property Let BoxMesh(ByVal n_BoxMesh                 As VBGLMesh) : Set p_BoxMesh      = n_BoxMesh      : End Property
-Public Property Let Font(ByVal Index As Long, ByVal n_Font  As VBGLFont) : Set p_Fonts(Index) = n_Font         : End Property
+Public Property Let Properties(ByVal n_Properties           As VBGLProperties)  : Set p_Properties      = n_Properties      : End Property
+Public Property Let CharsPerLine(ByVal n_CharsPerLine       As Long)            : Let p_CharsPerLine    = n_CharsPerLine    : End Property
+Public Property Let LinesPerPage(ByVal n_LinesPerPage       As Long)            : Let p_LinesPerPage    = n_LinesPerPage    : End Property
+Public Property Let Pages(ByVal n_Pages                     As Long)            : Let p_Pages           = n_Pages           : End Property
+Public Property Let LineOffset(ByVal n_LineOffset           As Single)          : Let p_LineOffset      = n_LineOffset      : End Property
+Public Property Let Fonts(ByVal n_Fonts                     As Variant)         : Let p_Fonts           = n_Fonts           : End Property
+Public Property Let Mesh(ByVal n_Mesh                       As VBGLMesh)        : Set p_Mesh            = n_Mesh            : End Property
+Public Property Let BoxMesh(ByVal n_BoxMesh                 As VBGLMesh)        : Set p_BoxMesh         = n_BoxMesh         : End Property
+Public Property Let Font(ByVal Index As Long, ByVal n_Font  As VBGLFont)        : Set p_Fonts(Index)    = n_Font            : End Property
 
-Public Property Get TopLeft()                               As Variant   : Let TopLeft        = p_TopLeft      : End Property
-Public Property Get TopRight()                              As Variant   : Let TopRight       = p_TopRight     : End Property
-Public Property Get BottomLeft()                            As Variant   : Let BottomLeft     = p_BottomLeft   : End Property
-Public Property Get BottomRight()                           As Variant   : Let BottomRight    = p_BottomRight  : End Property
-Public Property Get Color()                                 As Variant   : Let Color          = p_Color        : End Property
-Public Property Get CharsPerLine()                          As Long      : Let CharsPerLine   = p_CharsPerLine : End Property
-Public Property Get LinesPerPage()                          As Long      : Let LinesPerPage   = p_LinesPerPage : End Property
-Public Property Get Pages()                                 As Long      : Let Pages          = p_Pages        : End Property
-Public Property Get LineOffset()                            As Single    : Let LineOffset     = p_LineOffset   : End Property
-Public Property Get Fonts()                                 As Variant   : Let Fonts          = p_Fonts        : End Property
-Public Property Get Mesh()                                  As VBGLMesh  : Set Mesh           = p_Mesh         : End Property
-Public Property Get BoxMesh()                               As VBGLMesh  : Set BoxMesh        = p_BoxMesh      : End Property
-Public Property Get Font(ByVal Index As Long)               As VBGLFont  : Set Font           = p_Fonts(Index) : End Property
+Public Property Get Properties()                            As VBGLProperties   : Set Properties        = p_Properties      : End Property
+Public Property Get CharsPerLine()                          As Long             : Let CharsPerLine      = p_CharsPerLine    : End Property
+Public Property Get LinesPerPage()                          As Long             : Let LinesPerPage      = p_LinesPerPage    : End Property
+Public Property Get Pages()                                 As Long             : Let Pages             = p_Pages           : End Property
+Public Property Get LineOffset()                            As Single           : Let LineOffset        = p_LineOffset      : End Property
+Public Property Get Fonts()                                 As Variant          : Let Fonts             = p_Fonts           : End Property
+Public Property Get Mesh()                                  As VBGLMesh         : Set Mesh              = p_Mesh            : End Property
+Public Property Get BoxMesh()                               As VBGLMesh         : Set BoxMesh           = p_BoxMesh         : End Property
+Public Property Get Font(ByVal Index As Long)               As VBGLFont         : Set Font              = p_Fonts(Index)    : End Property
 
 
 Public Function Factory() As VBGLTextBox
     Set Factory = New VBGLTextBox
     With Factory
-        .TopLeft        = TopLeft
-        .TopRight       = TopRight
-        .BottomLeft     = BottomLeft
-        .BottomRight    = BottomRight
-        .Color          = Color
+        .Properties     = Properties
         .CharsPerLine   = CharsPerLine
         .LinesPerPage   = LinesPerPage
         .Pages          = Pages
@@ -68,21 +52,22 @@ Public Function Factory() As VBGLTextBox
     End With
 End Function
 
-Public Function Create(ByRef n_Fonts() As VBGLFont) As VBGLTextBox
+Public Function Create(ByVal n_Properties As VBGLProperties, ByRef n_Fonts() As VBGLFont) As VBGLTextBox
     Set Create = Factory()
     With Create
-        .Fonts   = n_Fonts
-        .Mesh    = .CreateMesh()
-        .BoxMesh = .CreateBoxMesh()
+        .Properties = n_Properties
+        .Fonts      = n_Fonts
+        .Mesh       = .CreateMesh()
+        .BoxMesh    = .CreateBoxMesh()
     End With
 End Function
 
-Public Function CreateFromText(ByVal Text As String, ByVal FontLayout As VBGLFontLayout) As VBGLTextBox
+Public Function CreateFromText(ByVal n_Properties As VBGLProperties, ByVal Text As String, ByVal FontLayout As VBGLFontLayout) As VBGLTextBox
     Dim n_Font() As VBGLFont
     ReDim n_Font(0)
     Set n_Font(0) = VBGLFont.Create(Text, FontLayout)
-    n_Font(0).BackgroundColor = Color
-    Set CreateFromText = Create(n_Font)
+    n_Font(0).BackgroundColor = n_Properties.GetValueFamily("Color*")
+    Set CreateFromText = Create(n_Properties, n_Font)
 End Function
 
 Public Function CreateMesh() As VBGLMesh
@@ -129,7 +114,7 @@ End Function
 Public Function CreateBoxMesh(ByVal Optional BoxTexture As VBGLTexture = Nothing) As VBGLMesh
     Dim PositionDimensions As Long: PositionDimensions = 3
     Dim TextureDimensions  As Long: TextureDimensions  = 2
-    Dim ColorDimensions    As Long: ColorDimensions    = USize(Color) + 1
+    Dim ColorDimensions    As Long: ColorDimensions    = 4
 
     Dim LayoutTypes() As VBGLLayoutType
     If IsSomething(BoxTexture) Then
@@ -148,7 +133,9 @@ Public Function CreateBoxMesh(ByVal Optional BoxTexture As VBGLTexture = Nothing
     Dim ShaderTemplate As VBGLShaderTemplate
     Dim Uniforms As New VBGLShaderElementCollection
     Call Uniforms.Add(Nothing)
-    Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniformOut, "sampler2D", "TextboxTexture" , "*"))
+    If IsSomething(BoxTexture) Then
+        Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniformOut, "sampler2D", "TextboxTexture" , "*"))
+    End If
     Set ShaderTemplate = VBGLShaderTemplate.Create("Vertex-Fragment", "460 core")
     Call ShaderTemplate.SetUp(Layout, Uniforms)
     Dim Code As String: Code = ShaderTemplate.GetShader
@@ -163,17 +150,37 @@ Public Function CreateBoxMesh(ByVal Optional BoxTexture As VBGLTexture = Nothing
     End If
 End Function
 
+Public Function CreateProperties(ByVal Dimensions As Long, ByVal ColorDimensions As Long) As VBGLProperties
+    Dim i As Long
+    Set CreateProperties = New VBGLProperties
+    With CreateProperties
+        For i = 0 To Dimensions
+            .AddProperty(InterpretProperty("TopLeft", i))
+            .AddProperty(InterpretProperty("TopRight", i))
+            .AddProperty(InterpretProperty("BottomLeft", i))
+            .AddProperty(InterpretProperty("BottomRight", i))
+        Next i
+        For i = 0 To ColorDimensions
+            .AddProperty(InterpretProperty("Color", i))
+        Next i
+    End With
+End Function
+
 Public Sub Draw()
-    If IsSomething(Mesh) Then   
-        Call Mesh.Draw()
+    If IsSomething(Mesh) Then
+        Dim Temp As Long
+        Temp = CurrentContext.GetDepthFunc()
+        Call CurrentContext.DepthFunc(GL_LEQUAL)
         Call BoxMesh.Draw()
+        Call Mesh.Draw()
+        Call CurrentContext.DepthFunc(Temp)
     End If
 End Sub
 
 Public Sub UpdateData()
     Dim Data As VBGLData
     Set Data = GetData()
-    Call Mesh.VAO.Buffer.Update(Data, Data.Count)
+    Call Mesh.VAO.Buffer.Update(Data)
 End Sub
 
 
@@ -185,8 +192,9 @@ Private Function GetData() As VBGLData
     Dim FontSwitch() As Long
     FontSwitch = GetFontSwitchLength
     Dim FontIndex As Long
-    Dim xStart As Single: xStart = p_TopLeft(0)
-    Dim yStart As Single: yStart = p_TopLeft(1)
+
+    Dim xStart As Single: xStart = Properties.Value("TopLeftX")
+    Dim yStart As Single: yStart = Properties.Value("TopLeftY")
 
     Dim i As Long
     Dim CharCount As Long
@@ -218,24 +226,24 @@ End Function
 
 Private Function GetBoxData(Optional ByVal Texture As VBGLTexture) As VBGLData
     Dim ReturnArr() As Single
-    Call VBGLMerge(ReturnArr, TopLeft)
-    Call VBGLMerge(ReturnArr, Color)
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("TopLeft*"))
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("Color*"))
     If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(0, 1))
-    Call VBGLMerge(ReturnArr, TopRight)
-    Call VBGLMerge(ReturnArr, Color)
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("TopRight*"))
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("Color*"))
     If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(1, 1))
-    Call VBGLMerge(ReturnArr, BottomLeft)
-    Call VBGLMerge(ReturnArr, Color)
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("BottomLeft*"))
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("Color*"))
     If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(0, 0))
 
-    Call VBGLMerge(ReturnArr, TopRight)
-    Call VBGLMerge(ReturnArr, Color)
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("TopRight*"))
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("Color*"))
     If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(1, 1))
-    Call VBGLMerge(ReturnArr, BottomRight)
-    Call VBGLMerge(ReturnArr, Color)
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("BottomRight*"))
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("Color*"))
     If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(1, 0))
-    Call VBGLMerge(ReturnArr, BottomLeft)
-    Call VBGLMerge(ReturnArr, Color)
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("BottomLeft*"))
+    Call VBGLMerge(ReturnArr, Properties.GetValueFamily("Color*"))
     If IsSomething(Texture) Then Call VBGLMerge(ReturnArr, Array(0, 0))
 
     Dim Temp() As Byte
@@ -330,4 +338,13 @@ Private Function GetSize() As Long
         ReturnValue = ReturnValue + Font(i).DataSize
     Next i
     GetSize = ReturnValue
+End Function
+
+Private Function InterpretProperty(ByVal Name As String, ByVal Index As Long) As String
+    Dim ArrT() As Variant: ArrT = Array("X", "Y", "Z", "W")
+    Dim ArrC() As Variant: ArrC = Array("R", "G", "B" ,"A")
+    Select Case Name
+        Case "Color" : InterpretProperty = Name & ArrC(Index)
+        Case Else    : InterpretProperty = Name & ArrT(Index)
+    End Select
 End Function

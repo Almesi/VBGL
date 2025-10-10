@@ -17,15 +17,18 @@ Option Explicit
 ' But since VBA only allows ByRef Arrays this comment is needed
 
 Private p_Size       As Long
+Private p_VertexSize As Long
 Private p_ByteSize   As Long
 Private p_Elements() As VBGLElement
 
 Public Property Let Size(ByVal n_Size                            As Long)        : Let p_Size            = n_Size            : End Property
+Public Property Let VertexSize(ByVal n_VertexSize                As Long)        : Let p_VertexSize      = n_VertexSize      : End Property
 Public Property Let ByteSize(ByVal n_ByteSize                    As Long)        : Let p_ByteSize        = n_ByteSize        : End Property
 Public Property Let Elements(ByRef n_Elements()                  As VBGLElement) : Let Elements          = p_Elements        : End Property
 Public Property Let Element(ByVal Index As Long, ByVal n_Element As VBGLElement) : Set p_Elements(Index) = n_Element         : End Property
 
 Public Property Get Size()                                       As Long         : Let Size              = p_Size            : End Property
+Public Property Get VertexSize()                                 As Long         : Let VertexSize        = p_VertexSize      : End Property
 Public Property Get ByteSize()                                   As Long         : Let ByteSize          = p_ByteSize        : End Property
 Public Property Get Elements()                                   As VBGLElement(): Let Elements          = p_Elements        : End Property
 Public Property Get Element(ByVal Index As Long)                 As VBGLElement  : Set Element           = p_Elements(Index) : End Property
@@ -92,6 +95,25 @@ Public Function GetEnum(ByVal What As String, ByVal Size As Long)
     End Select
 End Function
 
+Public Function VertexSizeFromIndex(ByVal Index As Long) As Long
+    Dim i As Long
+    Dim Result As Long
+    For i = 0 To Index
+        Result = Result + Element(i).Size
+    Next i
+    VertexSizeFromIndex = Result
+End Function
+
+Public Function StartPoint(ByVal Index As Long) As Long
+    Dim i As Long
+    Dim Result As Long
+    For i = 1 To Index
+        Result = Result + Element(i).Size
+    Next i
+    StartPoint = Result
+End Function
+
+
 Public Sub AddDouble(ByVal LayoutType       As VBGLLayoutType) : Call Push(GL_DOUBLE       , LayoutType, GL_FALSE) : End Sub
 Public Sub AddFloat(ByVal LayoutType        As VBGLLayoutType) : Call Push(GL_FLOAT        , LayoutType, GL_FALSE) : End Sub
 Public Sub AddUnsignedInt(ByVal LayoutType  As VBGLLayoutType) : Call Push(GL_UNSIGNED_INT , LayoutType, GL_FALSE) : End Sub
@@ -102,6 +124,7 @@ Private Sub Push(ByVal Typee As Long, ByVal LayoutType As VBGLLayoutType, ByVal 
     ReDim Preserve p_Elements(Size)
     Element(Size) = VBGLElement.Create(LayoutType, Typee, Normalized)
     ByteSize = ByteSize + Element(Size).ByteSize
+    VertexSize = VertexSize + Element(Size).Size
 End Sub
 
 Private Sub Class_Initialize()

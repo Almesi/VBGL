@@ -76,7 +76,7 @@ Public Function VertexSize() As Long
 End Function
 
 Private Sub Class_Initialize()
-    ReDim p_FontColor(2)
+    ReDim p_FontColor(3)
     ReDim p_BackgroundColor(3)
     Scalee = 1
 End Sub

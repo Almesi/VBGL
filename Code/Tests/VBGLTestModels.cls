@@ -29,9 +29,9 @@ Public Function VBGLTestModels1() As Long
     Set Window = CurrentContext.CurrentWindow
     CurrentContext.BlendTest = True 
     CurrentContext.DepthTest = True
-    CurrentContext.CullFace = True
-    Call CurrentContext.RenderValue(GL_BLEND, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-    Call CurrentContext.RenderValue(GL_CULL_FACE, GL_BACK)
+    CurrentContext.CullTest = True
+    Call CurrentContext.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+    Call CurrentContext.CullFace(GL_BACK)
 
     Dim NewLoader As VBGLFileLoader
     Dim MtlLoader As IMtlLoader
@@ -174,17 +174,17 @@ Private Function CreateGeneralInput() As VBGLIInput
     Set Temp = New VBGLGeneralInput
     Dim DeltaTime As VBGLCallable
     Set DeltaTime = VBGLCallable.Create(CurrentTimer, "DeltaTime", VbMethod, -1)
-    Call Temp.AddKey(Asc("w"), Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.FORWARD  , 1) 'DeltaTime
-    Call Temp.AddKey(Asc("s"), Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.BACKWARD , 1) 'DeltaTime
-    Call Temp.AddKey(Asc("a"), Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.LEFT     , 1) 'DeltaTime
-    Call Temp.AddKey(Asc("d"), Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.RIGHTT   , 1) 'DeltaTime
-    Call Temp.AddKey(Asc(" "), Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.UPP      , 1) 'DeltaTime
-    Call Temp.AddKey(Asc("y"), Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.DOWN     , 1) 'DeltaTime
-    Call Temp.AddKey(27      , CurrentContext, "PopStack" ,  vbMethod, -1)
+    Call Temp.AddKey(Asc("w"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.FORWARD  , 1)) 'DeltaTime
+    Call Temp.AddKey(Asc("s"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.BACKWARD , 1)) 'DeltaTime
+    Call Temp.AddKey(Asc("a"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.LEFT     , 1)) 'DeltaTime
+    Call Temp.AddKey(Asc("d"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.RIGHTT   , 1)) 'DeltaTime
+    Call Temp.AddKey(Asc(" "), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.UPP      , 1)) 'DeltaTime
+    Call Temp.AddKey(Asc("y"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.DOWN     , 1)) 'DeltaTime
+    Call Temp.AddKey(27      , VBGLCallable.Create(CurrentContext, "PopStack" ,  vbMethod, -1))
 
-    Call Temp.AddWheel(+1, Camera, "Zoom", vbMethod, 0)
-    Call Temp.AddWheel(-1, Camera, "Zoom", vbMethod, 0)
-    Call Temp.AddMouse(0 , Camera, "Look", vbMethod, 2)
+    Call Temp.AddWheel(+1, VBGLCallable.Create(Camera, "Zoom", vbMethod, 0))
+    Call Temp.AddWheel(-1, VBGLCallable.Create(Camera, "Zoom", vbMethod, 0))
+    Call Temp.AddMouse(0 , VBGLCallable.Create(Camera, "Look", vbMethod, 2))
 
     Set CreateGeneralInput = Temp
     Exit Function

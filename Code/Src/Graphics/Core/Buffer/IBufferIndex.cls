@@ -17,4 +17,4 @@ Public Property Let Data(ByVal n_Data As VBGLData)
 Public Property Get Data() As VBGLData
 Public Sub Bind()
 Public Sub Unbind()
-Public Sub Update(ByVal n_Data As VBGLData, Optional ByVal NewSize As Variant)
+Public Sub Update(ByVal n_Data As VBGLData)

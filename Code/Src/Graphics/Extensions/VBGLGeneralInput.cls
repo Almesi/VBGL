@@ -15,8 +15,9 @@ Implements VBGLIInput
 Public Enum VBGLButtonType
     Nott  = -1
     Key   = 0
-    Mouse = 1
-    Wheel = 2
+    KeyUp = 1
+    Mouse = 2
+    Wheel = 3
 End Enum
 
 Private Type KeyHandler
@@ -33,28 +34,33 @@ Private Values()    As Long
 Private Callables() As VBGLCallable
 
 Private ElseCallable As VBGLCallable
+Private AnyCallable As VBGLCallable
 
-Public Sub AddElse(ByVal Obj As Object, ByVal Method As String, ByVal n_CallType As VBCallType, ByVal n_ArgCount As Long, ParamArray BoundArgs() As Variant)
-    Dim ArgsV() As Variant: ArgsV = BoundArgs
+Public Sub AddElse(ByVal Func As VBGLCallable)
     Set ElseCallable = VBGLCallable.Create(Obj, Method, n_CallType, n_ArgCount, ArgsV)
 End Sub
 
-Public Sub AddKey(ByVal Value As Long, ByVal Obj As Object, ByVal Method As String, ByVal n_CallType As VBCallType, ByVal n_ArgCount As Long, ParamArray BoundArgs() As Variant)
-    Dim ArgsV() As Variant: ArgsV = BoundArgs
-    Call Add(VBGLButtonType.Key, Value, Obj, Method, n_CallType, n_ArgCount, ArgsV)
+Public Sub AddAny(ByVal Func As VBGLCallable)
+    Set AnyCallable = VBGLCallable.Create(Obj, Method, n_CallType, n_ArgCount, ArgsV)
 End Sub
 
-Public Sub AddMouse(ByVal Value As Long, ByVal Obj As Object, ByVal Method As String, ByVal n_CallType As VBCallType, ByVal n_ArgCount As Long, ParamArray BoundArgs() As Variant)
-    Dim ArgsV() As Variant: ArgsV = BoundArgs
-    Call Add(VBGLButtonType.Mouse, Value, Obj, Method, n_CallType, n_ArgCount, ArgsV)
+Public Sub AddKey(ByVal Value As Long, ByVal Func As VBGLCallable)
+    Call Add(VBGLButtonType.Key, Value, Func)
 End Sub
 
-Public Sub AddWheel(ByVal Value As Long, ByVal Obj As Object, ByVal Method As String, ByVal n_CallType As VBCallType, ByVal n_ArgCount As Long, ParamArray BoundArgs() As Variant)
-    Dim ArgsV() As Variant: ArgsV = BoundArgs
-    Call Add(VBGLButtonType.Wheel, Value, Obj, Method, n_CallType, n_ArgCount, ArgsV)
+Public Sub AddKeyUp(ByVal Value As Long, ByVal Func As VBGLCallable)
+    Call Add(VBGLButtonType.KeyUp, Value, Func)
 End Sub
 
-Private Sub Add(ByVal Button As VBGLButtonType, ByVal Value As Long, ByVal Obj As Object, ByVal Method As String, ByVal n_CallType As VBCallType, ByVal n_ArgCount As Long, BoundArgs() As Variant)
+Public Sub AddMouse(ByVal Value As Long, ByVal Func As VBGLCallable)
+    Call Add(VBGLButtonType.Mouse, Value, Func)
+End Sub
+
+Public Sub AddWheel(ByVal Value As Long, ByVal Func As VBGLCallable)
+    Call Add(VBGLButtonType.Wheel, Value, Func)
+End Sub
+
+Private Sub Add(ByVal Button As VBGLButtonType, ByVal Value As Long, ByVal Func As VBGLCallable)
     Dim Index As Long
     Index = GetKeysIndex(Button, Value)
     If Index = -1 Then
@@ -67,7 +73,7 @@ Private Sub Add(ByVal Button As VBGLButtonType, ByVal Value As Long, ByVal Obj A
         
     Dim Temp() As VBGLCallable
     Temp = Keys(Index).Callables
-    Call VBGLAdd(Temp, VBGLCallable.CreateArr(Obj, Method, n_CallType, n_ArgCount, BoundArgs))
+    Call VBGLAdd(Temp, Func)
     Keys(Index).Callables = Temp
 End Sub
 
@@ -76,42 +82,42 @@ End Sub
 Private Function VBGLIInput_Handle(ByVal Button As Long, ByVal Value As Long, ParamArray Args() As Variant) As Variant
     Dim ArgsV() As Variant
     ArgsV = Args
-    VBGLIInput_Handle = HandleArr(Button, Value, ArgsV)
+    Call VBGLAssign(VBGLIInput_Handle, HandleArr(Button, Value, ArgsV))
 End Function
 
 ' Value is Character of Key, args can be x and y
 Private Function VBGLIInput_KeyDown(ByVal Value As Long, ParamArray Args() As Variant) As Variant
     Dim ArgsV() As Variant
     ArgsV = Args
-    VBGLIInput_KeyDown = HandleArr(VBGLButtonType.Key, Value, ArgsV)
+    Call VBGLAssign(VBGLIInput_KeyDown, HandleArr(VBGLButtonType.Key, Value, ArgsV))
 End Function
 
 ' Value is Character of Key, args can be x and y
 Private Function VBGLIInput_KeyUp(ByVal Value As Long, ParamArray Args() As Variant) As Variant
     Dim ArgsV() As Variant
     ArgsV = Args
-    VBGLIInput_KeyUp = HandleArr(VBGLButtonType.Key, Value, ArgsV)
+    Call VBGLAssign(VBGLIInput_KeyUp, HandleArr(VBGLButtonType.KeyUp, Value, ArgsV))
 End Function
 
 ' Value is 0, args can be x and y
 Private Function VBGLIInput_MouseMove(ByVal Value As Long, ParamArray Args() As Variant) As Variant
     Dim ArgsV() As Variant
     ArgsV = Args
-    VBGLIInput_MouseMove = HandleArr(VBGLButtonType.Mouse, Value, ArgsV)
+    Call VBGLAssign(VBGLIInput_MouseMove, HandleArr(VBGLButtonType.Mouse, Value, ArgsV))
 End Function
 
 ' Value is button mouse, args can be x and y
 Private Function VBGLIInput_MouseClick(ByVal Value As Long, ParamArray Args() As Variant) As Variant
     Dim ArgsV() As Variant
     ArgsV = Args
-    VBGLIInput_MouseClick = HandleArr(VBGLButtonType.Mouse, Value, ArgsV)
+    Call VBGLAssign(VBGLIInput_MouseClick, HandleArr(VBGLButtonType.Mouse, Value, ArgsV))
 End Function
 
 ' Value is Direction of mousewheel, args can be x and y
 Private Function VBGLIInput_MouseWheel(ByVal Value As Long, ParamArray Args() As Variant) As Variant
     Dim ArgsV() As Variant
     ArgsV = Args
-    VBGLIInput_MouseWheel = HandleArr(VBGLButtonType.Wheel, Value, ArgsV)
+    Call VBGLAssign(VBGLIInput_MouseWheel, HandleArr(VBGLButtonType.Wheel, Value, ArgsV))
 End Function
 
 Private Function HandleArr(ByVal Button As Long, ByVal Value As Long, Args() As Variant) As Variant
@@ -119,7 +125,7 @@ Private Function HandleArr(ByVal Button As Long, ByVal Value As Long, Args() As 
     Cal = GetKeys(Button, Value)
     If Cal.Button = VBGLButtonType.Nott Then
         If IsSomething(ElseCallable) Then
-            HandleArr = ElseCallable.HandleArr(Args)
+            Call VBGLAssign(HandleArr, ElseCallable.HandleArr(Args))
         Else
             HandleArr = Empty
 	        Exit Function
@@ -127,8 +133,11 @@ Private Function HandleArr(ByVal Button As Long, ByVal Value As Long, Args() As 
     Else
         Dim i As Long
         For i = 0 To USize(Cal.Callables)
-            HandleArr = Cal.Callables(i).HandleArr(Args)
+            Call VBGLAssign(HandleArr, Cal.Callables(i).HandleArr(Args))
         Next i
+    End If
+    If IsSomething(AnyCallable) Then
+        Call VBGLAssign(HandleArr, AnyCallable)
     End If
 
 End Function

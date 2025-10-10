@@ -217,6 +217,5 @@ Private Function GetShader(ByVal SubGroup As GLSubGroup) As VBGLShader
     Call Template.SetUp(SubGroup.Layout, Uni)
     Dim Code As String
     Code = Template.GetShader()
-    Debug.Print Code
     Set GetShader = VBGLShader.CreateFromText(Code)
 End Function

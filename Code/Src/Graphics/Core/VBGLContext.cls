@@ -16,6 +16,7 @@ Option Explicit
 Private DisplayFuncArr()       As String
 Private IdleFuncArr()          As String
 Private KeyboardFuncArr()      As String
+Private KeyboardUpFuncArr()    As String
 Private PassiveMotionFuncArr() As String
 Private MouseWheelFuncArr()    As String
 
@@ -30,10 +31,16 @@ Private p_ErrorHandler       As std_ErrorHandler
 Private p_StencilTest        As Boolean
 Private p_DepthTest          As Boolean
 Private p_BlendTest          As Boolean
-Private p_CullFace           As Boolean
-Private p_CullMode           As Long
+Private p_CullTest           As Boolean
+
+Private p_StencilFuncFunc    As Long
+Private p_StencilFuncRef     As Long
+Private p_StencilFuncMask    As Long
+Private p_DepthFunc          As Long
+Private p_BlendFuncsFactor   As Long
+Private p_BlendFuncdFactor   As Long
+Private p_CullFace           As Long
 Private p_FrontFace          As Long
-Private p_PolygonMode        As Long
 
 Public Property Let CurrentWindow(ByVal Window As VBGLWindow)
     If Window Is CurrentWindow Then Exit Property
@@ -96,28 +103,6 @@ Public Property Get CurrentEBO()               As IBufferIndex     : Set Current
 Public Property Get CurrentTexture2D()         As VBGLTexture      : Set CurrentTexture2D = p_CurrentTexture2D : End Property
 Public Property Get ErrorHandler()             As std_ErrorHandler : Set ErrorHandler     = p_ErrorHandler     : End Property
 
-
-Public Property Let StencilTest(ByVal n_StencilTest  As Boolean) : p_StencilTest    = n_StencilTest    : Call RenderSettings(GL_STENCIL_TEST , n_StencilTest) : End Property
-Public Property Let DepthTest(ByVal n_DepthTest      As Boolean) : p_DepthTest      = n_DepthTest      : Call RenderSettings(GL_DEPTH_TEST   , n_DepthTest)   : End Property
-Public Property Let BlendTest(ByVal n_BlendTest      As Boolean) : p_BlendTest      = n_BlendTest      : Call RenderSettings(GL_BLEND        , n_BlendTest)   : End Property
-Public Property Let CullFace(ByVal n_CullFace        As Boolean) : p_CullFace       = n_CullFace       : Call RenderSettings(GL_CULL_FACE    , n_CullFace)    : End Property
-Public Property Let StencilMode(ByVal n_StencilMode  As Long)    : p_StencilMode    = n_StencilMode    : Call RenderValue(GL_STENCIL_TEST    , n_StencilMode) : End Property
-Public Property Let DepthMode(ByVal n_DepthMode      As Long)    : p_DepthMode      = n_DepthMode      : Call RenderValue(GL_DEPTH_TEST      , n_DepthMode)   : End Property
-Public Property Let BlendMode(ByVal n_BlendMode      As Long)    : p_BlendMode      = n_BlendMode      : Call RenderValue(GL_BLEND           , n_BlendMode)   : End Property
-Public Property Let CullMode(ByVal n_CullMode        As Long)    : p_CullMode       = n_CullMode       : Call RenderValue(GL_CULL_FACE       , n_CullMode)    : End Property
-Public Property Let FrontFace(ByVal n_FrontFace      As Long)    : p_FrontFace      = n_FrontFace      : Call RenderValue(GL_FRONT_FACE      , n_FrontFace)   : End Property
-Public Property Let PolygonMode(ByVal n_PolygonMode  As Long)    : p_PolygonMode    = n_PolygonMode    : Call RenderValue(, GL_FRONT_AND_BACK, n_PolygonMode) : End Property
-
-Public Property Get StencilTest()                    As Boolean  : StencilTest      = p_StencilTest    : End Property
-Public Property Get DepthTest()                      As Boolean  : DepthTest        = p_DepthTest      : End Property
-Public Property Get BlendTest()                      As Boolean  : BlendTest        = p_BlendTest      : End Property
-Public Property Get CullFace()                       As Boolean  : CullFace         = p_CullFace       : End Property
-Public Property Get CullMode()                       As Long     : CullMode         = p_CullMode       : End Property
-Public Property Get FrontFace()                      As Long     : FrontFace        = p_FrontFace      : End Property
-Public Property Get PolygonMode()                    As Long     : PolygonMode      = p_PolygonMode    : End Property
-
-
-
 Public Function Create(Optional ByVal FilePath As String = Empty, Optional ByVal ContextProfile As Long = 0, Optional ByVal ContextFlag As Long = 0, Optional ByVal Logger As IDestination = Nothing, Optional ByVal Shower As IDestination = Nothing) As VBGLContext
     If FilePath = Empty Then FilePath = ThisWorkBook.Path
     Dim NewErrorHandler As std_ErrorHandler
@@ -138,74 +123,124 @@ Public Function Create(Optional ByVal FilePath As String = Empty, Optional ByVal
     Create.ErrorHandler = NewErrorHandler
 End Function
 
-Public Sub RenderSettings(ByVal Inputt As Long, ByVal Value As Boolean)
-    Select Case Inputt
-        Case GL_STENCIL_TEST : If Value Then Call glEnable(GL_STENCIL_TEST)  Else Call glDisable(GL_STENCIL_TEST)
-        Case GL_DEPTH_TEST   : If Value Then Call glEnable(GL_DEPTH_TEST)    Else Call glDisable(GL_DEPTH_TEST)
-        Case GL_BLEND        : If Value Then Call glEnable(GL_BLEND)         Else Call glDisable(GL_BLEND)
-        Case GL_CULL_FACE    : If Value Then Call glEnable(GL_CULL_FACE)     Else Call glDisable(GL_CULL_FACE)
-    End Select
+
+Public Property Let StencilTest(ByVal n_Value As Boolean)
+    If n_Value Then
+        Call glEnable(GL_STENCIL_TEST)
+    Else
+        Call glDisable(GL_STENCIL_TEST)
+    End If
+    p_StencilTest = n_Value
+End Property
+Public Property Let DepthTest(ByVal n_Value   As Boolean)
+    If n_Value Then
+        Call glEnable(GL_DEPTH_TEST)  
+    Else
+        Call glDisable(GL_DEPTH_TEST)  
+    End If
+    p_DepthTest = n_Value
+End Property
+Public Property Let BlendTest(ByVal n_Value   As Boolean)
+    If n_Value Then
+        Call glEnable(GL_BLEND)       
+    Else
+        Call glDisable(GL_BLEND)       
+    End If
+    p_BlendTest = n_Value
+End Property
+Public Property Let CullTest(ByVal n_Value    As Boolean)
+    If n_Value Then
+        Call glEnable(GL_CULL_FACE)   
+    Else
+        Call glDisable(GL_CULL_FACE)   
+    End If
+    p_CullTest = n_Value
+End Property
+
+Public Property Get StencilTest() As Boolean
+    StencilTest = p_StencilTest
+End Property
+Public Property Get DepthTest() As Boolean
+    DepthTest = p_DepthTest
+End Property
+Public Property Get BlendTest() As Boolean
+    BlendTest = p_BlendTest
+End Property
+Public Property Get CullTest() As Boolean
+    CullTest = p_CullTest
+End Property
+
+Public Sub StencilFunc(ByVal Func As Long, ByVal Ref As Long, ByVal Mask As Long)
+    p_StencilFuncFunc = Func
+    p_StencilFuncRef  = Ref
+    p_StencilFuncMask = Mask
+    Call glStencilFunc(Func, Ref, Mask)
+End Sub
+Public Sub DepthFunc(ByVal n_Value As Long)
+    p_DepthFunc = n_Value
+    Call glDepthFunc(n_Value)
+End Sub
+Public Sub BlendFunc(ByVal sFactor As Long, ByVal dFactor As Long)
+    p_BlendFuncsFactor = sFactor
+    p_BlendFuncdFactor = dFactor
+    Call glBlendFunc(sFactor, dFactor)
+End Sub
+Public Sub CullFace(ByVal n_Value As Long)
+    p_CullFace = n_Value
+    Call glCullFace(n_Value)
+End Sub
+Public Sub FrontFace(ByVal n_Value As Long)
+    p_FrontFace = n_Value
+    Call glFrontFace(n_Value)
 End Sub
 
-Public Sub RenderValue(ByVal Inputt As Long, ByVal Value1 As Long, Optional ByVal Value2 As Long = 0, Optional ByVal Value3 As Long = 0)
-    Select Case Inputt
-        Case GL_STENCIL_TEST : If StencilTest Then Call glStencilFunc(Value1, Value2, Value3)
-        Case GL_DEPTH_TEST   : If DepthTest   Then Call glDepthFunc(Value1)
-        Case GL_BLEND        : If BlendTest   Then Call glBlendFunc(Value1, Value2)
-        Case GL_CULL_FACE    : If CullFace    Then Call glCullFace(Value1)
-        Case GL_FRONT_FACE   : If FrontFace   Then Call glFrontFace(Value1)
-        'Case Polygonmode: Call glPolygonMode(Value1, Value2)
-    End Select
-End Sub
-
-Public Sub SetDisplayFunc(ByVal Pointer As LongPtr)
-    Call glutDisplayFunc(Pointer)
-End Sub
-Public Sub SetIdleFunc(ByVal Pointer As LongPtr)
-    Call glutIdleFunc(Pointer)
-End Sub
-Public Sub SetKeyboardFunc(ByVal Pointer As LongPtr)
-    Call glutKeyboardFunc(Pointer)
-End Sub
-Public Sub SetPassiveMotionFunc(ByVal Pointer As LongPtr)
-    Call glutPassiveMotionFunc(Pointer)
-End Sub
-Public Sub SetMouseWheelFunc(ByVal Pointer As LongPtr)
-    Call glutMouseWheelFunc(Pointer)
-End Sub
+Public Function GetStencilFuncFunc() As Long
+    GetStencilFuncFunc = p_StencilFuncFunc
+End Function
+Public Function GetStencilFuncRef() As Long
+    GetStencilFuncRef = p_StencilFuncRef
+End Function
+Public Function GetStencilFuncMask() As Long
+    GetStencilFuncMask = p_StencilFuncMask
+End Function
+Public Function GetDepthFunc() As Long
+    GetDepthFunc = p_DepthFunc
+End Function
+Public Function GetBlendFuncsFactor() As Long
+    GetBlendFuncsFactor = p_BlendFuncsFactor
+End Function
+Public Function GetBlendFuncdFactor() As Long
+    GetBlendFuncdFactor = p_BlendFuncdFactor
+End Function
+Public Function GetCullFace() As Long
+    CullFace = p_CullFace
+End Function
+Public Function GetFrontFace() As Long
+    FrontFace = p_FrontFace
+End Function
 
 
-Public Sub AddDisplayFunc(ByVal Value As String)
-    Call VBGLAdd(DisplayFuncArr, Value)
-End Sub
-Public Sub AddIdleFunc(ByVal Value As String)
-    Call VBGLAdd(IdleFuncArr, Value)
-End Sub
-Public Sub AddKeyboardFunc(ByVal Value As String)
-    Call VBGLAdd(KeyboardFuncArr, Value)
-End Sub
-Public Sub AddPassiveMotionFunc(ByVal Value As String)
-    Call VBGLAdd(PassiveMotionFuncArr, Value)
-End Sub
-Public Sub AddMouseWheelFunc(ByVal Value As String)
-    Call VBGLAdd(MouseWheelFuncArr, Value)
-End Sub
+Public Sub SetDisplayFunc(ByVal Pointer As LongPtr)       : Call glutDisplayFunc(Pointer)       : End Sub
+Public Sub SetIdleFunc(ByVal Pointer As LongPtr)          : Call glutIdleFunc(Pointer)          : End Sub
+Public Sub SetKeyboardFunc(ByVal Pointer As LongPtr)      : Call glutKeyboardFunc(Pointer)      : End Sub
+Public Sub SetKeyboardUpFunc(ByVal Pointer As LongPtr)    : Call glutKeyboardUpFunc(Pointer)    : End Sub
+Public Sub SetPassiveMotionFunc(ByVal Pointer As LongPtr) : Call glutPassiveMotionFunc(Pointer) : End Sub
+Public Sub SetMouseWheelFunc(ByVal Pointer As LongPtr)    : Call glutMouseWheelFunc(Pointer)    : End Sub
 
-Public Function DisplayFunc() As String
-    DisplayFunc = DisplayFuncArr(USize(DisplayFuncArr))
-End Function
-Public Function IdleFunc() As String
-    IdleFunc = IdleFuncArr(USize(IdleFuncArr))
-End Function
-Public Function KeyboardFunc() As String
-    KeyboardFunc = KeyboardFuncArr(USize(KeyboardFuncArr))
-End Function
-Public Function PassiveMotionFunc() As String
-    PassiveMotionFunc = PassiveMotionFuncArr(USize(PassiveMotionFuncArr))
-End Function
-Public Function MouseWheelFunc() As String
-    MouseWheelFunc = MouseWheelFuncArr(USize(MouseWheelFuncArr))
-End Function
+
+Public Sub AddDisplayFunc(ByVal Value As String)       : Call VBGLAdd(DisplayFuncArr, Value)       : End Sub
+Public Sub AddIdleFunc(ByVal Value As String)          : Call VBGLAdd(IdleFuncArr, Value)          : End Sub
+Public Sub AddKeyboardFunc(ByVal Value As String)      : Call VBGLAdd(KeyboardFuncArr, Value)      : End Sub
+Public Sub AddKeyboardUpFunc(ByVal Value As String)    : Call VBGLAdd(KeyboardUpFuncArr, Value)    : End Sub
+Public Sub AddPassiveMotionFunc(ByVal Value As String) : Call VBGLAdd(PassiveMotionFuncArr, Value) : End Sub
+Public Sub AddMouseWheelFunc(ByVal Value As String)    : Call VBGLAdd(MouseWheelFuncArr, Value)    : End Sub
+
+Public Function DisplayFunc()        As String  : DisplayFunc       = DisplayFuncArr(USize(DisplayFuncArr))             :End Function
+Public Function IdleFunc()           As String  : IdleFunc          = IdleFuncArr(USize(IdleFuncArr))                   :End Function
+Public Function KeyboardFunc()       As String  : KeyboardFunc      = KeyboardFuncArr(USize(KeyboardFuncArr))           :End Function
+Public Function KeyboardUpFunc()     As String  : KeyboardUpFunc    = KeyboardUpFuncArr(USize(KeyboardUpFuncArr))       :End Function
+Public Function PassiveMotionFunc()  As String  : PassiveMotionFunc = PassiveMotionFuncArr(USize(PassiveMotionFuncArr)) :End Function
+Public Function MouseWheelFunc()     As String  : MouseWheelFunc    = MouseWheelFuncArr(USize(MouseWheelFuncArr))       :End Function
 
 Public Sub MainLoop()
     Call glutMainLoop()
@@ -215,6 +250,7 @@ Public Sub PopStack()
     Call VBGLArrayPop(DisplayFuncArr)
     Call VBGLArrayPop(IdleFuncArr)
     Call VBGLArrayPop(KeyboardFuncArr)
+    Call VBGLArrayPop(KeyboardUpFuncArr)
     Call VBGLArrayPop(PassiveMotionFuncArr)
     Call VBGLArrayPop(MouseWheelFuncArr)
 End Sub
@@ -232,4 +268,16 @@ Public Sub ClearColor(Optional ByVal r As Single = 0, Optional ByVal g As Single
 End Sub
 
 Private Sub Class_Initialize()
+    p_StencilTest      = False
+    p_DepthTest        = False
+    p_BlendTest        = False
+    p_CullTest         = False
+    p_StencilFuncFunc  = GL_ALWAYS
+    p_StencilFuncRef   = 0
+    p_StencilFuncMask  = -1 'All 32 bits are 1 = (11111111 11111111 11111111 11111111)
+    p_DepthFunc        = GL_LESS
+    p_BlendFuncsFactor = GL_ONE
+    p_BlendFuncdFactor = GL_ZERO
+    p_CullFace         = GL_BACK
+    p_FrontFace        = GL_CCW
 End Sub

@@ -107,7 +107,7 @@ Private Function GetOrientation(FirstTriangle() As Single) As Long
     Dim Sum As Single
     
     For i = 0 To USize(X) - 1
-        Sum = Sum + ((X(i)* Y(i + 1)) - (X(i + 1) * Y(i + 1)))
+        Sum = Sum + ((X(i)* Y(i + 1)) - (X(i + 1) * Y(i)))
     Next i
     ' Close polygon (last point with first point)
         

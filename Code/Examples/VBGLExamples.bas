@@ -16,10 +16,9 @@ Public Sub VBGLExamples1()
     Call VBGLWindow.Create(1600, 900, GLUT_RGBA, "OpenGL Test", "4_6", True)
     CurrentContext.BlendTest = True 
     CurrentContext.DepthTest = True
-    CurrentContext.CullFace = True
-    Call CurrentContext.RenderSettings(GL_BLEND, True)
-    Call CurrentContext.RenderValue(GL_BLEND, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-    Call CurrentContext.RenderValue(GL_CULL_FACE, GL_BACK)
+    CurrentContext.CullTest = True
+    Call CurrentContext.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+    Call CurrentContext.CullFace(GL_BACK)
 
     Dim LayoutTypes() As VBGLLayoutType
     ReDim LayoutTypes(1)

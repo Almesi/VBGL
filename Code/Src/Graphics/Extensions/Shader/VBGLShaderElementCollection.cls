@@ -72,10 +72,12 @@ End Function
 Public Function Reverse() As VBGLShaderElementCollection
     Dim i As Long
     Dim Temp() As VBGLIShaderElement
-    ReDim Temp(Size)
-    For i = 0 To Size
-        Set Temp(i) = Element(i).GetVariable.Reverse
-    Next i
+    If Size <> -1 Then
+        ReDim Temp(Size)
+        For i = 0 To Size
+            Set Temp(i) = Element(i).GetVariable.Reverse
+        Next i
+    End If
     Set Reverse = CreateArr(Temp)
 End Function
 
