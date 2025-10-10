@@ -71,35 +71,7 @@ Public Function CreateFromText(ByVal n_Properties As VBGLProperties, ByVal Text 
 End Function
 
 Public Function CreateMesh() As VBGLMesh
-    Dim PositionDimensions  As Long: PositionDimensions     = 3
-    Dim TextureDimensions   As Long: TextureDimensions      = 2
-    Dim FontColorDimensions As Long: FontColorDimensions    = USize(Font(0).FontColor) + 1
-    Dim BackColorDimensions As Long: BackColorDimensions    = USize(Font(0).BackgroundColor) + 1
-
-    Dim LayoutTypes() As VBGLLayoutType
-    ReDim LayoutTypes(3)
-    LayoutTypes(0) = VBGLLayout.GetEnum("Position", PositionDimensions)
-    LayoutTypes(1) = VBGLLayout.GetEnum("Color"   , FontColorDimensions)
-    LayoutTypes(2) = VBGLLayout.GetEnum("Color"   , BackColorDimensions)
-    LayoutTypes(3) = VBGLLayout.GetEnum("Texture" , TextureDimensions)
-    Dim Layout As VBGLLayout
-    Set Layout = VBGLLayout.Create(vbSingle, LayoutTypes)
-
-    Dim ShaderTemplate As VBGLShaderTemplate
-    Dim Uniforms As New VBGLShaderElementCollection
-    Call Uniforms.Add(VBGLShaderVariable.Create("inVertexTexture0:inTextboxPosition", "vec" & USize(Color) + 1, "TextboxPosition", "*"))
-    Call Uniforms.Add(VBGLShaderVariable.Create("inVertexColor0:inFontColor"        , "vec" & USize(Color) + 1, "FontColor"      , "*"))
-    Call Uniforms.Add(VBGLShaderVariable.Create("inVertexColor1:inBackgroundColor"  , "vec" & USize(Color) + 1, "BackgroundColor", "*"))
-    Call Uniforms.Add(Nothing)
-    Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniformOut       , "sampler2D", "TextboxTexture" , "*"))
-    Set ShaderTemplate = VBGLShaderTemplate.Create("Vertex-Fragment", "460 core")
-    Call ShaderTemplate.SetUp(Layout, Uniforms)
-    Dim Code As String: Code = ShaderTemplate.GetShader
-
-    Dim Shader As VBGLShader
-    Set Shader = VBGLShader.CreateFromText(Code)
-
-    Set CreateMesh = VBGLMesh.Create(Shader, Layout, GetData(), Nothing, False)
+    Set CreateMesh = VBGLMesh.Create(VBGLPrCoShaderText, VBGLPrCoLayoutText, GetData(), Nothing, False)
 
     Dim i As Long
     Dim Texture As VBGLTexture
@@ -116,35 +88,17 @@ Public Function CreateBoxMesh(ByVal Optional BoxTexture As VBGLTexture = Nothing
     Dim TextureDimensions  As Long: TextureDimensions  = 2
     Dim ColorDimensions    As Long: ColorDimensions    = 4
 
-    Dim LayoutTypes() As VBGLLayoutType
-    If IsSomething(BoxTexture) Then
-        ReDim LayoutTypes(2)
-        LayoutTypes(0) = VBGLLayout.GetEnum("Position", PositionDimensions)
-        LayoutTypes(1) = VBGLLayout.GetEnum("Color"   , ColorDimensions)
-        LayoutTypes(2) = VBGLLayout.GetEnum("Texture" , TextureDimensions)
-    Else
-        ReDim LayoutTypes(1)
-        LayoutTypes(0) = VBGLLayout.GetEnum("Position", PositionDimensions)
-        LayoutTypes(1) = VBGLLayout.GetEnum("Color"   , ColorDimensions)
-    End If
     Dim Layout As VBGLLayout
-    Set Layout = VBGLLayout.Create(vbSingle, LayoutTypes)
-
-    Dim ShaderTemplate As VBGLShaderTemplate
-    Dim Uniforms As New VBGLShaderElementCollection
-    Call Uniforms.Add(Nothing)
-    If IsSomething(BoxTexture) Then
-        Call Uniforms.Add(VBGLShaderVariable.Create(VBGLShaderStateUniformOut, "sampler2D", "TextboxTexture" , "*"))
-    End If
-    Set ShaderTemplate = VBGLShaderTemplate.Create("Vertex-Fragment", "460 core")
-    Call ShaderTemplate.SetUp(Layout, Uniforms)
-    Dim Code As String: Code = ShaderTemplate.GetShader
-
     Dim Shader As VBGLShader
-    Set Shader = VBGLShader.CreateFromText(Code)
+    If IsSomething(BoxTexture) Then
+        Set Layout = VBGLPrCoLayoutXYZRGBATxTy
+        Set Shader = VBGLPrCoShaderXYZRGBATxTy
+    Else
+        Set Layout = VBGLPrCoLayoutXYZRGBA
+        Set Shader = VBGLPrCoShaderXYZRGBA
+    End If
 
     Set CreateBoxMesh = VBGLMesh.Create(Shader, Layout, GetBoxData(), Nothing, False)
-
     If IsSomething(BoxTexture) Then
         Call CreateBoxMesh.AddTexture(BoxTexture)
     End If

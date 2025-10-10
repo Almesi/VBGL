@@ -238,7 +238,7 @@ Private Function CombineLayout(ByVal L1 As VBGLLayout, ByVal L2 As VBGLLayout) A
             End If
         End If 
     Next i
-    Set CombineLayout = VBGLLayout.Create(vbSingle, Temp)
+    Set CombineLayout = VBGLLayout.CreateArr(vbSingle, Temp)
 End Function
 
 Private Function MergeArray(ByRef Arr1 As Variant, ByRef Arr2 As Variant) As Variant

@@ -161,7 +161,7 @@ Private Function GetLayout(ByVal Data As String, ByVal Vertex As VBGLVertex, ByV
         Case Setup Like "/*#"         : ReDim Temp(0): Temp(0) = TextureElement
         Case Setup Like "*#"          : ReDim Temp(0): Temp(0) = VertexElement
     End Select
-    Set GetLayout = VBGLLayout.Create(vbSingle, Temp)
+    Set GetLayout = VBGLLayout.CreateArr(vbSingle, Temp)
 End Function
 
 Private Function GetFaces(ByVal Layout As VBGLLayout, ByVal Data As String) As VBGLFace

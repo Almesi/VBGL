@@ -25,7 +25,7 @@ Public Sub VBGLExamples1()
     LayoutTypes(0) = VBGLLayoutType.XY
     LayoutTypes(1) = VBGLLayoutType.RGBB
     Dim Layout As VBGLLayout
-    Set Layout = VBGLLayout.Create(vbSingle, LayoutTypes)
+    Set Layout = VBGLLayout.CreateArr(vbSingle, LayoutTypes)
 
     Dim Vertices() As Single
     ReDim Vertices(14)

@@ -33,10 +33,29 @@ Public Property Get ByteSize()                                   As Long        
 Public Property Get Elements()                                   As VBGLElement(): Let Elements          = p_Elements        : End Property
 Public Property Get Element(ByVal Index As Long)                 As VBGLElement  : Set Element           = p_Elements(Index) : End Property
 
-Public Function Create(ByVal DataType As vbVarType, ByRef Types() As VBGLLayoutType) As VBGLLayout
+' Types has to be an array of VBGLLayoutType
+Public Function Create(ByVal DataType As vbVarType, ParamArray Types() As Variant) As VBGLLayout
     Dim i As Long
     Set Create = New VBGLLayout
     With Create
+        For i = 0 To Ubound(Types)
+            If TypeName(Types(i)) <> "Long" Then
+                GoTo Error
+            End If
+            Call .AddType(DataType, Types(i))
+        Next i
+    End With
+    Exit Function
+
+    Error:
+    Debug.Assert False
+    Call CurrentContext.ErrorHandler.Raise(std_Error.Create("VBGLLayout", "severe", "Create", "Types(VAR0) is of Type VAR1", Empty, i, TypeName(Types(i))))
+End Function
+
+Public Function CreateArr(ByVal DataType As vbVarType, ByRef Types() As VBGLLayoutType) As VBGLLayout
+    Dim i As Long
+    Set CreateArr = New VBGLLayout
+    With CreateArr
         For i = 0 To Ubound(Types)
             Call .AddType(DataType, Types(i))
         Next i
@@ -46,8 +65,8 @@ End Function
 ' Ubound(DataType) has to equal Ubound(Types)
 Public Function CreateCombined(ByRef DataTypes() As vbVarType, ByRef Types() As VBGLLayoutType) As VBGLLayout
     Dim i As Long
-    Set Create = New VBGLLayout
-    With Create
+    Set CreateCombined = New VBGLLayout
+    With CreateCombined
         For i = 0 To Ubound(Types)
             Call .AddType(DataTypes(i), Types(i))
         Next i
