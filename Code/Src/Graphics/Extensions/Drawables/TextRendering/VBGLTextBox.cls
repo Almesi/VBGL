@@ -11,6 +11,10 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
+
+Implements VBGLDrawable
+
+
 Private p_Properties    As VBGLProperties
 Private p_CharsPerLine  As Long            ' Whole Number example: 1 to 16 is one line, so character 17 will be on line 2
 Private p_LinesPerPage  As Long            ' Lines that will be printed to the textbox under current line. 0 = no lines = no printing
@@ -39,6 +43,11 @@ Public Property Get Fonts()                                 As Variant          
 Public Property Get Mesh()                                  As VBGLMesh         : Set Mesh              = p_Mesh            : End Property
 Public Property Get BoxMesh()                               As VBGLMesh         : Set BoxMesh           = p_BoxMesh         : End Property
 Public Property Get Font(ByVal Index As Long)               As VBGLFont         : Set Font              = p_Fonts(Index)    : End Property
+
+
+Private Sub VBGLDrawable_Draw()
+    Call Draw()
+End Sub
 
 
 Public Function Factory() As VBGLTextBox

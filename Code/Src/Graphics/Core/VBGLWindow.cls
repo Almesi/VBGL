@@ -17,27 +17,27 @@ Option Explicit
     Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
 #End If
 
-Private p_Context As VBGLContext
 Private p_ID      As Long
 Private p_Title   As String
 Private p_Height  As Long
 Private p_Width   As Long
 Private p_FPS     As Single
+Private p_Frame   As VBGLFrame
 
 
-Public Property Let Context(ByVal n_Context As VBGLContext): Set p_Context = n_Context : End Property
 Public Property Let ID(ByVal n_ID           As Long)       : Let p_ID      = n_ID      : End Property
 Public Property Let Title(ByVal n_Title     As String)     : Let p_Title   = n_Title   : End Property
 Public Property Let Height(ByVal n_Height   As Long)       : Let p_Height  = n_Height  : End Property
 Public Property Let Width(ByVal n_Width     As Long)       : Let p_Width   = n_Width   : End Property
 Public Property Let FPS(ByVal n_FPS         As Single)     : Let p_FPS     = n_FPS     : End Property
+Public Property Let Frame(ByVal n_Frame     As VBGLFrame)  : Set p_Frame   = n_Frame   : End Property
 
-Public Property Get Context()               As VBGLContext : Set Context   = p_Context : End Property
 Public Property Get ID()                    As Long        : Let ID        = p_ID      : End Property
 Public Property Get Title()                 As String      : Let Title     = p_Title   : End Property
 Public Property Get Height()                As Long        : Let Height    = p_Height  : End Property
 Public Property Get Width()                 As Long        : Let Width     = p_Width   : End Property
 Public Property Get FPS()                   As Single      : Let FPS       = p_FPS     : End Property
+Public Property Get Frame()                 As VBGLFrame   : Set Frame     = p_Frame   : End Property
 
 Public Property Get NormalHeight() As Single
     NormalHeight = 1 / Height
@@ -81,11 +81,19 @@ Public Function Create(ByVal n_Width As Long, ByVal n_Height As Long, ByVal Disp
         .ID     = CreateWindow()
         .Height = n_Height
         .Width  = n_Width
+        .Frame = VBGLFrame.Create(0, 0, n_Width, n_Height, 0, 0, n_Width, n_Height)
     End With
     Call RemapVBToGL(Version)
     If Debugg Then Call GLStartDebug()
     Call VBGLAdd(LoadedWindows, Create)
     Call Create.Bind()
+
+    With CurrentContext
+        .CurrentFrame = Create.Frame
+        .ScissorTest = True
+        Call .Scissor(0, 0, n_Width, n_Height)
+        Call .Viewport(0, 0, n_Width, n_Height)
+    End With
 End Function
 
 Public Sub Cursor(ByVal X As Long, ByVal Y As Long)
@@ -97,36 +105,38 @@ Public Function GetWindowHwnd(ByVal Window As Long)
 End Function
 
 Public Sub Bind()
-    Context.CurrentWindow = Me
+    CurrentContext.CurrentWindow = Me
 End Sub
 Public Sub Unbind()
-    Context.CurrentWindow = Nothing
+    CurrentContext.CurrentWindow = Nothing
 End Sub
 
 Public Function LimitFPS() As Single
-    Dim CurrentTime As Single
-    CurrentTime = Timer
     Static LastTime As Single
-
+    Dim CurrentTime As Single
     Dim ElapsedTime As Single
-    ElapsedTime = (CurrentTime - LastTime) * 1000
-    LastTime = CurrentTime
-    
-    If FPS <> 0 Then
-        Dim MillisecondsPerFrame As Single
-        MillisecondsPerFrame = 1000/FPS
+    Dim MillisecondsPerFrame As Single
+    Dim WaitTime As Single
 
-        If MillisecondsPerFrame > ElapsedTime Then
-            Dim WaitTime As Long
-            WaitTime = Int(MillisecondsPerFrame - ElapsedTime)
-            Call Sleep(WaitTime)
+    CurrentTime = Timer
+    ElapsedTime = (CurrentTime - LastTime) * 1000
+    If ElapsedTime < 0 Then ElapsedTime = (86400 + CurrentTime - LastTime) * 1000  ' handle midnight
+
+    If FPS > 0 Then
+        MillisecondsPerFrame = 1000 / FPS
+        If ElapsedTime < MillisecondsPerFrame Then
+            WaitTime = MillisecondsPerFrame - ElapsedTime
+            Sleep CLng(WaitTime)
+            CurrentTime = Timer
+            ElapsedTime = (CurrentTime - LastTime) * 1000
         End If
-        LimitFPS = 1000 / (ElapsedTime + WaitTime)
-    Else
-        If ElapsedTime = 0 Then ElapsedTime = 1
-        LimitFPS = 1000 / ElapsedTime
     End If
+
+    LastTime = CurrentTime
+    If ElapsedTime = 0 Then ElapsedTime = 1
+    LimitFPS = 1000 / ElapsedTime
 End Function
+
 
 Private Function Find(ByVal n_Title As String) As VBGLWindow
     Dim i As Long
@@ -142,12 +152,9 @@ Private Function CreateWindow() As Long
     Call glutSetWindowTitle(Title)
 End Function
 
-Private Sub Class_Initialize()
-    Context = CurrentContext
-End Sub
 Private Sub Class_Terminate()
     Call glutDestroyWindow(p_ID)
-    Context.CurrentWindow = Nothing
+    CurrentContext.CurrentWindow = Nothing
 End Sub
 
 Private Function RemapVBToGL(Optional ByVal ToInclude As String = "ALL") As Boolean

@@ -13,6 +13,8 @@ Option Explicit
 
 ' Describes 1 drawable instance will all the data it needs
 
+Implements VBGLDrawable
+
 Private p_VAO            As VBGLVertexArray
 Private p_EBO            As IBufferIndex    ' Currently Optional for future use, as IndexBuffer doesnt work at the moment
 Private p_Textures()     As VBGLTexture     ' Should not go over System-allowed max for your enviroment
@@ -38,6 +40,10 @@ Public Property Get Shader()                                       As VBGLShader
 Public Property Get UseIndexBuffer()                               As Boolean          : Let UseIndexBuffer      = p_UseIndexBuffer   : End Property
 Public Property Get Orientation()                                  As Long             : Let Orientation         = p_Orientation      : End Property
 Public Property Get Texture(ByVal Index As Long)                   As VBGLTexture      : Set Texture             = p_Textures(Index)  : End Property
+
+Private Sub VBGLDrawable_Draw()
+    Call Draw()
+End Sub
 
 Public Function Create(ByVal n_Shader As VBGLShader, ByVal Layout As VBGLLayout, ByVal Data As VBGLData, Optional ByVal Faces As VBGLFace = Nothing, Optional ByVal n_UseIndexBuffer As Boolean = False) As VBGLMesh
     Set Create = New VBGLMesh
@@ -117,6 +123,10 @@ Private Function GetOrientation(FirstTriangle() As Single) As Long
         GetOrientation = GL_CCW
     Else
         GetOrientation = GL_CW
+    'ElseIf Sum < 0 Then
+    '    GetOrientation = GL_CW
+    'Else
+    '    Call CurrentContext.ErrorHandler.Raise(std_Error.Create("VBGLMesh", "logical", "GetOrientation", "Triangle cannot have orientation, as its area is 0", Empty))
     End If
 End Function
 

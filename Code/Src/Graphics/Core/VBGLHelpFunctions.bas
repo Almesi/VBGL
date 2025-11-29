@@ -20,7 +20,7 @@ End Sub
 
 'VBGLIntertwine 2 Arrays into 1
 'Arrays need to be of same size
-Public Function VBGLIntertwine(ByRef NewArr As Variant, ByRef Arr1 As Variant, ByRef Arr2 As Variant) As Variant
+Public Sub VBGLIntertwine(ByRef NewArr As Variant, ByRef Arr1 As Variant, ByRef Arr2 As Variant)
     Dim OldSize As Long: OldSize = USize(Arr1) + 1
     Dim NewSize As Long: NewSize = OldSize + (USize(Arr2) + 1) - 1
     ReDim NewArr(NewSize)
@@ -29,7 +29,33 @@ Public Function VBGLIntertwine(ByRef NewArr As Variant, ByRef Arr1 As Variant, B
         Call VBGLAssign(NewArr(i * 2 + 0), Arr1(i))
         Call VBGLAssign(NewArr(i * 2 + 1), Arr2(i))
     Next i
-End Function
+End Sub
+
+'VBGLArrayInsert 2 Arrays into 1
+'Arrays dont need to be of same size
+Public Sub VBGLArrayInsert(ByRef NewArr As Variant, ByRef Arr1 As Variant, ByRef Arr2 As Variant, ByVal Arr1Break As Long, ByVal Arr2Break As Long)
+    Dim Size1   As Long: Size1   = USize(Arr1) + 1
+    Dim Size2   As Long: Size2   = USize(Arr2) + 1
+    Dim Offset  As Long: Offset  = Arr1Break + Arr2Break
+    Dim NewSize As Long: NewSize = Size1 + Size2 - 1
+    ReDim NewArr(NewSize)
+
+    Dim i As Long
+    Dim j As Long
+    Dim Index1 As Long
+    Dim Index2 As Long
+
+    For i = 0 To NewSize Step +Offset
+        For j = 0 To Arr1Break - 1
+            Call VBGLAssign(NewArr(i + j), Arr1(Index1 + j))
+        Next j
+        For j = 0 To Arr2Break - 1
+            Call VBGLAssign(NewArr(Arr1Break + i + j), Arr2(Index2 + j))
+        Next j
+        Index1 = Index1 + Arr1Break
+        Index2 = Index2 + Arr2Break
+    Next i
+End Sub
 
 'Increase 1D Array by 1 and Add Value
 Public Function VBGLAdd(ByRef Arr As Variant, ByVal Value As Variant) As Long
@@ -85,6 +111,19 @@ Public Function VBGLArrayRemove(ByRef Arr As Variant, ByVal Index As Long) As Va
         CurrentIndex = CurrentIndex + 1
     Next i
     Arr = NewArr
+End Function
+
+' Reverse Array
+Public Function VBGLArrayReverse(ByRef Arr As Variant) As Variant
+    Dim i As Long
+    Dim Size As Long
+    Dim Temp As Variant
+    
+    Size = USize(Arr)
+    Temp = Arr
+    For i = 0 To Size
+        Call VBGLAssign(Arr(i), Temp(Size - i))
+    Next i
 End Function
 
 Public Function VBGLArrayPop(ByRef Arr As Variant) As Variant

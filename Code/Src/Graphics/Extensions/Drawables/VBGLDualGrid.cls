@@ -13,7 +13,7 @@ Option Explicit
 
 Private Const TilesPerSprite As Long = 15
 
-
+Implements VBGLDrawable
 
 
 
@@ -76,6 +76,10 @@ Public Property Get TilesInScreenHeight()                       As Long         
 Public Property Get SpriteWidth()                               As Long             : Let SpriteWidth           = p_SpriteWidth         : End Property
 Public Property Get SpriteHeight()                              As Long             : Let SpriteHeight          = p_SpriteHeight        : End Property
 Public Property Get TileSet()                                   As VBGLTexture      : Set TileSet               = p_TileSet             : End Property
+
+Private Sub VBGLDrawable_Draw()
+    Call Draw()
+End Sub
 
 Public Function Create(ByVal TileSetFilePath As String, ByVal n_SpriteWidth As Long, ByVal n_SpriteHeight As Long, ByVal n_TilesInScreenWidth As Long, ByVal n_TilesInScreenHeight As Long) As VBGLDualGrid
     Dim n_TileSet As VBGLTexture

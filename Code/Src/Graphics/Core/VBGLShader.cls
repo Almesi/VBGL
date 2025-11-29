@@ -11,18 +11,15 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
-Private p_Context    As VBGLContext
 Private p_Code       As String
 Private p_ID         As Long
 Private p_Uniforms   As VBGLUniforms
 
 
-Public Property Let Context(ByVal n_Context   As VBGLContext)  : Set p_Context   = n_Context  : End Property
 Public Property Let Code(ByVal n_Code         As String)       : Let p_Code      = n_Code     : End Property
 Public Property Let ID(ByVal n_Value          As Long)         : Let p_ID        = n_Value    : End Property
 Public Property Let Uniforms(ByVal n_Uniforms As VBGLUniforms) : Set p_Uniforms  = n_Uniforms : End Property
 
-Public Property Get Context()                 As VBGLContext   : Set Context     = p_Context  : End Property
 Public Property Get Code()                    As String        : Let Code        = p_Code     : End Property
 Public Property Get ID()                      As Long          : Let ID          = p_ID       : End Property
 Public Property Get Uniforms()                As VBGLUniforms  : Set Uniforms    = p_Uniforms : End Property
@@ -47,7 +44,7 @@ Public Function CreateShader(ByVal Shader As Long, ByVal SourceCode As String) A
     Set CreateShader = New VBGLShader
     With CreateShader
         .ID = NewID
-        If .CompileShader(SourceCode) = Context.ErrorHandler.IS_ERROR Then
+        If .CompileShader(SourceCode) = CurrentContext.ErrorHandler.IS_ERROR Then
             Set CreateShader = Nothing
             Exit Function
         End If
@@ -75,7 +72,7 @@ Public Function CreateShaderProgram(ByVal VertexCode As String, ByVal FragmentCo
 
     Set CreateShaderProgram = Create()
     With CreateShaderProgram
-        If .LinkShader(VertexShader, FragmentShader) = Context.ErrorHandler.IS_ERROR Then
+        If .LinkShader(VertexShader, FragmentShader) = CurrentContext.ErrorHandler.IS_ERROR Then
             Set CreateShaderProgram = Nothing
             Exit Function
         End If
@@ -134,15 +131,15 @@ End Function
 
 Public Sub DeleteShader(ByVal Shader As Long)
     Call glDeleteShader(Shader)
-    Context.CurrentShader = Nothing
+    CurrentContext.CurrentShader = Nothing
 End Sub
 
 Public Sub Bind()
-    Context.CurrentShader = Me
+    CurrentContext.CurrentShader = Me
 End Sub
 
 Public Sub Unbind()
-    Context.CurrentShader = Nothing
+    CurrentContext.CurrentShader = Nothing
 End Sub
 
 ' For Caching
@@ -158,13 +155,13 @@ End Function
 Private Function CompileStatus() As Boolean
     Dim Compiled As Long
     Call glGetShaderiv(ID, GL_COMPILE_STATUS, Compiled)
-    CompileStatus = Context.ErrorHandler.Handle(Compiled <> GL_TRUE, std_Error.Create("VBGLShader", "Critical", ID, PrintErrorShader(ID), Empty))
+    CompileStatus = CurrentContext.ErrorHandler.Handle(Compiled <> GL_TRUE, std_Error.Create("VBGLShader", "Critical", ID, PrintErrorShader(ID), Empty))
 End Function
 
 Private Function LinkStatus() As Boolean
     Dim Linked As Long
     Call glGetProgramiv(ID, GL_LINK_STATUS, Linked)
-    LinkStatus = Context.ErrorHandler.Handle(Linked <> GL_TRUE, std_Error.Create("VBGLShader", "Critical", ID, PrintErrorProgram(ID), Empty))
+    LinkStatus = CurrentContext.ErrorHandler.Handle(Linked <> GL_TRUE, std_Error.Create("VBGLShader", "Critical", ID, PrintErrorProgram(ID), Empty))
 End Function
 
 Private Function PrintErrorShader(ByVal Shader As Long) As String
@@ -196,10 +193,6 @@ Private Function PrintErrorProgram(ByVal Program As Long) As String
         PrintErrorProgram = PrintErrorProgram & StrConv(Log, vbUnicode)
     End If
 End Function
-
-Private Sub Class_Initialize()
-    Context = CurrentContext
-End Sub
 
 Private Sub Class_Terminate()
     Call DeleteShader(p_ID)

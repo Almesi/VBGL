@@ -11,7 +11,6 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
-Private p_Context        As VBGLContext
 Private p_ID             As Long
 Private p_Data           As VBGLData
 Private p_Name           As String
@@ -30,14 +29,12 @@ Private p_Format         As Long
 
 
 ' Instance
-Public Property Let Context(ByVal n_Context         As VBGLContext)   :    Set p_Context     = n_Context     : End Property
 Public Property Let ID(ByVal n_ID                   As Long)          :    Let p_ID          = n_ID          : End Property
 Public Property Let Data(ByVal n_Data               As VBGLData)      :    Set p_Data        = n_Data        : End Property
 Public Property Let Name(ByVal n_Name               As String)        :    Let p_Name        = n_Name        : End Property
 Public Property Let UniformName(ByVal n_UniformName As String)        :    Let p_UniformName = n_UniformName : End Property
 Public Property Let SubTextures(ByVal n_SubTextures As Variant)       :    Let p_SubTextures = n_SubTextures : End Property
 
-Public Property Get Context()                       As VBGLContext    :    Set Context       = p_Context     : End Property
 Public Property Get ID()                            As Long           :    Let ID            = p_ID          : End Property
 Public Property Get Data()                          As VBGLData       :    Set Data          = p_Data        : End Property
 Public Property Get Name()                          As String         :    Let Name          = p_Name        : End Property
@@ -121,7 +118,11 @@ Public Function CreateFromData(ByVal n_Data As VBGLData, Optional ByVal n_Name A
         Call glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GLTextureWrapT)
         Dim TempData() As Byte
         TempData = .Data.Data
-        Call glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, Width, Height, 0, Format, GL_UNSIGNED_BYTE, TempData(0))
+        If USize(TempData, 2) <> -1 Then
+            Call glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, Width, Height, 0, Format, GL_UNSIGNED_BYTE, TempData(0, 0))
+        Else
+            Call glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, Width, Height, 0, Format, GL_UNSIGNED_BYTE, TempData(0))
+        End If
     End With
     Call VBGLAdd(LoadedTextures, CreateFromData)
 End Function
@@ -146,11 +147,11 @@ Public Sub Activate(ByVal Index As Long)
 End Sub
 
 Public Sub Bind()
-    Context.CurrentTexture2D = Me
+    CurrentContext.CurrentTexture2D = Me
 End Sub
 
 Public Sub Unbind()
-    Context.CurrentTexture2D = Nothing
+    CurrentContext.CurrentTexture2D = Nothing
 End Sub
 
 'For Caching
@@ -193,7 +194,6 @@ Private Function SwapColors(ByRef Arr() As Long, ParamArray Order() As Variant) 
 End Function
 
 Private Sub Class_Initialize()
-    Context = CurrentContext
     InternalFormat  = GL_RGBA
     Format          = GL_RGBA
     GLTextureMin    = GL_LINEAR
@@ -204,5 +204,5 @@ End Sub
 
 Private Sub Class_Terminate()
     Call glDeleteTextures(1, ID)
-    Context.CurrentTexture2D = Nothing
+    CurrentContext.CurrentTexture2D = Nothing
 End Sub

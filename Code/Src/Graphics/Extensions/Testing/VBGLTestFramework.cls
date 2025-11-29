@@ -11,22 +11,22 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
-Private p_AfterEach  As VBGLCallable
-Private p_BeforeEach As VBGLCallable
-Private p_AfterAll   As VBGLCallable
-Private p_BeforeAll  As VBGLCallable
+Private p_AfterEach  As std_Callable
+Private p_BeforeEach As std_Callable
+Private p_AfterAll   As std_Callable
+Private p_BeforeAll  As std_Callable
 Private p_AllTests()      As VBGLTest
 Private p_SelectedTests() As VBGLTest
 
-Public Property Let AfterEach(ByVal  Value As VBGLCallable): Set p_AfterEach  = Value        : End Property
-Public Property Let BeforeEach(ByVal Value As VBGLCallable): Set p_BeforeEach = Value        : End Property
-Public Property Let AfterAll(ByVal   Value As VBGLCallable): Set p_AfterAll   = Value        : End Property
-Public Property Let BeforeAll(ByVal  Value As VBGLCallable): Set p_BeforeAll  = Value        : End Property
+Public Property Let AfterEach(ByVal  Value As std_Callable): Set p_AfterEach  = Value        : End Property
+Public Property Let BeforeEach(ByVal Value As std_Callable): Set p_BeforeEach = Value        : End Property
+Public Property Let AfterAll(ByVal   Value As std_Callable): Set p_AfterAll   = Value        : End Property
+Public Property Let BeforeAll(ByVal  Value As std_Callable): Set p_BeforeAll  = Value        : End Property
 
-Public Property Get AfterEach()            As VBGLCallable : Set AfterEach    = p_AfterEach  : End Property
-Public Property Get BeforeEach()           As VBGLCallable : Set BeforeEach   = p_BeforeEach : End Property
-Public Property Get AfterAll()             As VBGLCallable : Set AfterAll     = p_AfterAll   : End Property
-Public Property Get BeforeAll()            As VBGLCallable : Set BeforeAll    = p_BeforeAll  : End Property
+Public Property Get AfterEach()            As std_Callable : Set AfterEach    = p_AfterEach  : End Property
+Public Property Get BeforeEach()           As std_Callable : Set BeforeEach   = p_BeforeEach : End Property
+Public Property Get AfterAll()             As std_Callable : Set AfterAll     = p_AfterAll   : End Property
+Public Property Get BeforeAll()            As std_Callable : Set BeforeAll    = p_BeforeAll  : End Property
 
 Public Property Let LetAllTests(ByVal Values As Variant)
     p_AllTests = Values
@@ -119,19 +119,19 @@ Public Function TestAll(Optional ByVal Expected As Variant) As Boolean()
     Dim ReturnArr() As Boolean
     Dim Size As Long
     Size = USize(SelectedTests)
-    If IsSomething(BeforeAll) Then Call BeforeAll.Handle()
+    If IsSomething(BeforeAll) Then Call BeforeAll.Run()
     If Size = -1 Then Exit Function
     ReDim ReturnArr(Size)
     For i = 0 To Size
         ReturnArr(i) = Test(i, Expected)
     Next i
-    If IsSomething(AfterAll) Then Call AfterAll.Handle()
+    If IsSomething(AfterAll) Then Call AfterAll.Run()
 End Function
 
 Public Function Test(ByVal Index As Long, Optional ByVal Expected As Variant) As Boolean
-    If IsSomething(BeforeEach) Then Call BeforeEach.Handle()
+    If IsSomething(BeforeEach) Then Call BeforeEach.Run()
     Test = SelectedTest(Index).Run(Expected)
-    If IsSomething(AfterEach) Then Call AfterEach.Handle()
+    If IsSomething(AfterEach) Then Call AfterEach.Run()
 End Function
 
 Public Function GetFromName(ByVal Name As String) As VBGLTest
@@ -164,7 +164,7 @@ Private Function GetProcedure(ByVal Component As VBIDE.VBComponent, ByVal Code A
     Dim StartPoint As Long
     Dim EndPoint As Long
     Dim Name As String
-    Dim Callable As VBGLCallable
+    Dim Callable As std_Callable
 
     SearchText = NamingConvention
     SearchText = Replace(SearchText, "Public Sub "     , Empty)
@@ -173,7 +173,7 @@ Private Function GetProcedure(ByVal Component As VBIDE.VBComponent, ByVal Code A
     StartPoint = InStr(1, Code, SearchText)
     EndPoint = InStr(StartPoint, Code, "(")
     Name = VBGLMidP(Code, StartPoint, EndPoint - 1)
-    Set Callable = VBGLCallable.Create(Nothing, Name, vbMethod, GetArgCount(Code))
+    Set Callable = std_Callable.Create(Nothing, Name, vbMethod, GetArgCount(Code))
     Set GetProcedure = VBGLTest.Create(Callable)
 End Function
 

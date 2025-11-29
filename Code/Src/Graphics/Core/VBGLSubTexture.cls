@@ -125,3 +125,21 @@ Public Function GetY(ByVal Position As String) As Single
         Case "BOTTOMRIGHT" : GetY = YN2
     End Select
 End Function
+
+Public Function GetRectangle() As Single()
+    Dim Arr() As Single
+    ReDim Arr(11)
+    Arr(00) = GetX("TopLeft")
+    Arr(01) = GetY("TopLeft")
+    Arr(02) = GetX("TopRight")
+    Arr(03) = GetY("TopRight")
+    Arr(04) = GetX("BottomLeft")
+    Arr(05) = GetY("BottomLeft")
+    Arr(06) = GetX("TopRight")
+    Arr(07) = GetY("TopRight")
+    Arr(08) = GetX("BottomRight")
+    Arr(09) = GetY("BottomRight")
+    Arr(10) = GetX("BottomLeft")
+    Arr(11) = GetY("BottomLeft")
+    GetRectangle = Arr
+End Function

@@ -14,14 +14,10 @@ Option Explicit
 Implements IBufferVertex
 Implements IBufferIndex
 
-Private p_Context As VBGLContext
 Private p_ID      As Long
 Private p_Data    As VBGLData
 
 
-
-Public Property Let Context(ByVal n_Context As VBGLContext): Set p_Context = n_Context : End Property
-Public Property Get Context()               As VBGLContext : Set Context   = p_Context : End Property
 
 Public Function CreateVertexBuffer(ByVal n_Data As VBGLData) As IBufferVertex
     Set CreateVertexBuffer = New VBGLBuffer
@@ -39,10 +35,6 @@ Public Function CreateIndexBuffer(ByVal n_Data As VBGLData) As IBufferIndex
         Call .Update(n_Data)
     End With
 End Function
-
-Private Sub Class_Initialize()
-    Context = CurrentContext
-End Sub
 
 Private Sub Class_Terminate()
     If p_ID <> 0 Then
@@ -66,10 +58,10 @@ End Sub
     End Property
 
     Private Sub IBufferVertex_Bind()
-        Context.CurrentVBO = Me
+        CurrentContext.CurrentVBO = Me
     End Sub
     Private Sub IBufferVertex_Unbind()
-        Context.CurrentVBO = Nothing
+        CurrentContext.CurrentVBO = Nothing
     End Sub
 
     Private Sub IBufferVertex_Update(ByVal n_Data As VBGLData)
@@ -108,10 +100,10 @@ End Sub
     End Property
 
     Private Sub IBufferIndex_Bind()
-        Context.CurrentEBO = Me
+        CurrentContext.CurrentEBO = Me
     End Sub
     Private Sub IBufferIndex_Unbind()
-        Context.CurrentEBO = Nothing
+        CurrentContext.CurrentEBO = Nothing
     End Sub
 
     Private Sub IBufferIndex_Update(ByVal n_Data As VBGLData)

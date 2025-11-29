@@ -395,8 +395,8 @@ End Function
         Dim Y() As Single   : Y = IMatrixSingle_Cross(X, Z)
 
         ReturnArr(0, 0) = +X(0, 0) : ReturnArr(0, 1) = +X(0, 1) : ReturnArr(0, 2) = +X(0, 2) : ReturnArr(0, 3) = -IMatrixSingle_Dot(X, Position)
-        ReturnArr(1, 1) = +Y(0, 0) : ReturnArr(1, 1) = +Y(0, 1) : ReturnArr(1, 2) = +Y(0, 2) : ReturnArr(1, 3) = -IMatrixSingle_Dot(Y, Position)
-        ReturnArr(2, 2) = -Z(0, 0) : ReturnArr(2, 2) = -Z(0, 1) : ReturnArr(2, 2) = -Z(0, 2) : ReturnArr(2, 3) = +IMatrixSingle_Dot(Z, Position)
+        ReturnArr(1, 0) = +Y(0, 0) : ReturnArr(1, 1) = +Y(0, 1) : ReturnArr(1, 2) = +Y(0, 2) : ReturnArr(1, 3) = -IMatrixSingle_Dot(Y, Position)
+        ReturnArr(2, 0) = -Z(0, 0) : ReturnArr(2, 2) = -Z(0, 1) : ReturnArr(2, 2) = -Z(0, 2) : ReturnArr(2, 3) = +IMatrixSingle_Dot(Z, Position)
 
         ReturnArr(3, 3) = 1
         IMatrixSingle_LookAt = ReturnArr

@@ -3,42 +3,56 @@ Attribute VB_Name = "VBGLTestAll"
 
 Option Explicit
 
+Private RenderStack() As VBGLRenderObject
+
 Private TestFramework As VBGLTestFramework
 Private TextBox       As VBGLTextBox
 Private ExplainBox    As VBGLTextBox
 Private TestIndex     As Long
 
+Public Window As VBGLWindow
+Public ConsolasFont As VBGLFontLayout
+
 Private ErrorNum As Long
 
 Public Function TestAll1(ByVal Path As String, ByVal Logger As IDestination, ByVal Shower As IDestination) As Long
     On Error GoTo Error
-    Set CurrentContext = VBGLContext.Create(Path & "\Src\Externals", GLUT_CORE_PROFILE, GLUT_DEBUG, Logger, Shower)
+    Set CurrentContext = VBGLContext.Create(Path & "\Src\Graphics\Core", GLUT_CORE_PROFILE, GLUT_DEBUG, Logger, Shower)
     If IsNothing(CurrentContext) Then GoTo Error
-    Call VBGLWindow.Create(1600, 900, GLUT_RGBA, "OpenGL Test", "4_6", True)
+    Set Window = VBGLWindow.Create(1600, 900, GLUT_RGBA, "OpenGL Test", "4_6", True)
     CurrentContext.BlendTest = True 
     CurrentContext.DepthTest = True
     CurrentContext.CullTest = True
+    CurrentContext.ScissorTest = True
     Call CurrentContext.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
     Call CurrentContext.CullFace(GL_BACK)
 
+    Set ConsolasFont = VBGLFontLayout.Create(Path & "\Src\Graphics\Extensions\Drawables\TextRendering", Path & "\Res\Fonts\Consolas.ttf", 48, "Consolas")
     Set TestFramework = VBGLTestFramework.CreateFromProject(ThisWorkbook.VBProject, "Public Function VBGLTest")
-    Set TextBox          = CreateTextBox(Path & "\Src\Externals", Path & "\Res\Fonts")
+
+    Set TextBox    = CreateTextBox()
     Set ExplainBox = CreateExplainBox()
 
+    Dim TestAll1RenderObject As VBGLRenderObject
+    Set TestAll1RenderObject = VBGLRenderObject.Create(CreateInput(), Window.Frame)
+
+
     Application.EnableCancelKey = xlDisabled
-    With CurrentContext
-        Call .SetDisplayFunc(AddressOf       VBGLDisplayFuncStack)
-        Call .SetIdleFunc(AddressOf          VBGLIdleFuncStack)
-        Call .SetKeyboardFunc(AddressOf      VBGLKeyboardFuncStack)
-        Call .SetPassiveMotionFunc(AddressOf VBGLPassiveMotionFuncStack)
-        Call .SetMouseWheelFunc(AddressOf    VBGLMouseWheelFuncStack)
-        Call .AddDisplayFunc("TestAllLoop")
-        Call .AddIdleFunc("TestAllLoop")
-        Call .AddKeyboardFunc("TestAllKeyBoard")
-        Call .AddPassiveMotionFunc("TestAllPassiveMotion")
-        Call .AddMouseWheelFunc("TestAllMouseWheel")
-        Call .MainLoop()
+    With TestAll1RenderObject
+        Call .AddDrawable(TextBox)
+        Call .AddDrawable(ExplainBox)
     End With
+    Call AddRenderObject(TestAll1RenderObject)
+    Debug.Print CurrentContext.CurrentWindow.LimitFPS
+
+
+    Call VBGLCallbackFunc("DisplayFunc")
+    Call VBGLCallbackFunc("IdleFunc")
+    Call VBGLCallbackFunc("KeyboardFunc")
+    Call VBGLCallbackFunc("PassiveMotionFunc")
+    Call VBGLCallbackFunc("MouseWheelFunc")
+    Call CurrentContext.MainLoop()
+
     Finish:
     TestAll1 = ErrorNum
     Exit Function
@@ -48,53 +62,54 @@ Public Function TestAll1(ByVal Path As String, ByVal Logger As IDestination, ByV
     GoTo Finish
 End Function
 
-Public Sub TestAllLoop()
-    On Error GoTo Error
-    Call CurrentContext.Clear()
-    Call CurrentContext.ClearColor(0.0, 0.5, 0.5, 1)
-    Call TextBox.Draw()
-    Call ExplainBox.Draw()
-    Call glutSwapBuffers
-    Exit Sub
-
-    Error:
-    ErrorNum = 2
+Public Sub AddRenderObject(ByVal Obj As VBGLRenderObject)
+    Call VBGLAdd(RenderStack, Obj)
+    Set CurrentRenderObject = Obj
 End Sub
 
-Public Sub TestAllKeyBoard(ByVal Char As Byte, ByVal x As Long, ByVal y As Long)
-    On Error GoTo Error
-    Dim Temp As Long
-    Temp = Char
-    Select Case Temp
-        Case Asc("w")
-            TestIndex = TestIndex - 1
-            If TestIndex < 0 Then TestIndex = 0
-        Case Asc("s")
-            TestIndex = TestIndex + 1
-            If TestIndex > USize(TestFramework.AllTests) Then TestIndex = USize(TestFramework.AllTests)
-        Case Asc(" ")
-            Call TestFramework.ChangeSelectTest(TestIndex)
-        Case Asc("t")
-            Call TestFramework.TestAll(0)
-        Case 27
-            Call glutLeaveMainLoop()
-    End Select
-    Call UpdateTextBox()
-    Exit Sub
-
-    Error:
-    ErrorNum = 3
+Public Sub RemoveRenderObject()
+    Call VBGLArrayPop(RenderStack)
+    Set CurrentRenderObject = RenderStack(USize(RenderStack))
 End Sub
 
-Public Sub TestAllMouseWheel(ByVal wheel As Long, ByVal direction As Long, ByVal x As Long, ByVal y As Long)
-    ' Nothing
+
+Public Function GetTestIndex() As Long
+    GetTestIndex = TestIndex
+End Function
+
+Public Sub IncrementTestIndex(ByVal Value As Long)
+    TestIndex = TestIndex + Value
+    If Value > 0 Then
+        If TestIndex < 0 Then TestIndex = 0
+    Else
+        If TestIndex > USize(TestFramework.AllTests) Then TestIndex = USize(TestFramework.AllTests)
+    End If
 End Sub
 
-Public Sub TestAllPassiveMotion(ByVal x As Long, ByVal y As Long)
-    ' Nothing
-End Sub
 
-Private Function CreateTextBox(ByVal LoadFilePath As String, ByVal FilePath As String) As VBGLTextBox
+
+Private Function CreateInput() As VBGLIInput
+    Dim Inputt As VBGLGeneralInput
+    Set Inputt = VBGLGeneralInput.Create()
+    Dim Temp As std_Callable
+    Set Temp = std_Callable.Create(Nothing, "GetTestIndex", vbMethod, -1)
+    With Inputt
+        Call .AddKey(Asc("w"), std_Callable.Create(Nothing      , "IncrementTestIndex" , vbMethod, 0).Bind(-1).FixArgs(True))
+        Call .AddKey(Asc("s"), std_Callable.Create(Nothing      , "IncrementTestIndex" , vbMethod, 0).Bind(+1).FixArgs(True))
+        Call .AddKey(Asc(" "), std_Callable.Create(TestFramework, "ChangeSelectTest"   , vbMethod, 0).Bind(Temp).FixArgs(True))
+        Call .AddKey(Asc("t"), std_Callable.Create(TestFramework, "TestAll"            , vbMethod, 0).Bind(0).FixArgs(True))
+
+        Call .AddKey(Asc("w"), std_Callable.Create(Nothing      , "UpdateTestBox"      , vbMethod, -1).FixArgs(True))
+        Call .AddKey(Asc("s"), std_Callable.Create(Nothing      , "UpdateTestBox"      , vbMethod, -1).FixArgs(True))
+        Call .AddKey(Asc(" "), std_Callable.Create(Nothing      , "UpdateTestBox"      , vbMethod, -1).FixArgs(True))
+        Call .AddKey(Asc("t"), std_Callable.Create(Nothing      , "UpdateTestBox"      , vbMethod, -1).FixArgs(True))
+
+        Call .AddKey(27      , std_Callable.Create(Nothing      , "glutLeaveMainLoop"  , vbMethod, -1).FixArgs(True))
+    End With
+    Set CreateInput = Inputt
+End Function
+
+Private Function CreateTextBox() As VBGLTextBox
     On Error GoTo Error
 
     Dim Temp As VBGLProperties
@@ -106,13 +121,11 @@ Private Function CreateTextBox(ByVal LoadFilePath As String, ByVal FilePath As S
     Call Temp.LetValueFamily("Color*"       , +1.0!, +1.0!, +1.0!, +1.0!)
 
 
-    Dim FontLayout As VBGLFontLayout
-    Set FontLayout = VBGLFontLayout.Create(LoadFilePath, FilePath & "\Consolas.ttf", 48, "Consolas")
     Dim Fonts() As VBGLFont
     ReDim Fonts(USize(TestFramework.AllTests))
     Dim i As Long
     For i = 0 To USize(TestFramework.AllTests)
-        Set Fonts(i) = VBGLFont.Create(TestFramework.GetTest(i).Name & vbcrLf, FontLayout)
+        Set Fonts(i) = VBGLFont.Create(TestFramework.GetTest(i).Name & vbcrLf, ConsolasFont)
         Fonts(i).BackgroundColor = Temp.GetValueFamily("Color*")
     Next i
 
@@ -151,14 +164,14 @@ Private Function CreateExplainBox() As VBGLTextBox
     VBGLTextBox.LinesPerPage   = 128
     VBGLTextBox.Pages          = 1
     VBGLTextBox.LineOffset     = 0.1!
-    Set CreateExplainBox = VBGLTextBox.CreateFromText(Temp, Text, TextBox.Font(0).FontLayout)
+    Set CreateExplainBox = VBGLTextBox.CreateFromText(Temp, Text, ConsolasFont)
     Exit Function
 
     Error:
     ErrorNum = 6
 End Function
 
-Private Sub UpdateTextBox()
+Public Sub UpdateTestBox()
     On Error GoTo Error
     Dim i As Long
     Dim FoundTest As VBGLTest
@@ -209,22 +222,4 @@ Private Sub UpdateTextBox()
 
     Error:
     ErrorNum = 5
-End Sub
-
-
-' Callback Functions, but stackable
-Public Sub VBGLDisplayFuncStack()
-    Call Application.Run(CurrentContext.DisplayFunc)
-End Sub
-Public Sub VBGLIdleFuncStack()
-    Call Application.Run(CurrentContext.IdleFunc)
-End Sub
-Public Sub VBGLKeyboardFuncStack(ByVal Char As Byte, ByVal x As Long, ByVal y As Long)
-    Call Application.Run(CurrentContext.KeyboardFunc, Char, x, y)
-End Sub
-Public Sub VBGLPassiveMotionFuncStack(ByVal x As Long, ByVal y As Long)
-    Call Application.Run(CurrentContext.PassiveMotionFunc, x, y)
-End Sub
-Public Sub VBGLMouseWheelFuncStack(ByVal wheel As Long, ByVal direction As Long, ByVal x As Long, ByVal y As Long)
-    Call Application.Run(CurrentContext.MouseWheelFunc, wheel, direction, x, y)
 End Sub

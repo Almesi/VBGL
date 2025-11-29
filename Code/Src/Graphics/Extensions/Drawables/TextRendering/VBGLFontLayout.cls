@@ -24,6 +24,9 @@ Private Type Character
     Character  As String
 End Type
 
+Private Dict    As Object
+Private DictRev As Object
+
 Private Characters() As Character
 Private p_Name       As String
 Private p_CharCount  As Long
@@ -197,11 +200,12 @@ Private Sub GetMaxValues(ByVal Face As LongPtr)
         If Glyph.Advance.X = 0 Then Exit Do
 
         MaxWidth = MaxWidth + BitMap.width
-        If BitMap.rows > MaxHeight Then MaxHeight = BitMap.rows
-        If BitMap.Width > 0 Then
-            BPP = Abs(BitMap.pitch) / BitMap.Width
-        End If
+        If BitMap.rows  > MaxHeight Then MaxHeight = BitMap.rows
+        If BitMap.Width > 0         Then BPP       = Abs(BitMap.pitch) / BitMap.Width
+
         CharCount = CharCount + 1
+        Dict(CharCount) = CharCode
+        DictRev(CharCode) = CharCount
         CharCode = FT_Get_Next_Char(Face, CharCode, GlyphIndex)
     Loop
 End Sub
@@ -222,35 +226,19 @@ End Sub
 ' This function builds this data like this:
 ' For each Character-->For each row of character-->paste Character width
 Private Sub GetCharacters(ByVal Face As LongPtr, Optional ByVal n_Name As String)
-    Dim GlyphIndex As Long
     Dim ErrorNum As Long
     Dim Glyph  As FT_GlyphSlotRec
     Dim BitMap As FT_Bitmap
-    Dim xOffset As Long
     Dim CharCode As Long
 
     ReDim Characters(CharCount)
 
-    Dim Identifiers() As String
-    Dim Tx() As Long
-    Dim Tx2() As Long
-    Dim Ty() As Long
-    Dim Ty2() As Long
-    ReDim Identifiers(CharCount)
-    ReDim Tx(CharCount)
-    ReDim Tx2(CharCount)
-
-    ReDim Ty(CharCount)
-    ReDim Ty2(CharCount)
-    
-    Dim atlas() As Byte
-    ReDim atlas(Byte4Size * MaxHeight - 1)
+    Dim Manager As VBGLTextureManager
+    Set Manager = VBGLTextureManager.Create(VBGLTextureMergerGrid.Create(False), MaxHeight, Byte4Size)
 
     Dim i As Long
-    Dim PrevX As Long
-    PrevX = -1
     For i = 0 To CharCount
-        CharCode = i + FirstChar
+        CharCode = Dict(i)
         ErrorNum = FT_Load_Char(Face, CharCode, FT_LOAD_RENDER)
         If CurrentContext.ErrorHandler.Handle(ErrorNum <> 0 , std_Error.Create("VBGLFontLayout", "severe", "GetCharacters", "failed to load glyph: VAR0 | VAR1", Empty, CharCode, ErrorNum)) Then
             Exit Sub
@@ -267,33 +255,24 @@ Private Sub GetCharacters(ByVal Face As LongPtr, Optional ByVal n_Name As String
         Char.Advance    = Glyph.Advance.x / PointToPixel
         Char.Character  = ChrW(CharCode)
         
-        Tx(i) = xOffset
-        If BitMap.width > 0 And BitMap.rows > 0 Then
-            xOffset = CopyBitMap(atlas, BitMap, xOffset)
-            Ty(i)          = 1
-            Ty2(i)         = BitMap.Rows
-        Else
-            Ty(i)          = 0
-            Ty2(i)         = 0
-        End If
-
-        Tx2(i) = xOffset
         Characters(i)  = Char
-        Identifiers(i) = ChrW(CharCode)
-        
+        Dim Data() As Byte
+        If BitMap.Width <> 0 Then
+            Data = CopyBitMap(BitMap, True)
+            Call Manager.LoadFromData(Data, 1, VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn, ChrW(CharCode))
+        Else
+            ReDim Data(0, 0)
+            Call Manager.LoadFromData(Data, 1, VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn, ChrW(CharCode))
+        End If
     Next i
+    'Call glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
+    Texture = Manager.CreateTexture(TextureFactory, n_Name, "TextboxTexture", True)
+End Sub
 
-    Dim n_Data As IDataByte
-    Set n_Data = VBGLData.CreateByte(atlas)
-
-    Dim SubTextureFactory As VBGLSubTexture
-    Set SubTextureFactory = VBGLSubTexture.CreateFactory(Byte4Size, MaxHeight, False)
-    
-    Dim n_Texture As VBGLTexture
-    Dim TextureFactory As VBGLTexture
+Private Function TextureFactory() As VBGLTexture
     Set TextureFactory = New VBGLTexture
     With TextureFactory
-        .Width           = MaxWidth
+        .Width           = Byte4Size
         .Height          = MaxHeight
         .BPP             = BPP
         .InternalFormat  = GL_RED
@@ -303,31 +282,7 @@ Private Sub GetCharacters(ByVal Face As LongPtr, Optional ByVal n_Name As String
         .GLTextureWrapS  = GL_CLAMP_TO_EDGE
         .GLTextureWrapT  = GL_CLAMP_TO_EDGE
     End With
-    Set n_Texture = TextureFactory.CreateFromData(n_Data, n_Name, "TextboxTexture")
-    n_Texture.Width = Byte4Size
-
-    Dim n_SubTextures() As VBGLSubTexture
-    n_Texture.SubTextures = SubTextureFactory.CreateFromArray(Identifiers, Tx, Ty, Tx2, Ty2)
-
-    Texture = n_Texture
-End Sub
-
-Private Function FlipData(ByRef Arr() As Byte) As Byte()
-    Dim ReturnArr() As Byte
-    ReDim ReturnArr(Byte4Size * MaxHeight - 1)
-    Dim x As Long
-    Dim y As Long
-    Dim Ptr As Long
-    Dim FlipPtr As Long
-    For y = 0 To MaxHeight - 1
-        For x = 0 To Byte4Size - 1
-            Ptr     = y * Byte4Size + x
-            FlipPtr = (MaxHeight - 1 - y) * Byte4Size + x
-            ReturnArr(Ptr) = Arr(FlipPtr)
-        Next x
-    Next y
-    FlipData = ReturnArr
-End Function
+End Function 
 
 Private Function GetFace(ByVal Face As LongPtr) As FT_FaceRec
     Dim TempFace As FT_FaceRec
@@ -366,36 +321,6 @@ Private Sub AddVertex(ByRef Arr() As Single, ByVal Tx As Single, ByVal Ty As Sin
     Call Add(Arr, Ty, Index)
 End Sub
 
-Private Function CopyBitMap(ByRef Arr() As Byte, BitMap As FT_Bitmap, ByVal Index As Long, Optional ByVal StartTopLeft As Boolean = True) As Long
-    Dim X As Long, Y As Long
-    Dim Temp() As Byte
-
-    Dim NewSize As Long : NewSize = BitMap.rows * Abs(BitMap.pitch)
-    ReDim Temp(NewSize - 1)
-    Call CopyMemory(Temp(0), BitMap.buffer, NewSize)
-    For Y = 0 To BitMap.Rows - 1
-        For X = 0 To BitMap.Width - 1
-            Dim ArrPtr  As Long
-            If StartTopLeft Then
-                ArrPtr = Index + ((Y * Byte4Size) + X)
-            Else
-                ArrPtr = Index + (((BitMap.Rows - 1 - Y) * Byte4Size) + X)
-            End If
-            
-            Dim DataPtr As Long
-            
-            If BitMap.Pitch > 0 Then
-                DataPtr = Y * BitMap.Pitch + X
-            Else
-                DataPtr = (BitMap.rows - 1 - Y) * (-BitMap.pitch) + X
-            End If
-            Arr(ArrPtr) = Temp(DataPtr)
-            'Range("A1").Offset(Y, Index + X).Interior.Color = RGB(Arr(ArrPtr), Arr(ArrPtr), Arr(ArrPtr))
-        Next X
-    Next Y
-    CopyBitMap = Index + BitMap.Width
-End Function
-
 Private Function CalculateBaseLine() As Long
     Dim i As Long
     Dim MaxAscend As Long
@@ -414,14 +339,56 @@ End Function
 Private Function GetChar(ByVal Text As String, ByVal Index As Long) As Character
     Dim CharIndex As Long
     Dim Char As Character
-    CharIndex = AscW(Mid(Text, Index, 1)) - FirstChar
+    CharIndex = DictRev(AscW(Mid(Text, Index, 1)))
     If CharIndex < 0 Then
-        GetChar = GetChar(Text, Index - 1)
+        ' return an empty char structure or a dedicated missing glyph
+        Dim EmptyC As Character
+        EmptyC.Width = 0
+        EmptyC.Rows = 0
+        EmptyC.Left = 0
+        EmptyC.Top = 0
+        EmptyC.Advance = 0
+        EmptyC.Character = "?"
+        GetChar = EmptyC
     Else
         GetChar = Characters(CharIndex)
     End If
 End Function
 
+Private Function CopyBitMap(ByRef BitMap As FT_Bitmap, Optional ByVal StartTopLeft As Boolean = True) As Byte()
+    Dim X As Long, Y As Long
+
+    Dim NewSize  As Long : NewSize = BitMap.rows * Abs(BitMap.pitch)
+    Dim Result() As Byte : ReDim Result(BitMap.Rows - 1, Abs(BitMap.pitch) - 1)
+    Dim Temp()   As Byte : ReDim Temp(NewSize - 1)
+    Call CopyMemory(Temp(0), BitMap.buffer, NewSize)
+    For Y = 0 To BitMap.Rows - 1
+        For X = 0 To BitMap.Width - 1
+            Dim ArrY As Long, ArrX As Long
+            If StartTopLeft Then
+                ArrY = Y
+                ArrX = X
+            Else
+                ArrY = BitMap.Rows - 1 - Y
+                ArrX = X
+            End If
+
+            Dim DataPtr As Long
+            If BitMap.Pitch > 0 Then
+                DataPtr = Y * BitMap.Pitch + X
+            Else
+                DataPtr = (BitMap.rows - 1 - Y) * (-BitMap.pitch) + X
+            End If
+            Result(ArrY, ArrX) = Temp(DataPtr)
+        Next X
+    Next Y
+    CopyBitMap = Result
+End Function
+
 Private Sub Class_Initialize()
+    Set Dict    = CreateObject("Scripting.Dictionary")
+    Set DictRev = CreateObject("Scripting.Dictionary")
+    Call Dict.RemoveAll()
+    Call DictRev.RemoveAll()
     CharCount = -1
 End Sub

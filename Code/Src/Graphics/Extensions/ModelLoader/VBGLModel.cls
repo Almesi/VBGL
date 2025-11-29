@@ -11,6 +11,8 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
+Implements VBGLDrawable
+
 Private p_Meshes()         As VBGLMesh
 Private p_Materials()      As GLMaterial
 Private p_Loader           As VBGLFileLoader
@@ -25,6 +27,9 @@ Public Property Get Materials()                       As GLMaterial()    : Let M
 Public Property Get Loader()                          As VBGLFileLoader  : Set Loader           = p_Loader         : End Property
 Public Property Get Mesh(ByVal Index                  As Long)           : Set Mesh             = p_Meshes(Index)  : End Property
 
+Private Sub VBGLDrawable_Draw()
+    Call Draw()
+End Sub
 
 Public Function Create(ByVal n_Loader As VBGLFileLoader, ByVal FolderPath As String, ByVal ObjectLoader As IObjLoader, ByVal MaterialLoader As IMtlLoader) As VBGLModel
     Set Create = New VBGLModel

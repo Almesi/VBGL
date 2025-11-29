@@ -13,13 +13,17 @@ Public Function VBGLTestTextBox1() As Long
     Path = ThisWorkbook.Path
     Set TextBox = CreateTextBox(Path & "\Res", Path & "\Res\Fonts")
 
-    With CurrentContext
-        Call .AddDisplayFunc("VBGLTestTextBoxLoop")
-        Call .AddIdleFunc("VBGLTestTextBoxLoop")
-        Call .AddKeyboardFunc("VBGLTestTextBoxKeyBoard")
-        Call .AddPassiveMotionFunc("VBGLTestTextBoxPassiveMotion")
-        Call .AddMouseWheelFunc("VBGLTestTextBoxMouseWheel")
+    Dim VBGLTestTextBox1RenderObject As VBGLRenderObject
+    Set VBGLTestTextBox1RenderObject = VBGLRenderObject.Create(Nothing, Window.Frame)
+
+    With VBGLTestTextBox1RenderObject.Callbacks
+        Call .SetDisplayFunc(std_Callable.Create(Nothing       , "VBGLTestTextBoxLoop"          , vbMethod, -1))
+        Call .SetIdleFunc(std_Callable.Create(Nothing          , "VBGLTestTextBoxLoop"          , vbMethod, -1))
+        Call .SetKeyboardFunc(std_Callable.Create(Nothing      , "VBGLTestTextBoxKeyBoard"      , vbMethod, 2))
+        Call .SetPassiveMotionFunc(std_Callable.Create(Nothing , "VBGLTestTextBoxPassiveMotion" , vbMethod, 1))
+        Call .SetMouseWheelFunc(std_Callable.Create(Nothing    , "VBGLTestTextBoxMouseWheel"    , vbMethod, 3))
     End With
+    Call AddRenderObject(VBGLTestTextBox1RenderObject)
     Finish:
     VBGLTestTextBox1 = ErrorNum
     Exit Function
@@ -40,11 +44,9 @@ Private Function CreateTextBox(ByVal LoadFilePath As String, ByVal FilePath As S
     Call Temp.LetValueFamily("BottomRight*" , +1.0!, -1.0!, +0.0!)
     Call Temp.LetValueFamily("Color*"       , +1.0!, +1.0!, +1.0!, +0.0!)
 
-    Dim FontLayout As VBGLFontLayout
-    Set FontLayout = VBGLFontLayout.Create(LoadFilePath, FilePath & "\Consolas.ttf", 48, "Consolas")
     Dim Fonts() As VBGLFont
     ReDim Fonts(0)
-    Set Fonts(0) = VBGLFont.Create("Press ESC to leave test, otherwise type to add to this Textbox", FontLayout)
+    Set Fonts(0) = VBGLFont.Create("Press ESC to leave test, otherwise type to add to this Textbox", ConsolasFont)
 
     VBGLTextBox.CharsPerLine   = 32
     VBGLTextBox.LinesPerPage   = 16
@@ -77,7 +79,7 @@ Public Sub VBGLTestTextBoxKeyBoard(ByVal Char As Byte, ByVal x As Long, ByVal y 
     Temp = Char
     Select Case Temp
         Case 13: TextBox.Font(0).AddText(vbCrLf)
-        Case 27: Call CurrentContext.PopStack
+        Case 27: Call RemoveRenderObject()
         Case 32 To 255, 8
             If FirstButton = False Then
                 TextBox.Font(0).Text = Empty

@@ -50,24 +50,27 @@ Public Function VBGLTestModels1() As Long
     Set CubeModel  = VBGLModel.Create(NewLoader, Path & "\Res\Cube", ObjLoader, MtlLoader)
     Set CubeShader = CubeModel.Mesh(0).Shader
     If IsNothing(CubeShader) Then Exit Function
+    CubeModel.Mesh(0).Orientation = GL_CCW ' Because Orientation not working correctly
 
     Set Camera = VBGLCamera.Create(0, 0, 10,    0, 1, 0,    -90, 0, 0,    0.5, 0.5, 45)
     Set CurrentTimer = VBGLTimer.Create()
-    Set NormalInput = CreateGeneralInput()
+    Set NormalInput = CreateInput()
 
+    Dim VBGLTestModelsRenderObject As VBGLRenderObject
+    Set VBGLTestModelsRenderObject = VBGLRenderObject.Create(NormalInput, Window.Frame)
 
     LastX = 800
     LastY = 450
     Window.FPS = 120
-    'Call Window.Cursor(CLng(LastX), CLng(LastY))
 
-    With CurrentContext
-        Call .AddDisplayFunc("VBGLTestModelsLoop")
-        Call .AddIdleFunc("VBGLTestModelsLoop")
-        Call .AddKeyboardFunc("VBGLTestModelsKeyBoard")
-        Call .AddPassiveMotionFunc("VBGLTestModelsPassiveMotion")
-        Call .AddMouseWheelFunc("VBGLTestModelsMouseWheel")
+    With VBGLTestModelsRenderObject.Callbacks
+        Call .SetDisplayFunc(std_Callable.Create(Nothing       , "VBGLTestModelsLoop"          , vbMethod, -1))
+        Call .SetIdleFunc(std_Callable.Create(Nothing          , "VBGLTestModelsLoop"          , vbMethod, -1))
+        Call .SetKeyboardFunc(std_Callable.Create(Nothing      , "VBGLTestModelsKeyBoard"      , vbMethod, 2))
+        Call .SetPassiveMotionFunc(std_Callable.Create(Nothing , "VBGLTestModelsPassiveMotion" , vbMethod, 1))
+        Call .SetMouseWheelFunc(std_Callable.Create(Nothing    , "VBGLTestModelsMouseWheel"    , vbMethod, 3))
     End With
+    Call AddRenderObject(VBGLTestModelsRenderObject)
     Finish:
     VBGLTestModels1 = ErrorNum
     Exit Function
@@ -168,25 +171,25 @@ Private Sub UpdateShader(ByVal CurrentShader As VBGLShader, ByVal Translate As I
     ErrorNum = 5
 End Sub
 
-Private Function CreateGeneralInput() As VBGLIInput
+Private Function CreateInput() As VBGLIInput
     On Error GoTo Error
     Dim Temp As VBGLGeneralInput
     Set Temp = New VBGLGeneralInput
-    Dim DeltaTime As VBGLCallable
-    Set DeltaTime = VBGLCallable.Create(CurrentTimer, "DeltaTime", VbMethod, -1)
-    Call Temp.AddKey(Asc("w"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.FORWARD  , 1)) 'DeltaTime
-    Call Temp.AddKey(Asc("s"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.BACKWARD , 1)) 'DeltaTime
-    Call Temp.AddKey(Asc("a"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.LEFT     , 1)) 'DeltaTime
-    Call Temp.AddKey(Asc("d"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.RIGHTT   , 1)) 'DeltaTime
-    Call Temp.AddKey(Asc(" "), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.UPP      , 1)) 'DeltaTime
-    Call Temp.AddKey(Asc("y"), VBGLCallable.Create(Camera        , "Move"     ,  vbMethod, 1, VBGLCameraMovement.DOWN     , 1)) 'DeltaTime
-    Call Temp.AddKey(27      , VBGLCallable.Create(CurrentContext, "PopStack" ,  vbMethod, -1))
+    Dim DeltaTime As std_Callable
+    Set DeltaTime = std_Callable.Create(CurrentTimer, "DeltaTime", VbMethod, -1)
+    Call Temp.AddKey(Asc("w"), std_Callable.Create(Camera        , "Move"               ,  vbMethod, 1).Bind(VBGLCameraMovement.FORWARD  , 1).FixArgs(True)) 'DeltaTime
+    Call Temp.AddKey(Asc("s"), std_Callable.Create(Camera        , "Move"               ,  vbMethod, 1).Bind(VBGLCameraMovement.BACKWARD , 1).FixArgs(True)) 'DeltaTime
+    Call Temp.AddKey(Asc("a"), std_Callable.Create(Camera        , "Move"               ,  vbMethod, 1).Bind(VBGLCameraMovement.LEFT     , 1).FixArgs(True)) 'DeltaTime
+    Call Temp.AddKey(Asc("d"), std_Callable.Create(Camera        , "Move"               ,  vbMethod, 1).Bind(VBGLCameraMovement.RIGHTT   , 1).FixArgs(True)) 'DeltaTime
+    Call Temp.AddKey(Asc(" "), std_Callable.Create(Camera        , "Move"               ,  vbMethod, 1).Bind(VBGLCameraMovement.UPP      , 1).FixArgs(True)) 'DeltaTime
+    Call Temp.AddKey(Asc("y"), std_Callable.Create(Camera        , "Move"               ,  vbMethod, 1).Bind(VBGLCameraMovement.DOWN     , 1).FixArgs(True)) 'DeltaTime
+    Call Temp.AddKey(27      , std_Callable.Create(Nothing       , "RemoveRenderObject" ,  vbMethod, -1))
 
-    Call Temp.AddWheel(+1, VBGLCallable.Create(Camera, "Zoom", vbMethod, 0))
-    Call Temp.AddWheel(-1, VBGLCallable.Create(Camera, "Zoom", vbMethod, 0))
-    Call Temp.AddMouse(0 , VBGLCallable.Create(Camera, "Look", vbMethod, 2))
+    Call Temp.AddWheel(+1, std_Callable.Create(Camera, "Zoom", vbMethod, 0).Bind(+1).FixArgs(True))
+    Call Temp.AddWheel(-1, std_Callable.Create(Camera, "Zoom", vbMethod, 0).Bind(-1).FixArgs(True))
+    Call Temp.AddMouse(0 , std_Callable.Create(Camera, "Look", vbMethod, 2))
 
-    Set CreateGeneralInput = Temp
+    Set CreateInput = Temp
     Exit Function
 
     Error:
