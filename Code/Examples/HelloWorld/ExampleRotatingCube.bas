@@ -1,6 +1,13 @@
-Attribute VB_Name = "VBGLTestModels"
+Attribute VB_Name = "ExampleRotatingCube"
 
 Option Explicit
+
+'================================================================================
+' Shows how use the following:
+' 1. Matrix Class
+' 2. Model Loader
+' 3. Uniform Assignment
+'================================================================================
 
 Private CubeShader As VBGLShader
 Private Window     As VBGLWindow
@@ -11,9 +18,8 @@ Private LastX As Single
 Private LastY As Single
 
 
-Public Sub TestRotatingCube()
+Public Sub TestRotatingCube(ByVal Path As String, ByVal DataPath As String)
     ' Create OpenGL Context
-    Dim Path         As String           : Path = "Your\Path\To\Freeglut.dll"
     Dim Shower       As IDestination     : Set Shower = Nothing
     Dim Logger       As IDestination     : Set Logger = std_ImmiedeateDestination.Create()
     Set CurrentContext = VBGLContext.Create(Path, GLUT_CORE_PROFILE, GLUT_DEBUG, Logger, Shower)
@@ -29,7 +35,6 @@ Public Sub TestRotatingCube()
 
 
     ' Create Cube
-    Dim DataPath  As String         : DataPath       = "Your\Path\To\Cube.obj"
     Dim NewLoader As VBGLFileLoader : Set NewLoader  = New VBGLFileLoader
     Dim MtlLoader As IMtlLoader     : Set MtlLoader  = MtlParser.Create(NewLoader, ",")
     Dim ObjLoader As IObjLoader     : Set ObjLoader  = GLFileObject.Create(NewLoader, ",")

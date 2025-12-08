@@ -1,6 +1,41 @@
 # VBGLMesh
 ## Version 1.0
 
+
+
+
+## Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Mesh
+### Version 1.0
+| X                        | Y                |
+| --------                 | -------          |
+| Author                   | Almesi           |
+| Created                  | 2025-12-04       |
+| Last Updated             | 2025-12-04       |
+| Related Modules/Classes  | VBGLContext      |
+| Tags                     | OOP, VBA, OpenGL |
+
+## Purpose
+
+Single Object capable of drawing something to the window.
+
+--------------------------------------------------------
+
+## Overview
+
 Represents a drawable mesh object in OpenGL with all the required rendering state:
 * Vertex array object (VAO) and optional element buffer object (EBO).
 * One or more bound textures.
@@ -10,7 +45,10 @@ Represents a drawable mesh object in OpenGL with all the required rendering stat
 It can handle both indexed and non-indexed drawing (with or without IndexBuffer).
 This class encapsulates everything needed to render a 3D object in one call to .Draw.
 
-## Members
+
+--------------------------------------------------------
+
+## Properties
 
 | Property       | Type            | Description |
 | --------       | -------         | -------     |
@@ -51,7 +89,10 @@ As of this Version, UseIndexBuffer should be false, as Index Buffers dont work
     * Will check using Trapezoid formula if the first Triangle is clockwise or counterclockwise.
     * VBGLMesh assumes all other following triangles to be the same orientation
 
-## Example
+--------------------------------------------------------
+
+## Examples:  
+1. Simple implementation
 ```vb
     Public Sub TestMesh
     ' Create shader
@@ -59,19 +100,17 @@ As of this Version, UseIndexBuffer should be false, as Index Buffers dont work
     Set Shader = VBGLShader.Create("mesh.vert", "mesh.frag")
 
     ' Define layout and data
-    Dim LayoutTypes(1) As VBGLLayoutType
-    LayoutTypes(0) = VBGLLayoutType.XYZ
-    LayoutTypes(1) = VBGLLayoutType.RGBB
     Dim Layout As VBGLLayout
-    Set Layout = VBGLLayout.Create(vbSingle, LayoutTypes)
+    Set Layout = VBGLLayout.Create(vbSingle, LayoutTypes, VBGLLayoutType.XYZ, VBGLLayoutType.RGBB)
 
 
     ' Basic Triangle with 3 Colors
     Dim Vertices() As Single
-    ReDim Vertices(17)
-    Vertices(00) = -1: Vertices(01) = 0: Vertices(02) = 0: Vertices(03) = 1: Vertices(04) = 0: Vertices(05) = 0 
-    Vertices(06) = +0: Vertices(07) = 1: Vertices(08) = 0: Vertices(09) = 0: Vertices(10) = 0: Vertices(11) = 0
-    Vertices(12) = +1: Vertices(13) = 0: Vertices(14) = 0: Vertices(15) = 0: Vertices(16) = 0: Vertices(17) = 1
+    Vertices = ArraySingle( _
+                                -1, 0, 0, 1, 0, 0, _ 
+                                +0, 1, 0, 0, 0, 0, _
+                                +1, 0, 0, 0, 0, 1 _
+                          )
     Dim VertexData As IDataSingle
     Set VertexData = VBGLData.CreateSingle(Vertices)
 
@@ -79,12 +118,39 @@ As of this Version, UseIndexBuffer should be false, as Index Buffers dont work
     Set Mesh = VBGLMesh.Create(Shader, Layout, VertexData, Nothing, False)
 
     ' Assign a texture
-    Dim Texture() As VBGLTexture
-    ReDim Texture(0)
-    Set Texture(0) = VBGLTexture.CreateFromFile("diffuse.png")
-    Mesh.Textures(0) = Texture
+    Dim Texture As VBGLTexture
+    ReDim Texture
+    Set Texture = VBGLTexture.CreateFromFile("pic.png")
+    Call Mesh.AddTexture(Texture)
 
     ' Draw in render loop
-    Mesh.Draw
+    Call Mesh.Draw()
 End Sub
 ```
+
+## Extra Information
+XXX
+
+## Dependencies
+* VBGLContext
+* VBGLData
+* VBGLBuffer
+* VBGLShader
+* VBGLVertexArray
+* VBGLLayout
+* VBGLWindow
+
+## Testing
+Basic Testing in Tests Folder
+
+## Lifecycle Notes
+Creation and deletion inside VBGL-Object Lifetime
+
+## See Also:
+[Context](..\Context)
+[Data](..\Data)
+[Buffer](..\Buffer)
+[Shader](..\Shader)
+[VertexArray](..\VertexArray)
+[Layout](..\Layout)
+[Window](..\Window)

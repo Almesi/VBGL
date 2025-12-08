@@ -38,7 +38,7 @@ Public Property Let SubTextures(ByVal n_SubTextures As Variant)       :    Let p
 Public Property Get ID()                            As Long           :    Let ID            = p_ID          : End Property
 Public Property Get Data()                          As VBGLData       :    Set Data          = p_Data        : End Property
 Public Property Get Name()                          As String         :    Let Name          = p_Name        : End Property
-Public Property Get UniformName()                          As String         :    Let UniformName   = p_UniformName : End Property
+Public Property Get UniformName()                   As String         :    Let UniformName   = p_UniformName : End Property
 Public Property Get SubTextures()                   As Variant        :    Let SubTextures   = p_SubTextures : End Property
 
 Public Property Get SubTexture(ByVal Index As Long) As VBGLSubTexture
@@ -157,20 +157,47 @@ End Sub
 'For Caching
 Private Function Find(ByVal n_Data As VBGLData) As VBGLTexture
     Dim i As Long
-    Dim j As Long
     For i = 0 To USize(LoadedTextures)
         Dim Arr1() As Byte: Arr1 = LoadedTextures(i).Data.ByteData
         Dim Arr2() As Byte: Arr2 = n_Data.ByteData
-        If USize(Arr1) = USize(Arr2) Then
-            For j = 0 To USize(Arr1)
-                If Arr1(j) <> Arr2(j) Then
-                    Exit Function
-                End If
-            Next j
+        If Compare1DArray(Arr1, Arr2) Then
             Set Find = LoadedTextures(i)
-            Exit Function
+        ElseIf Compare2DArray(Arr1, Arr2) Then
+            Set Find = LoadedTextures(i)
+        Else
+
         End If
     Next i
+End Function
+
+Private Function Compare1DArray(ByRef Arr1() As Byte, ByRef Arr2() As Byte) As Boolean
+    Dim i As Long
+    If USize(Arr1, 1) = USize(Arr2, 1) And USize(Arr1, 2) = -1 Then
+        For i = 0 To USize(Arr1, 2)
+            If Arr1(i) <> Arr2(i) Then
+                Exit Function
+            End If
+        Next i
+    Else
+        Exit Function
+    End If
+    Compare1DArray = True
+End Function
+
+Private Function Compare2DArray(ByRef Arr1() As Byte, ByRef Arr2() As Byte) As Boolean
+    Dim y As Long, x As Long
+    If USize(Arr1, 1) = USize(Arr2, 1) And USize(Arr1, 2) = USize(Arr2, 2) And USize(Arr1, 2) <> -1 Then
+        For y = 0 To USize(Arr1, 1)
+            For x = 0 To USize(Arr1, 2)
+            If Arr1(y, x) <> Arr2(y, x) Then
+                Exit Function
+            End If
+            Next x
+        Next y
+    Else
+        Exit Function
+    End If
+    Compare2DArray = True
 End Function
 
 Private Function SwapColors(ByRef Arr() As Long, ParamArray Order() As Variant) As Byte()

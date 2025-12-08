@@ -1,5 +1,14 @@
 # Layout
-#### Version 1.0
+### Version 1.0
+| X                        | Y                |
+| --------                 | -------          |
+| Author                   | Almesi           |
+| Created                  | 2025-12-04       |
+| Last Updated             | 2025-12-04       |
+| Related Modules/Classes  | VBGLContext      |
+| Tags                     | OOP, VBA, OpenGL |
+
+--------------------------------------
 
 Layout is very important for VBGL.
 It is the Backbone for how data should be interpreted
@@ -12,7 +21,7 @@ Encapsulates information about how data should be interpreted, including:
 | Property    | Type            | Description |
 | --------    | -------         | -------     |
 | LayoutType  | VBGLLayoutType  | Describes what data it is and how many data"points" it has
-| DataType    | Long            | Describes what type of data the LayoutType has (as OpenGL-Type Like GL_FLOAT)
+| DataType    | Long            | Describes what type of data the LayoutType has (as OpenGL-Type Like **GL_FLOAT**)
 | Normalized  | Byte            | Describes if the data is normalized or not
 
 Example:
@@ -95,13 +104,22 @@ Public Sub TestLayout()
     Types(1) = VBGLLayoutType.RGBA
     Types(2) = VBGLLayoutType.TxTy
 
-    Set Layout = VBGLLayout.Create(vbSingle, Types)
+    Set Layout = VBGLLayout.CreateArr(vbSingle, Types)
+End Sub
+
+' Or inline:
+
+Public Sub TestLayout()
+    Dim Layout   As VBGLLayout
+    Set Layout = VBGLLayout.Create(vbSingle, VBGLLayoutType.XYZ, VBGLLayoutType.RGBA, VBGLLayoutType.TxTy)
 End Sub
 ```
+
+
 DataLayout:  
-   4   8   12  16  20  24   28    32      36
-----////----////----////----/ / / / - - - -
-xxxxyyyyzzzzrrrrggggbbbbaaaaTxTxTxTxTyTyTyTy
+| 4    | 8    | 12   | 16   | 20   | 24   | 28   | 32       | 36
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |   ----   |   ----   |
+| xxxx | yyyy | zzzz | rrrr | gggg | bbbb | aaaa | TxTxTxTx | TyTyTyTy |
 
 ```vb
 Public Sub TestLayout()
@@ -121,6 +139,6 @@ Public Sub TestLayout()
 End Sub
 ```
 DataLayout:  
- 2 4 6   10  14  18  22  24
---//--////----////----/ /
-xxyyzzrrrrggggbbbbaaaaTxTy
+| 2    | 4    | 6    | 10   | 14   | 18   | 22   | 23       | 24
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |   ----   |   ----   |
+| xx   | yy   | zz   | rrrr | gggg | bbbb | aaaa | Tx       | Ty       |

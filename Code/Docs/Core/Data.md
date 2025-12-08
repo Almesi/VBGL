@@ -1,4 +1,21 @@
-## Data
+# Data
+### Version 1.0
+| X                        | Y                |
+| --------                 | -------          |
+| Author                   | Almesi           |
+| Created                  | 2025-12-04       |
+| Last Updated             | 2025-12-04       |
+| Related Modules/Classes  | VBGLContext      |
+| Tags                     | OOP, VBA, OpenGL |
+
+## Purpose
+
+Ensures standardized Data for all implementing classes
+
+--------------------------------------------------------
+
+## Overview
+
 Data is very important for a graphics library.
 It can vary depending on use case.
 Anyone who has worked with VBA for a while may realize how limiting it actually is.
@@ -30,13 +47,30 @@ OpenGL works with alot of pointers, where the data has to be aligned properly. V
 So, no Variant then. What can we do?
 One solution is `VBGLData`
 `VBGLData` is the C++ Template while the Implementations such as IDataSingle are used as the data-holder
-For example:
+
+
+--------------------------------------------------------
+
+## Properties
+
+| Property         | Type         | Public | Description |
+| --------         | -------      | ------ | -------     |
+| Let Get Data     | XXX          | True   | Depending on implementation will work with different DataTypes        |
+
+## Methods
+| Property | Type         | Public | Description |
+| -------- | -------      | ------ | -------     |
+| Create   | XXX          | True   | Will Create together with Data-Type        |
+
+--------------------------------------------------------
+
+## Examples:  
+1. Simple
 ```vb
     Dim SingleData As IDataSingle
     Set SingleData = VBGLData.CreateSingle(ExternalData) 'Will create a VBGLData class that is used as Single
 ```
 The neat things with this method:
-
 We can create Functions, that take in VBGLData as an argument and NOT IDataSingle:
 ```vb
 Private Sub VertexBufferNewData(NewData As VBGLData)
@@ -45,7 +79,7 @@ End Sub
 ```
 This way we can pass data without having to worry if it is of the right datatype (as long as we assign data to the variable before calling the function, as VBGLData as a class is not complete without its Implementation)
 
-We can interchange the bytedata between 2 different Datatypes:
+2. Interchange the bytedata between 2 different Datatypes:
 ```vb
     Dim SingleData As IDataSingle
     Set SingleData = VBGLData.CreateSingle(ExternalData)
@@ -57,3 +91,18 @@ We can interchange the bytedata between 2 different Datatypes:
 ```
 * Data is the original Data (if it was created as vbSingle then it will use DataSingle)
 * ByteData will return the ByteData of the original Data (if it was created as vbSingle then it will use DataSingle)
+
+## Extra Information
+XXX
+
+## Dependencies
+* VBGLContext
+
+## Testing
+Tested by looking into memory layout of different implementations
+
+## Lifecycle Notes
+Creation and deletion inside VBGL-Object Lifetime
+
+## See Also:
+[Context](..\Context)

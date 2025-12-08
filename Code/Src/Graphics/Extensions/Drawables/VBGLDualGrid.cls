@@ -11,7 +11,7 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
-Private Const TilesPerSprite As Long = 15
+Private Const TilesPerSprite As Long = 16 ' On of them is an empty sprite
 
 Implements VBGLDrawable
 
@@ -29,6 +29,7 @@ Implements VBGLDrawable
 '|___________|____________|
 
 Private Enum TileType
+    EmptyImage          = 0
     UpperLeft           = 1
     UpperRight          = 2
     UpperRow            = 3
@@ -51,50 +52,60 @@ Private Enum Mode
 End Enum
 
 
-Private p_Mesh                As VBGLMesh
-Private p_TilesInScreenWidth  As Long
-Private p_TilesInScreenHeight As Long
-Private p_SpriteWidth         As Long
-Private p_SpriteHeight        As Long
-Private p_TileSet             As VBGLTexture
+Private p_Mesh      As VBGLMesh
+Private p_TileSet   As VBGLTexture
 
-Private Layout                As VBGLLayout
-Private BuildData()           As Single
-Private Tiles()               As Long
+Private Layout      As VBGLLayout
+Private BuildData() As Single
+Private Tiles()     As Long
 
 
-Public Property Let Mesh(ByVal n_Value                          As VBGLMesh)        : Set p_Mesh                = n_Value               : End Property
-Public Property Let TilesInScreenWidth(ByVal n_Value            As Long)            : Let p_TilesInScreenWidth  = n_Value               : End Property
-Public Property Let TilesInScreenHeight(ByVal n_Value           As Long)            : Let p_TilesInScreenHeight = n_Value               : End Property
-Public Property Let SpriteWidth(ByVal n_Value                   As Long)            : Let p_SpriteWidth         = n_Value               : End Property
-Public Property Let SpriteHeight(ByVal n_Value                  As Long)            : Let p_SpriteHeight        = n_Value               : End Property
-Public Property Let TileSet(ByVal n_Value                       As VBGLTexture)     : Set p_TileSet             = n_Value               : End Property
+Public Property Let Mesh(ByVal n_Value                          As VBGLMesh)           : Set p_Mesh                = n_Value               : End Property
+Public Property Let TileSet(ByVal n_Value                       As VBGLTexture)        : Set p_TileSet             = n_Value               : End Property
 
-Public Property Get Mesh()                                      As VBGLMesh         : Set Mesh                  = p_Mesh                : End Property
-Public Property Get TilesInScreenWidth()                        As Long             : Let TilesInScreenWidth    = p_TilesInScreenWidth  : End Property
-Public Property Get TilesInScreenHeight()                       As Long             : Let TilesInScreenHeight   = p_TilesInScreenHeight : End Property
-Public Property Get SpriteWidth()                               As Long             : Let SpriteWidth           = p_SpriteWidth         : End Property
-Public Property Get SpriteHeight()                              As Long             : Let SpriteHeight          = p_SpriteHeight        : End Property
-Public Property Get TileSet()                                   As VBGLTexture      : Set TileSet               = p_TileSet             : End Property
+Public Property Get Mesh()                                      As VBGLMesh            : Set Mesh                  = p_Mesh                : End Property
+Public Property Get TileSet()                                   As VBGLTexture         : Set TileSet               = p_TileSet             : End Property
 
 Private Sub VBGLDrawable_Draw()
     Call Draw()
 End Sub
 
-Public Function Create(ByVal TileSetFilePath As String, ByVal n_SpriteWidth As Long, ByVal n_SpriteHeight As Long, ByVal n_TilesInScreenWidth As Long, ByVal n_TilesInScreenHeight As Long) As VBGLDualGrid
-    Dim n_TileSet As VBGLTexture
-    Set n_TileSet = AddSubTextures(TileSetFilePath, n_SpriteWidth, n_SpriteHeight, Mode.InRow)
-    Set Create = CreateFromTexture(n_TileSet,  n_SpriteWidth, n_SpriteHeight, n_TilesInScreenWidth, n_TilesInScreenHeight)
+
+Public Function CreateFromFolder(ByVal FolderPath As String, ByVal Recursive As Boolean) As VBGLDualGrid
+    Dim Manager As VBGLTextureManager
+    Set Manager = VBGLTextureManager.Create(VBGLTextureMergerGrid.Create(False))
+    Manager.Flip = False
+    Manager.Transpose = True
+    Call Manager.LoadFromFolderArr(FolderPath, _
+                                Recursive, _
+                                4 , _
+                                4 , _
+                                VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpGrid, _
+                                TypeTypeString)
+    Dim Texture As VBGLTexture
+    Set Texture = Manager.CreateTexture(TextureFactory(Manager), "DualGrid", Empty)
+
+    Set CreateFromFolder = Create(Texture)
 End Function
 
-Public Function CreateFromTexture(ByVal n_TileSet As VBGLTexture, ByVal n_SpriteWidth As Long, ByVal n_SpriteHeight As Long, ByVal n_TilesInScreenWidth As Long, ByVal n_TilesInScreenHeight As Long) As VBGLDualGrid
-    Set CreateFromTexture = New VBGLDualGrid
-    With CreateFromTexture
-        .SpriteWidth         = n_SpriteWidth
-        .SpriteHeight        = n_SpriteHeight
-        .TilesInScreenWidth  = n_TilesInScreenWidth
-        .TilesInScreenHeight = n_TilesInScreenHeight
-        .TileSet             = n_TileSet
+Public Function CreateFromFile(ByVal FilePath As String) As VBGLDualGrid
+    Dim Manager As VBGLTextureManager
+    Set Manager = VBGLTextureManager.Create(VBGLTextureMergerGrid.Create(False))
+    Manager.Flip = True
+    Call Manager.LoadFromFileArr(FolderPath, _
+                                TilesPerSprite, _
+                                VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpGrid, _
+                                TypeTypeString)
+    Dim Texture As VBGLTexture
+    Set Texture = Manager.CreateTexture(TextureFactory(Manager), "DualGrid", Empty)
+
+    Set CreateFromFolder = Create(Texture)
+End Function
+
+Public Function Create(ByVal n_TileSet As VBGLTexture) As VBGLDualGrid
+    Set Create = New VBGLDualGrid
+    With Create
+        .TileSet = n_TileSet
     End With
 End Function
 
@@ -130,6 +141,44 @@ Public Sub Build()
     Set Data = VBGLData.CreateSingle(BuildData)
     Mesh = VBGLMesh.Create(GetShader, Layout, Data)
     Call Mesh.AddTexture(TileSet)
+
+    'Dim i As Long, x As Long, y As Long, f As Long
+'
+    'Dim ShowData() As Byte : ShowData   = TileSet.Data.ByteData
+    'Dim Offset     As Long : Offset     = 5
+    'Dim ByteSize   As Long : ByteSize   = 4
+    'Dim Max        As Long : Max        = USize(BuildData)
+'
+    'For y = 0 To USize(ShowData, 2)
+    '    For x = 0 To USize(ShowData, 1) Step+4
+    '        Dim Color As Long
+    '        Color = RGB(ShowData(x + 0, y), ShowData(x + 1, y), ShowData(x + 2, y))
+    '        Range("A1").Offset(y, x / 4).Interior.Color = Color
+    '    Next x
+    'Next y
+'
+    'For i = 3 To Max Step +(Offset * 6)
+    '    Dim OffX   As Long : OffX   = BuildData(i - 3)
+    '    Dim OffY   As Long : OffY   = BuildData(i - 2)
+    '    Dim StartX As Long : StartX = Round(BuildData(i)                    * TileSet.Width)
+    '    Dim StartY As Long : StartY = Round(BuildData(i + 1)                * TileSet.Height) -1
+    '    Dim EndX   As Long : EndX   = Round(BuildData(i + (Offset * 4))     * TileSet.Width)  -1
+    '    Dim EndY   As Long : EndY   = Round(BuildData(i + (Offset * 4) + 1) * TileSet.Height) -1
+    '    If StartX = -1 Then StartX = 0
+    '    If StartY = -1 Then StartY = 0
+    '    If EndX   = -1 Then EndX   = 0
+    '    If EndY   = -1 Then EndY   = 0
+    '    For y = StartY To EndY
+    '        For x = StartX To EndX
+    '            Dim XPos As Long : XPos = (OffX * 16) + (x - StartX)
+    '            Dim YPos As Long : YPos = 64 + (Abs(OffY) * 16) + y
+    '            Color = RGB(ShowData(x*4 + 0, y), ShowData(x*4 + 1, y), ShowData(x*4 + 2, y))
+    '            If Color <> RGB(255, 255, 255) Then
+    '                Range("A1").Offset(YPos, XPos).Interior.Color = Color
+    '            End If
+    '        Next x
+    '    Next y
+    'Next i
 End Sub
 
 Public Sub Draw()
@@ -185,7 +234,6 @@ End Function
 Public Function GetSubTextureData() As Single()
     Dim Offset      As Long   : Offset     = 2
     Dim ReturnArr() As Single : ReDim ReturnArr(DataCount(Offset))
-
     Dim y As Long, x As Long, u As Long
     For y = 0 To USize(Tiles, 1)
         For x = 0 To USize(Tiles, 2)
@@ -213,61 +261,6 @@ Public Function GetSubTextureData() As Single()
 End Function
 
 
-Private Function AddSubTextures(ByVal TileSetFilePath As String, ByVal n_SpriteWidth As Long, ByVal n_SpriteHeight As Long, ByVal Modee As Mode) As VBGLTexture
-    Dim TextureFactory As VBGLTexture
-    Set TextureFactory = New VBGLTexture
-    TextureFactory.InternalFormat  = GL_RGBA
-    TextureFactory.Format          = GL_RGBA
-    TextureFactory.GLTextureMin    = GL_NEAREST
-    TextureFactory.GLTextureMag    = GL_NEAREST
-    TextureFactory.GLTextureWrapS  = GL_CLAMP_TO_EDGE
-    TextureFactory.GLTextureWrapT  = GL_CLAMP_TO_EDGE
-    
-    Dim Texture As VBGLTexture
-    Set Texture = TextureFactory.Create(TileSetFilePath)
-
-    Dim xOffset() As Long : xOffset = GetxOffset(n_SpriteWidth , Modee)
-    Dim yOffset() As Long : yOffset = GetyOffset(n_SpriteHeight, Modee)
-
-    Dim Count As Long
-    Dim Size As Long
-    Count = Texture.Height / n_SpriteHeight
-    Size = (TilesPerSprite * Count) - 1
-
-
-    Dim Identifier() As String
-    Dim X1()         As Long
-    Dim X2()         As Long
-    Dim Y1()         As Long
-    Dim Y2()         As Long
-
-    ReDim Identifier(Size)
-    ReDim X1(Size)
-    ReDim X2(Size)
-    ReDim Y1(Size)
-    ReDim Y2(Size)
-
-
-    Dim i As Long, j As Long
-    For i = 0 To Count - 1
-        For j = 0 To TilesPerSprite - 1
-            Dim Index As Long
-            Index = i * TilesPerSprite + j
-            Identifier(Index) = Index
-            X1(Index)         = xOffset(j)
-            X2(Index)         = xOffset(j) + n_SpriteWidth
-            Y1(Index)         = i * n_SpriteHeight + yOffset(j)
-            Y2(Index)         = i * n_SpriteHeight + yOffset(j) + n_SpriteHeight
-        Next j
-    Next i
-    
-
-    Dim Factory As VBGLSubTexture
-    Set Factory = VBGLSubTexture.CreateFactory(Texture.Width, Texture.Height, True)
-    Texture.SubTextures = Factory.CreateFromArray(Identifier, X1, Y1, X2, Y2)
-    Set AddSubTextures = Texture
-End Function
-
 Private Sub AddTriangles(ByVal VertexSize As Long, ByVal DataSize As Long, ByRef n_Data() As Single, ByRef Index As Long, ByRef DataIndex As Long)
     Call AddVertex(VertexSize, DataSize, n_Data, Index, DataIndex)
     Call AddVertex(VertexSize, DataSize, n_Data, Index, DataIndex)
@@ -292,7 +285,7 @@ Private Function TileIndices(ByRef Corners() As Long) As Long()
     ReDim Arr(USize(Corners))
     
     For i = 0 To USize(Corners)
-        Arr(i) = 15
+        Arr(i) = TilesPerSprite
         For j = 0 To USize(Corners)
             If Corners(i) <> Corners(j) Then
                 Arr(i) = CLng(Arr(i) - (2 ^ j))
@@ -310,28 +303,6 @@ End Function
 
 Private Function GetSubTexture(ByVal Tile As Long, ByVal Typee As TileType) As Long
     GetSubTexture = (Tile * TilesPerSprite) + (Typee - 1)
-End Function
-
-Private Function GetxOffset(ByVal SpriteWidth As Long, ByVal Modee As Mode) As Long()
-    Dim ReturnArr() As Long
-    ReDim ReturnArr(TilesPerSprite - 1)
-    Dim i As Long
-    Select Case Modee
-        Case Mode.InRow
-            For i = 1 To TilesPerSprite -1
-                ReturnArr(i) = i * SpriteWidth
-            Next i
-    End Select
-    GetxOffset = ReturnArr
-End Function
-Private Function GetyOffset(ByVal SpriteHeight As Long, ByVal Modee As Mode) As Long()
-    Dim ReturnArr() As Long
-    ReDim ReturnArr(TilesPerSprite - 1)
-    Dim i As Long
-    Select Case Modee
-        Case Mode.InRow ' Nothing, as it would only return 0 for all
-    End Select
-    GetyOffset = ReturnArr
 End Function
 
 Private Function GetShader() As VBGLShader
@@ -427,4 +398,51 @@ Private Function yVertices(ByVal Vertex As Long, ByVal Value As Long) As Long
         Case 4 : yVertices = Value - 1
         Case 5 : yVertices = Value - 1
     End Select
+End Function
+
+Private Function TextureFactory(ByVal Manager As VBGLTextureManager) As VBGLTexture
+    Set TextureFactory = New VBGLTexture
+    With TextureFactory
+        .Width           = Manager.MaxWidth
+        .Height          = Manager.MaxHeight
+        .BPP             = 4
+        .InternalFormat  = GL_RGBA
+        .Format          = GL_RGBA
+        .GLTextureMin    = GL_NEAREST
+        .GLTextureMag    = GL_NEAREST
+        .GLTextureWrapS  = GL_CLAMP_TO_EDGE
+        .GLTextureWrapT  = GL_CLAMP_TO_EDGE
+    End With
+End Function 
+
+Private Function TypeTypeString() As String()
+    Dim Arr() As String
+    ReDim Arr(TilesPerSprite - 1)
+    Arr(00) = "EmptyImage"
+    Arr(01) = "UpperLeft"
+    Arr(02) = "UpperRight"
+    Arr(03) = "UpperRow"
+    Arr(04) = "LowerLeft"
+    Arr(05) = "LeftColumn"
+    Arr(06) = "DiagonalRight"
+    Arr(07) = "TriangleUpperLeft"
+    Arr(08) = "BottomRight"
+    Arr(09) = "DiagonalLeft"
+    Arr(10) = "RightColumn"
+    Arr(11) = "TriangleUpperRight"
+    Arr(12) = "BottomRow"
+    Arr(13) = "TriangleBottomLeft"
+    Arr(14) = "TriangleBottomRight"
+    Arr(15) = "Full"
+    TypeTypeString = Arr
+End Function
+
+Private Function Round(ByVal Value As Single) As Long
+    Dim Whole As Long
+    Whole = Int(Value)
+    If Value-Whole >= 0.5 Then
+        Round = Whole + 1
+    Else
+        Round = Whole
+    End If
 End Function

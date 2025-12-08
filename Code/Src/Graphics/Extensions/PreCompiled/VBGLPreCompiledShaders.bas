@@ -1,4 +1,4 @@
-Attribute VB_Name = "VBGLPreCompiled"
+Attribute VB_Name = "VBGLPreCompiledShaders"
 
 Option Explicit
 

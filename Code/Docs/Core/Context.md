@@ -94,3 +94,162 @@ Freeglut still uses only one Procedure, but that Procedure uses Visual Basic's `
 ## Main Loop
 * Starts the GLUT main loop (glutMainLoop).
 * Can be combined with Stack Management
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# VBGLContext
+### Version 1.0
+| X                        | Y                |
+| --------                 | -------          |
+| Author                   | Almesi           |
+| Created                  | 2025-12-04       |
+| Last Updated             | 2025-12-04       |
+| Related Modules/Classes  | Everything else  |
+| Tags                     | OOP, VBA, OpenGL |
+
+## Purpose
+
+Object Oriented Implemenation of an OpenGL Context.
+Holds the State maschine of a single Context.
+
+--------------------------------------------------------
+
+## Overview
+
+It works by taking in a FilePath to freeglut.dll/freeglut64.dll and creating an OpenGL Context.
+It is the most important class, as it is the foundation on which every other Core class build.
+It encapsulates OpenGL states, manages rendering resources (shaders, buffers, textures, etc.), and provides utilities to configure and control OpenGL functionality.
+
+* Required environment (VBA, VB)
+* Dependencies (Declarations-Folder, Freeglut)
+* Limitations (Not tested for more than 1 Object)
+
+--------------------------------------------------------
+
+## Properties
+
+| Property            | Type             | Description |
+| --------            | -------          | -------     |
+| CurrentWindow       | VBGLWindow       | The currently Bound Object of that Type
+| CurrentShader       | VBGLShader       | The currently Bound Object of that Type
+| CurrentVAO          | VBGLVertexArray  | The currently Bound Object of that Type
+| CurrentVBO          | IBufferVertex    | The currently Bound Object of that Type
+| CurrentEBO          | IBufferIndex     | The currently Bound Object of that Type
+| CurrentTexture2D    | VBGLTexture      | The currently Bound Object of that Type
+| CurrentFrame        | VBGLFrame        | The currently Bound Object of that Type
+| ErrorHandler        | std_ErrorHandler | Handles all Errors, provided you activate it and use version > 4.30
+| StencilTest         | Boolean          | Determines if Test is Enabled
+| DepthTest           | Boolean          | Determines if Test is Enabled
+| BlendTest           | Boolean          | Determines if Test is Enabled
+| CullTest            | Boolean          | Determines if Test is Enabled
+| ScissorTest         | Boolean          | Determines if Test is Enabled
+| StencilFuncFunc     |Long              | Arguments of StencilFunc Function
+| StencilFuncRef      |Long              | Arguments of StencilFunc Function
+| StencilFuncMask     |Long              | Arguments of StencilFunc Function
+| DepthFunc           |Long              | Argument  of DepthFunc   Function
+| BlendFuncsFactor    |Long              | Arguments of BlendFunc   Function
+| BlendFuncdFactor    |Long              | Arguments of BlendFunc   Function
+| CullFace            |Long              | Argument  of CullFace    Function
+| FrontFace           |Long              | Current FrontFace
+| ScissorX            |Long              | Values of glScissor
+| ScissorY            |Long              | Values of glScissor
+| ScissorWidth        |Long              | Values of glScissor
+| ScissorHeight       |Long              | Values of glScissor
+| ViewportX           |Long              | Values of glViewPort
+| ViewportY           |Long              | Values of glViewPort
+| ViewportWidth       |Long              | Values of glViewPort
+| ViewportHeight      |Long              | Values of glViewPort
+
+
+Currently this big list of properties exists, to wrap the Context into an Object.
+
+## Methods
+| Property | Type         | Public | Description |
+| -------- | -------      | ------ | -------     |
+| Create   | VBGLContext  | True   | Creates an OpenGL Context with the passed arguments        |
+| SetXXX   | Void         | True   | Change XXX against any Freeglut callbackfunction. This will set up the callback        |
+| LetXXX   | Void         | True   |  Change XXX against any Context-Object like VAO, EBO, Texture, Window etc. Let-Property        |
+| GetXXX   | XXX          | True   |  Change XXX against any Context-Object like VAO, EBO, Texture, Window etc. Get-Property        |
+| LetXXXTest   | Void         | True   |  Change XXX against any Test like StencilTest, DepthTest |
+| GetXXXTest   | Void         | True   |  Change XXX against any Test like StencilTest, DepthTest |
+| XXXFunc      | Void         | True   |  Change XXX against any AssignFunction like StencilFunc, DepthFunc |
+| MainLoop      | Void         | True   |  Enter MainLoop |
+| LeaveMainLoop | Void         | True   |  Leave MainLoop |
+| Clear         | Void         | True   |  Clears OpenGL according to activated Tests |
+| ClearColor    | Void         | True   |  Clears Color of currently bound Frame |
+| ClearColorArr | Void         | True   | ClearColor, but takes in array instead of paramarray |
+
+Let Properties also have side-effects to handle those objects uniquely
+
+--------------------------------------------------------
+
+## Examples:  
+1. Describe what the Example is about
+```vb
+Public Sub RunApp(ByVal PathToDLL As String)
+    Dim Shower       As IDestination     : Set Shower = Nothing
+    Dim Logger       As IDestination     : Set Logger = std_ImmiedeateDestination.Create()
+    Set CurrentContext = VBGLContext.Create(PathToDLL, GLUT_CORE_PROFILE, GLUT_DEBUG, Logger, Shower)
+    If IsNothing(CurrentContext) Then Exit Sub
+
+    CurrentContext.BlendTest = True 
+    CurrentContext.DepthTest = True
+    CurrentContext.CullTest = True
+    Call CurrentContext.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+    Call CurrentContext.CullFace(GL_BACK)
+
+    '
+    'Other OpenGL Code and Rendering
+    '
+
+    With CurrentContext
+        Call .SetDisplayFunc(AddressOf LoopSub)
+        Call .SetIdleFunc(AddressOf    LoopSub)
+        Call .MainLoop()
+    End With
+End Sub
+```
+## Extra Information
+* There exists a Public `CurrentContext As VBGLContext` Object.
+    1. Is is used throughout the entire Library.
+    2. It exists, since you usually only want to work with one bound Context
+* The Context needs to be destroyed before running the code again. Otherwise `GlutInit` will crash your program
+
+
+## Dependencies
+* Declarations
+* Freeglut.dll / Freeglut64.dll
+
+## Testing
+Tested in every Example and test, as they only work if the context exists
+
+## Lifecycle Notes
+Has to be the first VBGL Object that is created
+Has to be the last VBGL Object that is destroyed
+
+## See Also:
+[Overview](..\..\Docs)

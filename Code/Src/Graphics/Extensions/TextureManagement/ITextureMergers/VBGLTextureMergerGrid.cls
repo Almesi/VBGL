@@ -18,31 +18,39 @@ Private SystemWidth As Long
 Private SystemHeight As Long
 
 Private MaxHeight As Long
-Private MaxWidth As Long
+Private MaxWidth  As Long
+Private MaxByteHeight As Long
+Private MaxByteWidth  As Long
 
-' If True ColumnFirst, if not Column first
-Private p_ColumnFirst As Boolean
+Private p_ColumnFirst As Boolean ' If True ColumnFirst, if not Column first
 
-
-Private Function VBGLITextureMerger_Merge(ByRef SubTextures() As VBGLTextureManagerHelper, Optional ByVal OverWriteMaxHeight As Long = 0, Optional ByVal OverWriteMaxWidth As Long = 0) As Byte()
+Private Function VBGLITextureMerger_Merge(ByRef SubTextures() As VBGLTextureManagerHelper, Optional ByRef OverWriteMaxHeight As Long = 0, Optional ByRef OverWriteMaxWidth As Long = 0, Optional ByRef OverWriteMaxByteHeight As Long = 0, Optional ByRef OverWriteMaxByteWidth As Long = 0) As Byte()
     Dim ProcessedSubs() As VBGLTextureManagerHelper
-    ProcessedSubs = InsertSubTextures(SubTextures)
+    ProcessedSubs = SplitSubTextures(SubTextures)
 
     Call InitMetaData(ProcessedSubs)
-    If OverWriteMaxHeight <> 0 Then MaxHeight = OverWriteMaxHeight
-    If OverWriteMaxWidth  <> 0 Then MaxWidth  = OverWriteMaxWidth
+    If OverWriteMaxHeight     <> 0 Then MaxHeight     = OverWriteMaxHeight
+    If OverWriteMaxWidth      <> 0 Then MaxWidth      = OverWriteMaxWidth
+    If OverWriteMaxByteHeight <> 0 Then MaxByteHeight = OverWriteMaxByteHeight
+    If OverWriteMaxByteWidth  <> 0 Then MaxByteWidth  = OverWriteMaxByteWidth
     Call AssignPositions(ProcessedSubs)
     Dim Result() As Byte
+
     Result = AssignData(ProcessedSubs)
+
+    
     VBGLITextureMerger_Merge = Result
-    SubTextures = ProcessedSubs
+    SubTextures              = ProcessedSubs
+    OverWriteMaxHeight       = MaxHeight
+    OverWriteMaxWidth        = MaxWidth
+    OverWriteMaxByteHeight   = MaxByteHeight
+    OverWriteMaxByteWidth    = MaxByteWidth
 End Function
 
 
 Public Property Let ColumnFirst(ByVal n_ColumnFirst As Boolean)
     p_ColumnFirst = n_ColumnFirst
 End Property
-
 Public Property Get ColumnFirst() As Boolean
     ColumnFirst = p_ColumnFirst
 End Property
@@ -64,189 +72,80 @@ End Sub
 '================================
 '=============Output=============
 '================================
-'1. Step: Initialize MaxHeight and Maxwidth
-Private Sub InitMetaData(ByRef SubTextures() As VBGLTextureManagerHelper)
-    MaxHeight = 0
-    MaxWidth = 0
 
-    If ColumnFirst Then
-        Call CalcColumnFirst(SubTextures)
-    Else
-        Call CalcRowFirst(SubTextures)
-    End If
-End Sub
-
-Private Sub CalcRowFirst(ByRef SubTextures() As VBGLTextureManagerHelper)
-    Dim CurrentRowWidth As Long
-    Dim CurrentRowHeight As Long
-    Dim TotalHeight As Long
-
-    Dim i As Long
-    For i = 0 To USize(SubTextures)
-        Dim Item As VBGLTextureManagerHelper
-        Set Item = SubTextures(i)
-        If CurrentRowWidth + Item.Width > SystemWidth Then
-            TotalHeight = TotalHeight + CurrentRowHeight
-            If CurrentRowWidth > MaxWidth Then MaxWidth = CurrentRowWidth
-            CurrentRowWidth = Item.Width
-            CurrentRowHeight = Item.Height
-        Else
-            CurrentRowWidth = CurrentRowWidth + Item.Width
-            If Item.Height > CurrentRowHeight Then
-                CurrentRowHeight = Item.Height
-            End If
-        End If
-    Next
-
-    TotalHeight = TotalHeight + CurrentRowHeight
-    If CurrentRowWidth > MaxWidth Then MaxWidth = CurrentRowWidth
-    MaxHeight = TotalHeight
-End Sub
-
-Private Sub CalcColumnFirst(ByRef SubTextures() As VBGLTextureManagerHelper)
-    Dim CurrentColWidth As Long
-    Dim CurrentColHeight As Long
-    Dim TotalWidth As Long
-
-    Dim i As Long
-    For i = 0 To USize(SubTextures)
-        Dim Item As VBGLTextureManagerHelper
-        Set Item = SubTextures(i)
-        If CurrentColHeight + Item.Height > SystemHeight Then
-            TotalWidth = TotalWidth + CurrentColWidth
-            If CurrentColHeight > MaxHeight Then MaxHeight = CurrentColHeight
-            CurrentColWidth = Item.Width
-            CurrentColHeight = Item.Height
-        Else
-            CurrentColHeight = CurrentColHeight + Item.Height
-            If Item.Width > CurrentColWidth Then
-                CurrentColWidth = Item.Width
-            End If
-        End If
-    Next
-
-    TotalWidth = TotalWidth + CurrentColWidth
-    If CurrentColHeight > MaxHeight Then MaxHeight = CurrentColHeight
-    MaxWidth = TotalWidth
-End Sub
-
-
-
-'2. Step: Assign Positions
-Private Sub AssignPositions(ByRef SubTextures() As VBGLTextureManagerHelper)
-    Dim i As Long
-    Dim CurrMaxHeight As Long
-    Dim CurrMaxWidth  As Long
-
-    For i = 1 To USize(SubTextures)
-        With SubTextures(i - 1)
-            .y = CurrMaxHeight
-            .x = CurrMaxWidth
-
-            If ColumnFirst Then
-                CurrMaxHeight = CurrMaxHeight + .Height
-                If CurrMaxHeight >= MaxHeight Then CurrMaxHeight = 0
-            Else
-                CurrMaxWidth  = CurrMaxWidth  + .Width
-                If CurrMaxWidth  >= MaxWidth  Then CurrMaxWidth  = 0
-            End If
-        End With
-    Next i
-End Sub
-
-'3. Step: Assign Data
-Private Function AssignData(ByRef SubTextures() As VBGLTextureManagerHelper) As Byte()
-    Dim i As Long
-    Dim Result() As Byte
-    ReDim Result(MaxHeight -1, MaxWidth - 1)
-    For i = 0 To USize(SubTextures)
-        With SubTextures(i)
-            Call AssignSubData(Result, .GetData, .x, .y, .Width, .Height)
-        End With
-    Next i
-    AssignData = Result
-End Function
-
-'================================
-'=============Helper=============
-'================================
-
-
-Private Function InsertSubTextures(ByRef SubTextures() As VBGLTextureManagerHelper) As VBGLTextureManagerHelper()
+'1. Step: Get SubTextures of SubTextures
+Private Function SplitSubTextures(ByRef SubTextures() As VBGLTextureManagerHelper) As VBGLTextureManagerHelper()
     Dim Result() As VBGLTextureManagerHelper
     Dim Index As Long
-    Index = 0 
+    Index = 0
     Do Until Index > USize(SubTextures)
         Dim NewArr() As VBGLTextureManagerHelper
         NewArr = GetSubTextures(SubTextures(Index))
         Call VBGLMerge(Result, NewArr)
-        Index = Index + USize(NewArr)
         Index = Index + 1
     Loop
-    InsertSubTextures = Result
+    SplitSubTextures = Result
 End Function
 
 Private Function GetSubTextures(ByVal SubTexture As VBGLTextureManagerHelper) As VBGLTextureManagerHelper()
-    Dim Width As Long
-    Dim Height As Long
-    Dim Size As Long
-    Size = SubTexture.Count
-
-    Select Case SubTexture.SetUp
-        Case VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn
-            Width  = SubTexture.Width / Size
-            Height = SubTexture.Height
-        Case VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpRow
-            Width  = SubTexture.Width
-            Height = SubTexture.Height / Size
-        Case VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpGrid
-            Width  = SubTexture.Width  / Size
-            Height = SubTexture.Height / Size
-    End Select
+    With SubTexture
+        Dim RowSize    As Long   : RowSize    = .RowCount
+        Dim ColumnSize As Long   : ColumnSize = .ColumnCount
+        Dim Width      As Long   : Width      = .Width      / ColumnSize
+        Dim Height     As Long   : Height     = .Height     / RowSize
+        Dim ByteWidth  As Long   : ByteWidth  = .ByteWidth  / ColumnSize
+        Dim ByteHeight As Long   : ByteHeight = .ByteHeight / RowSize
+        Dim Names()    As String : Names      = .GetNames
+    End With
 
     Dim Result() As VBGLTextureManagerHelper
-    ReDim Result(Size - 1)
-    Dim i As Long
-    Dim WidthSum  As Long
-    Dim HeightSum As Long
-    Dim Names() As String
-    Names = SubTexture.GetNames
-    For i = 0 To Size - 1
-        Dim Data() As Byte
-        Dim NewSub As VBGLTextureManagerHelper
+    ReDim Result(RowSize * ColumnSize - 1)
 
-        Let Data = GetSubTextureData(SubTexture.GetData, WidthSum, HeightSum, Width, Height)
-        Set NewSub = New VBGLTextureManagerHelper
-        With NewSub
-            .Identifier = Names(i)
-            .Width      = Width
-            .Height     = Height
-            .Count      = 1
-            Call .LetData(Data)
-        End With
-        
-        Set Result(i) = NewSub
-        Select Case SubTexture.SetUp
-            Case VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn
-                WidthSum  = WidthSum  + Height 
-            Case VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpRow
-                HeightSum = HeightSum + Height
-            Case VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpGrid
-                WidthSum  = WidthSum  + Height 
-                HeightSum = HeightSum + Height
-        End Select
+    Dim i As Long, j As Long
+    Dim Index As Long
+    For i = 0 To RowSize - 1
+        For j = 0 To ColumnSize - 1
+            Dim WidthSum  As Long
+            Dim HeightSum As Long
+
+            Dim Data() As Byte
+            Dim NewSub As VBGLTextureManagerHelper
+
+            Let Data = GetSubTextureData(SubTexture.GetData, WidthSum, HeightSum, ByteWidth, ByteHeight)
+            Set NewSub = New VBGLTextureManagerHelper
+            With NewSub
+                .Identifier  = SubTexture.PreName & Names(Index)
+                .Width       = Width
+                .Height      = Height
+                .ByteWidth   = USize(Data, 2) + 1
+                .ByteHeight  = USize(Data, 1) + 1
+                .RowCount    = 1
+                .ColumnCount = 1
+                Call .LetData(Data)
+            End With
+
+            Set Result(Index) = NewSub
+            If SubTexture.SetUp = VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn Or VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpGrid Then
+                WidthSum = WidthSum + ByteWidth
+            End If
+            Index = Index + 1
+        Next j
+        If SubTexture.SetUp = VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpRow Or VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpGrid Then
+            HeightSum = HeightSum + ByteHeight
+        End If
+        WidthSum = 0
     Next i
     GetSubTextures = Result
 End Function
 
-
-Private Function GetSubTextureData(ByRef Data() As Byte, ByVal x As Long, ByVal y As Long, ByVal Width As Long, ByVal Height As Long) As Byte()
+Private Function GetSubTextureData(ByRef Data() As Byte, ByVal x As Long, ByVal y As Long, ByVal ByteWidth As Long, ByVal ByteHeight As Long) As Byte()
     Dim ix As Long, iy As Long
     Dim Result() As Byte
-    ReDim Result(Height -1, Width - 1)
+    If ByteHeight =< 0 Or ByteWidth =< 0 Then Exit Function
+    ReDim Result(ByteHeight -1, ByteWidth - 1)
 
-    For iy = 0 To Height - 1
-        For ix = 0 To Width - 1
+    For iy = 0 To ByteHeight - 1
+        For ix = 0 To ByteWidth - 1
             Result(iy, ix) = Data(y + iy, x + ix)
         Next ix
     Next iy
@@ -255,11 +154,111 @@ Private Function GetSubTextureData(ByRef Data() As Byte, ByVal x As Long, ByVal 
 End Function
 
 
-Private Sub AssignSubData(ByRef Data() As Byte, SubData() As Byte, ByVal x As Long, ByVal y As Long, ByVal Width As Long, ByVal Height As Long)
-    Dim ix As Long, iy As Long
 
-    For iy = 0 To Height - 1
-        For ix = 0 To Width - 1
+'2. Step: Initialize MaxHeight and Maxwidth
+Private Sub InitMetaData(ByRef SubTextures() As VBGLTextureManagerHelper)
+    MaxHeight     = 0
+    MaxWidth      = 0
+    MaxByteHeight = 0
+    MaxByteWidth  = 0
+    If ColumnFirst Then
+        Call CalcMax(SubTextures, SystemHeight, MaxHeight    , MaxWidth, "Height", "Width")
+        Call CalcMax(SubTextures, Sum(SubTextures, "ByteHeight"), MaxByteHeight, MaxByteWidth, "ByteHeight", "ByteWidth")
+    Else
+        Call CalcMax(SubTextures, SystemWidth, MaxWidth    , MaxHeight, "Width", "Height")
+        Call CalcMax(SubTextures, Sum(SubTextures, "ByteWidth"), MaxByteWidth, MaxByteHeight, "ByteWidth", "ByteHeight")
+        Debug.Print Sum(SubTextures, "Width")
+    End If
+End Sub
+
+Private Sub CalcMax(ByRef SubTextures() As VBGLTextureManagerHelper, ByVal Limit As Long, ByRef CurrentTotal As Long, ByRef OtherTotal As Long, ByVal CurrentText As String, ByVal OtherText As String)
+    Dim Current    As Long
+    Dim Other      As Long
+    Dim Max        As Long
+    Dim OtherCount As Long
+    Dim OtherMax   As Long
+
+    Dim i As Long
+    OtherCount = 1
+    For i = 0 To USize(SubTextures)
+        Dim CurrentOffset     As Long
+        Dim OtherOffset       As Long
+
+        CurrentOffset     = std_Callable.Create(SubTextures(i), CurrentText , vbGet, -1).Run()
+        OtherOffset       = std_Callable.Create(SubTextures(i), OtherText   , vbGet, -1).Run()
+
+        If (Current + CurrentOffset) > Limit Then
+            OtherCount = OtherCount + 1
+            If Current > Max Then Max = Current
+            Current = CurrentOffset
+            OtherMax = OtherOffset
+        Else
+            Current = Current + CurrentOffset
+            If OtherOffset > OtherMax Then OtherMax = OtherOffset
+        End If
+    Next
+
+    OtherTotal   = OtherCount * OtherMax
+    If Current > Max Then
+        CurrentTotal = Current
+    Else
+        CurrentTotal = Max
+    End If
+
+
+End Sub
+
+Private Function Sum(ByRef SubTextures() As VBGLTextureManagerHelper, ByVal Func As String) As Long
+    Dim Result As Long
+    Dim i As Long
+    For i = 0 To USize(SubTextures)
+        Result = Result + std_Callable.Create(SubTextures(i), Func , vbGet, -1).Run()
+    Next i
+    Sum = Result
+End Function
+
+
+
+'3. Step: Assign Positions
+Private Sub AssignPositions(ByRef SubTextures() As VBGLTextureManagerHelper)
+    Dim i As Long
+    Dim CurrX As Long
+    Dim CurrY As Long
+    Dim RowHeight As Long
+    
+    For i = 0 To USize(SubTextures)
+        With SubTextures(i)
+            .x = CurrX
+            .y = CurrY
+            CurrX = CurrX + .ByteWidth
+            If .ByteHeight > RowHeight Then RowHeight = .ByteHeight
+            If CurrX >= MaxByteWidth Then
+                CurrX = 0
+                CurrY = CurrY + RowHeight
+                RowHeight = 0
+            End If
+        End With
+    Next i
+End Sub
+
+'4. Step: Assign Data
+Private Function AssignData(ByRef SubTextures() As VBGLTextureManagerHelper) As Byte()
+    Dim i As Long
+    Dim Result() As Byte
+    ReDim Result(MaxByteHeight -1, MaxByteWidth - 1)
+    For i = 0 To USize(SubTextures)
+        With SubTextures(i)
+            Call AssignSubData(Result, .GetData, .x, .y, .ByteWidth, .ByteHeight)
+        End With
+    Next i
+    AssignData = Result
+End Function
+
+Private Sub AssignSubData(ByRef Data() As Byte, SubData() As Byte, ByVal x As Long, ByVal y As Long, ByVal ByteWidth As Long, ByVal ByteHeight As Long)
+    Dim ix As Long, iy As Long
+    If ByteWidth =< 0 And ByteHeight =< 0 Then Exit Sub
+    For iy = 0 To ByteHeight - 1
+        For ix = 0 To ByteWidth - 1
             Data(y + iy, x + ix) = SubData(iy, ix)
         Next ix
     Next iy

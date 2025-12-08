@@ -2,12 +2,17 @@ Attribute VB_Name = "ExampleRectanglePreCompiled"
 
 Option Explicit
 
+
+'================================================================================
+' Simple Example of this Library, compressed
+' Shows how use precompiled layouts, shaders and data for basic use-cases
+'================================================================================
+
 Private Mesh As VBGLMesh
 
-Public Sub TestRectanglePreCompiled()
+Public Sub TestRectanglePreCompiled(ByVal Path As String)
 
     ' Create OpenGL Context
-    Dim Path         As String           : Path = "Your\Path\To\Freeglut.dll"
     Dim Shower       As IDestination     : Set Shower = Nothing
     Dim Logger       As IDestination     : Set Logger = std_ImmiedeateDestination.Create()
     Set CurrentContext = VBGLContext.Create(Path, GLUT_CORE_PROFILE, GLUT_DEBUG, Logger, Shower)
@@ -27,7 +32,7 @@ Public Sub TestRectanglePreCompiled()
 
     ' Create Data Rectangle with Position and Color
     Dim VertexData As IDataByte
-    Set VertexData = VBGLData.CreateSingle(VBGLBaFoRectangleXY)
+    Set VertexData = VBGLData.CreateSingle(VBGLBaFoRectangleXYRGB)
 
     ' Create Shader
     Dim Shader As VBGLShader

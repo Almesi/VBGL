@@ -234,7 +234,8 @@ Private Sub GetCharacters(ByVal Face As LongPtr, Optional ByVal n_Name As String
     ReDim Characters(CharCount)
 
     Dim Manager As VBGLTextureManager
-    Set Manager = VBGLTextureManager.Create(VBGLTextureMergerGrid.Create(False), MaxHeight, Byte4Size)
+    Set Manager = VBGLTextureManager.Create(VBGLTextureMergerGrid.Create(False), MaxHeight, Byte4Size, MaxHeight, Byte4Size)
+    Manager.Transpose = True
 
     Dim i As Long
     For i = 0 To CharCount
@@ -259,14 +260,14 @@ Private Sub GetCharacters(ByVal Face As LongPtr, Optional ByVal n_Name As String
         Dim Data() As Byte
         If BitMap.Width <> 0 Then
             Data = CopyBitMap(BitMap, True)
-            Call Manager.LoadFromData(Data, 1, VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn, ChrW(CharCode))
+            Call Manager.LoadFromData(Data, 1, 1, VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn, ChrW(CharCode))
         Else
-            ReDim Data(0, 0)
-            Call Manager.LoadFromData(Data, 1, VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn, ChrW(CharCode))
+            Dim EmptyData() As Byte
+            Call Manager.LoadFromData(EmptyData, 1, 1, VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpColumn, ChrW(CharCode))
         End If
     Next i
     'Call glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
-    Texture = Manager.CreateTexture(TextureFactory, n_Name, "TextboxTexture", True)
+    Texture = Manager.CreateTexture(TextureFactory, n_Name, "TextboxTexture")
 End Sub
 
 Private Function TextureFactory() As VBGLTexture

@@ -15,6 +15,5 @@ Option Explicit
 ' Output a 2D array of bytes that can be used to create a VBGLTexture Object
 ' Use the SubTextures to get the data nessecary for the output
 ' SubTextures should also be used to update X, Y, EndX and EndY to accomodate for the new positions from output
-Public Function Merge(ByRef SubTextures() As VBGLTextureManagerHelper, Optional ByVal OverWriteMaxHeight As Long = 0, Optional ByVal OverWriteMaxWidth As Long = 0) As Byte()
-
+Public Function Merge(ByRef SubTextures() As VBGLTextureManagerHelper, Optional ByRef OverWriteMaxHeight As Long = 0, Optional ByRef OverWriteMaxWidth As Long = 0, Optional ByRef OverWriteMaxByteHeight As Long = 0, Optional ByRef OverWriteMaxByteWidth As Long = 0) As Byte()
 End Function

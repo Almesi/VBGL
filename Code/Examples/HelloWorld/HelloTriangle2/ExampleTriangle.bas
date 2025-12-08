@@ -2,12 +2,16 @@ Attribute VB_Name = "ExampleTriangle"
 
 Option Explicit
 
+'================================================================================
+' Simplest Example of this Library
+' Shows how to Create a Context, Window and how to get a simple coloured triangle on screen
+'================================================================================
+
 Private Mesh As VBGLMesh
 
-Public Sub TestTriangle()
+Public Sub TestTriangle(ByVal Path As String)
 
     ' Create OpenGL Context
-    Dim Path         As String           : Path = "Your\Path\To\Freeglut.dll"
     Dim Shower       As IDestination     : Set Shower = Nothing
     Dim Logger       As IDestination     : Set Logger = std_ImmiedeateDestination.Create()
     Set CurrentContext = VBGLContext.Create(Path, GLUT_CORE_PROFILE, GLUT_DEBUG, Logger, Shower)
@@ -28,9 +32,11 @@ Public Sub TestTriangle()
     ' Create Data - Triangle with Position and Color
     Dim Vertices() As Single
     ReDim Vertices(14)
-    Vertices(00) = -1: Vertices(01) = 0: Vertices(02) = 1: Vertices(03) = 0: Vertices(04) = 0 
-    Vertices(05) = +0: Vertices(06) = 1: Vertices(07) = 0: Vertices(08) = 0: Vertices(09) = 0
-    Vertices(10) = +1: Vertices(11) = 0: Vertices(12) = 0: Vertices(13) = 0: Vertices(14) = 1
+    Vertices = ArraySingle( _
+                              -1, 0, 1, 0, 0, _ 
+                              +0, 1, 0, 0, 0, _
+                              +1, 0, 0, 0, 1  _
+                          )
 
     ' Create ByteData from SingleData
     Dim NewSize    As Long      : NewSize = (USize(Vertices) + 1) * LenB(Vertices(0))

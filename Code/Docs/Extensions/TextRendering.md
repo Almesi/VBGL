@@ -3,7 +3,8 @@
 
 ## Class 1: `VBGLFontLayout`
 Represents a font layout, storing character metrics, texture data, and providing methods to generate vertex data for rendering text.
-Uses FreeType to generate a big BitMap with all characters of a given Font and Size
+Uses FreeType to generate a big BitMap with all characters of a given Font and Size.
+Used VBGLTextureManager to merge the character bitmaps into 1 big bitmap.
 
 ### Properties
 
