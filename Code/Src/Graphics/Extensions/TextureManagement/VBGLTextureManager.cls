@@ -56,15 +56,11 @@ End Function
 Public Function CreateTexture(ByVal Factory As VBGLTexture, ByVal Name As String, Optional ByVal UniformName As String = Empty) As VBGLTexture
     Dim NewMaxHeight      As Long                     : Let NewMaxHeight      = MaxHeight
     Dim NewMaxWidth       As Long                     : Let NewMaxWidth       = MaxWidth
-    Dim NewMaxByteHeight  As Long                     : Let NewMaxByteHeight  = MaxByteHeight
-    Dim NewMaxByteWidth   As Long                     : Let NewMaxByteWidth   = MaxByteWidth
     Dim Result()          As VBGLTextureManagerHelper : Let Result            = ToLoad
-    Dim Data()            As Byte                     : Let Data              = Merger.Merge(Result, NewMaxHeight, NewMaxWidth, NewMaxByteHeight, NewMaxByteWidth)
+    Dim Data()            As Byte                     : Let Data              = Merger.Merge(Result, Factory.BPP, NewMaxHeight, NewMaxWidth)
 
     MaxHeight     = NewMaxHeight
     MaxWidth      = NewMaxWidth
-    MaxByteHeight = NewMaxByteHeight
-    MaxByteWidth  = NewMaxByteWidth
     Dim SubTextures()     As VBGLSubTexture           : Let SubTextures       = CreateSubTextures(Factory, Result)
     Dim ProcessedData() As Byte
     ProcessedData = Data
@@ -125,6 +121,7 @@ Public Function LoadFromFileArr(ByVal FilePath As String, ByVal RowCount As Long
     Dim Image       As stdImage : Set Image     = stdImage.CreateFromFile(FilePath)
     Dim ColorData() As Long     : Let ColorData = Image.Colors()
     Dim NewData()   As Byte     : Let NewData   = SwapColors(ColorData, 2, 1, 0, 3) 'BGRA --> 'RGBA
+    PreName = VBGLMidP(FilePath, InStrRev(FilePath, "\") + 1, InStr(1, FilePath, ".") - 1)
     Call AddHelper(NewData, Image.Height, Image.Width, RowCount, ColumnCount, SetUp, Names)
 End Function
 
@@ -147,8 +144,85 @@ Public Function LoadFromDataArr(ByRef Data() As Byte, ByVal RowCount As Long, By
     Call AddHelper(Data, USize(Data, 1) + 1, USize(Data, 2) + 1, RowCount, ColumnCount, SetUp, Names)
 End Function
 
+' Sorting
+' Assumes USize(PreNames) * USize(SubNames) = USize(Subs)
+Public Sub SortByArrayFamily(ByVal Texture As VBGLTexture, ByRef PreNames() As String, ByRef SubNames() As String)
+    Dim Subs() As VBGLSubTexture
+    Subs = Texture.SubTextures
+
+    Dim Count As Long: Count = UBound(Subs) + 1
+    Dim i As Long, j As Long
+
+    Dim FamilySize As Long
+    FamilySize = USize(SubNames) + 1
+
+    ' Helper arrays for parsed names and ranking
+    Dim PreIdx() As Long, SubIdx() As Long, Rank() As Long
+    ReDim PreIdx(Count - 1)
+    ReDim SubIdx(Count - 1)
+    ReDim Rank(Count - 1)
+
+    ' Parse prename + subname
+    For i = 0 To Count - 1
+        Dim Name As String
+        Name = Subs(i).Identifier
+        PreIdx(i) = GetPrefixIndex(Name, PreNames)
+        SubIdx(i) = GetSuffixIndex(Name, SubNames)
+        Rank(i)   = PreIdx(i) * FamilySize + SubIdx(i)
+    Next i
+
+    Dim Temp As VBGLSubTexture
+    Dim TempR As Long
+
+    For i = 0 To Count - 2
+        For j = i + 1 To Count - 1
+            If Rank(j) < Rank(i) Then
+                ' Swap subtexture
+                Set Temp = Subs(i)
+                Set Subs(i) = Subs(j)
+                Set Subs(j) = Temp
+
+                ' Swap ranks
+                TempR = Rank(i)
+                Rank(i) = Rank(j)
+                Rank(j) = TempR
+            End If
+        Next j
+    Next i
+
+    ' Assign sorted list back
+    Texture.SubTextures = Subs
+End Sub
 
 
+
+Private Function GetPrefixIndex(ByVal Name As String, ByRef PreNames() As String) As Long
+    Dim i As Long
+    For i = 0 To UBound(PreNames)
+        If Mid(Name, 1, Len(PreNames(i))) = PreNames(i) Then
+            GetPrefixIndex = i
+            Exit Function
+        End If
+    Next i
+    GetPrefixIndex = -1
+End Function
+
+Private Function GetSuffixIndex(ByVal Name As String, ByRef SubNames() As String) As Long
+    Dim i As Long
+    Dim Size As Long
+    Size = Len(Name)
+    For i = 0 To UBound(SubNames)
+        Dim SubSize As Long
+        SubSize = Len(SubNames(i))
+        If Size >= SubSize Then
+            If VBGLMidP(Name, Size - Len(SubNames(i)) + 1, Size) = SubNames(i) Then
+                GetSuffixIndex = i
+                Exit Function
+            End If
+        End If
+    Next i
+    GetSuffixIndex = -1
+End Function
 
 Private Sub AddHelper(ByRef Data() As Byte, ByVal Height As Long, ByVal Width As Long, ByVal RowCount As Long, ByVal ColumnCount As Long, ByVal SetUp As VBGLTextureManagerHelperSetUp, ByRef Names() As String)
     Dim NewHelper As VBGLTextureManagerHelper

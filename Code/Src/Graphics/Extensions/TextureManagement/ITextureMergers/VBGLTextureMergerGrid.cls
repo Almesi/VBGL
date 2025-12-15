@@ -24,15 +24,18 @@ Private MaxByteWidth  As Long
 
 Private p_ColumnFirst As Boolean ' If True ColumnFirst, if not Column first
 
-Private Function VBGLITextureMerger_Merge(ByRef SubTextures() As VBGLTextureManagerHelper, Optional ByRef OverWriteMaxHeight As Long = 0, Optional ByRef OverWriteMaxWidth As Long = 0, Optional ByRef OverWriteMaxByteHeight As Long = 0, Optional ByRef OverWriteMaxByteWidth As Long = 0) As Byte()
+Private Function VBGLITextureMerger_Merge(ByRef SubTextures() As VBGLTextureManagerHelper, ByVal BPP As Long, Optional ByRef OverWriteMaxHeight As Long = 0, Optional ByRef OverWriteMaxWidth As Long = 0) As Byte()
     Dim ProcessedSubs() As VBGLTextureManagerHelper
     ProcessedSubs = SplitSubTextures(SubTextures)
 
-    Call InitMetaData(ProcessedSubs)
-    If OverWriteMaxHeight     <> 0 Then MaxHeight     = OverWriteMaxHeight
-    If OverWriteMaxWidth      <> 0 Then MaxWidth      = OverWriteMaxWidth
-    If OverWriteMaxByteHeight <> 0 Then MaxByteHeight = OverWriteMaxByteHeight
-    If OverWriteMaxByteWidth  <> 0 Then MaxByteWidth  = OverWriteMaxByteWidth
+    Call InitMetaData(ProcessedSubs, BPP)
+    If OverWriteMaxHeight <> 0 Then
+        MaxHeight = OverWriteMaxHeight
+    End If
+    If OverWriteMaxWidth <> 0 Then
+        MaxWidth = OverWriteMaxWidth
+        MaxByteWidth = MaxWidth * BPP
+    End If
     Call AssignPositions(ProcessedSubs)
     Dim Result() As Byte
 
@@ -43,8 +46,25 @@ Private Function VBGLITextureMerger_Merge(ByRef SubTextures() As VBGLTextureMana
     SubTextures              = ProcessedSubs
     OverWriteMaxHeight       = MaxHeight
     OverWriteMaxWidth        = MaxWidth
-    OverWriteMaxByteHeight   = MaxByteHeight
-    OverWriteMaxByteWidth    = MaxByteWidth
+
+    'Dim y As Long, x As Long
+    'Dim i As Long
+    'Debug.Assert False
+    'For y = 0 To MaxHeight - 1
+    '    Dim Red   As Byte
+    '    Dim Green As Byte
+    '    Dim Blue  As Byte
+    '    For x = 0 To MaxByteWidth - 1 Step +BPP
+    '        If BPP = 4 Then
+    '            Red    = Result(y, x + 1)
+    '            Blue   = Result(y, x + 3)
+    '            Green  = Result(y, x + 2)
+    '        Else
+    '            Red    = Result(y, x)
+    '        End If
+    '        Range("A1").Offset(y, x / BPP).Interior.Color = RGB(Blue, Red, Green)
+    '    Next x
+    'Next y
 End Function
 
 
@@ -114,7 +134,11 @@ Private Function GetSubTextures(ByVal SubTexture As VBGLTextureManagerHelper) As
             Let Data = GetSubTextureData(SubTexture.GetData, WidthSum, HeightSum, ByteWidth, ByteHeight)
             Set NewSub = New VBGLTextureManagerHelper
             With NewSub
-                .Identifier  = SubTexture.PreName & Names(Index)
+                If USize(Names) >= Index Then
+                    .Identifier  = SubTexture.PreName & Names(Index)
+                Else
+                    .Identifier  = SubTexture.PreName
+                End If
                 .Width       = Width
                 .Height      = Height
                 .ByteWidth   = USize(Data, 2) + 1
@@ -156,18 +180,17 @@ End Function
 
 
 '2. Step: Initialize MaxHeight and Maxwidth
-Private Sub InitMetaData(ByRef SubTextures() As VBGLTextureManagerHelper)
+Private Sub InitMetaData(ByRef SubTextures() As VBGLTextureManagerHelper, ByVal BPP As Long)
     MaxHeight     = 0
     MaxWidth      = 0
     MaxByteHeight = 0
     MaxByteWidth  = 0
     If ColumnFirst Then
         Call CalcMax(SubTextures, SystemHeight, MaxHeight    , MaxWidth, "Height", "Width")
-        Call CalcMax(SubTextures, Sum(SubTextures, "ByteHeight"), MaxByteHeight, MaxByteWidth, "ByteHeight", "ByteWidth")
+        Call CalcMax(SubTextures, SystemHeight * BPP, MaxByteHeight, MaxByteWidth, "ByteHeight", "ByteWidth")
     Else
         Call CalcMax(SubTextures, SystemWidth, MaxWidth    , MaxHeight, "Width", "Height")
-        Call CalcMax(SubTextures, Sum(SubTextures, "ByteWidth"), MaxByteWidth, MaxByteHeight, "ByteWidth", "ByteHeight")
-        Debug.Print Sum(SubTextures, "Width")
+        Call CalcMax(SubTextures, SystemWidth * BPP, MaxByteWidth, MaxByteHeight, "ByteWidth", "ByteHeight")
     End If
 End Sub
 
@@ -207,15 +230,6 @@ Private Sub CalcMax(ByRef SubTextures() As VBGLTextureManagerHelper, ByVal Limit
 
 
 End Sub
-
-Private Function Sum(ByRef SubTextures() As VBGLTextureManagerHelper, ByVal Func As String) As Long
-    Dim Result As Long
-    Dim i As Long
-    For i = 0 To USize(SubTextures)
-        Result = Result + std_Callable.Create(SubTextures(i), Func , vbGet, -1).Run()
-    Next i
-    Sum = Result
-End Function
 
 
 

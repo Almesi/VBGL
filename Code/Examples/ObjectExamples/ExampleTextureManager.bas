@@ -45,7 +45,7 @@ Public Sub TestTextureManager(ByVal Path As String, ByVal FolderPath As String)
 
     ' Create TextureManager
     Dim TextureManager As VBGLTextureManager
-    Set TextureManager = VBGLTextureManager.Create(VBGLTextureMergerGrid.Create(True))
+    Set TextureManager = VBGLTextureManager.Create(VBGLTextureMergerGrid.Create(False))
     Call TextureManager.LoadFromFolder(FolderPath, True, 1, 1, VBGLTextureManagerHelperSetUp.VBGLTextureManagerHelperSetUpRow, "Name")
     TextureManager.Flip = True
     TextureManager.Transpose = True
@@ -53,7 +53,7 @@ Public Sub TestTextureManager(ByVal Path As String, ByVal FolderPath As String)
     ' Create a Drawable-Mesh Object
     Set Mesh = VBGLMesh.Create(Shader, Layout, VertexData, Nothing, False)
     Dim Texture As VBGLTexture
-    Set Texture = TextureManager.CreateTexture(VBGLTexture, "TestManager")
+    Set Texture = TextureManager.CreateTexture(TextureFactory, "TestManager")
     Call Mesh.AddTexture(Texture)
 
     ' Assign Freeglut callbacks and call the mainloop
@@ -63,6 +63,11 @@ Public Sub TestTextureManager(ByVal Path As String, ByVal FolderPath As String)
         Call .MainLoop()
     End With
 End Sub
+
+Private Function TextureFactory() As VBGLTexture
+    Set TextureFactory = VBGLTexture.Factory()
+    TextureFactory.BPP = 4
+End Function
 
 Public Sub LoopSub()
     Call CurrentContext.Clear()

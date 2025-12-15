@@ -141,44 +141,6 @@ Public Sub Build()
     Set Data = VBGLData.CreateSingle(BuildData)
     Mesh = VBGLMesh.Create(GetShader, Layout, Data)
     Call Mesh.AddTexture(TileSet)
-
-    'Dim i As Long, x As Long, y As Long, f As Long
-'
-    'Dim ShowData() As Byte : ShowData   = TileSet.Data.ByteData
-    'Dim Offset     As Long : Offset     = 5
-    'Dim ByteSize   As Long : ByteSize   = 4
-    'Dim Max        As Long : Max        = USize(BuildData)
-'
-    'For y = 0 To USize(ShowData, 2)
-    '    For x = 0 To USize(ShowData, 1) Step+4
-    '        Dim Color As Long
-    '        Color = RGB(ShowData(x + 0, y), ShowData(x + 1, y), ShowData(x + 2, y))
-    '        Range("A1").Offset(y, x / 4).Interior.Color = Color
-    '    Next x
-    'Next y
-'
-    'For i = 3 To Max Step +(Offset * 6)
-    '    Dim OffX   As Long : OffX   = BuildData(i - 3)
-    '    Dim OffY   As Long : OffY   = BuildData(i - 2)
-    '    Dim StartX As Long : StartX = Round(BuildData(i)                    * TileSet.Width)
-    '    Dim StartY As Long : StartY = Round(BuildData(i + 1)                * TileSet.Height) -1
-    '    Dim EndX   As Long : EndX   = Round(BuildData(i + (Offset * 4))     * TileSet.Width)  -1
-    '    Dim EndY   As Long : EndY   = Round(BuildData(i + (Offset * 4) + 1) * TileSet.Height) -1
-    '    If StartX = -1 Then StartX = 0
-    '    If StartY = -1 Then StartY = 0
-    '    If EndX   = -1 Then EndX   = 0
-    '    If EndY   = -1 Then EndY   = 0
-    '    For y = StartY To EndY
-    '        For x = StartX To EndX
-    '            Dim XPos As Long : XPos = (OffX * 16) + (x - StartX)
-    '            Dim YPos As Long : YPos = 64 + (Abs(OffY) * 16) + y
-    '            Color = RGB(ShowData(x*4 + 0, y), ShowData(x*4 + 1, y), ShowData(x*4 + 2, y))
-    '            If Color <> RGB(255, 255, 255) Then
-    '                Range("A1").Offset(YPos, XPos).Interior.Color = Color
-    '            End If
-    '        Next x
-    '    Next y
-    'Next i
 End Sub
 
 Public Sub Draw()
@@ -415,7 +377,7 @@ Private Function TextureFactory(ByVal Manager As VBGLTextureManager) As VBGLText
     End With
 End Function 
 
-Private Function TypeTypeString() As String()
+Public Function TypeTypeString() As String()
     Dim Arr() As String
     ReDim Arr(TilesPerSprite - 1)
     Arr(00) = "EmptyImage"
