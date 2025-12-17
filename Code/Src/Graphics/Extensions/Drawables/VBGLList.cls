@@ -197,7 +197,6 @@ End Sub
                 Else
                     .X = Rows(Row).X
                 End If
-                Set .Frame = CreateFrame(Row, NewSize)
                 Dim TempColor(3) As Single
                 .BackgroundColor = Iif(IsMissing(BackgroundColor), TempColor, BackgroundColor)
             End With
@@ -215,6 +214,15 @@ End Sub
 
 Private Sub VBGLDrawable_Draw()
     Call Draw()
+End Sub
+
+Public Sub Build()
+    Dim Row As Long, Column As Long
+    For Row = 0 To RowCount
+        For Column = 0 To Rows(Row).ColumnCount
+            Set Rows(Row).Elements(Column).Frame = CreateFrame(Row, Column)
+        Next Column
+    Next Row
 End Sub
 
 Private Function CreateFrame(ByVal Row As Long, ByVal Column As Long) As VBGLFrame

@@ -150,7 +150,7 @@ Public Sub SortByArrayFamily(ByVal Texture As VBGLTexture, ByRef PreNames() As S
     Dim Subs() As VBGLSubTexture
     Subs = Texture.SubTextures
 
-    Dim Count As Long: Count = UBound(Subs) + 1
+    Dim Count As Long: Count = UBound(Subs)
     Dim i As Long, j As Long
 
     Dim FamilySize As Long
@@ -158,40 +158,30 @@ Public Sub SortByArrayFamily(ByVal Texture As VBGLTexture, ByRef PreNames() As S
 
     ' Helper arrays for parsed names and ranking
     Dim PreIdx() As Long, SubIdx() As Long, Rank() As Long
-    ReDim PreIdx(Count - 1)
-    ReDim SubIdx(Count - 1)
-    ReDim Rank(Count - 1)
+    ReDim PreIdx(Count)
+    ReDim SubIdx(Count)
+    ReDim Rank(Count)
 
     ' Parse prename + subname
-    For i = 0 To Count - 1
+    For i = 0 To Count
         Dim Name As String
         Name = Subs(i).Identifier
         PreIdx(i) = GetPrefixIndex(Name, PreNames)
-        SubIdx(i) = GetSuffixIndex(Name, SubNames)
+        SubIdx(i) = GetSuffixIndex(PreNames(PreIdx(i)), Name, SubNames)
         Rank(i)   = PreIdx(i) * FamilySize + SubIdx(i)
     Next i
 
     Dim Temp As VBGLSubTexture
     Dim TempR As Long
 
-    For i = 0 To Count - 2
-        For j = i + 1 To Count - 1
-            If Rank(j) < Rank(i) Then
-                ' Swap subtexture
-                Set Temp = Subs(i)
-                Set Subs(i) = Subs(j)
-                Set Subs(j) = Temp
-
-                ' Swap ranks
-                TempR = Rank(i)
-                Rank(i) = Rank(j)
-                Rank(j) = TempR
-            End If
-        Next j
+    Dim Result() As VBGLSubTexture
+    ReDim Result(Count)
+    For i = 0 To Count
+        Set Result(Rank(i)) = Subs(i)
     Next i
 
     ' Assign sorted list back
-    Texture.SubTextures = Subs
+    Texture.SubTextures = Result
 End Sub
 
 
@@ -207,18 +197,15 @@ Private Function GetPrefixIndex(ByVal Name As String, ByRef PreNames() As String
     GetPrefixIndex = -1
 End Function
 
-Private Function GetSuffixIndex(ByVal Name As String, ByRef SubNames() As String) As Long
+Private Function GetSuffixIndex(ByVal PreName As String, ByVal Name As String, ByRef SubNames() As String) As Long
     Dim i As Long
-    Dim Size As Long
-    Size = Len(Name)
+
+    Dim Search As String
+    Search = Replace(Name, PreName, Empty)
     For i = 0 To UBound(SubNames)
-        Dim SubSize As Long
-        SubSize = Len(SubNames(i))
-        If Size >= SubSize Then
-            If VBGLMidP(Name, Size - Len(SubNames(i)) + 1, Size) = SubNames(i) Then
-                GetSuffixIndex = i
-                Exit Function
-            End If
+        If SubNames(i) = Search Then
+            GetSuffixIndex = i
+            Exit Function
         End If
     Next i
     GetSuffixIndex = -1

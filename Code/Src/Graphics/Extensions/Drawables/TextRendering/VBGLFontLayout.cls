@@ -76,7 +76,7 @@ Public Function Create(ByVal LoadFilePath As String, ByVal FontFilePath As Strin
 End Function
 
 
-Public Function GetData(ByVal Text As String, ByRef FontColor() As Single, ByRef BackgroundColor() As Single, ByVal Scalee As Single, ByVal xStart As Single, ByVal yStart As Single) As Single()
+Public Function GetData(ByVal Text As String, ByRef FontColor() As Single, ByRef BackgroundColor() As Single, ByVal ScaleX As Single, ByVal ScaleY As Single, ByVal xStart As Single, ByVal yStart As Single) As Single()
     Dim i As Long
     Dim TextSize As Long
     TextSize = Len(Text)
@@ -119,10 +119,10 @@ Public Function GetData(ByVal Text As String, ByRef FontColor() As Single, ByRef
 
         
         
-        xpos   = xpos   + (Char.Left * Scalee * Normalx)
-        xoff   = xpos   + (Char.Width * Scalee * Normalx)
-        ypos   = yStart - ((BaseLine - Char.Top) * Scalee * Normaly)
-        yoff   = ypos   - (Char.Rows * Scalee * Normaly)
+        xpos   = xpos   + (Char.Left * ScaleX * Normalx)
+        xoff   = xpos   + (Char.Width * ScaleX * Normalx)
+        ypos   = yStart - ((BaseLine - Char.Top) * ScaleY * Normaly)
+        yoff   = ypos   - (Char.Rows * ScaleY * Normaly)
         'x, y, z, r, g, b, tx, ty
         With Texture.SubTexture(CharIndex)
             Call AddVertex(ReturnArr, .GetX("TopLeft")     , .GetY("TopLeft")     , xpos  , ypos , FontColor, BackgroundColor, Index)
@@ -132,7 +132,7 @@ Public Function GetData(ByVal Text As String, ByRef FontColor() As Single, ByRef
             Call AddVertex(ReturnArr, .GetX("BottomRight") , .GetY("BottomRight") , xoff  , yoff , FontColor, BackgroundColor, Index)
             Call AddVertex(ReturnArr, .GetX("BottomLeft")  , .GetY("BottomLeft")  , xpos  , yoff , FontColor, BackgroundColor, Index)
         End With
-        xpos = xpos + (Char.Advance * Scalee * Normalx)
+        xpos = xpos + (Char.Advance * ScaleX * Normalx)
         Skip:
     Next i
     GetData = ReturnArr

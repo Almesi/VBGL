@@ -62,6 +62,7 @@ Private Function CreateList(ByVal LoadFilePath As String, ByVal FilePath As Stri
 
         Call .AddElement(1, CreateTextBox("Banana", LoadFilePath, FilePath), RedBackground)
         Call .AddElement(1, CreateFruit(ImageFolder & "\Banana.png"), RedBackground)
+        Call .Build()
     End With
 End Function
 

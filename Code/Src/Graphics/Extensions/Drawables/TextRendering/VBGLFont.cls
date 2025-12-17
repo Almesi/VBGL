@@ -21,6 +21,8 @@ Private p_FontColor()       As Single
 Private p_BackgroundColor() As Single
 Private p_FontLayout        As VBGLFontLayout
 Private p_Scalee            As Single
+Private p_ScaleX            As Single
+Private p_ScaleY            As Single
 
 Public Property Let Text(ByVal n_Text                       As String)         :  Let p_Text            = n_Text            : End Property
 Public Property Let Bold(ByVal n_Bold                       As Boolean)        :  Let p_Bold            = n_Bold            : End Property
@@ -30,6 +32,8 @@ Public Property Let FontColor(ByVal n_FontColor             As Variant)        :
 Public Property Let BackgroundColor(ByVal n_BackgroundColor As Variant)        :  Let p_BackgroundColor = n_BackgroundColor : End Property
 Public Property Let FontLayout(ByVal n_FontLayout           As VBGLFontLayout) :  Set p_FontLayout      = n_FontLayout      : End Property
 Public Property Let Scalee(ByVal n_Scalee                   As Single)         :  Let p_Scalee          = n_Scalee          : End Property
+Public Property Let ScaleX(ByVal n_ScaleX                   As Single)         :  Let p_ScaleX          = n_ScaleX          : End Property
+Public Property Let ScaleY(ByVal n_ScaleY                   As Single)         :  Let p_ScaleY          = n_ScaleY          : End Property
 
 Public Property Get Text()                                  As String          :  Let Text              = p_Text            : End Property
 Public Property Get Bold()                                  As Boolean         :  Let Bold              = p_Bold            : End Property
@@ -39,6 +43,8 @@ Public Property Get FontColor()                             As Variant         :
 Public Property Get BackgroundColor()                       As Variant         :  Let BackgroundColor   = p_BackgroundColor : End Property
 Public Property Get FontLayout()                            As VBGLFontLayout  :  Set FontLayout        = p_FontLayout      : End Property
 Public Property Get Scalee()                                As Single          :  Let Scalee            = p_Scalee          : End Property
+Public Property Get ScaleX()                                As Single          :  Let ScaleX            = p_ScaleX          : End Property
+Public Property Get ScaleY()                                As Single          :  Let ScaleY            = p_ScaleY          : End Property
 
 Public Function Create(ByVal n_Text As String, ByVal n_FontLayout As VBGLFontLayout) As VBGLFont
     Set Create = New VBGLFont
@@ -58,7 +64,11 @@ Public Sub AddText(ByVal NewText As String)
 End Sub
 
 Public Function GetData(ByVal Text As String, ByVal xStart As Single, ByVal yStart As Single) As Single()
-    GetData = FontLayout.GetData(Text, p_FontColor, p_BackgroundColor, Scalee, xStart, yStart)
+    If ScaleX = 0 Or ScaleY = 0 Then
+        GetData = FontLayout.GetData(Text, p_FontColor, p_BackgroundColor, Scalee, Scalee, xStart, yStart)
+    Else
+        GetData = FontLayout.GetData(Text, p_FontColor, p_BackgroundColor, ScaleX, ScaleY, xStart, yStart)
+    End If
 End Function
 
 Public Function DataSize() As Long
